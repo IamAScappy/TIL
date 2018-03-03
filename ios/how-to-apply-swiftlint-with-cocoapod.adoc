@@ -1,0 +1,90 @@
+= CocoaPod을 이용하여 SwiftLint 적용하기
+
+=== CocoaPod 
+* 프로젝트 라이브러리 의존성 관리해줌
+* Maven 또는 Gradle 역할과 비슷함
+
+> CocoaPods manages library dependencies for your Xcode projects.
+The dependencies for your projects are specified in a single text file called a Podfile. CocoaPods will resolve dependencies between libraries, fetch the resulting source code, then link it together in an Xcode workspace to build your project.
+Ultimately the goal is to improve discoverability of, and engagement in, third party open-source libraries by creating a more centralised ecosystem.
+
+=== CocoaPod 설치
+
+[source, shell]
+----
+$ sudo gem install cocoapods
+----
+
+=== CocoaPod을 이용하여 SwiftLint 적용하기
+
+===== SwiftLint를 설치할 수 있는 5가지 방법
+* Homebrew 
+
+[source, shell]
+----
+# 최신버전만 깔림
+$ brew install swiftlint
+----
+
+* CocoaPod
+* Mint
+
+[source, shell]
+----
+$ mint run realm/SwiftLint
+----
+
+* 이외에도 빌드패키지 설치 및 소스를 직접 클론 받아 컴파일할 수 있음
+
+===== SwiftLint 설치
+* SwiftLint를 적용하려는 프로젝트 경로로 이동함
+
+[source, shell]
+----
+# CocoaPod 설치
+$ pod setup
+
+# CocoaPod Podfile 생성
+$ pod init
+
+# Podfile 편집 후, 저장
+$ vi Podfile 
+
+# platform :ios, '6.0'  
+target '프로젝트명' do
+    # 추가하려는 라이브러리를 이 영역에다가 적으면 됨
+    pod 'SwiftLint'
+end
+
+# Podfile에 설정한 라이브러리를 프로젝트에 설치함
+# 처음 설치할 때 시간이 걸림
+$ pod install
+
+# Podfile을 기존 내용과 변경이 될 경우
+$ pod update 
+----
+
+===== SwiftLint를 XCode에서 사용하기
+* 기존에 실행하던 `.xcodeproj 대신 새로 생성된 .xcworkspace` 으로 프로젝트를 열면 `framework not found pods` 에러가 발생함
+* `Run Script Phase` 을 추가하고 `"${PODS_ROOT}/SwiftLint/swiftlint"` 스크립트를 추가함
+
+===== SwiftLint 설정파일 => .swiftlint.yml
+* https://github.com/realm/SwiftLint/tree/master/Source/SwiftLintFramework/Rules[룰]이 무엇이 있는지 해당 경로에서 확인할 수 있음. 
+옵션에 설정하는 룰은 필요한 소스로 들어가 `identifier의 Value` 로 .swiftlint.yml에 적용하면 됨 
+
+[source, yml]
+----
+disabled_rules:
+  - trailing_whitespace
+
+excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
+- Carthage
+- Pods
+#- Source/ExcludedFolder
+#- Source/ExcludedFile.swift
+----
+
+=== 참고
+* https://guides.cocoapods.org/using/getting-started.html[CocoaPod 설치]
+* https://github.com/realm/SwiftLint/blob/master/README_KR.md[SwiftLint]
+* https://academy.realm.io/kr/posts/slug-jp-simard-swiftlint/[SwiftLint로 보다 명확하고 깔끔한 코드를 만들어 보세요!]

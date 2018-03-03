@@ -1,0 +1,34 @@
+= EXC_BAD_ACCESS
+
+===== 문제
+[source,swift]
+----
+protocol A {
+    var a: Int { get set }
+}
+
+extension A {
+    var a : Int {
+        get {
+            // return a
+            return self.a
+        }
+        set {
+            // a = newValue
+            self.a = newValue
+        }
+    }
+}
+----
+
+===== 해결
+* 일반적으로 해당 오류가 발생하면 메모리 관련 문제임
+* Recursive 호출 때문에 스레드가 몇만 개 생성이 되어 XCode가 멈춤
+* extension으로 속성을 연산 프로퍼티로 호출하는 것이 아니라 속성이 있는 메서드를 작성하여 호출하는 것으로 해결함
+
+===== 정리
+* 속성을 공통으로 사용하기 위해서 class 상속으로 구현하는 것이 더 적합함
+* extension
+** 새로운 기능 확장
+* class
+** 속성, 기능 상속

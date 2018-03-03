@@ -1,0 +1,112 @@
+= 콜렉션 타입(Collection Type)
+
+[source, swift]
+----
+// 배열(Array)
+// 같은 타입의 데이터를 순서대로 저장하는 형태의 컬렉션 타입
+// 스위프트 배열은 버퍼(Buffer)
+// 필요에 따라 자동으로 버퍼의 크기를 조절해줌 => 요소 삽입 및 삭제가 자유로움
+var shoppingList: [String] = ["Eggs", "Pigs"]
+var anotherShoppingList = ["Eggs", "Pigs"]		
+
+if shoppingList.isEmpty { //Checks if count == 0
+    print("The shopping list is empty.")
+} else {
+    print("The shopping list is not empty.")
+}
+
+// append => 끝에서 추가
+shoppingList.append("Cow") 
+
+// 요소 추가
+shoppingList += ["Bird", "Shark"]
+shoppingList[1...3] = ["Bananas", "Apples", "Strawberries"] 
+
+// insert => index 자리 추가
+shoppingList.insert("Maple Syrup", at: 0) 
+
+// remove => 제거된 요소가 반환
+let mapleSyrup = shoppingList.remove(at: 0) 
+
+// 선언
+var emptyArray = [Int]() 
+var anotherEmptyArray: [Int] = [] 
+var someArray = ["Hello", "World"]
+
+// 초기화
+someArray = [] 
+var array = [Int](repeating: 0, count: 3) 
+
+// 배열을 합쳐서 새로운 배열을 만들 수 있음
+var compoundArray = array + emptyArray
+
+// 정렬
+var reversedShoppingList: [String] = shoppingList.reversed()
+
+// removeLast => 마지막 요소를 제거하지만, 반환값은 없음
+// removeFirst => removeLast() 반대
+reversedShoppingList.removeLast() 
+reversedShoppingList.popLast()
+
+
+// 사전(Dictionary)
+// 순서없이 키와 값의 쌍으로 구성되는 컬렉션 타입
+// 하나의 딕셔너리 안에서 키의 이름을 중복해서 사용할 수 없음
+// 딕셔너리 안 없는 키로 접근할 경우 nil을 반환함
+var numberForName: [String: Int] = ["aming": 100, "chulsoo": 200, "jenny": 300]
+
+// 딕셔너리에서 없는 키로 접근할 경우 nil 반환
+print(numberForName["jenny"])   // Optional(300)
+print(numberForName["minji"])   // nil
+
+// 추가 후 출력 가능
+numberForName["max"] = 999
+print(numberForName["max"])     // Optional(999)
+
+// removeValue => 해당 키 값을 제거 후, 반환
+// 해당 키가 없다면 nil 반환
+print(numberForName.removeValue(forKey: "aming"))   // Optional(100)
+print(numberForName.removeValue(forKey: "aming"))   // nil
+
+// 해당 키가 없다면 기본 값 지정할 수 있음
+print(numberForName["aming", default: 0])   // 0
+
+
+// 셋(Set)
+// 같은 타입의 데이터를 순서 없이 하나의 묶음으로 저장한 형태
+// 순서가 중요하지 않거나 각 요소가 유일한 값이어야 하는 경우 사용
+// 요소로 해시 가능한 값이 들어와야 함
+// 두 세트의 교집합, 합집합 등 연산하기 매우 유용함
+
+// 해당 값을 제거 후 반환
+// 없다면 nil 반환
+print(names.remove("chulsoo"))      // chulsoo
+print(names.remove("john"))         // nil
+
+// 집합연산
+let englishClassStudents: Set<String> = ["john", "chulsoo", "aming"]
+let koreanClassStudents: Set<String> = ["jenny", "aming", "chulsoo", "hana", "minsoo"]
+
+// 교집합
+let intersectSet: Set<String> = englishClassStudents.intersection(koreanClassStudents)
+print(intersectSet) // ["aming", "chulsoo"]
+
+// 여집합의 합(배타적 논리합)
+let symmetricDiffSet: Set<String> = englishClassStudents.symmetricDifference(koreanClassStudents)
+print(symmetricDiffSet) // ["john", "hana", "minsoo", "jenny"]
+
+// 합집합
+let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
+print(unionSet) // ["john", "aming", "chulsoo", "hana", "minsoo", "jenny"]
+
+// 차집합
+let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
+print(subtractSet)  // ["john"]
+
+// 정렬
+print(unionSet.sorted())  // ["chulsoo", "hana", "jenny", "john", "minsoo", "aming"]
+----
+
+=== 참고
+* https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

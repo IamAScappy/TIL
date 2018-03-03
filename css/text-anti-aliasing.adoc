@@ -1,0 +1,11 @@
+= Text Anti Aliasing CSS
+
+===== 문제
+* 폰트가 퍼져보임
+
+===== 해결
+
+[source,css]
+----
+-webkit-text-size-adjust:none;-webkit-font-smoothing:subpixel-antialiased;text-rendering:optimizeLegibility
+----

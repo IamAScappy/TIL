@@ -1,0 +1,36 @@
+= Swift3, Swift4 문자열 자르기
+
+===== 원인
+* Swift3, Swift4 문자열 자르는 방법이 달라서 정리함
+
+===== 정리
+
+[source, swift]
+----
+var str = "Hello Swift!"
+
+let startIndex = str.index(str.startIndex, offsetBy: 1)
+let endIndex = str.index(str.endIndex, offsetBy: -1)
+
+// substring을 사용할 경우 해당 경고 문구가 생김 -> 'substring(to:)' is deprecated: Please use String slicing subscript with a 'partial range upto' operator.
+let oldStr = str.substring(to: endIndex)
+let newStr = String(str[..<endIndex])
+
+print(oldStr)   // Swift3 : Hello Swift
+print(newStr)   // Swift4 : Hello Swift
+
+// substring을 사용할 경우 해당 경고 문구가 생김 -> 'substring(from:)' is deprecated: Please use String slicing subscript with a 'partial range from' operator.
+let oldStr2 = str.substring(from: startIndex)
+let newStr2 = String(str[startIndex...])
+
+print(oldStr2)  // Swift3 : ello Swift!
+print(newStr2)  // Swift4 : ello Swift!
+
+let range = startIndex..<endIndex
+// substring을 사용할 경우 해당 경고 문구가 생김 -> 'substring(with:)' is deprecated: Please use String slicing subscript.
+let oldStr3 = str.substring(with: range)
+let newStr3 = String(str[range])
+
+print(oldStr3)  // Swift3 : ello Swift
+print(newStr3)  // Swift4 : ello Swift
+----

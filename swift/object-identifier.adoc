@@ -1,0 +1,37 @@
+= ObjectIdentifier
+
+===== ObjectIdentifier
+
+[source, swift]
+----
+let MyClassType : AnyClass  = VendingMachine.self
+print(type(of: VendingMachine()))
+
+var v1 = VendingMachine()
+var v2 = VendingMachine()
+
+var id1 = ObjectIdentifier(v1)
+var id2 = ObjectIdentifier(v2)
+print(id1 == id2)       // false
+
+var type1 = ObjectIdentifier(type(of: v1))
+var type2 = ObjectIdentifier(type(of: v2))
+
+// 상위 타입을 구한 것이기 때문에 같음
+print(type1 == type2)   // true
+----
+
+===== Any, AnyObject, AnyClass 차이
+
+[source, swift]
+----
+let anys: [Any] = [1, "jk"]                         // Any can represent an instance of any type at all, including function types.
+let anyObjects: [AnyObject] = [Class1(), Class2()]  // AnyObject can represent an instance of any class type.
+// AnyClass -> typealias AnyClass = AnyObject.Type  // AnyObject MetaType
+----
+
+=== 참고
+* https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html[TypeCasting - Any]
+* https://developer.apple.com/documentation/swift/anyobject[AnyObject]
+* https://developer.apple.com/documentation/swift/anyclass[AnyClass]
+* https://developer.apple.com/documentation/swift/objectidentifier[ObjectIdentifier]

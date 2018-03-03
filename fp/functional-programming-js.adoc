@@ -1,0 +1,728 @@
+= 자바스크립트로 알아보는 함수형 프로그래밍((Functional Programming with JS)
+
+=== 성공적인 프로그래밍
+* 좋은 프로그램 
+** 사용성, 성능, 확장성, 기획 변경에 대한 대응력이 좋음
+
+=== 함수형 프로그래밍 
+* 부수효과를 멀리함 -> `순수 함수`
+* 조합성을 강조함 -> 모듈화 수준을 높임
+
+=== 이미 매우 가까이 온 FP
+* 좋아지는 분산, 리엑티브 환경
+* 병렬, 동시성 처리
+
+=== 정의
+* 함수형 프로그래밍 => 함수 개념을 가장 우선순위에 놓음
+* 함수형 사고방식 => 문제 해결 방법은 동사(함수)로 구성(조합)하는 것
+
+=== 명령형을 함수형으로 전환해 왔는가?
+* 잘하는 개발자의 코드를 보는 것이 매우 좋음
+
+[source, js]
+----
+// 순수함수 -> y = f(x)
+function add(a, b) {
+    return a + b
+}
+
+var c = 10;
+function add2(a, b) {
+    return a + b + c;
+}
+
+log(add2(10, 10));
+
+// 외부의 영향을 받음. 부수효과가 있음
+c = 20; 
+
+// 실행시점에 따라 결과가 달라짐
+log(add2(10, 10));  
+
+var d = 20;
+function add3(a) {
+    // 외부에 영향을 줌
+    d += a; 
+    return d;
+}
+
+log(add3(20));
+log(add3(20));
+----
+
+[source, html]
+----
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>함수형 프로그래밍 - 자바스크립트</title>
+</head>
+</head>
+<body>
+<script>
+    // document.querySelector('#color').style.background = 'red';
+    // document.querySelector('#color').style.background = 'black';
+
+    function sel1(selector) {
+        return document.querySelector(selector)
+    }
+
+    // 그러나, 부수효과가 꼭 필요할 때가 있음
+    function set(obj, key, val) {
+        obj[key] = val;
+        return obj
+    }
+
+    set(set(sel1('#color').style, 'background', 'red'), 'width', '200px');
+    sel1('#input1', value, 10)
+</script>
+    <div id="color" style="width: 100px; height: 100px;"></div>
+</body>
+</html>
+----
+
+[source, js]
+----
+// 함수의 특징
+// * 일급함수, 클로저는 함수형 프로그래밍을 지탱하는 가장 중요한 개념 2가지
+// * 함수형 프로그래밍 패러다임, 언어, 주요 함수들은 모두 이 두 가지 개념을 기반으로 만들어짐
+
+// 일급함수 
+// * 함수를 값으로 다룰 수 있고, 값을 변수에 담을 수 있고 인자를 사용할 수도 있으며 리턴할 수 있음
+var f1 = function(a) {
+    return a
+};
+
+console.log(f1(20));
+
+function call(f) {
+    return f(50);
+}
+
+console.log(call(f1));
+
+// 클로저
+// * 자신이 생성될 때의 스코프에서 알 수 있는 변수를 내부에서 사용하고 있어 유지하게 시키는 함수(혹은 값과 함수)
+function constant(v) {
+    return function() { // <-- 클로저
+        return v;
+    }
+}
+
+var alway10 = constant(10);
+console.log(alway10);
+console.log(alway10);
+console.log(alway10);
+
+// constant
+// scope, closure, imclosure
+// * 함수가 종료했을 때 참조하고 있는 부분이 있다면 클로저
+function scope() {
+    var a = 10;
+    var b = 20; 
+    
+    return function closure() {
+        return a + b;
+    }
+}
+
+// imcloseure가 담기는 순간 closure임
+var imclosure = scope();
+
+// 변수에 안 담기고 메모리에서 사라지는 경우 closure가 아님
+scope();
+
+function scope2() {
+    var a = 10;
+    var b = 20;
+
+    // 참조하는 어떤한 것도 없기 때문에 클로저가 아님
+    function f(a, b) {
+        return a + b;
+    }
+
+    return f();
+}
+
+scope2();
+----
+
+[source, js]
+----
+// 함수의 종류 심화, 그리고 6가지
+// * 순수 함수
+// * 부수 효과
+// * 꼭 필요한 부수 효과
+// * 값을 변경하는 순수 함수( 새로운 값을 만드는 식으로)
+// immutable set
+function iaddx(obj, x) {
+    return { x: obj.x + obj}
+}
+
+var o1 = {x: 10};
+console.log(iaddx(o1, 10));
+console.log(o1);
+
+// * 함수를 리턴하는 함수(고차 함수)
+function add_maker(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+
+var add100 = add_maker(100);
+console.log(add100(5));
+console.log(add100(15));
+console.log(add100(155));
+console.log(add100(200));
+console.log(add100(500));
+
+// * 함수가 함수를 인자로 받아서 실행하는 함수 (고차 함수, 응용형 프로그래밍 Applicative programming)
+function repeat(count, fn) {
+    /*
+    var i = 0;
+    while(count--) fn(i++);
+    */
+    var i = -1;
+    while(++i < count--) fn(i);
+}
+
+// 선언형 프로그래밍 -> 돌아라고 이야기함
+repeat(5, function(idx) {
+    console.log(idx);
+});
+----
+
+[source, js]
+----
+// 함수형 프로그래밍에서 사용하는 함수
+// * 순수함수
+// * 값을 변경하는 순수함수 (새로운 값을 만드는 식 -> 불변성)
+// * 함수를 리턴하는 고차 함수(constant, add_maker, 클로저, 부분 적용, 함수 조합 등)
+// * 함수가 함수를 인자로 받아서 실행하는 함수(repeat, map, filter, reduce)
+// * 꼭 필요한 부수 효과 함수
+//      * DB 트랙잭션 상태 변경
+
+// 함수형 프로그래밍하는 방법
+// * 위 5가지 타입의 함수를 적절히 조합하며 순수 함수의 비중을 높임
+// * 문(statement)보다 표현식(expression)을 위주로 코딩함
+// * 변수 사용을 줄이고 값을 변경하지 않음 -> 변수로 선언하더라도 상수로 사용하기 위해 선언. 값 자체 상태를 바꾸는 것이 아니라 새로운 값을 만듦
+// * 꼭 필요한 부수 효과 함수를 제외하고 부수효과를 로직에 이용하지 않음
+----
+
+[source, js]
+----
+function log(val) {
+    console.log.apply(console, arguments);
+    return val;
+}
+
+var products = [
+    { id: 1, name: "반팔티", price: 10000, sizes: ["L", "XL", "2XL"] },
+    { id: 2, name: "후드티", price: 31000, sizes: ["L", "XL"] },
+    { id: 3, name: "맨투맨", price: 19000, sizes: ["L"] },
+    { id: 4, name: "롱패딩", price: 110000, sizes: ["M", "L"] }
+];
+
+// 명령형 코드
+// => 20,000원 이상인 상품을 거름
+var temp_products = [];
+var i = -1, l = products.length;
+while (++i < l) {
+    if (products[i].price >= 20000) {
+        temp_products.push(products[i]);
+    }
+}
+
+// {id: 2, name: "후드티", price: 31000, sizes: Array(2)}
+// {id: 4, name: "롱패딩", price: 110000, sizes: Array(2)}
+log(temp_products);
+
+// => 20,000원 이상의 상품의 이름을 수집해서 출력함
+var names = [];
+var i = -1, l = temp_products.length;
+while (++i < l) {
+    names.push(temp_products[i].name);
+}
+
+// ["후드티", "롱패딩"]
+log(names);
+// => 20,000원 미만인 상품을 거름
+var temp_products = [];
+var i = -1, l = products.length;
+while (++i < l) {
+    if (products[i].price < 20000) {
+        temp_products.push(products[i]);
+    }
+}
+
+
+// {id: 1, name: "반팔티", price: 10000, sizes: Array(3)}
+// {id: 3, name: "맨투맨", price: 19000, sizes: Array(1)}
+log(temp_products);
+
+// => 20,000원 미만인 상품의 가격을 수집해서 출력함
+var prices = [];
+var i = -1, l = temp_products.length;
+while (++i < l) {
+    prices.push(temp_products[i].price);
+}
+
+// [10000, 19000]
+log(prices);
+
+// filter 
+// * predicate 추상화 위임
+function filter(list, predicate) {
+    var new_list = [];
+    var i = -1, l = list.length;
+    while (++i < l) predicate(list[i]) && new_list.push(list[i]);
+    return new_list;
+}
+
+log(filter(products, function(p) { return p.price >= 20000; }) );
+log(filter(products, function(p) { return p.price < 20000; }) );
+
+// 함수형 프로그래밍 추상화 단위 => 함수 
+// 객체형 프로그래밍 추상화 단위 => 클래스
+
+// map 
+// * mapper에게 추상화 위임
+function map(list, mapper) {
+    var new_list = [];
+    var i = -1, l = products.length;
+    while (++i < l) new_list.push(mapper(list[i]));
+    return new_list;
+}
+
+// 다형성
+// * 외부 
+//      * 외부에 선택할 수 있는 부분을 넓힐 수 있음
+//      * Array.prototype와 비교
+//      * Array이거나 Array를 상속받은 데이터 메서드여야만 동작함
+[1,2,3,4].map(function(v) {
+    return v + 10;
+});
+
+[1,2,3,4].filter(function(v) {
+    return v % 2;
+});
+
+// 내부
+// * 보조함수를 이용함
+
+// add, add_all, mult, mult_all
+function add(a, b) {
+    return a + b;
+}
+
+function mult(a, b) {
+    return a * b;
+}
+
+function add_all(list) {
+    // memo : 캐시할 값
+    // var i = 0, l = list.length, memo = list[i++];
+    // while (i < l) {
+    //     memo = add(memo, list[i++])l
+    // }
+
+    // return memo;
+
+    return reduce(list, add);
+}
+
+
+function mult_all(list) {
+    // memo : 캐시할 값
+    // var i = 0, l = list.length, memo = list[i++];
+    // while (i < l) {
+    //     memo = multi(memo, list[i++]);
+    // }
+
+    // return memo;
+
+    return reduce(list, mult);
+}
+
+log(add_all([1,2,3,4]));
+log(mult_all([1,2,3,4]));
+log(reduce([1,2,3,4], add));
+log(reduce([1,2,3,4], mult));
+
+// reduce => 새로운 축약함수를 발견할 수 있음
+// 항상 같은 인자를 받으면 같은 결과를 리턴함
+
+// reduce, map, filter -> Applicative 함수이자 클로저 위에서 쌓아 올림
+function reduce(list, fn, memo) {
+    //memo : 캐시 할 값
+    var i = 0, l = list.length, memo = memo === undefined? list[i++] : memo;
+    while (i < l) {
+        memo = fn(memo, list[i++]);
+    }
+
+    return memo;
+}
+
+log(reduce([1,2,3,4], add));
+log(reduce([1,2,3,4], mult));
+
+// Tip. 함수형 프로그래밍에서 대표하는 8가지 함수는 내가 만들어 보는 것도 좋음
+
+// 다형성이 더 높은 함수가 되기 위해서 시작 값을 정할 수 있음
+log(reduce([1, 2, 3, 4], function(memo, num) {
+    memo.num += num;
+    return memo;
+}, {num: 20}));
+----
+
+[source, js]
+----
+// pipe
+// * 엘릭서, 클로저에 파이프 연산자가 있음
+// * 데이터 흐름에 따라 하나하나씩 따라감
+// * 파이프 함수는 인자를 함수만 받음
+// * 실용적인 클로저를 만드는 것이 중요함
+// * 시작 값을 넣어야 함
+function pipe() {
+    var fns = arguments;
+    return function(arg) {
+        return reduce(fns, function(arg, f) {
+            return f(arg);
+        }, arg);
+    }
+}
+
+/*
+function pipe() {
+    return function() {
+        return function go() {
+        var fns = arguments;
+        return function(arg) {
+            return reduce(fns, function(arg, f) {
+                return f(arg);
+        });
+    }
+}
+*/
+
+var f1 = pipe( 
+    function(v) { return v + 10; },
+    function(v) { return v + 222; },
+    function(v) { return v / 2; }, 
+    log
+);
+
+f(20);  // 126
+f(30);  // 131
+
+// Go
+// * 즉시 시작 함수
+// * 함수로 인자를 받음
+// * 시작값을 정해서 실행함
+function go() {
+    var fns = arguments;
+    return function(arg) {
+        return reduce(fns, function(arg, f) {
+            return f(arg);
+        });
+    }
+}
+
+go(100, 
+    function(v) { return v + 10; },
+    function(v) { return v + 222; },
+    function(v) { return v / 2; }
+    log
+);
+
+
+// 커링
+// * Curry, Chaining 차이
+//      * Chaining => 결과를 받아서 다른 메서드로 사용할 수 있음
+//      * Curry => 일부분만 적용
+// * 함수를 만드는 함수
+/*
+function curry(fn) {
+    return function(a, b) {
+        return function(b) { return fn(a, b); }
+    }
+}
+
+// 계산이 안됨
+log(add(10, 5));
+*/
+
+function curry(fn) {
+    return function(a, b) {
+        return function(b) { return fn(a, b); }
+    }
+}
+
+var add = curry(function(a, b) {
+    return a + b;
+});
+
+log(add(10, 5));    // 15
+log(add(10)(5));    // 15
+
+function curryr(fn) {
+    return function(a) {
+        return arguments.length == 2 ? fn(a, b) : function(b) {return fn(b, a);};
+    }
+}
+
+var sub = curryr(function(a, b){
+    return a - b;
+});
+
+var sub10 = sub(10);
+log(sub10(5));  // -5
+----
+
+[source, js]
+----
+// 비동기
+// * 사용성을 더 높일 수 있음
+// * 여러 개의 스레드를 사용하면 비용이 올라감
+// * 500명 요청이 들어오면, 그 이상이 들어오면 대기상태. 하나의 요청의 하나 응답
+// * 비동기는 500명 이상 요청이 들어오면 일단 받음. 처리되기 전 다른 것을 던져주고 응답을 처리함 
+
+// 비동기 상황 잘 다루기
+// * 리턴 값으로 소통하기
+// * 원하는 순서대로 함수 실행을 나열하는 법 연습 => go function()
+// * 표현식 만으로 코딩하는 연습
+// * 재귀 함수 연습
+// * 비동기 처리를 위해 나온 언어 => 엘릭서, 얼랭, CSP, RxJava
+
+// 기본기
+/*
+    console.log(1) ->
+    setTimeout ->
+    function() {} -> 
+    console.log(2) ->
+    next() ->
+    console.log(3)
+*/
+
+// 명령형
+function a() {
+    console.log(1);
+
+    // 비동기 컨텍스트가 생기면 일단 실행하고 그 뒤, 실행함
+    (function (next) {
+        setTimeout(function() {
+            console.log(2);
+            next();
+        }, 1);
+    }) (function() {
+        console.log(3);
+    });
+    
+
+    // var i = 0;
+    // while(i++ < 10000) { }
+
+    // console.log(3);
+
+    // f(function() {
+    //     console.log(3);
+    // });
+}
+
+a();
+
+// reduce를 재귀 + 유명 함수를 이용하여 Promise를 제어할 수 있도록 변경함
+// Tip. 문보다 표현식을 주로 이용함
+
+reduce([1, 2, 3], function(memo, num) {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log('hi');
+            resolve(memo + num);
+        }, 1000);
+    })
+}, 10).then(log);
+
+function delay(fun, time) {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            resolve(fun());
+        }, time);
+   });
+}
+
+// go, pipe, map, filter 사용해보기
+// * go는 promise 자체도 숨길 수 있음
+// * 함수를 내가 원하는 순서대로 나열하는 방법 연습
+go([1,2,3],
+    map(function(num) {
+        return delay(function() {
+            return num * 4;
+        }, 1000)
+    }),
+    map(function(num) {
+        return delay(function() {
+            return num * 4;
+        }, 1000)
+    }),
+    map(function(num) {
+        return delay(function() {
+            return num * 4;
+        }, 1000)
+    }),
+    log
+);
+
+
+// cmap, map(동시성 Concurrencys)
+function constant(val) {
+    return function() {
+        return val;
+    }
+}
+
+cmap([1,2,3], function(num) {
+    return delay(function() {
+        return num * 4;
+    }, 1000)
+}).then(log);
+
+// 동기와 비동기를 적절히 사용해야 하는 이유
+// * 비동기로 모두 처리 되버리면 동기적으로 결과를 바로 응답이 와야되는데 오지 않는 문제가 생김
+// * 결국은 비동기과 동기가 적절히 사용해야 됨!
+// * 선언형 프로그래밍이 중요
+
+// 브라우저 동작 원리 => 비동기
+// * 함수 스택이 하나 비워질때까지 랜더링이 되지 않음
+// * cmap => 동시성
+----
+
+[source, js]
+----
+// filer, map, reduce, pipe, go, cuury, curryr, cmap 개선
+window.cmap = curryr(function(list, mapper) {
+    return go(
+                list,
+                map(function(v) {
+                        return constant(mapper(v));
+                }),
+                map(function(f) {
+                    return f();
+                })
+            );
+});
+
+window.filter = curryr(function(list, predicate) {
+    return reduce(list, function(new_list, val) {
+        return predicate(val) ? append(new_list, val) : new_list;
+        return go(val, predicate, t => t ? append(new_list, val) : new_list);
+    }, []);
+});
+
+window.map = curryr(function(list, mapper) {
+    return reduce(list, function(new_list, val) {
+        return go(val, mapper, v => append(new_list, v));
+    }, []);
+});
+
+function reduce(list, fn, memo) {
+    var i = 0, l = list.length;
+    return function recur(memo) {
+        while (i < l) {
+            if (memo && memo.constructor == Promise) return memo.then(recur);
+            memo = fn(memo, list[i++]);
+        }
+        return memo;
+    } (memo === undefined ? list[i++] : memo);
+}
+
+function callr(arg, f) {
+    return f(arg);
+}
+
+function pipe() {
+    var fns = arguments;
+    return function(arg) {
+        return reduce(fns, callr, arg);
+    }
+}
+
+function go() {
+    return reduce(arguments, callr);
+}
+
+function curry(fn) {
+    return function(a, b) {
+        return arguments.length == 2 ? fn(a, b) : function(b) { return fn(a, b); }
+    }
+}
+
+function curryr(fn) {
+    return function(a, b) {
+        return arguments.length == 2 ? fn(a, b) : function(b) { return fn(b, a); }
+    }
+}
+
+function append(list, val) {
+    return list.push(val), list;
+}
+----
+
+[source, html]
+----
+// 비동기 실습
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>비동기</title>
+    <script>
+        /*
+            테스트 파일 
+            => https://github.com/yuaming/blog/blob/master/fp/functional-programming-js-info.adoc
+        */
+    </script>
+</head>
+<body>
+
+<canvas id="canvas1" width="700" height="500" style="opacity: 0; transition: opacity 1s;"></canvas>
+
+<script>
+    var context = sel1('#canvas1').getContext('2d');
+    console.time();
+    go(infos,
+    // map(function(info) { // <--- 2000ms
+    cmap(function(info) { // <--- 200ms
+        return new Promise(function(resolve) {
+            var image = new Image();
+            image.onload = function() {
+                resolve({
+                    image: image,
+                    x: info.x,
+                    y: info.y
+                })
+            };
+
+            image.src = info.url;
+        })
+    }),
+    map(function(info) {
+        context.drawImage(info.image, info.x, info.y);
+    }),
+    function() {
+        sel1('#canvas1').style.opacity = 1;
+        console.timeEnd();
+    })
+</script>
+
+</body>
+----
+
+=== 정리
+* 프로그래밍 여러 언어를 배우는 것보다 하나의 언어를 쓰더라도 멀티 패러다임 이해하고 사용할 수 있는 개발자가 되는 것이 중요함
+* 객체지향과 함수형 프로그래밍은 배척관계가 아님
+
+=== 참고
+* 유인동님 자바스크립트로 알아보는 함수형 프로그래밍

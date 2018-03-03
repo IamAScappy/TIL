@@ -1,0 +1,26 @@
+= Cannot use mutating member on immutable value: function call returns immutable value
+
+===== 문제 
+
+[source, swift]
+----
+// JSONScanner() : Mutable Struct
+// 제목과 같은 에러 발생
+let jsonData = try JSONScanner().makeValues(value).map({ (s: String) -> JSONData in
+    return try JSONParser.nextValue(s)
+})
+----
+
+===== 해결
+
+[source, swift]
+----
+var jsonScanner: JSONScanner = JSONScanner()
+let jsonData = try jsonScanner.makeValues(value).map({ (s: String) -> JSONData in
+    return try JSONParser.nextValue(s)
+})
+----
+
+===== 정리
+* Mutable Data, Immutable Data를 분리하도록 컴파일에서 에러 발생시킴
+

@@ -1,0 +1,227 @@
+= 의존성 주입(DI)
+
+===== 문제
+* 의존성 주입에 대한 개념이 정리되지 않음
+
+===== 정리
+* 의존성이 있다는 것은 해당 객체의 속성이나 기능을 사용한다는 것과 같음
+* 관계 깨기
+** 값을 복사하거나 객체를 이용하거나 타입에 의존하여 매개변수나 생성자로 넘김
+** 더 좋은 방법은 함수나 객체가 값에 의존하는 것보다 추상화한 인터페이스를 만들어 메서드를 의존하는 것이 나음
+** DTO나 인터페이스를 매개변수나 생성자로 넘김
+* 의존성 주입 
+** 함수, 객체, 프레임워크 단계 등 여러 단계에서 의존성 주입을 생각해봄
+* 해당 설명은 값에 대한 추상화
+* 함수형 프로그래밍로 더 큰 의미를 생각하면 함수 단위도 추상화할 수 있음
+
+===== Tip
+* DTO getter 이름은 주로 명사형을 많이 씀
+* 이름 지을 때 애플 문서 많이 참고하자!
+
+[source, swift]
+----
+// before
+struct HugeLadderGame {
+    struct LadderPlayer {
+        var name = ""
+    }
+    struct InputView {
+        static func readHeight() -> Int {
+            print("사다리 높이를 입력해주세요.")
+            let height = readLine() ?? ""
+            return Int(height) ?? 0
+        }
+        
+        static func readPlayerNames() -> [String] {
+            print("참여할 사람 이름을 입력하세요")
+            let players = readLine() ?? ""
+            return players.split(separator: ",").map{String($0)}
+        }
+    }
+    
+    var height = 0
+    var players = [LadderPlayer]()
+    var ladders = [[Int]]()
+    
+    mutating func run() {
+        self.height = InputView.readHeight()
+        let names = InputView.readPlayerNames()
+        self.players = names.map({LadderPlayer(name:$0)})
+        generateLadders()
+        printLadders()
+    }
+    
+    mutating func generateLadders() {
+        for row in 0..<height {
+            ladders.append([Int]())
+            for _ in 0..<players.count {
+                let hasStep = Int(arc4random_uniform(2))
+                ladders[row].append(hasStep)
+            }
+        }
+    }
+    
+    func printLadders() {
+        for row in ladders {
+            print("|", terminator:"")
+            for step in row {
+                if step==1 {
+                    print("---", "|", separator:"", terminator:"")
+                }
+                else {
+                    print("   ", "|", separator:"", terminator:"")
+                }
+            }
+            print()
+        }
+    }
+}
+
+var game = HugeLadderGame()
+game.run()
+
+// after
+protocol LadderRunnable {
+    func ladderHeight() -> Int
+    func playerNames() -> [String]
+}
+
+struct InputView {
+    static func readHeight() -> Int {
+        print("사다리 높이를 입력해주세요.")
+        let height = readLine() ?? ""
+        return Int(height) ?? 0
+    }
+    
+    static func readPlayerNames() -> [String] {
+        print("참여할 사람 이름을 입력하세요")
+        let players = readLine() ?? ""
+        return players.split(separator: ",").map{String($0)}
+    }
+}
+
+struct GameInfo : LadderRunnable {
+    private var height : Int
+    private var names : [String]
+    
+    init(height: Int, names: [String]) {
+        self.height = height
+        self.names = names
+    }
+    
+    func ladderHeight() -> Int {
+        return height
+    }
+    
+    func playerNames() -> [String] {
+        return names
+    }
+}
+
+struct LadderPlayer {
+    var name = ""
+}
+
+struct SmallLadderGame {
+    static func run(runner : LadderRunnable) {
+        let ladders = LadderGenerater.generateLadders(runner: runner)
+        let ladderInfo = LadderInfo(steps: ladders)
+        OutputView().printLadders(printable: ladderInfo)
+    }
+}
+
+struct LadderGenerater {
+    static func generateLadders(runner : LadderRunnable) -> [[Int]] {
+        var ladders = [[Int]]()
+        let names = runner.playerNames()
+        let players = names.map({LadderPlayer(name:$0)})
+        
+        for row in 0..<runner.ladderHeight() {
+            ladders.append([Int]())
+            for _ in 0..<players.count {
+                let hasStep = Int(arc4random_uniform(4))
+                ladders[row].append(hasStep)
+            }
+        }
+        return ladders
+    }
+}
+
+protocol LadderPrintable {
+    func ladders() -> [[Int]]
+}
+struct LadderInfo : LadderPrintable {
+    private var ladderSteps: [[Int]]
+
+    func ladders() -> [[Int]] {
+        return ladderSteps
+    }
+    
+    init(steps: [[Int]]) {
+        self.ladderSteps = steps
+    }
+}
+
+struct OutputView {
+    // print도 반복되기 때문에 기능 단위도 추상화 가능
+
+    /*
+    func printLadders(printable: LadderPrintable, worker: () -> Void) {
+        for row in printable.ladders() {
+            worker("|", terminator:"")
+            for step in row {
+                switch step {
+                case 1:
+                    worker("---", "|", separator:"", terminator:"")
+                case 2:
+                    worker("--\\", "|", separator:"", terminator:"")
+                case 3:
+                    worker("/--", "|", separator:"", terminator:"")
+                default:
+                    worker("   ", "|", separator:"", terminator:"")
+                }
+            }
+
+            worker()
+        }
+    }
+    */
+
+
+    func printLadders(printable: LadderPrintable) {
+        for row in printable.ladders() {
+            print("|", terminator:"")
+            for step in row {
+                switch step {
+                case 1:
+                    print("---", "|", separator:"", terminator:"")
+                case 2:
+                    print("--\\", "|", separator:"", terminator:"")
+                case 3:
+                    print("/--", "|", separator:"", terminator:"")
+                default:
+                    print("   ", "|", separator:"", terminator:"")
+                }
+            }
+            print()
+        }
+    }
+}
+
+//main
+let gameInfo = GameInfo(height: InputView.readHeight(),
+                        names: InputView.readPlayerNames())
+struct GameInfoMock : LadderRunnable {
+    func ladderHeight() -> Int {
+        return 0
+    }
+    
+    func playerNames() -> [String] {
+        return ["aaaaaaaaaaaaaaaaaa"]
+    }
+}
+SmallLadderGame.run(runner:GameInfoMock())
+----
+
+=== 참고
+* https://gist.github.com/godrm/f835c2f682a70be68dfe50af535c882e[JK Gist]

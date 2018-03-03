@@ -1,0 +1,406 @@
+= MySQL 기본
+
+=== MySQL 설치 실습
+
+===== AWS 우분투 인스턴스 생성 및 접속하기
+* AWS EC2 Ubuntu 16.04 시작함
+
+===== 최초 접속 후 우분투 패키지 업그레이드 및 한글 설정
+
+[source, shell]
+----
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install language-pack-ko
+$ sudo locale-gen ko_KR.UTF-8
+----
+
+===== 한글 로케일 설정
+
+[source, shell]
+----
+$ locale
+$ sudo -i
+$ cat << 'EOF' > /etc/default/locale
+LANG="ko_KR.UTF-8"
+LANGUAGE="ko_KR:ko:en_US:en"
+EOF
+
+# shell 재시작 후 확인
+$ locale
+----
+
+===== MySQL 설치
+
+[source, shell]
+----
+# 중간에 root password를 꼭 넣어줘야 함
+# 클라우드이기 때문에 패스워드 분실할 때 새로 설치하는 것이 빠름 
+$ sudo apt install mysql-server
+$ sudo systemctl start mysql
+$ mysql -u root -p
+mysql> quit
+----
+
+===== UTF-8 설정
+
+[source, shell]
+----
+# 리눅스는 초기 설정이 latin1으로 되어 있는 경우가 많음
+# 한글을 처리하기 위해 utf8로 설정을 바꾸는 것이 좋음
+mysql> status
+
+$ sudo -i #root
+$ cat /etc/mysql/my.cnf
+$ cat << 'EOF' > /etc/mysql/mysql.conf.d/utf8.cnf
+# for utf8 characterset
+[client]
+default-character-set = utf8
+
+[mysqld]
+init_connect = SET collation_connection = utf8_general_ci
+init_connect = SET NAMES utf8
+character-set-server = utf8
+collation-server = utf8_general_ci
+
+[mysqldump]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+EOF
+
+$ cat /etc/mysql/mysql.conf.d/utf8.cnf
+
+# ctrl + d 로 root 로그아웃, 일반 사용자로 돌아옴
+$ sudo systemctl restart mysql
+$ mysql -u root -p
+mysql> status
+----
+
+===== 일반 사용자 외부 접속 허용
+
+[source, shell]
+----
+# 주의 => root 사용자는 외부 접속을 허용하면 안됨
+$ sudo -i
+$ cd /etc/mysql
+$ grep -r 'bind'
+# bind-adress=127.0.0.1 내용 주석처리 (앞에 #을 붙임)
+$ cd /etc/mysql/mysql.conf.d
+$ sed -i 's/bind/# bind/' mysqld.cnf
+$ cat mysqld.cnf | grep bind
+$ sudo systemctl restart mysql
+$ exit
+----
+
+===== 재부팅할 때 자동실행
+
+[source, shell]
+----
+$ sudo reboot
+$ mysql -u root -p 
+$ sudo update-rc.d mysql defaults
+
+# 자동 실행 취소 명령 
+# sudo update-rc.d mysql remove  
+$ sudo reboot
+$ mysql -u root -p
+----
+
+===== 데이터베이스 및 일반 사용자 생성
+
+[source, sql]
+----
+CREATE DATABASE mydb;
+--- 아이디 및 패스워드 설정
+CREATE USER 'myuserid'@'%' IDENTIFIED BY 'mypassword';
+GRANT ALL ON mydb.* TO 'myuserid'@'%';
+FLUSH PRIVILEGES;
+----
+
+===== 사용자 패스워드가 생각나지 않을 때
+
+[source, sql]
+----
+SET PASSWORD FOR 'honux'@'%'='new_password';
+FLUSH PRIVILEGES;
+----
+
+===== Security Group 설정
+* mysql(inbound, 3306, any address) 허용
+
+=== MySQL SQL 실습
+
+===== CRUD
+* Create
+* Retreival
+* Update
+* Delete
+
+===== 데이터베이스 선택
+
+[source, sql]
+----
+SHOW DATABASES;
+USE my_db_name;
+----
+
+===== 테이블 생성, INSERT, SELECT, UPDATE, DELETE
+
+[source, sql]
+----
+-- CREATE
+DROP TABLE IF EXISTS USER;
+CREATE TABLE USER (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(64),
+    START_DATE DATETIME
+);
+
+
+-- INSERT
+INSERT INTO USER VALUES (NULL, 'honux', '2017-07-01');
+
+INSERT INTO USER (NAME) VALUES ('JK'),('JJ'),('SM');
+
+INSERT INTO USER (NAME, START_DATE) VALUES ('정호영',NOW());
+
+
+-- SELECT
+SELECT * FROM USER;
+
+SELECT NAME FROM USER;
+
+SELECT NAME, START_DATE FROM USER WHERE NAME = 'honux';
+
+SELECT NAME, START_DATE FROM USER WHERE START_DATE > '1970-1-1';
+
+SELECT NAME, START_DATE 
+    FROM USER 
+    WHERE START_DATE > '1970-1-1' AND NAME = 'honux';
+
+SELECT NAME, START_DATE 
+    FROM USER 
+    WHERE START_DATE > '1970-1-1' AND NAME LIKE 'h%';
+
+SELECT NAME, START_DATE 
+    FROM USER 
+    WHERE START_DATE IS NULL;
+
+
+-- UPDATE
+SELECT * FROM USER WHERE name='JK';
+
+UPDATE USER 
+     SET NAME = '김정'
+     WHERE name='JK';
+
+UPDATE USER SET START_DATE=NOW();
+
+SELECT * FROM USER;
+
+
+-- DELETE
+DELETE FROM USER WHERE NAME = '김정';
+----
+
+===== JOIN
+* 여러 테이블을 합쳐서 하나의 정보로 보여주는 것
+
+===== https://ko.wikipedia.org/wiki/데이터베이스_정규화[정규화]
+* 설계가 잘못된 테이블에서 이상 현상이 발생함
+* 이상 현상을 막기 위해 테이블을 작은 단위로 쪼갬
+* 그래서 쪼갠 테이블을 다시 합치는 과정이 필요함 => **JOIN**
+
+===== JOIN 실습
+
+[source, sql]
+----
+-- 외래키 => BOARD 테이블에서는 USER 테이블 레코드의 참조가 발생, 이 때 사용하는 USER의 UID 값
+DROP TABLE IF EXISTS USER;
+CREATE TABLE USER (
+    ID VARCHAR(32),
+    NAME VARCHAR(32) NOT NULL,
+    PRIMARY KEY(ID)
+    );
+
+INSERT INTO USER VALUES
+('apple', 'honux'),('banana','crong'),('carrot','pobi');
+
+DROP TABLE IF EXISTS BOARD;
+CREATE TABLE BOARD(
+    ID INT NOT NULL AUTO_INCREMENT,
+    DATE DATE,
+    UID VARCHAR(32),
+    TITLE VARCHAR(64) NOT NULL,
+    PRIMARY KEY(ID),
+    FOREIGN KEY(UID) REFERENCES USER(ID)
+        ON DELETE CASCADE ON UPDATE CASCADE);
+
+INSERT INTO BOARD (DATE, UID, TITLE) VALUES
+    ('2015-1-1','apple', 'hello'),
+    ('2015-1-2','banana', 'hi'),
+    ('2015-1-3','apple', 'good'),
+    ('2015-1-4','banana', 'zizi'),
+    ('2015-1-3',NULL, 'I am hacker');
+
+DESC USER;
+DESC BOARD;
+
+SELECT * FROM USER;
+SELECT * FROM BOARD;
+
+
+-- CROSS JOIN => 카테시안 프로덕트이라고 하며 가능한 모든 쌍을 나타냄
+SELECT * FROM USER CROSS JOIN BOARD;
+
+
+-- INNER JOIN
+SELECT * FROM USER U CROSS JOIN BOARD B
+    WHERE U.ID = B.UID;
+
+SELECT * FROM USER U INNER JOIN BOARD B ON U.ID = B.UID;
+
+SELECT * FROM USER U JOIN BOARD B ON U.ID = B.UID;
+
+
+-- LEFT OUTER JOIN => 왼쪽 테이블이 바깥쪽 테이블이 된다는 의미
+SELECT * FROM USER U LEFT JOIN BOARD B ON U.ID = B.UID;
+
+
+-- RIGHT OUTER JOIN
+SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
+----
+
+===== 참조 무결성 제약 조건
+* 외래키 컬럼 값은
+** 반드시 참조 테이블의 Primary Key 값이거나
+** NULL 값이어야 함
+
+===== Index와 효과적인 탐색
+* Primary Key, Foreign Key 컬럼에는 기본적으로 Index가 자동으로 생성됨
+* 삽입할 때 성능 저하
+* 검색 및 조인할 때 성능 향상
+* explain을 이용해서 외래 키가 있는 경우와 없는 경우 확인해봄
+
+=== Entity-Relationship 모델
+* 개체와 관계를 이용해 데이터를 표현하는 방식
+
+===== Entity
+* 실생활에서 독립적으로 존재하는 어떤 것
+* 프로그래밍에서의 Object와 유사한 개념임
+
+===== Relationship
+* 객체와 객체 사이의 관계를 표현함
+
+===== Relational 모델
+* ER모델은 물리적 저장에 적합한 모델이 아니므로 이를 저장하기 적합한 관계형 모델로 변환함
+
+===== Entity와 Relationship의 물리적 표현
+* 모두 테이블을 통해 저장됨
+
+=== 관계의 종류
+* One to One
+** One to One 관계는 일반적으로 다른 객체에 포함시킴
+* One to Many
+** 일반적으로 자주 발생하는 관계
+* Many to Many
+** Many to Many 를 표현하기 위해서는 추가적인 테이블 생성 필요
+** 사용자 to 아이템
+
+=== 물리적 조인의 종류
+* Nested-loop Join
+* Sort merge join
+* Hash join
+
+===== MySQL 조인
+* Nested-Loop Join만 있음
+* 싱글 스레드로 동작함
+
+===== Nested-loop Join
+* 레코드 개수가 작을 때 가장 효율적임
+* 메모리 요구량이 적음
+* 간단한 조인은 매우 빠르게 수행함
+* OLTP 워크로드에 적합함
+
+> A simple nested-loop join (NLJ) algorithm reads rows from the first table in a loop one at a time, passing each row to a nested loop that processes the next table in the join. This process is repeated as many times as there remain tables to be joined.
+
+[source, sql]
+----
+for each row in t1 matching range {
+  for each row in t2 matching reference key {
+    for each row in t3 {
+      if row satisfies join conditions, send to client
+    }
+  }
+}
+----
+
+===== Block Nested-Loop Join
+* 조인 버퍼를 이용하여 바깥 테이블을 레코드를 버퍼링하고 한꺼번에 찾음
+* SNJ에 비해 효율이 아주 좋음
+
+> A Block Nested-Loop (BNL) join algorithm uses buffering of rows read in outer loops to reduce the number of times that tables in inner loops must be read. For example, if 10 rows are read into a buffer and the buffer is passed to the next inner loop, each row read in the inner loop can be compared against all 10 rows in the buffer. This reduces by an order of magnitude the number of times the inner table must be read.
+
+[source, sql]
+----
+for each row in t1 matching range {
+  for each row in t2 matching reference key {
+    store used columns from t1, t2 in join buffer
+    if buffer is full {
+      for each row in t3 {
+        for each t1, t2 combination in join buffer {
+          if row satisfies join conditions, send to client
+        }
+      }
+      empty join buffer
+    }
+  }
+}
+
+if buffer is not empty {
+  for each row in t3 {
+    for each t1, t2 combination in join buffer {
+      if row satisfies join conditions, send to client
+    }
+  }
+}
+----
+
+===== Sort Merge Join
+* 조인 대상이 정렬되어 있으면 최적의 성능을 보임
+* 일반적으로 그렇지 않기 때문에 잘 사용하지 않음
+* 두 테이블 조인할 때, 두 테이블 정렬이 모두 필요함
+
+===== Hash Join
+* 해시를 이용한 조인
+* 테이블의 크기가 커질수록 좋은 성능을 보일 수 있음
+* 인덱스가 없고, 정렬도 되어 있지 않으면
+* 두 테이블의 차이가 클수록 좋은 성능을 보임
+* 통계 정보가 잘못되었을 경우 성능 저하 가능성이 있음
+* CPU를 많이 소모할 가능성이 있음
+* Hash Join
+** 파티셔닝(또는 빌드) 단계
+*** 두 테이블 중 작은 쪽을 빌드 셋으로 정함
+*** 빌드 셋에 대해 해시테이블 생성함
+** 탐색(Probing) 단계
+*** 탐색 집합(Probing set)에 대해
+* Hash Join 종류
+** 인메모리 해시 조인
+** 그레이스 해시 조인
+
+===== MySQL Join 성능
+* 조인 순서가 성능에 큰 영향을 미침
+* Inner Join은 조인 순서가 결과에 영향을 미치지 않으므로 옵티마이저에 의해 최적의 순서 선택함
+* Outer Join은 반드시 Outer Table을 먼저 읽어야 하므로 조인 순서가 쿼리에 의해 정해짐
+* MySQL에서는 Cross Join도 일반 Join과 완전히 같음. 다만 나오는 결과의 숫자에 따라 성능이 저하될 수 있음
+
+===== MySQL Join 성능 개선
+* explain을 이용해서 Full scan이 나오지 않도록 조정해야 함
+* 프로파일링도 열심히
+
+=== 참고
+* 코드스쿼드
+* https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html[8.2.1.6 Nested-Loop Join Algorithms]
+* http://www.jidum.com/jidums/view.do?jidumId=167[Nested, Sort, Hash Join]

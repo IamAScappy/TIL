@@ -1,0 +1,112 @@
+= 옵셔널(Optional)
+
+=== 옵셔널
+* Swift가 `Type-Safe` 언어라는 것을 보여주는 사례 중 하나
+* nil 가능성을 명시적으로 알려줌
+
+===== 옵셔널 추출
+* 옵셔널 값을 옵셔널 아닌 값으로 추출함
+* 강제 추출(Force Unwrapping)
+** `!` 
+*** 이용하여 값을 강제로 추출하여 반환함
+    
+[source, swift]    
+----
+// 옵셔널 변수 선언
+var stockCode: String? = findStockCode("Facebook")
+let text = "Stock Code - "
+
+// if문을 사용하지 않고 값을 추출할 때 추출하려는 옵셔널 값이 nil이라면 런타임 오류 발생
+// nil은 참조되지 않음
+let message = text + stockCode!
+println(message)
+----
+
+===== 옵셔널 바인딩(Optional Binding)
+* 옵셔널이 값을 가졌는지 아닌지를 검사하고, 값이 있으면 그것을 꺼내어 임시로 특정 상수(또는 변수)에 값을 보관하는 방법을 말함
+* `if let, while let` 
+
+[source, swift]    
+----
+var stockCode:String? = findStockCode("Facebook")
+let text = "Stock Code - "
+if let tempStockCode = stockCode {
+    let message = text + tempStockCode
+    println(message)
+}
+----
+
+===== 암시적 추출 옵셔널(Implicitly Unwrapped Optionals)
+* 로직상 nil이 들어가지 않는다면 확신이 있을 때 사용함
+* 타입 뒤에 `!` 를 붙여주면 됨
+
+[source, swift]    
+----
+var myName: String! = "aming"
+// aming
+print(myName)   
+
+myName = nil
+
+// 암시적 추출 옵셔널도 옵셔널이므로 당연히 바인딩을 사용할 수 있음
+if var name = myName {
+    print("My name is \(name)")
+} else {
+    print("myName == nil")
+}
+
+// myName == nil
+
+// nil이 할당되었을 때, 접근하면 오류 발생
+myName.isEmpty   
+----
+
+=== 옵셔널 체이닝(Optional Chaining)
+* 옵셔널의 내부의 내부가 옵셔널로 연결되어 있을 때 사용할 수 있음
+* 중첩된 옵셔널 증 하나라도 값이 없다면 nil을 반환함
+* 옵셔널 체이닝 반환 값은 항상 옵셔널
+* 매번 nil을 확인하지 않고 최종적으로 원하는 값이 있는지 없는지 확인할 수 있음
+* `if let을 이용한 체이닝`
+* `?.` 오퍼레이터
+** 다중 옵셔널을 연결할 수 있음
+
+[source, swift]    
+----
+class Stock {
+    var code: String?
+    var price: Double?
+}
+
+func findStockCode(company: String) -> Stock? {
+    if (company == "Apple") {
+        let aapl: Stock = Stock()
+        aapl.code = "AAPL"
+        aapl.price = 90.32
+        return aapl
+    } else if (company == "Google") {
+        let goog: Stock = Stock()
+        goog.code = "GOOG"
+        goog.price = 556.36
+        return goog
+    }
+    return nil
+}
+
+// if let을 이용한 옵셔널 체이닝
+if let stock = findStockCode("Apple") {
+    if let sharePrice = stock.price {
+        let totalCost = sharePrice * 100
+        println(totalCost)
+    }
+}
+
+// ?. 오퍼레이터 사용
+if let sharePrice = findStockCode("Apple")?.price {
+    let totalCost = sharePrice * 100
+    println(totalCost)
+}
+----
+
+=== 참고
+* https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245[Swift Optional Chaining]
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

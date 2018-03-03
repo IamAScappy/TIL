@@ -1,0 +1,133 @@
+= 열거형(Enum)
+
+[source, swift]
+----
+// 열거형(Enum)
+// 연관된 항목들을 묶어서 표현할 수 있는 타입
+
+// 열거형 선택기준
+// 제한된 선택지를 주고 싶을 때
+// 정해진 값 이외 입력을 받고 싶지 않을 때
+// 예상된 입력값이 한정되어 있을 때
+enum CompassPoint {
+    case North
+    case South
+    case East
+    case West
+}
+
+
+// 원시값 
+// 열거형 각 항목 자체도 값이지만, 항목의 원시값(Raw Value)를 가질 수 있음
+enum School: String {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college
+    case university
+    case graduate
+}
+
+let highestEducationLevel: School = School.university
+
+// 원시값 정보를 안다면 원시값을 통해 열거형 변수, 상수 생성 가능
+// 실패 가능한 이니셜 라이저 기능때문에 원시값이 없다면 nil 반환
+let highestEducationLevel2: School? = School(rawValue: "대학교")
+
+print("저의 최종학력은 \(highestEducationLevel.rawValue) 졸업입니다.") // 저의 최종학력은 university 졸업입니다.
+print(School.elementary.rawValue)   // 초등학교
+print(highestEducationLevel2)       // nil
+
+enum Numbers: Int {
+    case zero
+    case one
+    case two
+    case ten = 10
+}
+
+print("\(Numbers.zero.rawValue), \(Numbers.one.rawValue), \(Numbers.two.rawValue), \(Numbers.ten.rawValue)") // 0, 1, 2, 10
+
+
+// 연관 값
+// 열거형 내 case 는 자신과 연관된 값을 가질 수 있음
+enum MainDish {
+    case pasta(taste: String)
+    case pizza(dough: String, topping: String)
+    case chicken(withSauce: Bool)
+    case rice
+}
+
+var dinner: MainDish = MainDish.pasta(taste: "크림")         // pasta("크림")
+dinner = .pizza(dough: "치즈크러스트", topping: "불고기")    // pizza(dough: "치즈크러스트", topping: "불고기")
+dinner = .chicken(withSauce: true)  // chicken(true)
+dinner = .rice  // rice
+
+enum PastaTaste {
+    case cream, tomato
+}
+
+enum PizzaDough {
+    case cheeseCrust, thin, original
+}
+
+enum PizzaTopping {
+    case pepperoni, cheese, bacon
+}
+
+enum MainDish2 {
+    case pasta(taste: PastaTaste)
+    case pizza(dough: PizzaDough, topping: PizzaTopping)
+    case chicken(withSauce: Bool)
+    case rice
+}
+
+var dinner: MainDish2 = MainDish2.pasta(taste: PastaTaste.tomato)   // pasta(example.PastaTaste.tomato)
+dinner = MainDish2.pizza(dough: PizzaDough.cheeseCrust, topping: PizzaTopping.bacon) // pizza(dough: example.PizzaDough.cheeseCrust, topping: example.PizzaTopping.bacon)
+
+
+// 순환 열거형
+// 열거형 항목의 연관 값이 열거형 자신의 값이고자 할 때 사용함
+// indirect 제거할 경우, 컴파일 오류 발생 => Recursive enum 'ArithmeticExpression' is not marked 'indirect'
+indirect enum ArithmeticExpression {
+    case number(Int)
+    case addition(ArithmeticExpression, ArithmeticExpression)
+    case multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+
+let five = ArithmeticExpression.number(5)
+let four = ArithmeticExpression.number(4)
+let sum = ArithmeticExpression.addition(five, four)
+let final = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
+
+func evaluate(_ expression: ArithmeticExpression) => Int {
+    switch expression {
+    case .number(let value):
+        return value
+    case .addition(let left, let right):
+        return evaluate(left) + evaluate(right)
+    case .multiplication(let left, let right):
+        return evaluate(left) * evaluate(right)
+    }
+}
+
+let result: Int = evaluate(final)
+print("(5 + 4) * 2 = \(result)")    // (5 + 4) * 2 = 18
+
+
+// 원시값으로 열거형 case를 찾을 때 Optional을 반환함
+enum ASCIIControlCharacter: Character {
+    case Tab = "\t"
+    case LineFeed = "\n"
+    case CarriageReturn = "\r"
+}
+
+if let lineFeed = ASCIIControlCharacter(rawValue: "\r") {
+    //Do something
+    print(lineFeed)
+}
+----
+
+=== 참고
+* https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

@@ -1,0 +1,40 @@
+= Enum에서 Error 사용하기
+
+===== 질문
+
+[source, swift]
+----
+enum Error: String, Error {
+    case invalidFormat = "입력을 확인해주세요."
+    case quit = "자판기 사용을 종료합니다."
+    case notFound = "보기에서 고르세요."
+}
+----
+
+===== 정리
+* rawValue로 Error를 호출하는 것이 아니라
+* 명확한 이름으로 
+* 추가적인 세부 정보는 이름만으로 충분함
+* MenuError와 invalidFormat이 Menu로 겹치면 안 됨
+* 다국어 문제도 있기 때문에 아래와 같이 사용할 것을 권장함
+* String 자체적으로 사용하는 것보다 타입으로 나타낼 수 있다면 타입으로 나타내는 것이 좋음
+
+[source, swift]
+----
+enum MenuError: Error {
+    case invalidFormat
+    case quit
+    case notFound
+
+    var localizedDescription: String {
+        switch self {
+        case .invalidInput:
+            return "입력을 확인해주세요."
+        case .quit:
+            return "자판기 사용을 종료합니다."
+        case .notFound:
+            return "보기에서 고르세요."
+        }
+    }
+}
+----

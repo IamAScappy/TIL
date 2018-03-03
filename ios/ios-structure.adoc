@@ -1,0 +1,35 @@
+= iOS 구조
+
+=== 구조
+
+image::./image/ios-structure-1.png[]
+
+image::./image/ios-structure-2.png[]
+
+=== 설명
+
+===== 앱(APP)
+* 스마트폰, 태블릿 PC 등 모바일 장치에서 실행되는 응용 소프트웨어
+
+===== 코코아 프레임워크(https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html[Cocoa Framework])
+* UIKit
+** Construct and manage **a graphical, event-driven user interface** for your iOS or tvOS app
+* WebKit
+** **Display web content in windows.** Implement browser features such as following user-activated links, managing a back-forward list, and managing a history of recently visited pages
+* CloudKit
+* MapKit
+* HomeKit
+* PassKit
+* SceneKit
+* HealthKit
+* WatchKit
+* SpriteKit
+* CoreData
+** **Manage object graphs and object lifecycle, including persist**
+* MetalKit
+* ARKit
+* Foundation
+** **Access essential data types, collections, and operating-system services** to define the base layer of functionality for your app
+
+===== 스위프트 표준 라이브러리(https://developer.apple.com/documentation/swift[Swift Standard Library])
+* Solve complex problems and write high-performance, readable code

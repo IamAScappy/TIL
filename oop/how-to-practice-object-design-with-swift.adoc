@@ -1,0 +1,202 @@
+= Swift로 객체 설계 연습하기
+
+===== 문제
+* 돈이라고 생각했을 때 상속이 필요한 것도 아니고 값이 어울릴 거 같아서 struct로 설계함
+* 추가, 차감하는 메서드에서 내부 변수 값이 변경되기 때문에 mutating 키워드를 사용함
+* 하지만, 포비가 이 부분에 대해서 지적함
+* Swift는 어떻게 해야 할까? 고민하게 됨
+
+[source, swift]
+----
+struct Money {
+    private var money: Int = 0
+    
+    mutating func insert(coin: Int) {
+        self.money += coin
+    }
+    
+    mutating func deduct(coin: Int) throws {
+        guard countChange() > 0 else {
+            throw BeverageErrors.notEnoughMoney
+        }
+        
+        self.money -= coin
+    }
+    
+    func countChange() -> Int {
+        return self.money
+    }
+}
+
+enum BeverageMenu {
+    case bananaMilk
+    case cocaCola
+    case georgia
+    case pepsi
+    case strawberryMilk
+    case top
+    
+    func makeInstance() -> Beverage {
+        switch self {
+        case .bananaMilk:
+            return BananaMilk(brand: "빙그레", volume: 250, price: Money(1500), productName: "바나나우유", expiryDate: DateUtility.addDays(7), calorie: 300)
+        case .cocaCola:
+            return CocaCola(brand: "코카콜라", volume: 500, price: Money(1430), productName: "코카콜라", expiryDate: DateUtility.addDays(5), calorie: 250)
+        case .georgia:
+            return Georgia(brand: "코카콜라", volume: 240, price: Money(1100), productName: "조지아 오리지널", expiryDate: DateUtility.addDays(1), calorie: 94, isHot: false)
+        case .pepsi:
+            return Pepsi(brand: "펩시콜라", volume: 355, price: Money(1200), productName: "펩시", expiryDate: DateUtility.subtractDays(7), calorie: 275)
+        case .strawberryMilk:
+            return StrawberryMilk(brand: "빙그레", volume: 355, price: Money(1200), productName: "딸기우유", expiryDate: DateUtility.addDays(3), calorie: 275)
+        case .top:
+            return TOP(brand: "맥심", volume: 275, price: Money(1800), productName: "TOP 스위트아메리카노", expiryDate: DateUtility.subtractDays(1), calorie: 48, isHot: true)
+        }
+    }
+}
+
+extension BeverageMenu {
+    private static var allValues: [BeverageMenu] {
+        return [.bananaMilk, .cocaCola, .georgia, .pepsi, .strawberryMilk, .top]
+    }
+    
+    static func map<T>(_ function: ((BeverageMenu) -> T)) -> [T] {
+        return allValues.map(function)
+    }
+    
+    static func filter(_ function: ((BeverageMenu) -> Bool)) -> [BeverageMenu] {
+        return allValues.filter(function)
+    }
+    
+    static func forEach(_ function: ((BeverageMenu) -> ())) {
+        allValues.forEach(function)
+    }
+    
+    static func getBeverageMenu(index: Int) -> BeverageMenu {
+        return allValues[index]
+    }
+}
+
+----
+
+===== 정리
+* 순수함수에 대한 개념을 객체로 넓힘
+* OOP를 적용하여 객체를 설계할 때 setter, getter를 없애기 위해 만들어진 객체를 최대로 활용하고 
+* 새로운 객체로 돌려주는 것이 좋음
+* 그리고, 호스트 코드에서 호출당한 쪽의 값(프로퍼티)을 꺼내와서 조작하기보다 호출당한 쪽에서 처리하고 호스트 코드에서 객체나 함수로 가져오는 것이 좋음
+* 하지만, iOS 개발할 때 UI View 관련 class에서 새로운 객체를 만들거나 새로 만들어서 반환해주는 것이 부담스러운 작업임
+* Java처럼 GC가 있는 것이 아니므로 ARC에 대해서도 고민을 많이 해야 함
+* 하지만, 순수한 객체 설계 연습이라면 class로 만들어서 새로운 객체를 반환하는 연습이 좋음
+
+[source, swift]
+----
+// 처음에 예외처리하는 부분이 분산되어 있었음 => 객체 내부 값을 활용하여 로직을 처리한다면 Money 관련된 로직이 Money 안으로 모이게 됨
+class Money {
+    private var change: Int
+    
+    init(_ change: Int) {
+        self.change = change
+    }
+    
+    func plus(coin: Money) throws -> Money {
+        if isNegative(coin: coin) { throw VendingMachineErrors.incorrectMoney }
+        return Money(change + coin.change)
+    }
+    
+    func subtract(coin: Money) throws -> Money {
+        guard isAvaiable(coin: coin) else { throw VendingMachineErrors.notEnoughMoney }
+        return Money(self.change - coin.change)
+    }
+    
+    func countChange() -> Int {
+        return self.change
+    }
+    
+    func isAvaiable(coin: Money) -> Bool {
+        return self.change - coin.change > 0
+    }
+    
+    func isNegative(coin: Money) -> Bool {
+        return coin.change < 0
+    }
+}
+
+// VendingMachine 구조체에서 BeverageMene의 값을 가져와서 VendingMachine에서 확인함 => 호스트 코드에서 호출당한 쪽의 값(프로퍼티)을 꺼내와서 조작하기보다 호출당한 쪽에서 처리하고 호스트 코드에서 객체나 함수로 가져오는 것이 좋음
+enum BeverageMenu {
+    case bananaMilk
+    case cocaCola
+    case georgia
+    case pepsi
+    case strawberryMilk
+    case top
+    
+    func makeInstance() -> Beverage {
+        switch self {
+        case .bananaMilk:
+            return BananaMilk(brand: "빙그레", volume: 250, price: Money(1500), productName: "바나나우유", expiryDate: DateUtility.addDays(7), calorie: 300)
+        case .cocaCola:
+            return CocaCola(brand: "코카콜라", volume: 500, price: Money(1430), productName: "코카콜라", expiryDate: DateUtility.addDays(5), calorie: 250)
+        case .georgia:
+            return Georgia(brand: "코카콜라", volume: 240, price: Money(1100), productName: "조지아 오리지널", expiryDate: DateUtility.addDays(1), calorie: 94, isHot: false)
+        case .pepsi:
+            return Pepsi(brand: "펩시콜라", volume: 355, price: Money(1200), productName: "펩시", expiryDate: DateUtility.subtractDays(7), calorie: 275)
+        case .strawberryMilk:
+            return StrawberryMilk(brand: "빙그레", volume: 355, price: Money(1200), productName: "딸기우유", expiryDate: DateUtility.addDays(3), calorie: 275)
+        case .top:
+            return TOP(brand: "맥심", volume: 275, price: Money(1800), productName: "TOP 스위트아메리카노", expiryDate: DateUtility.subtractDays(1), calorie: 48, isHot: true)
+        }
+    }
+    
+    static func filterExpireDateOnToday() -> [BeverageMenu] {
+        return self.filter({ beverageMene -> Bool in
+            return beverageMene.makeInstance().isExpired(with: DateUtility.today())
+        })
+    }
+    
+    static func filterHottedBeverages() -> [BeverageMenu] {
+        return self.filter({ beverageMene -> Bool in
+            guard let coffee = beverageMene.makeInstance() as? Coffee else {
+                return false
+            }
+            
+            return coffee.isHot
+        })
+    }
+    
+    static func makeQuantity(_ defaultQuantity: Int) {
+        self.forEach({ beverageMenu in
+            VendingMachine().insertBeverage(beverageMenu: beverageMenu, quantity: defaultQuantity)
+        })
+    }
+    
+    static func viewCurrentQuantityInInventory(_ machine: MachineManagerable) -> String {
+        var number = 0
+        return self.map({
+            let beverage = $0.makeInstance()
+            number = number + 1
+            return String(number) + ") " + beverage.description + " " + String(beverage.price.countChange()) + "원(" +  String(machine.countBeverageQuantity(beverageMenu: $0)) + "개)"
+        }).joined(separator: "\n")
+    }
+}
+
+extension BeverageMenu {
+    private static var allValues: [BeverageMenu] {
+        return [.bananaMilk, .cocaCola, .georgia, .pepsi, .strawberryMilk, .top]
+    }
+    
+    static func map<T>(_ function: ((BeverageMenu) -> T)) -> [T] {
+        return allValues.map(function)
+    }
+    
+    static func filter(_ function: ((BeverageMenu) -> Bool)) -> [BeverageMenu] {
+        return allValues.filter(function)
+    }
+    
+    static func forEach(_ function: ((BeverageMenu) -> ())) {
+        allValues.forEach(function)
+    }
+    
+    static func getBeverageMenu(index: Int) -> BeverageMenu {
+        return allValues[index]
+    }
+}
+----

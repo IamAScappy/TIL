@@ -1,0 +1,18 @@
+= OS-X 업데이트 후, git 등 오류 발생
+
+===== 문제
+
+[source, shell]
+----
+$ yuaming@yuaming-pc > ~/dev/workspace/study > git remote add origin https://github.com/yuaming/study.git
+
+$ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+----
+
+===== 해결
+* XCode 전체 업데이트하거나 Command Line Tools만 업데이트함
+
+[source, shell]
+----
+$ xcode-select --install
+----

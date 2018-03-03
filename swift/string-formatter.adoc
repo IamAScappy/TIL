@@ -1,0 +1,11 @@
+= String Formatter
+
+[source, swift]
+----
+// String에서 기본적으로 포맷을 지원함. extension을 이용하여 확장해서 쓸 수 있음
+let str = "Hello world"
+let formatted = str.withCString { String(format: "%-15s", $0) }
+
+let name = "jk"
+let formatted = String(format:"%-5s", name)
+----

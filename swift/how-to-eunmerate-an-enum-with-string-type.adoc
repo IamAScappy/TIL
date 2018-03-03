@@ -1,0 +1,53 @@
+= How to enumerate an enum with String type?
+
+===== 원인
+* Enum 모든 케이스 값을 배열로 가져오고 싶음
+
+===== 정리
+
+[source, swift]
+----
+// Enum, Int
+enum Filter: Int {
+    case salary
+    case experience
+    case technology
+    case unutilized
+    case unutilizedHV
+
+    static let allRawValues = salary.rawValue...unutilizedHV.rawValue  // First to last case
+    static let allValues = allRawValues.map { Filter(rawValue: $0)!.rawValue }
+}
+
+print(Filter.allValues) // [0, 1, 2, 3, 4]
+
+// Enum, String
+enum Filter: Int {
+    case salary
+    case experience
+    case technology
+    case unutilized
+    case unutilizedHV
+
+    static let allRawValues = salary.rawValue...unutilizedHV.rawValue  // First to last case
+    static let allValues = allRawValues.map { Filter(rawValue: $0)!.description }
+}
+
+extension Filter: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .salary: return "Salary"
+        case .experience: return "Experience"
+        case .technology: return "Technology"
+        case .unutilized: return "Unutilized"
+        case .unutilizedHV: return "Unutilized High Value"
+        }
+    }
+}
+
+print(Filter.allValues) // ["Salary", "Experience", "Technology", "Unutilized", "Unutilized High Value"]
+----
+
+=== 참고
+* https://stackoverflow.com/questions/24007461/how-to-enumerate-an-enum-with-string-type/24137319[]
+* https://theswiftdev.com/2017/10/12/swift-enum-all-values/[Swift enum all values]

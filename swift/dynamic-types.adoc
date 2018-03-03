@@ -1,0 +1,22 @@
+= Dynamic Types
+
+=== Dynamic Types
+
+[source, swift]
+----
+var number = 5      // 값
+var string = "JK"
+
+type(of: number)    // Int.Type (MetaType => 상위의 타입, 타입의 타입)
+type(of: string)    // String.Type
+
+let SType: String.Type = String.self    // MetaType
+let AnyType: Any.Type = Any.self
+
+type(of: number) == SType   // false
+type(of: string) == SType   // true
+type(of: string) == AnyType // false
+----
+
+=== 참고
+* https://developer.apple.com/documentation/swift/2885064-type[type(of:)]

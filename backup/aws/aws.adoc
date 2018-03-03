@@ -1,0 +1,139 @@
+= AWS 기본
+
+=== 주요 용어
+* 리전
+* 가용 영역
+* 에지(PoP) 로케이션
+* 내구도와 가용성
+
+=== AWS 서비스로 활용하기
+* Multi AZ를 통한 고가용성 확보
+* VPC, 보안 그룹 등을 활용한 보안 향상
+* 리전간 데이터 복제
+* 에지 로케이션을 활용한 응답성 향상
+* 타 벤더사의 플랫폼을 활용한 더 높은 가용성 확보
+
+=== AWS 주요 서비스
+* S3, Glacier => 스토리지
+* EC2, ELB, Auto Scaling => 컴퓨팅
+* VPC , Route53, CloudFront => 네트워크
+* RDS, DynamoDB => 데이터베이스
+* IAM => 계정 관리 서비스
+* CloudWatch => 모니터링 서비스
+
+=== AWS 간단 실습
+
+===== IAM 서비스 선택 => 사용자 추가
+. IAM 서비스 선택 - 사용자 추가
+. 아이디 생성시 - managment console 접근 선택, 패스워드 리셋 선택은 해제할 것
+. 그룹 추가
+. 생성하고 csv 파일을 다운받음
+
+===== EC2 기본 실습
+
+[source, shell]
+----
+# 400 => 리눅스 접속권한
+$ chmod 400 name.pem      
+$ ssh -i name.pem AWS접속정보
+
+# Ubuntu 인스턴스 생성할 때 아래 명령어 이용
+# AWS 접속 시, 아이디/비밀번호로 접속하는 것이 아니라 pem 파일로 접속하기 때문에 sudo를 쳐도 비밀번호를 묻징 않음
+$ sudo apt update
+$ sudo apt -y upgrade
+
+$ cat hello.txt
+$ mv hello.txt hello.js
+----
+
+=== 강의 정리
+* AWS 구성하고 있는 요소마다 특징을 잘 알아야 함
+* 단점 => AWS 종속성
+* 인스턴스 크기에 의해서 동접자 수 한계를 정하는 것이 아니라 아키텍처로 결정하는 것. 잘못된 상식
+* 인스턴스 생성 시,
+** 네트워크 성능을 선택할 수 있음
+** VPC(Virtual Private Cloud)
+*** 하나의 VPC는 하나의 Region에서만 생성 가능함 => 두 개 Region을 걸쳐서 사용하지 못함
+*** VPC 안에서 AZ를 여러 개 생성할 수 있음
+*** VPC는 격리된 공간이기 때문에 VPC끼리 통신이 되지 않음 
+*** VPC끼리 연결이 가능하게 VPC 피어링 서비스 있음
+*** 통신을 위해 웹서버, WAS, DB를 같은 VPC에다가 둠
+*** VPN
+**** IPSEC 
+*** VPC Service Endpoint
+*** 10.0.0.0/16 (10.1.0.0~10.1.255.255)
+*** IP 범위는 2^16개로 제한하지만 AWS 관리용으로 5개 제외하면 65531개를 사용할 수 있음
+** Subnet
+*** 하나의 Subnet은 VPC 한개 안에서 하나의 AZ에만 생성이 가능함
+*** 하나의 VPC에서 여러 개 Subnet 생성할 수 있음
+*** 일반적으로 Public Subnet -> 웹서버
+*** Private Subnet -> WAS, DB
+** 프리티어로 사용할 때 인스턴스 생성 시, 스토리지는 기본값만 쓰자 -> 아니면 요금 과금됨
+** 인바운드, 아웃바운드
+*** 0.0.0.0/0 -> 모든 아이피, Any Address
+*** 2^30 = 1GB, 2^32 = 4GB
+*** IPv4에서 IPv6로 바꾸면 성능이 좋아짐
+** S3 
+*** 스토리지
+*** 정적인 페이지를 올려서 서버리스 아키텍처를 구성할 수 있음
+*** 게시판이 필요하다면 게시판 정도 람다로 구성할 수 있음
+
+
+* 웹 = WWW = World Wide Web
+* 팀 버너리스에 의해 개발됨
+** 웹과 인터넷은 다른 것
+** 웹의 3요소 => HTTP, HTML, URL
+*** 다른 기종과 네트워크 망이 다름
+*** 문서 포맷이 다름 
+
+* TCP/IP 4계층
+** Network 7계층이 표준이지만, 복잡하여 구현하지 못함. 4계층으로 사용함
+** Application => HTTP, VIP
+** Transport => TCP, UDP
+** Internet => IP
+** Network => LAN, Wifi
+
+* Proxy
+** Reverse Proxy
+** 서버와 클라이언트 사이에서 중계기로서 대리로 통신을 수행하는 기능
+
+* HTTP
+** 간단
+** 확장 가능
+** 상태가 없음 = Stateless
+*** 클라이언트와 서버 사이에서 Connection 있음. 클라이언트가 서버 끊을 때까지 연결이 유지됨 => 상태가 있음
+*** HTTP는 한번 보내고 연결을 끊음
+*** 서버 부하가 크지 않지만 오버헤드가 발생함
+*** HTTP/1 => HTTP/1.1 => 
+*** http://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-http2/[HTTP/2]
+*** https://www.slideshare.net/eungjun/http2-40582114[HTTP/2]
+
+* 동시성 프로그래밍에서 사용하는 구조 중 하나 
+** PIPELINING
+
+* Sticky Session
+
+=== AWS VPC 기초
+* VPC 
+** 사설망과 비슷함
+
+* NAT
+** WAS 가 Private VPC 존재
+** 통신이 되지 않음
+** WAS 서버가 많으면 NAT 서버 부하가 걸림
+** SPOF 발생 => NAT 이중화 => 복잡함
+*** 고객이 원성이 자자하여 AWS에서 두가지 서비스 만듬
+*** NAT Gateway
+*** S3와 통신만 하면 됨 => AWS Sevice Endpoint
+
+
+* IP
+* IP/상위고정비트
+
+* Public Subnet => 사설 아이피로 접속해야 함
+* Private Subnet
+** 사설 아이피를 통해서만 접속해야 함
+** Private을 접속하기 위해서 NAT Instance나 Public으로 접속해야 함
+** NAT 서버에 키 파일을 두는 것이 아니라 SSH Forwarding 이라고 함
+
+Thread 1: signal SIGABRT

@@ -1,0 +1,71 @@
+= Enum Multiple Raw-Value
+
+[source,swift]
+----
+enum VehicleType : RawRepresentable {
+    // 연산 프로퍼티
+    struct Vehicle : Equatable {
+        let name: String
+        let wheels: Int
+
+        static func ==(l: Vehicle, r: Vehicle) -> Bool {
+            return l.name == r.name && l.wheels == r.wheels
+        }
+
+        static var bike: Vehicle {
+            return Vehicle(name: "Bicycle", wheels: 2)
+        }
+
+        static var car: Vehicle {
+            return Vehicle(name: "Automobile", wheels: 4)
+        }
+
+        static var bus: Vehicle {
+            return Vehicle(name: "Autobus", wheels: 8)
+        }
+    }
+
+    typealias RawValue = Vehicle
+
+    case car
+    case bus
+    case bike
+
+    var rawValue: RawValue {
+        switch self {
+        case .car:
+            return Vehicle.car
+        case .bike:
+            return Vehicle.bike
+        case .bus:
+            return Vehicle.bus
+        }
+    }
+
+    init?(rawValue: RawValue) {
+        switch rawValue {
+        case Vehicle.bike:
+            self = .bike
+        case Vehicle.car:
+            self = .car
+        case Vehicle.bus:
+            self = .bus
+        default: return nil
+        }
+    }
+}
+
+VehicleType.bike.rawValue.name
+VehicleType.bike.rawValue.wheels
+VehicleType.car.rawValue.wheels
+
+VehicleType(rawValue: .bike)?.rawValue.name => "Bicycle"
+VehicleType(rawValue: .bike)?.rawValue.wheels => 2
+VehicleType(rawValue: .car)?.rawValue.name => "Automobile"
+VehicleType(rawValue: .car)?.rawValue.wheels => 4
+VehicleType(rawValue: .bus)?.rawValue.name => "Autobus"
+VehicleType(rawValue: .bus)?.rawValue.wheels => 8
+----
+
+=== 참고
+* https://stackoverflow.com/questions/27706832/can-swift-enums-have-multiple-raw-values[Can Swift enums have multiple raw values?]

@@ -1,0 +1,237 @@
+= 클로저(Closure)
+
+[source, swift]
+----
+var array = ["John", "Tim", "Steve"]
+
+// 기본 클로저
+var reversed = array.sorted(by: {(s1: String, s2: String) -> Bool in return s1 > s2})
+
+// 같은 표현
+reversed = array.sorted(by: {s1, s2 in return s1 > s2})
+reversed = array.sorted(by: {s1, s2 in s1 == s2})
+reversed = array.sorted(by: {$0 == $1})
+reversed = array.sorted(by: >)
+
+// 후행 클로저(Trailing Closure)
+func someFunctionThatTakesAClosure(closure: () -> ()) {
+    // function body goes here
+}
+
+// 후행 클로저를 사용 안함
+someFunctionThatTakesAClosure(closure: {
+    // closure's body
+})
+
+// 후행 클로저를 사용함
+// 소괄호를 닫고 클로저를 작성할 수 있음
+someFunctionThatTakesAClosure() {
+    // trailing closure's body
+}
+
+array.sort() {$0 == $1}
+
+let digitNames = [
+    0: "Zero", 1: "One", 2: "Two",   3: "Three", 4: "Four",
+    5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine"
+]
+let numbers = [16, 58, 510]
+
+let stringsArray = numbers.map() {
+    (number) -> String in
+    var number = number
+    var output = ""
+    while number > 0 {
+        // Dictionary value가 optional value이지만 항상 값이 있는걸 알기 때문에 값을 강제로 품
+        output = digitNames[number % 10]! + output
+        number /= 10
+    }
+    return output
+}
+
+print(stringsArray) // ["OneSix", "FiveEight", "FiveOneZero"]
+
+
+// 값 획득(Capture Values)
+// () -> Int -> 함수객체를 반환함
+// 클로저는 참조 타입
+func makeIncrementer(forIncrement amount: Int) -> (() -> Int) {
+    var runningTotal = 0
+    func incrementer() -> Int {
+        runningTotal += amount
+
+        // 디버깅으로 확인하였을 때 &runningTotal 인 것을 확인할 수 있음
+        return runningTotal
+    }
+    return incrementer
+}
+
+let incrementByTwo: (() -> Int) = makeIncrementer(forIncrement: 2)
+let incrementByTwo2: (() -> Int) = makeIncrementer(forIncrement: 2)
+let incrementByTen: (() -> Int) = makeIncrementer(forIncrement: 10)
+
+let first: Int = incrementByTwo()   
+let second: Int = incrementByTwo()  
+let third: Int = incrementByTwo()   
+
+let first2: Int = incrementByTwo2()   
+let second2: Int = incrementByTwo2()  
+let third2: Int = incrementByTwo2()   
+
+let ten: Int = incrementByTen()       
+let twenty: Int = incrementByTen()    
+let thirty: Int = incrementByTen()    
+
+print(first)    // 2
+print(second)   // 4
+print(third)    // 6
+
+print(first2)   // 2
+print(second2)  // 4
+print(third2)   // 6
+
+print(ten)      // 10
+print(twenty)   // 20
+print(thirty)   // 30
+
+
+// 탈출 클로저(Escaping Closure)
+// @escaping가 없으면 비탈출 클로저
+// 함수 외부에서 정의된 변수나 상수에 저장되거나
+// 호출한 함수가 종료된 뒤 사용하는 경우
+var completionHandlers: [() -> Void] = []
+
+// @escaping 지우면 Passing non-escaping parameter 'completionHandler' to function expecting an @escaping closure 컴파일 오류 발생 
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+    completionHandlers.append(completionHandler)
+}
+
+typealias VoidVoidClosure = () -> Void
+
+let firstClosure: VoidVoidClosure = {
+    print("Closure A")
+}
+
+let secondClosure: VoidVoidClosure = {
+    print("Closure B")
+}
+
+// first와 second 매개변수 클로저는 함수의 반환 값으로 사용될 수 있으므로 탈출 클로저
+func returnOneClosure(first: @escaping VoidVoidClosure, second: @escaping VoidVoidClosure, shouldReturnFirstClosure: Bool) -> VoidVoidClosure {
+    // 전달인자로 전달받은 클로저를 함수 외부로 다시 반환하기 때문에 함수를 탈출하는 클로저
+    return shouldReturnFirstClosure ? first : second
+}
+
+// 함수에서 반환한 클로저가 함수 외부의 상수에 저장됨
+let returnedClosure: VoidVoidClosure = returnOneClosure(first: firstClosure, second: secondClosure, shouldReturnFirstClosure: true)
+
+returnedClosure()   // Closure A
+
+var closures: [VoidVoidClosure] = []
+
+// closure 매개변수 클로저는 함수 외부의 변수에 저장될 수 있으므로 탈출 클로저
+func appendClosure(closure: @escaping VoidVoidClosure) {
+    // 전달인자로 전달받은 클로저가 함수 외부의 변수에 저장되므로 함수를 탈출함
+    closures.append(closure)
+}
+
+func someFunctionWithNonescapingClosure(closure: () -> Void) {
+    closure()
+}
+
+// 탈출 클로저에서 프로퍼티, 메서드, 서브스크립트 등으로 접근할 때 self를 명시적으로 써줘야 함
+class SomeClass {
+    var x = 10
+    func doSomething() {
+        someFunctionWithEscapingClosure { self.x = 100 }
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+
+let instance = SomeClass()
+instance.doSomething()
+print(instance.x)   // 200
+
+completionHandlers.first?()
+print(instance.x)   // 100
+
+
+// withoutActuallyEscaping
+// 비탈출 클로저가 탈출 클로저인 척 해야되는 경우가 있음
+let numbers: [Int] = [2, 4, 6, 8]
+
+let evenNumberPredicate = { (number: Int) -> Bool in
+    return number % 2 == 0
+}
+
+let oddNumberPredicate = { (number: Int) -> Bool in
+    return number % 2 != 0
+}
+
+// func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
+//     return array.lazy.filter { predicate($0) }.isEmpty == false)
+// }
+// 탈출클로저를 매개변수를 받지 않지만 
+// lazy 컬렉션이 비동기 작업할 때 사용하기 때문에 filter 메서드가 요구하는 것은 탈출 클로저임
+// lazy 지우면 컴파일 오류 발생하지 않음
+// Closure use of non-escaping parameter 'predicate' may allow it to escape 컴파일 오류 발생
+
+// do 전달인자가 비탈출 클로저를 매개변수로 전달받아 실제 실행할 탈출 클로저로 변경함
+func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
+    return withoutActuallyEscaping(predicate, do: { escapablePredicate in
+        return (array.lazy.filter { escapablePredicate($0) }.isEmpty == false)
+    })
+}
+
+let hasEvenNumber = hasElements(in: numbers, match: evenNumberPredicate)
+let hasOddNumber = hasElements(in: numbers, match: oddNumberPredicate)
+
+print(hasEvenNumber)    // true
+print(hasOddNumber)     // false
+
+
+// 자동클로저(Auto Closure)
+// 함수의 전달인자로 전달하는 표현을 자동으로 변환해주는 클로저 -> 문법상 편의를 제공함
+// assert
+// 클로저가 호출되기 전까지 실행하지 않음. 연산을 지연시킬 수 있음
+var customersInLine = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+
+let customerProvider: () -> String = {
+    return customersInLine.removeFirst()
+}
+
+print(customersInLine.count)    // 5
+
+// 클로저를 이용한 연산 지연 -> 이 때 실제로 실행함
+print("Now serving \(customerProvider())!") // Now serving Chris!
+print(customersInLine.count)    // 4
+
+// 예전 방법
+func serve(customer customerProvider: () -> String) {
+    // 클로저 호출
+    print("Now serving \(customerProvider())!") 
+}
+serve(customer: { customersInLine.remove(at: 0) } )
+
+// @autoclosure 방법
+// 중괄호 생략 가능
+// customersInLine.removeFirst(at: 0) 결과값을 매개변수로 전달이 되면 @autoclosure가 매개변수가 없고 반환값이 String인 클로저로 변환해줌
+func serve(customer customerProvider: @autoclosure () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+serve(customer: customersInLine.removeFirst(at: 0)) // Now serving Alex!
+
+customersInLine = ["aming", "sejong", "gamja", "woong"]
+
+// 자동클로저 탈출
+func returnProvider(_ customerProvider: @autoclosure @escaping () -> String) -> (() -> String) {
+    return customerProvider
+}
+
+let customerProvider2: () -> String = returnProvider(customersInLine.removeFirst())
+print("Now serving \(customerProvider2())!")    // Now serving aming! 
+----
+
+=== 참고
+* https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]
