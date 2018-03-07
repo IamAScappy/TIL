@@ -1,4 +1,4 @@
-= 1wn
+= 1주
 
 === 스케치 인터페이스
 * Toolbar
@@ -127,7 +127,7 @@ image:./image/sketch-22.png[]
 
 image:./image/sketch-4.png[]
 
-* 도형 선택 후, `Control + C` 누르면 제일 위에 있는 옵션으로 스포이트 활성화 함
+* 도형 선택 후, `Control + C` 누르면 제일 위에 있는 옵션으로 이트 활성화 함
 
 image:./image/sketch-15.png[]
 
@@ -407,19 +407,6 @@ GUI : 시안성, 간결성, 시각적 일관성, 밸런스 및 조화성
 wireframe 스케치 작업
 * 와이퍼프레임 색깔은 안 입혀지는 것이 좋음
 
-
-
-
-지금 읽고 있는 책
-나의 책장
-자료실
-통계
-설정
-
-
-
-
-
 = 서비스 소개
 * 주요 타겟층
 * 타 서비스와의 자별점
@@ -472,4 +459,49 @@ wireframe 스케치 작업
 * Edit => Find and replace color
 * cmd + option + f
 
-=== Layer Style
+=== Shared Style
+
+===== Shared Layer Style
+* Text, Object Style -> Create ~
+* 빠르게 적용하기 위해. 팀원간의 디자인 규칙을 적용하기 위해
+
+=== Constraint
+
+===== 리사이징 조건 걸기
+* 조건부 리사이징
+** 조건 걸려고 하는 오브젝트를 선택하고 인스펙터 영역 Resizing에 조건을 검
+** 여백 비율 유지
+** 너비, 높이 유지
+
+=== Symbol
+
+===== 심볼 만들기
+* Layer -> Create symbol
+
+===== 심볼 편집하는 방법
+* 심볼에서 더블클릭해서 마스터 편집을 할 수 있음
+* 심볼 재정의
+** 인스팩터 영역에 Override가 존재함
+** 아이콘 오버라이드 할 때 리스트업으로 가져오는 기준은 동일한 너비값과 높이값
+
+===== 일반 레이어 재정의
+* 인스펙터 영역 -> Detach from Symbol
+
+=== 통일성이란?
+* 디자인에서 통일성이란 ? 형태, 색상, 양식 등 시각적 요소들 간의 질서
+
+=== 통일성이 왜 중요한가?
+
+=== 시각적 통일성을 유지하기 위한 요소들
+
+===== Color
+
+===== Icon
+
+===== Contents Style
+* 라인
+* Shadow 스타일 등
+
+===== Text Color + Size
+
+===== Graphic

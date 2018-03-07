@@ -109,7 +109,7 @@
 ** link:ux-ui/app-planning-and-design.adoc[앱 기획과 디자인 과정]
 ** link:ux-ui/ads.adoc[ADS]
 ** link:ux-ui/icon.adoc[Icon]
-** link:ux-ui/how-to-use-to-sketch.adoc[Sketch 사용하기]
+// ** link:ux-ui/how-to-use-to-sketch.adoc[Sketch 사용하기]
 * link:etc/README.adoc[ETC.]
 ** link:etc/co-routine.adoc[Co-Routine]
 ** link:etc/copy-on-write.adoc[Copy On Write]
