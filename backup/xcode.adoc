@@ -1,0 +1,60 @@
+= Swift 개발 환경
+
+=== 개발환경
+* 코드 편집기
+* 컴파일러
+* 디버거
+
+===== 시간이 날 때마다 연습해야 함
+
+===== 디버거 네비게이터
+* XCode는 코드 북마크 기능을 제공하지 않음
+* Breakpoints 를 disable 옵션을 주면 북마크 기능처럼 쓸 수 있음
+
+===== Target
+* 프로젝트 안에 여러 개 Target을 만들 수 있음
+* Project 소스를 어떻게 구성하느냐에 따라서 여러 Target이나 빌드 파일을 만들 수 있음
+* 의존성이 생길 수 있음
+
+===== Project
+* 모든 소스 파일
+
+===== Workspace
+* 폴더를 하나 만들면 숨겨져 있지만 Workspace가 하나 생성함
+
+===== Scheme
+* 롤을 어떻게 묶을 것인가?
+** App, Library, Unit Tests => x
+** 시뮬레이터, 디바이스 => y 
+** Debug, Release => z
+*** Build and Debug => 시뮬레이터, 디바이스
+*** Unit Tests => 시뮬레이터
+
+
+===== Open Quickly
+* cmd + shift + o
+
+=== Debugging Tip
+
+===== Breakpoint Action
+* Action => Log Message. print 찍을 필요 없음 
+
+===== Symbolic
+* Apple이나 다른 모듈에서 만든 소스를 멈추게 하기 위해서 쓰는 부분임
+
+===== Behaviors
+
+===== Static Analysys
+* 스위프트 컴파일러가 정적 분석을 함. Objective-C는 정적 분석이 힘듬
+
+* Address Sanitizer
+** Objective-C 포인트 관리가 잘못되었을 때 어떤 객체가 잘못한 것인지 알려줌
+** Swift에서 C와 연결할 때 사용함
+
+Muiti-tab, Muitl-window
+
+=== LLDB
+* Mac, XCode에서 전체적으로 쓸 수 있는 디버거 도구
+
+사이클이 있는지 확인
+섬으로 있는지 확인이 필요함
