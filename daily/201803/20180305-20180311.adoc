@@ -82,3 +82,15 @@
 
 개발일정표 https://docs.google.com/spreadsheets/d/14sjp4gbyI7StNEYx4_8aYS-rWtv1YdOdw21loMVg_x0/edit#gid=0
 ----
+
+=== 2018.03.08
+
+===== 할 일
+* [ ] PhotoFrame 체크리스트 정리하기
+* [ ] VendingMachine 1-2단계 과제 진행하기
+* [ ] App Programming Guide for iOS 
+** [ ] Introduction
+** [ ] Expected App Behaviors 
+** [ ] The App Life Cycle - The Main Function 읽고 요약 정리하기
+* [ ] 웹을 지탱하는 기술 
+** [ ] 1부. 웹 개론을 읽고 요약 정리하기
