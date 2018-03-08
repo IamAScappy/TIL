@@ -26,4 +26,3 @@ image:./image/scene-segue.png[]
 
 === 참고 
 * http://rshankar.com/storyboard-scene-and-segue/[Storyboard, Scene and Segue]
-* 
