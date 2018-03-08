@@ -1,0 +1,29 @@
+= StoryBoard, Scene, Segue 개념
+
+=== StoryBoard
+* App UI를 만듬
+* StoryBoard 안에 여러 개 Scene으로 구성되어 있음
+* 두 개의 Scene 연결 관계를 담당하는 Segue가 있음
+
+image:./image/scene-segue.png[]
+
+=== Segue
+
+===== Segue Action
+* Show(Push)
+** A navigation controller pushes the new view controller onto its navigation stack.
+** `showViewController:sender:`
+* Show Detail(Replace)
+** Only using a iPad (Master-Detai)
+** This segue is relevant only for view controllers embedded inside a UISplitViewController object. With this segue, a split view controller replaces its second child view controller (the detail controller) with the new content.
+** `showDetailViewController:sender:`
+* Present Modally
+** This segue displays the view controller modally using the specified presentation and transition styles.
+** The navigation stack has no effect.
+* Present as Popover
+** Show simple pop-up on iPhone
+** In a horizontally regular environment, the view controller appears in a popover.
+
+=== 참고 
+* http://rshankar.com/storyboard-scene-and-segue/[Storyboard, Scene and Segue]
+* 

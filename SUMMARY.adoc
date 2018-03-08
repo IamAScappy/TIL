@@ -1,8 +1,8 @@
 = Summary
 
-== HEAD
+== ABOUT ME
 
-* link:README.adoc[Introduction]
+* link:README.adoc[YUAMING]
 
 == DAILY
 
@@ -26,7 +26,7 @@
 ** link:daily/201803/README.adoc[2018-03]
 *** link:daily/201803/20180305-20180311.adoc[20180305 - 20180311]
 
-== CONTENT
+== WIKI
 
 * link:algorithm/README.adoc[Algorithm]
 ** link:algorithm/big-o.adoc[복잡도분석]
@@ -58,6 +58,7 @@
 ** link:ios/ios-app-design.adoc[iOS App Design]
 ** link:ios/ios-structure.adoc[iOS 구조]
 ** link:ios/ui-classes.adoc[iOS UI 클래스 계층도]
+** link:ios/storyboard-scene-segue.adoc[StoryBoard, Scene, Segue 개념]
 * link:java/README.adoc[Java]
 ** link:java/java-8-lambda.adoc[Java8: 람다표현식]
 * link:links/README.adoc[Links]
