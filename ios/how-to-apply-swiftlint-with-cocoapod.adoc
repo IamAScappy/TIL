@@ -52,6 +52,8 @@ $ vi Podfile
 
 # platform :ios, '6.0'  
 target '프로젝트명' do
+    user frameworks!
+    
     # 추가하려는 라이브러리를 이 영역에다가 적으면 됨
     pod 'SwiftLint'
 end
