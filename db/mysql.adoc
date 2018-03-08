@@ -208,7 +208,7 @@ DELETE FROM USER WHERE NAME = '김정';
 ===== JOIN
 * 여러 테이블을 합쳐서 하나의 정보로 보여주는 것
 
-===== https://ko.wikipedia.org/wiki/데이터베이스_정규화[정규화]
+===== 정규화
 * 설계가 잘못된 테이블에서 이상 현상이 발생함
 * 이상 현상을 막기 위해 테이블을 작은 단위로 쪼갬
 * 그래서 쪼갠 테이블을 다시 합치는 과정이 필요함 => **JOIN**
@@ -401,6 +401,6 @@ if buffer is not empty {
 * 프로파일링도 열심히
 
 === 참고
-* 코드스쿼드
 * https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html[8.2.1.6 Nested-Loop Join Algorithms]
 * http://www.jidum.com/jidums/view.do?jidumId=167[Nested, Sort, Hash Join]
+* https://ko.wikipedia.org/wiki/데이터베이스_정규화[데이터베이스 정규화]

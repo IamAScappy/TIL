@@ -3,7 +3,7 @@
 === 1주
 
 ===== Akka
-* https://www.slideshare.net/jbugkorea/ss-39607946[Actor Model]
+* Actor Model
 * Scala로 구성됨
 * Java, Scala API 제공 
 
@@ -119,3 +119,6 @@ image::./image/actor-future.png[]
 * Actor 개념
 * Akka가 무엇인지 접해볼 수 있었음
 * AkkaHttp를 이용해 웹에도 적용할 수 있다는 사실을 알게 됨
+
+=== 참고 
+* https://www.slideshare.net/jbugkorea/ss-39607946[Actor Model]

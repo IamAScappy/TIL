@@ -75,7 +75,6 @@ image::../swift/image/os-process-memory-model.png[]
 * Equality 객체인가 ?
 ** `==` 비교 연산자 또는 `Equatable 프로토콜`
 ** 값을 비교하거나 Hash를 구현함
-* http://rhammer.tistory.com/101[Identity, Equality]
 
 === iOS Memory
 * 시스템 메모리가 30-40%를 사용하고 있음
@@ -348,3 +347,4 @@ a.moeny
 === 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]
+* http://rhammer.tistory.com/101[Identity, Equality]

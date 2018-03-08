@@ -7,12 +7,6 @@
 
 ===== 디자인 패턴
 * 다른 앱 사례를 조사함
-* 참고
-** http://inspired-ui.com
-** http://www.lovelyui.com
-** http://mobile-patterns.com
-** https://dribbble.com
-** http://pttrns.com/
 
 ===== Persona
 * 타켓층을 정하라(= 고객을 개발하라)
@@ -33,7 +27,7 @@
 * 빠르게 만들어 동작, 배치 등을 확인함
 
 ===== Wireframe에서 스토리보드
-* https://www.sketchapp.com[Sketch]
+* Sketch
 * Xcode Interface Builder
 
 image::./image/from-prototype-to-storyboard.png[]
@@ -50,5 +44,8 @@ image::./image/from-prototype-to-storyboard.png[]
 * 좌표, 높이, 넓이, 레이아웃, 비율, 색상
 
 === 참고
-* 코드스쿼드
-* http://blog.naver.com/PostView.nhn?blogId=bringblingme&logNo=150109224563&parentCategoryNo=&categoryNo=87&viewDate=&isShowPopularPosts=false&from=postView[앱 기획 및 UX/UI]
+* http://inspired-ui.com
+* http://www.lovelyui.com
+* http://mobile-patterns.com
+* https://dribbble.com
+* http://pttrns.com/

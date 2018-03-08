@@ -14,7 +14,7 @@
 
 === Swift
 
-==== Swift
+===== Swift
 * Objective-C, Ruby, Python, C#, Rust, Haskell, CLU 등 기존의 언어와 신생언어의 많은 부분을 참고하여 만듦
 * 오픈소스
 
@@ -42,9 +42,12 @@
 * 프로토콜 지향 프로그래밍 패러다임
 ** 스위프트 Extension, Protocol을 이용하여 수평적 확장 때문에 다중 상속 문제를 해결할 수 있음
 
-==== 소프트웨어 개발 도구(Software Development Kit, 이하 SDK)
+===== 소프트웨어 개발 도구(Software Development Kit, 이하 SDK)
 * iOS 프로그램을 개발할 수 있는 소프트웨어 개발 도구
 
-==== XCode, PlayGround
+===== XCode, PlayGround
 * XCode는 애플이 개발한 iOS 프로그램을 개발할 수 있는 통합개발환경
 * Playground에서 코드를 작성하는 즉시, 중간에 자동이나 수동으로 실행하여 바로 확인할 수 있음
+
+=== 참고
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

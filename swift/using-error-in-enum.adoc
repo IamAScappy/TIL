@@ -1,6 +1,6 @@
 = Enum에서 Error 사용하기
 
-===== 질문
+===== 잘못된 예제
 
 [source, swift]
 ----

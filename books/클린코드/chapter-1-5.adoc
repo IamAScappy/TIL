@@ -236,13 +236,15 @@ PhoneNumber phoneString;
 
 ===== 정리
 * 클린코드는 좋은 코드도 소개하고 나쁜 코드도 소개하지만, 결국 내가 익히고 연습해야 함
-* 1장에서 유명한 개발자들이 한 말 중에 가장 많이 나온 말은 객체, 메서드를 최소 코드 또는 한 가지 일해야 한다는 내용임. 그래서 그와 관련된 블로그 내용을 찾아서 추가해둠
-** http://javacan.tistory.com/472[여러 메서드가 동일 처리 흐름을 갖는 코드 정리 예시: 클래스 추출]
-** http://www.nextree.co.kr/p6960/[객체지향 개발 5대 원리 - 단일 책임의 원칙]
+* 1장에서 유명한 개발자들이 한 말 중에 가장 많이 나온 말은 객체, 메서드를 최소 코드 또는 한 가지 일해야 한다는 내용임
 * **_지식으로 익히고 끝나는 것이 아니라 클린코드에서 배운 내용을 의식하고 지속적으로 적용해야 함_**
 * 의미 있는 이름을 지으려고 노력하면서 코드의 가독성이 좋아지는 것을 느껴보자
 * 프로그래밍의 정석에서 배운 루프백을 적용해보자
 * 애플 문서나 다른 사람들의 코드를 보고 이름을 어떻게 짓는지 확인해보자
 * _생성자를 중복 정의할 때 정적 팩토리 메서드를 사용함_ 은 무슨 의미인가 ?
 ** 클래스의 인스턴스(instance)를 생성하도록 하는 일반적인 방법은 public 생성자(constructor)을 제공하는 것
-** https://rangken.gitbooks.io/javastudy/content/chapter2/item1.html[Effective Java - 기본 생성자보다 Static 팩토리 메서드를 만들어라]
+
+=== 참고
+* http://javacan.tistory.com/472[여러 메서드가 동일 처리 흐름을 갖는 코드 정리 예시: 클래스 추출]
+* http://www.nextree.co.kr/p6960/[객체지향 개발 5대 원리 - 단일 책임의 원칙]
+* https://rangken.gitbooks.io/javastudy/content/chapter2/item1.html[Effective Java - 기본 생성자보다 Static 팩토리 메서드를 만들어라]

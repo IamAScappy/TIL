@@ -84,7 +84,6 @@ image::./image/persuasion.png[설득의 기준]
 
 * 더블 디스패치
 ** 포인터의 포인터. 런타임에 무엇에 무엇을 가져와야만 알 수 있음
-** http://wonwoo.ml/index.php/post/1490[토비의 봄 (더블 디스패치)]
 
 === 3주
 
@@ -158,7 +157,6 @@ image::./image/client-interface.png[범주론]
 * Java => 동적 디스패치
 * 아토믹
 * Swift => 값 지향 프로그래밍은 값 복사에 대한 비용이 많이 발생함
-* https://www.slideshare.net/sunhyouplee/functional-reactive-programming-with-rxswift-62123571[Reactive Programming]
 ** Stream, Flow
 ** 지연 로딩을 알아야 함
 ** 제너레이터이나 코루틴 지원하는 언어 => C#
@@ -222,7 +220,6 @@ image::./image/client-interface.png[범주론]
 ** View => set 메서드
 ** Presenter => View의 값을 갱신함
 ** View의 오류로 인해 Presenter도 오염이 됨
-* https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/[안드로이드의 MVC, MVP, MVVM 종합 안내서]
 
 ===== 아키텍처는 발전해 나가는 것
 * 아키텍처는 서비스에 맞게 개선해 나가는 것
@@ -243,3 +240,8 @@ image::./image/client-interface.png[범주론]
 * 추상화 수준을 나눔
 ** 의식적으로 나누는 연습을 많이 하고
 * 다른 사람의 코드를 보면서 is-a <==> has-a 관계를 자유롭게 왔다갔다하면서 연습을 해봄
+
+=== 참고 
+* https://www.slideshare.net/sunhyouplee/functional-reactive-programming-with-rxswift-62123571[Reactive Programming]
+* https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/[안드로이드의 MVC, MVP, MVVM 종합 안내서]
+* http://wonwoo.ml/index.php/post/1490[토비의 봄 (더블 디스패치)]

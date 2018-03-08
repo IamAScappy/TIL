@@ -97,7 +97,7 @@ image::../regex/image/dfa-web-ebay.png[]
 ===== 한글 조합 오토마타
 * DFA
 
-===== https://ko.wikipedia.org/wiki/%EC%B4%98%EC%8A%A4%ED%82%A4_%EC%9C%84%EA%B3%84[놈 촘스키 형식언어 계층]
+===== 놈 촘스키 형식언어 계층
 * 개발자가 다루는 프로그래밍 언어는 문맥자유문법
 * 문자열은 정규 언어
 ** 정규 언어를 구현한 문법(Regular Grammar) 
@@ -140,7 +140,7 @@ image::../regex/image/dfa-web-ebay.png[]
 // 컴파일러 문자뿐만 아니라 문법까지 확인함
 ----
 
-===== http://untitledtblog.tistory.com/9[컴파일러 구조]
+===== 컴파일러 구조
 * Parser
 ** 문자열을 자르고 구문도 확인함
 * Scanner
@@ -155,3 +155,7 @@ image::../regex/image/dfa-web-ebay.png[]
 
 ===== Parser Generator Yacc
 * 구문을 통해 C언어로 생성함
+
+=== 참고
+* https://ko.wikipedia.org/wiki/%EC%B4%98%EC%8A%A4%ED%82%A4_%EC%9C%84%EA%B3%84[놈 촘스키 형식언어 계층]
+* http://untitledtblog.tistory.com/9[컴파일러 구조]

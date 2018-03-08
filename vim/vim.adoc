@@ -1,4 +1,4 @@
-= https://ko.wikipedia.org/wiki/Vim[VIM 기본] 
+= VIM 기본
  
 === 단축키
 
@@ -92,3 +92,6 @@ $ ssh -i "name.pem" AWS접속정보
 $ cat hello.txt
 $ mv hello.txt hello.js
 ----
+
+=== 참고
+* https://ko.wikipedia.org/wiki/Vim[Vim]

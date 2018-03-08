@@ -72,7 +72,7 @@ image:./image/data-information-knowledge.png[]
 ===== ACID
 * Atomicity, Consistency, Isolation, Durability
 
-===== https://db-engines.com/en/ranking[확장성]
+===== 확장성
 * 수평확장 VS 수직확장
 
 === 데이터베이스의 종류
@@ -87,7 +87,7 @@ image:./image/data-information-knowledge.png[]
 ** 아무거나 막 저장
 ** 비교적 빠르고 사용이 간단함
 * 그래프 디비
-** https://neo4j.com/why-graph-databases/[Neo4J]
+** Neo4J
 ** 복잡한 관계 처리 지원
 ** 친구 추천 알고리즘, SNS 등에 적합
 * Key-Value DB
@@ -105,6 +105,6 @@ image:./image/data-information-knowledge.png[]
 * 분산 데이터 시스템(Hadoop) 등
 
 === 참고
-* 코드스쿼드
 * http://searchdatamanagement.techtarget.com/feature/Defining-data-information-and-knowledge[Data, Information, Knowledge?]
 * http://www.databasecompare.com/what-is-data-database-(db)-dbms-and-dbs.html[What is data, database (DB), DBMS and DBS?]
+* https://db-engines.com/en/ranking[DB-Engines Ranking]

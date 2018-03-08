@@ -1,6 +1,6 @@
 = 트랜잭션(Transaction)
 
-=== https://ko.wikipedia.org/wiki/짐_그레이[Jim Gray]
+=== Jim Gray
 * 세계 최초 관계형 데이터베이스 System-R 개발함
 * 트랜잭션 개념 제안함
 * 2 Phase Locking
@@ -9,7 +9,6 @@
 === DBMS 복습
 * InnoDB는 MySQL을 위한 데이터베이스 엔진, 레코드(=> 행) 기반 저장구조 cf. Columnstore(=> 열 기반, Amazon Redshift)
 * RID(page # => 페이지 번호, slot # => 슬롯 번호)를 통해 레코드 접근함 
-** http://beansberries.tistory.com/entry/DBMS-관리-시스템-파일-접근[DBMS 관리 시스템 & 파일 접근]
 * B-Tree 기반 클러스터링 인덱스 => Key - RID와 Value - 실제적인 물리 위치 값을 가지고 있음
 
 > The InnoDB term for a primary key index. InnoDB table storage is organized based on the values of the primary key columns, to speed up queries and sorts involving the primary key columns. 
@@ -182,7 +181,6 @@ SET SESSION transaction_isolation='SERIALIZABLE';
 * 서버 모니터링은 주기적으로 하자
 
 === 참고
-* 코드스쿼드
 * http://12bme.tistory.com/149[클러스터링 인덱스]
 * https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html#innodb-record-locks[InnoDB Locking]
 * https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html[14.8.2.1 Clustered and Secondary Indexes]
@@ -190,3 +188,5 @@ SET SESSION transaction_isolation='SERIALIZABLE';
 * http://www.mimul.com/pebble/default/2012/07/03/1341276539423.html[클라우드 환경에서 새로운 ACID, BASE 그리고 CAP]
 * https://brunch.co.kr/@toughrogrammer/17[개념 정리 - (9) 데이터베이스 편]
 * https://www.slipp.net/questions/195[Multiversion Concurrency Contorl?]
+* https://ko.wikipedia.org/wiki/짐_그레이[Jim Gray]
+* http://beansberries.tistory.com/entry/DBMS-관리-시스템-파일-접근[DBMS 관리 시스템 & 파일 접근]
