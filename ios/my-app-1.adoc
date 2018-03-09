@@ -1,16 +1,15 @@
-= 나의 앱: 첫 번째 기획
+= 나의 앱 - 첫 번째 기획
 
 === 첫 번째 Wireframe
 
-image:./image/v1/1.001.png[]
+image:./image/v1/1.002.png[]
 
 === 두 번째 Wireframe
 
-image:./image/v1/1.002.png[]
+image:./image/v1/1.003.png[]
 
 === 첫 번째 기획문서
 
-image:./image/v1/1.003.png[45%, 45%]
 image:./image/v1/1.004.png[45%, 45%]
 image:./image/v1/1.005.png[45%, 45%]
 image:./image/v1/1.006.png[45%, 45%]
