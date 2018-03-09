@@ -6,7 +6,7 @@
 
 == DAILY
 
-* link:daily/README.adoc[Daily]
+* link:daily/README.adoc[2017 - 2018]
 ** link:daily/201712/README.adoc[2017-12]
 *** link:daily/201712/20171204-20171210.adoc[20171204 - 20171210]
 *** link:daily/201712/20171211-20171217.adoc[20171211 - 20171217]
