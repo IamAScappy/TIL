@@ -1,0 +1,150 @@
+= 다양한 화면 전환
+
+=== 종류
+
+===== View Controller의 View 위에 다른 View 교체하기
+* 기존 View를 제거하고 새로운 View를 추가하거나, 기존 View를 숨기고 숨기고 있던 View를 보여줌
+* View Controller에서 최소 두 개 이상의 View를 관리하기 때문에 좋은 방법이 아님
+
+===== Modal
+* View Controller 직접 호출
+** 모달 프레젠테이션 스타일 => UIModalPresentationStyle 객체 속성
+** `fullScreen`
+** `currentContext`
+** `overFullScreen`
+** `overCurrentContext`
+
+===== Container 방식
+* Navigation Controller, TabBarController 호출함
+
+===== Segue 방식
+* 스토리보드 연결하는 방법
+* 화면의 연결과 처리에 대한 편의성. 코드를 줄일 수 있을 뿐만 아니라 View Controller의 흐름을 한눈에 볼 수 있음
+
+=== 구현 방법
+
+===== Modal(View Controller를 직접 호출하여 화면 전환하기)
+* 현재 View Controller에서 이동할 대상 View Controller를 직접 호출하여 화면을 표시함. `프레젠테이션 방식` 이라고 함
+
+[source, swift]
+----
+@IBAction func nextPageButton(_ sender: UIButton) {
+    // self.storyboard도 참조 가능함
+    // if let uvc = self.storyboard?.instantiateViewControllerWithIdentifier("BlueViewController")
+
+    // 스토리보드가 여러 개이거나 특정 번들에서 스토리보드를 가져올 때 아래와 같은 코드를 통해서 가져올 수 있음
+    let blueViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlueViewController")
+    
+    self.present(blueViewController, animated: true, completion: ({
+        print("Segue 호출 확인:)")
+    }))
+}
+
+// BlueViewController 
+@IBAction func closeTouchedButton(sender: UIButton) {
+    // 이전 화면으로 되돌아가기
+    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+}
+```
+----
+ 
+===== Container 방식(Navigation Controller를 사용하여 화면 전환하기)
+* Navigation Controller는 반드시 시작이 되는 View Controller를 가져야 하는데, 이를 `Root View Controller` 라고 함
+* 화면 전환이 발생하는 View Controller의 포인트를 Stack으로 구성되어 있음
+* 자신이 제어하는 모든 View Controller를 Navigation Bar를 생성함
+
+[source, swift]
+----
+class ViewController : UIViewController {
+    // ...
+
+    @IBAction func nextPageButton(sender: UIButton) {
+        if let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewController") {
+            // 화면을 전환할 때 애니메이션 정의
+            viewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+
+            // 화면을 전환함
+            self.navigationController?.pushViewController(viewController, animated: true) 
+        }
+    }
+}
+
+class SecondViewController : UIViewController {
+    // ...
+
+    @IBAction func prevPageButton(sender: UIButton) {
+        // 이전 화면으로 되돌아가기
+        self.navigationViewController?.popViewControllerAnimated(true)
+    }
+}
+----
+
+* Navigation Controller 관련 메서드가 왜 `push, pop` 일까?
+** Figure 1-3 shows the relevant relationships between the navigation controller and the `objects on the navigation stack`. (Note that the top view controller and the visible view controller are are not necessarily the same. For example, if you present a view controller modally, the value of the `visibleViewController` property changes to reflect the modal view controller that was presented, but the `topViewController` property does not change.)
+** 실행결과의 오른쪽 이미지의 결과가 나온 이유는 아래 이미지를 보면 왜 그런지 이해할 수 있었음
+
+image:https://github.com/yuaming/practice-swift/raw/master/image/navigation-interface.png[45%, 45%]
+image:https://github.com/yuaming/practice-swift/raw/master/image/navigation-stack.png[45%, 45%]
+
+===== Segue 방식(화면 전환용 객체 Segueway를 사용하여 화면 전환하기)
+* 화면 전환과 View Controller의 연결을 관리하는 객체를 `Segueway 또는 Segue` 라고 함
+* 화면과 화면의 연결을 위한 소스 코드 없이도 스토리보드 상에서 화면 전환 기능을 직접 구현할 수 있는 장점이 있음
+* 출발점은 View Controller 자체가 될 수도 있고 버튼이나 테이블 셀 등의 컨트롤이 될 수도 있음
+    * 출발점이 View Controller 자체인 경우를 `Manual Segue` 
+        * * Manual Segue를 실행하려면 UIKit 프레임워크에 정의된 `performSegueWithIdentifier(_:sender:)` 사용함. 소스 코드에서 적절한 시점에 이 메서드를 호출하기만 하면 Segueway가 실행되어 화면 전환이 이루어짐
+    * 컨트롤이 출발점인 경우를 `Action Segue 또는 Trigger Segue` 
+        * 반면 Action Segue는 버튼의 클릭/터치 이벤트가 세그 실행으로 자동 연결되므로 실행 메서드 없이 스토리보드에서 연결만 해도 화면 전환 기능을 구현할 수 있음
+* Segueway를 통해 이동한 화면에서 원래 화면으로 돌아오기 위해서는 Exit 아이콘을 통해 `Unwind Segue` 기능을 구현하여 연결하면 됨
+
+[source, swift]
+----
+// Manual Segueway 예제 
+class ViewController : UIViewController {
+    // ...
+
+    @IBAction func wind(sender: AnyObject) {
+        // 세그웨이를 실행함
+        performSegueWithIdentifier("ManualWind", sender: self)
+    }
+
+    // Unwind Segue가 실행되면서 이 메서드를 호출함
+    @IBAction func unwindToMainViewController(segue : UIStoryboardSegue) { }
+}
+
+// Action Segue, Manual Segue 호출하기 전 특정 메세드를 호출하는 것을 전처리 메서드라고 함
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // ...
+} 
+
+// Segueway가 실행되기 전 호출되는 전처리 메서드에서 화면 이동 전 값을 저장하거나 전달해야 하는 경우에 많이 사용함
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == "segue2") {
+        // ...
+    } else if (segue.identifier == "segue3") {
+        // ...
+    } else {
+        // ...
+    }
+} 
+----
+
+===== `dismiss` 와 `뒤로 돌아가는 Segue 연결` 차이점
+* `Dismiss` deals with only single view-controller it will remove the current view-controller from memory.
+* `Unwind segue` can be used to navigate back through push, modal or popover segues, On top of that you can actually unwind through not only one but a series of push/modal/popover segues, e.g. "go back" multiple steps in your navigation hierarchy with a single unwind action.
+* [What's the difference between popping a view controller, dismissing a view controller, and using an unwind segue?](https://stackoverflow.com/questions/45318855/whats-the-difference-between-popping-a-view-controller-dismissing-a-view-contr)
+* `SecondViewController().dismiss(animated: true, completion: nil)`를 BlueViewController에서 호출할 때 반응이 없음
+** https://developer.apple.com/documentation/uikit/uiviewcontroller/1621505-dismiss[dismiss(animated:completion:)] 에서 아래 내용을 확인함
+** _If you present several view controllers in succession, thus building a stack of presented view controllers, calling this method on a view controller lower in the stack dismisses its immediate child view controller and all view controllers above that child on the stack._
+* JK's feedbacks 
+** 포토프레임은 되는것만 확인하기 보다 이런저런 상황에서 자기 확신을 가질 수 있도록 이상하다? 싶으면 확인해보는게 중요합니다. 그래야 다른 경우에 실수를 안하게 됩니다. 현재 `presenting 되어있는 VC에서 self.dismiss() 하는 것과 이전에 presentedVC에서 띄워놓은 VC를 dismiss 하는 것과 차이`를 꼭 알고 넘어가세요.
+
+===== UIButton의 IBAction과 Segue 연결의 우선순위
+* IBAction이 먼저 실행되는 것을 확인할 수 있음 
+** JK's Feedbacks
+*** UIButton에 IBAction 과 Segue를 둘 다 연결하면 어떻게 되나요? 둘 중에 어느게 우선일까요? 둘 다 연결해서 사용하는 경우가 있을까요?
+*** _IBAction이 실행되고 performSegueWithIdentifier과 SegueID를 찾아가기 때문에 IBAction의 실행 순위가 Segue보다 높으며 실행 순서를 바꿀 수 없기 때문에 각각 사용하는 것이 좋음_
+
+=== 참고 
+* https://digitalleaves.com/define-segues-programmatically/[Segues and Nevigation]
+* https://stackoverflow.com/questions/15555384/give-ibaction-priority-instead-of-segue[Give IBAction priority instead of segue]
+* https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html[Navigation Controllers]

@@ -64,6 +64,7 @@
 ** link:ios/tabbar-tabbar-controller.adoc[UITabBar, UITabBarController]
 ** link:ios/view-view-controller.adoc[View, View Controller]
 ** link:ios/my-app-1.adoc[나의 앱 - 첫 번째 기획]
+** link:ios/view-segue.adoc[다양한 화면 전환]
 * link:java/README.adoc[Java]
 ** link:java/java-8-lambda.adoc[Java8: 람다표현식]
 * link:links/README.adoc[Links]
