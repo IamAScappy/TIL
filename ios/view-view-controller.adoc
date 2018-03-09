@@ -1,0 +1,60 @@
+= View, View Controller
+
+=== View
+
+==== 정의 
+* 앱과 사용자와 상호 작용하는 주요한 방법이며 많은 책임을 가지고 있음
+
+> View objects are the main way your application interacts with the user, they have many responsibilities
+
+==== 역할
+
+===== Layout과 Subview 관리 
+* View는 Parent View에 관련된 View의 기본 사이즈 동작을 정의함
+* Subview 목록을 관리함
+* View는 필요에 따라 Subview 크기와 위치를 재조정 할 수 있음
+* View는 다른 View나 다른 Window에 있는 View의 좌표를 조정할 수 있음
+
+===== Drawing and animation
+* View는 내용을 구성함
+* View의 몇 가지 프로퍼티는 새로운 값에 대해 동작할 수 있음
+
+> Property => Object modeling is the process of designing the objects or classes through which an object-oriented application examines and manipulates some service
+
+===== Event handling
+* Touch 이벤트에 반응할 수 있음
+* View는 Responder Chain이랑 관계있음
+
+=== View Controller
+
+==== 정의
+* View, Event들을 관리하고 하나의 View Controller에서 다른 View Controller의 전환을 핸들링 하는 등 역할을 함
+* View Controller는 2가지 타입이 존재함
+** Content View Controller
+*** 앱 내용을 보여주는 역할을 하는 View Controller. 우리가 가장 일반적으로 생각하는 View Controller를 뜻함
+** Container View Controller
+*** 다른 View Controller에 대한 정보를 가지고 있음
+*** Navigation Controller, TabBar Controller 등이 여기 속함
+
+==== 역할
+
+===== View 관리
+* View Controller의 가장 중요한 역할은 View의 계층을 관리하는 역할 
+* 모든 View Controller는 Root View를 하나씩 가지고 있음
+* `View Controller는 항상 Root View에 대한 강한 참조이며, 각 View들도 자신의 SubView들에 대해 강한 참조 관계임`
+* Content View Controller 
+** 자기 자신의 모든 View를 관리함
+* Container View Controlle 
+** 자기 자신이 가지고 있는 모든 View, View Controller의 Root View까지 관리함   
+** 자신이 포함하고 있는 Content View Controller의 Child View들을 간선하지 않음
+** 단지 Container View Controller의 디자인에 따라 Root View들의 사이즈를 조절하고 배치함
+* 두 번째 이미지에서 상위에는 Split View Controller 같은 Container View Controller가 있고, 그 안에는 A, B Content View Controller가 있음
+
+image:view-controllers-1.png[]
+
+image:view-controllers-2.png[]
+
+=== 참고 
+* https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingViews/CreatingViews.html#//apple_ref/doc/uid/TP40009503-CH5-SW1[Views]
+* https://developer.apple.com/documentation/uikit/view_controllers[View Controllers] 
+* https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1[The Role of View Controllers]
