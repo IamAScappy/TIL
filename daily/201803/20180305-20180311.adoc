@@ -1,5 +1,10 @@
 = 2018.03.05 - 2018.03.11
 
+=== 이번 주까지 끝내야 할 일
+* [ ] App Programming Guide for iOS 읽고 정리하기
+* [ ] PhotoFrame 체크리스트 정리하기
+* [ ] XCode 정리하기
+
 === 2018.03.05
 
 ===== 할 일
@@ -86,11 +91,19 @@
 === 2018.03.08
 
 ===== 할 일
-* [ ] PhotoFrame 체크리스트 정리하기
-* [ ] VendingMachine 1-2단계 과제 진행하기
+* [*] VendingMachine 1-2단계 과제 진행하기
+* [*] App Programming Guide for iOS 
+** [*] Introduction
+** [*] Expected App Behaviors 
+** [*] The App Life Cycle - The Main Function 읽고 정리하기
+
+===== 느낀 점
+* 내가 사용하는 XCode에 대해 많이 알게 되었는데 정리가 필요함
+
+=== 2018.03.09
+
+===== 할 일
+* [ ] VendingMachine 3단계 과제 진행하기
 * [ ] App Programming Guide for iOS 
-** [ ] Introduction
-** [ ] Expected App Behaviors 
-** [ ] The App Life Cycle - The Main Function 읽고 요약 정리하기
-* [ ] 웹을 지탱하는 기술 
-** [ ] 1부. 웹 개론을 읽고 요약 정리하기
+** [ ] The App Life Cycle 
+** [ ] Background Execution 읽고 정리하기
