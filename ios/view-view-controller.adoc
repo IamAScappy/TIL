@@ -70,8 +70,9 @@ image:./image/view-controller-3.png[]
 ===== User Interactions
 * View Controller는 `Responder 객체` 이며 `Responder Chain을 따라 내려오는 이벤트를 핸들링` 할 수 있음
 
-image:./image/view-view-controller-responder.png[45%, 45%]
-image:./image/view-view-controller-responder-chain.png[45%, 45%]
+image:./image/view-view-controller-responder.png[]
+
+image:./image/view-view-controller-responder-chain.png[]
 
 * View Controller가 Event를 직접 핸들링할 일이 거의 없음
 * 대신 각 View에서 Touch 이벤트를 받으면 해당 이벤트를 처리하고 그것과 관련된 Delegate와 Target 객체의 메서드에게 결과를 알려줌
@@ -80,8 +81,9 @@ image:./image/view-view-controller-responder-chain.png[45%, 45%]
 * ViewControllr에 있는 Action 메서드을 이용하는 방법은 `Handling User Interactions` 참고
 * 다른 이벤트는 다루는 방법은 `Event Handling Guide for iOS` 참고
 
-image:./image/view-view-controller-delegate.png[45%, 45%]
-image:./image/view-view-controller-target-action.png[45%, 45%]
+image:./image/view-view-controller-delegate.png[]
+
+image:./image/view-view-controller-target-action.png[]
 
 ===== 리소스 관리
 * View Controller는 View와 View Controller가 생성한 모든 객체의 책임을 가지고 있음
