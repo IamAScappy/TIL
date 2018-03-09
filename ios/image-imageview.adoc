@@ -1,0 +1,11 @@
+= UIImage, UIImageView
+
+=== UIImage
+* `UIImage store data` from an image(i.e. data from a png file)
+
+=== UIImageView
+* `UIImageView is a control that display UIImage data`
+
+=== 참고 
+* https://developer.apple.com/documentation/uikit/uiimage[UIImage]
+* https://developer.apple.com/documentation/uikit/uiimageview[UIImageView]
