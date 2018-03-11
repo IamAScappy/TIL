@@ -681,7 +681,7 @@ function append(list, val) {
     <script>
         /*
             테스트 파일 
-            => https://github.com/yuaming/blog/blob/master/fp/functional-programming-js-info.adoc
+            => https://github.com/yuaming/wiki/blob/master/fp/functional-programming-js-info.adoc
         */
     </script>
 </head>
