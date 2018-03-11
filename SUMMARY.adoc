@@ -1,6 +1,6 @@
 = Summary
 
-== ABOUT ME
+== ABOUT
 
 * link:README.adoc[YUAMING]
 
