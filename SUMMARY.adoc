@@ -69,7 +69,7 @@
 ** link:ios/shallow-deep-copy.adoc[깊은 복사와 얕은 복사]
 ** link:ios/my-app-1.adoc[나의 앱 - 첫 번째 기획]
 ** link:ios/view-segue.adoc[다양한 화면 전환]
-** link:ios/app-life-cycle.adoc[아키이빙과 직렬화]
+** link:ios/archives-serialization.adoc[아키이빙과 직렬화]
 * link:java/README.adoc[Java]
 ** link:java/java-8-lambda.adoc[Java8: 람다표현식]
 * link:links/README.adoc[Links]
