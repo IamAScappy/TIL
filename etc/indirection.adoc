@@ -2,3 +2,6 @@
 
 * 컴퓨터 공학에서 _간접 참조_ 
 * 값 자체보다 컨테이너, 연결, 별명 등을 사용해서 우회해서 참조하도록 하는 방식을 말함
+* David Wheeler => 함수가 없던 시절
+
+> All problems in computer science can be solved by another level of Indirection
