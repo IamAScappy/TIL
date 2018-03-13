@@ -3,7 +3,17 @@
 === 2018.03.12
 
 ===== 할 일
-* [ ] VendingMachine 3단계 진행하기
+* [*] VendingMachineApp 3단계 진행하기
+* [*] App Programming Guide for iOS 정리하기
+
+===== 할 일
+* 서울시 청년수당 신청하였음. 잘되었으면 좋겠다!
+* Codable 적용하면서 문득 궁금한 점이 직렬화, 역직렬화가 필요할 때마다 Codable이나 NSObject, NSCoder를 이용해야하는 것인지 궁금함
+
+=== 2018.03.13
+
+===== 할 일
+* [ ] VendingMachineApp 3단계 피드백 받고 4단계 진행하기 
 * [ ] App Programming Guide for iOS 정리하기
 * [ ] 웹을 지탱하는 기술 1부 읽고 정리하기
 * [ ] iOS AutoLayout을 활용한 실전 UI구성 전략 - 카카오톡 같은 고급 UI 만들기 강의 듣기
