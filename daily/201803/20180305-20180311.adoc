@@ -31,7 +31,7 @@
 === 2018.03.08
 
 ===== 할 일
-* [*] VendingMachine 1-2단계 과제 진행하기
+* [*] VendingMachineApp 1-2단계 과제 진행하기
 * [*] App Programming Guide for iOS 
 ** [*] Introduction
 ** [*] Expected App Behaviors 
