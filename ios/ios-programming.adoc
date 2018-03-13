@@ -11,9 +11,97 @@
 
 ===== Providing the Requred Resources
 * 내가 만든 앱은 아래 리소스 및 파일들을 포함해야 됨
-** `Info.plist` => 정보 속성 목록 파일, 앱에 대한 메타 정보
+** `Info.plist`
+*** 정보 속성 목록 파일, 앱에 대한 메타 정보
+*** `The Information Property List File` 내용 참고
+** 앱 실행에 필요한 하드웨어 기능 및 필수 기능
+*** `Declaring the Required Device Capabilities` 내용 참고
+** 하나 이상 아이콘
+*** 사용자 기기의 홈 화면에 아이콘이 보여짐
+*** `App Icons` 내용 참고
+** 하나 이상 런처 이미지
+*** `App Launch (Default) Images` 내용 참고
+
+* The App Bundle
+** iOS 앱을 만들면 XCode는 앱을 _Bundle_ 로 묶음
+** _Bundle_ 은 앱과 관련된 리소스를 그룹화한 파일 시스템
+** _Bundle_ 에 앱 실행 파일, 앱 아이콘, 이미지 파일 및 현지화(Localize)된 내용 등 리소스 파일이 포함되어 있음
+** 아래 내용은 일반적인 iOS 앱 Bundle 내용을 보여줌
+** * `Bundle Programming Guide, Resource Programming Guide` 링크 참고
+
+|===
+| File | Example | 설명
+| App Executable | My App | 컴파일된 코드가 있음. 앱 이름과 같은 실행파일이 있음 .app. 필수 파일
+| The information property list file | info.plist | 앱에 대한 설정 파일이 있음. 앱과 상호작용 하는 방법을 정함. 필수적임
+| App Icons | Icon.png, Icon@2x.png, Icon-Small.png, Icon-Small@2x.png | 기기 홈 화면에 아이콘을 사용함. @2x이 파일명에 있으면 레티나 화면에 대응함. 앱 아이콘도 필수적임
+| Launch Images | Default.png, Default-Portrait.png, Default-Landscape.png | 앱이 실행될 동안 배경에서 사용하는 파일임. 앱이 실행할 준비가 끝나면 이미지가 사라짐. 적어도 하나 이상 이미지가 필요함
+| Storyboard files(or nib files) | MainBoard.storyboard | 스토리보드는 View, View Controller이 있음. 앱에서 스토리보드 파일 대신 nib files을 사용할 수 있음. _NSMainNibFile_ 과 _UIMainStoryboardFile_ 는 스토리보드를 대체할 수 있음. 스토리보드를 사용해도 그만, 안 사용해도 그만이지만 사용하는 것을 추천함
+| Ad hoc distribution icon | iTunesArtwork | 임시 배포할 경우 512x512 픽셀 단위로 앱 아이콘이 필요함. 아이콘 이름은 iTunesArtwork 이여야 하며 파일 이름 확장명을 포함하면 안됨. 이 파일은 선택적임
+| Settings bundle | Settings.bundle | 앱 설정을 커스텀하여 노출하고 싶다면 Settings.bundle이 필요함. `Preferences and Settings Programming Guide` 링크 참고
+| Nonlocalized resource files | sun.png, mydata.plist | 지역화하지 않은 리소스는 앱에서 사용하는 이미지, 사운드 파일, 동영상 및 데이터 파일은 같은 항목에 포함됨. 이 파일들은 App Bundle 최상위에 위치해야 함
+| Subdirectories for localized resources | en.lproj, fr.lproj, es.lproj | 지역화된 리소스는 언어별 프로젝트 디렉토리에 위치해야 함. 이름은 _ISO 639-1_ 와 .lproj 접미사로 구성됨. 지역화된 버전을 제공하는 것 외에도 언어별 프로젝트 폴더와 같은 이름의 파일을 위치하여 앱 아이콘, 실행 이미지 및 설정 아이콘을 현지화 할 수 있음
+|===
+
+* The Information Property List File
+** info.plist 파일은 앱 구성에 관한 중요한 정보가 포함되어 있으며 구조화된 파일
+** App Store, iOS에서 앱의 기능을 확인하고 리소스를 찾는데 사용함
+** 모든 앱은 info.plist를 포함해야 함
+** 기본으로 제공하는 필수 항목에 대한 기본값은 설정되어 있음. 그러나 기능을 위해 설정 추가나 변경을 할 수 있음 
+** 가능하면 General, Capabilities 탭을 이용하여 앱의 구성 정보를 선택하는 것이 좋지만 특정한 환경 설정은 Info나 다른 탭에서 설정할 수 있음 
+*** Info 탭에서 하드웨어 사양을 설정을 할 수 있음
+*** Wi-Fi 연결, Custom URL 스키마, 사진 앨범 접근 등을 위해서 info.plist에 해당 사항에 맞는 키를 설정해줘야 함
+*** `Document-Based App Programming Guide for iOS, Using URL Schemes to Communicate with Apps.` 링크 참고
+*** info.plist의 다양한 키와 값에 대해서 확인하려면 `Information Property List Key Reference - Info.plist Keys and Values` 링크 참고
+
+* App Icons
+** 모든 앱은 기기의 홈 화면과 앱 스토어에 보여줄 아이콘을 제공해야 함
+** 앱 아이콘은 Image Assets에 포함됨
+** 아이콘 디자인 가이드는 `HIG - iOS Design Themes` 링크 참고
+
+* App Launch (Default) Images
+** 앱이 처음 시작할 때 잠깐 보여주는 이미지
+** 앱 실행할 준비가 끝나면 런치 이미지가 사라짐
+** 앱이 Foreground에서 Background로 들어갈 때 사용중인 앱의 스냅샷이 생성되고 다시 Foreground로 다시 돌아올 때 런치 이미지가 아닌 스냅샷을 활용함
+** 오래동안 앱을 실행하지 않으면 스냅샷을 삭제하고 기존 런치 이미지를 활용함
+** 런치 이미지 가이드는 `HIG - iOS Design Themes` 링크 참고
+
+===== Supporting User Privacy
+* 사용자 개인 정보 보호는 매우 중요함. 대부분 iOS 장비는 개인 정보를 포함하고 있음
+* 개인 정보를 사용하기 위해 각 나라의 해당 법률에 준수하고 사용자 동의를 얻은 후 접근해야 함
+* 데이터에 대한 접근 요청해야 함. 앱의 info.plist 파일에 접근하려고 하는 데이터나 리소스가 필요한 이유를 제공해야 함
+* 사용자 필요에 따라 접근 권한을 비활성화 할 수 있는 설정도 제공해야 함
+* 접근 요청이 필요한 항목은 여러 유형이 있음
+** 블루투스, 캘린더, 카메라, 접근, 건강 정보, 홈킷, 위치, 모션, 음악 및 동영상 라이브러리, 사진, Siri , 음성, TV 등
+* 데이터를 수집하여 저장할 때 로컬이면 암호화된 형식으로 저장해야 함. 네트워크를 통해 데이터를 보낼 때 App Transport Security를 사용함
+** `Strategies for Implementing Specific App Features - Protecting Data Using On-Disk Encryption 내용이나 NSAppTransportSecurity 링크 참고`
+* 앱에서 _ASIdentifierManager_ 사용하는 경우 `advertisingTrackingEnabled 프로퍼티` 의 값을 준수해야 함
+** NO => 제한된 광고 목적에만 사용해야 함 
+* 장치 식별자를 사용하면 안됨. iOS 5.0이상부터 사용할 수 없으며 해당 식별자를 사용하는 새로운 앱이나 업데이트를 허용하지 않음
+** `UIDevice의 identifierForVendor 프로퍼티나 ASIdentifierManager의 advertisingIdentifier 프로퍼티`
+* _앱에서 보호된 항목에 접근하려면 시스템에서 사용자에게 접근 권한을 요청하는 Alert를 표시함. iOS 10부터 info.plist에 각각 개인 정보를 활용하려는 목적 문구를 보여주며 접근 권한 요청 Alert에 보이도록 해야함_
+
+===== Internationalizing Your App
+* iOS 앱은 많은 국가에 배포할 수 있기 때문에 앱 내용을 지역화하면 많은 사용자에게 다가갈 수 있음
+* 내용을 현지화 하는 과정은 간단함
+** 모든 사용자가 지향하는 내용을 현지화 할 수 있는 리소스 파일로 분리하고 해당 내용을 저장할 수 있는 언어별 프로젝트(.lproj) 폴더를 제공함
+** Locale 별로 작업할 때 날짜 및 숫자 형식 등을 사용하는 것을 의미함
+** 현지화 할 수 있는 리소스 유형
+*** 스토리보드 또는 Nib file
+*** .strings 확장명으로 끝나는 파일. 문자열 파일
+*** 이미지 파일 => 저작권, 문화권에 대한 확인이 필요함
+*** 비디오 및 오디오 파일 => 가급적이면 멀티미디어 파일은 현지화를 피해하는 것이 좋음
+
 
 === 참고
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]
 * https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214[Start Developing iOS Apps (Swift)]
 * https://developer.apple.com/documentation/#//apple_ref/doc/uid/TP40007898[Apple Developer Documentation]
+* https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW9[Bundle 설명]
+* https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i[Preferences and Settings Programming Guide]
+* https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW4[Nib file 설명]
+* https://developer.apple.com/library/content/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i[Bundle Programming Guide]
+* https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i[Resource Programming Guide]
+* https://developer.apple.com/library/content/documentation/DataManagement/Conceptual/DocumentBasedAppPGiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011149[Document-Based Applications in iOS]
+* https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247[Information Property List Key Reference - Info.plist Keys and Values] 
+* https://developer.apple.com/ios/human-interface-guidelines/overview/themes/[HIG - iOS Design Themes]
+* https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33[NSAppTransportSecurity]
