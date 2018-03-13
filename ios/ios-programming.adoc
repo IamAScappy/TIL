@@ -170,7 +170,7 @@ image:./image/main-run-loop.png[]
 ** 예를 들어 View에서 처리되지 않은 이벤트를 Superview나 View Controller로 전달됨
 * Control 객체(Button, Toggle Switch)에서 발생하는 터치 이벤트는 View에서 발생하는 터치 이벤트와 다르게 처리됨
 * Control 과 상호작용 하는 방법이 제한적이므로 상호작용에 대한 Action 메세지를 다시 포장하여 적절한 Target 객체에 배달됨
-* `arget-Action` 디자인 패턴은 앱에서 작성한 코드의 실행을 위해 Control를 쉽게 이용할 수 있게 해줌
+* `Target-Action` 디자인 패턴은 앱에서 작성한 코드의 실행을 위해 Control를 쉽게 이용할 수 있게 해줌
 
 ===== Execution States for Apps
 * 앱은 아래 상태 중 하나를 가짐
@@ -208,6 +208,40 @@ image:./image/state-change-in-ios-app.png[]
 ** 오래 걸리는 작업은 Background Thread에서 수행해야 함. 네트워크 접근, 파일 접근, 대용량 데이터를 처리할 때 GCD를 이용하여 비동기로 수행해야 함
 ** Main Thread에서 사용자 인터페이스 설정과 관련한 작업만 해야 함. 이외에 작업은 비동기적으로 실행해야 하며 처리가 완료되는 즉시 사용자에게 보여줘야 함
 
+=== Background Execution
+* 사용자가 앱을 사용하지 않으면 시스템은 앱을 Background 상태로 전환함
+* 일반적으로 Background 상태는 Suspend(정지) 상태로 이어짐
+* 앱을 정지시키는 일은 배터리 수명을 향상하는 일이며 다른 앱이 Foreground에서 실행될 수 있는 리소스를 제공함
+* 하지만 모든 앱이 Backgorund에서 정지하는 것은 아님
+** 예를 들어 하이킹 앱은 시간 경과에 따라 Background에서도 사용자 위치를 추적해야 하며 오디오 앱은 잠금화면에서 음악을 계속 재생할 수 있어야 함. 그리고 Background에서 콘텐츠를 내려받을 때도 있음
+* Background에서 앱을 실행하는 것이 필요하다고 생각이 들면 iOS는 배터리를 많이 사용하지 않고 효율적으로 수행할 수 있도록 다음과 같은 기술을 제공하며 크게 3가지로 나눌 수 있음
+** Foreground에서 짧은 시간의 작업을 하는 앱은 Background로 전환할 때 해당 작업의 완료할 시간을 요청할 수 있음
+** Foreground에서 다운로드를 시작하는 앱은 다운로드 관리를 시스템에서 전달할 수 있으므로 다운로드 하는 동안 앱이 중지되거나 종료될 수 있음
+** 특정 유형의 작업을 지원하기 위해 Background에서 실행하는 앱은 하나 이상 Background 실행 모드에 대한 지원을 선언할 수 있음
+* 사용자가 다른 앱을 실행하였거나 사용자가 기기를 잠그고 바로 사용하지 않는 경우 앱이 의미 있는 작업을 하지 않는다는 신호
+* Background에서 계속 앱을 실행하면 배터리가 소모되고 완전히 종료될 수 있기 때문에 가능하면 Background 작업은 피해야 함
+
+===== Executing Finite-Length Tasks
+* Background로 이동한 앱이 작업을 완료하기 위해 약간의 시간이 필요하다면 _UIApplication의 beginBackgroundTaskWithName:expirationHandler:, beginBackgroundTaskWithExpirationHandler:_ 메서드를 호출하여 작업을 완료할 수 있을 때까지 시간을 요청할 수 있음
+* 이 메서드 중 하나를 호출하면 일시적으로 앱의 일시 중지가 지연되어 작업을 완료할 수 있음
+* 작업이 끝나면 _endBackgroundTask_ 메서드를 호출하여 작업이 끝난 것을 시스템에 알림
+** _beginBackgroundTaskWithName:expirationHandler: 또는 beginBackgroundTaskWithExpirationHandler:_ 메서드를 호출할 때마다 유일한 토큰을 생성하고 해당 작업과 연관됨. 작업이 완료되면 해당 토큰과 함께 _endBackgroundTask_ 메서드를 호출하여 완료되었음을 시스템에 알림
+* _UIApplication의 backgroundTimeRemaining_ 를 통해 작업의 남은 시간을 확인할 수 있음
+* Expiration Handler를 사용하면 작업을 종료하기 전에 코드를 추가할 수 있지만, 코드를 실행하는데 너무 오래 걸리지 말아야 함
+
+===== Downloading Content in the Background
+* 파일 다운로드 할 때 _NSURLSession(URLSession)_ 객체를 이용해 다운로드 해야 앱이 중지되거나, 종료될 경우 시스템에서 다운로드 과정을 제어할 수 있음
+* Background 다운로드 지원하는 객체를 만드는 과정은 아래와 같음
+** _NSURLSessionConfiguration의 backgroundSessionConfigurationWithIdentifier:_ 메서드를 사용해 설정 객체를 만듬
+** _sessionSendsLaunchEvents_ 프로퍼티 값을 YES로 설정
+** Foreground 있을 때 앱이 전송을 시작하면 설정 객체의 임의 속성을 YES로 설정하는 것이 좋음
+** 설정 객체의 속성값을 설정함
+** _NSURLSession_ 객체를 만들기 위해 설정 객체를 사용함
+* 앱이 실행 중이면 작업이 완료되었을 때 세션 객체는 일반적인 방식으로 delegate에게 알려줌
+* 작업이 끝나지 않은 상태에서 시스템이 앱을 종료하면 시스템은 Background 작업을 계속 관리함
+* 사용자가 강제로 앱을 종료하면 보류 중인 작업을 취소함
+
+===== Implementing Long-Running Tasks
 
 === 참고
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]
