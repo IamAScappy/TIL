@@ -1,5 +1,8 @@
 = View, View Controller
 
+> 이 글은 https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1[The Role of View Controllers] 을 
+개인 학습 및 핸드북으로 이용하려는 목적으로 번역하였기 때문에 잘못된 번역, 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다 :)
+
 === View
 
 ==== 정의 

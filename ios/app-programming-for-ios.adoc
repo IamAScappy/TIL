@@ -1,5 +1,8 @@
 = App Programming for iOS
 
+> 이 글은 https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS] 을 
+개인 학습 및 핸드북으로 이용하려는 목적으로 번역하였기 때문에 잘못된 번역, 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다 :)
+
 === Introduce
 * 앱 개발을 처음 시작하는 사람이 아닌 이미 앱을 개발하여 향상하려는 개발자를 위한 가이드
 
@@ -242,6 +245,119 @@ image:./image/state-change-in-ios-app.png[]
 * 사용자가 강제로 앱을 종료하면 보류 중인 작업을 취소함
 
 ===== Implementing Long-Running Tasks
+* 구현하기 위해 많은 시간이 필요한 경우, Backgorund에서 실행할 수 있는 권한을 요청해야 함
+** Backgorund에서 음이 들리는 콘텐츠가 재생되는 앱. 예를 들어 음악 플레이어 앱
+** Backgorund에서 오디오 콘텐츠를 녹음하는 앱
+** 매시간 사용자 위치 정보를 알려주는 앱. Navigation 앱
+** VoIP에서 음성을 지원하는 앱
+** 주기적으로 새로운 내용을 내려받고 처리해야 하는 앱
+** 외부 악세사리를 주기적으로 업데이트 받아야 하는 앱
+* XCode에서 `Project Settings -> Capabilities tab -> Background Modes` 활성화함
+* Info.plist에서 _UIBackgroundMode_ 키가 추가됨
+
+|===
+| XCode Background Mode | UIBackgroundModes Value 
+| Audio and AirPlay | audio
+| Location updates | location
+| Voice over IP | voip
+| Newsstand downloads | newsstand-content
+| External accessory communication | external-accessory
+| Uses Bluetooth LE accessories | bluetooth-central
+| Acts as a Bluetooth LE accessory | bluetooth-peripheral
+| Background fetch | fetch
+| Remote notifications | remote-notification
+|===
+
+* 구현하는 방법은 `[Background Execution] Tracking the User’s Location -> Communicating with a Bluetooth Accessory` 본문 내용 참고
+
+===== Getting the User’s Attention While in the Background
+* 앱이 Background에 있거나 실행 중이지 않을 때 앱이 관심을 끄는 방법 중 _Notification_ 하나
+** 로컬 알림 사운드
+** 배지
+** 알림 기능
+* 위 3가지 기능을 조합하여 사용자에게 알릴 수 있으며 사용자가 Foreground로 앱을 되돌려 놓을지 결정해야 함
+* Foreground에서 이미 앱이 실행 중이라면 로컬 알림은 사용자에게 전달되지 않음
+* Notification 구현하는 방법
+** 로컬 알림을 예약하려면 _UILocalNotification_ 클래스 인스턴스를 만들고 알림 매개변수를 구현함
+** _UIApplication_ 클래스의 메서드를 이용해 일정을 예약할 수 있음
+** 로컬 알림 객체는 알림 유형(사운드, 경고, 배지) 또는 알림 시간에 대한 정보가 들어있음
+** _UIApplication_ 클래스의 메서드는 바로 전달하거나 예약된 시간에 알림 기능을 제공함
+** App Delegate의 `application:didReceiveLocalNotification:` 메서드로 호출할 수 있음
+** 로컬 알림으로 지원할 수 있는 사운드 파일 유형은 _PCM, MA4, μ-Law, or a-Law_ 이며 기본 경고 소리는 _UILocalNotificationDefaultSoundName_ 클래스를 이용할 수 있음
+** _UIApplication_ 클래스의 메서드를 통해 알림 목록을 가져오거나 예약된 알림 일정을 취소할 수 있음
+* `Local and Remote Notification Programming Guide` 링크 참고
+
+===== Understanding When Your App Gets Launched into the Background
+* Backgorund에서 실행을 지원하는 앱은 시스템이 이벤트 처리를 위해 재실행시킬 수 있음
+* 사용자가 앱을 강제종료시킨 것 이외에 앱이 종료되었을 때 시스템은 아래 목록 중 이벤트가 발생한다면 재실행시킬 수 있음
+** 위치 앱
+*** 시스템이 기준에 충족하는 위치 업데이트를 받음
+*** 장치가 등록된 영역에 들어갔거나 나감
+** 오디오 앱
+*** 일부 데이터를 처리함
+*** 음악을 재생하거나 마이크를 사용하는 앱
+** 블루투스 앱
+*** 앱에 연결된 주변 기기에서 데이터를 수신함
+*** 앱이 중앙에서 명령을 받음
+** Backgorund에서 다운로드하는 앱
+*** 푸시 알림이 앱에 도착하고 값이 1로 가지고 있는 콘텐츠 키를 포함하고 있는 알림 Payload
+*** 새로운 콘텐츠를 다운로드 하기 위해 
+*** _NSURLSession(URLSession)_ 클래스를 사용하여 Backgorund에서 콘텐츠를 다운받는 앱일 때, 해당 세션 객체가 다운로드가 성공하거나 실패함
+* 사용자가 강제 종료한 앱은 시스템이 재시작하지 않음. 그러나 한 가지 예외가 있음. iOS 8 이후, 위치 앱이 강제종료되었을 때 재실행함
+* 기기에서 비밀번호로 보호되어 있다면 먼저 기기 잠금을 해제해야 Background 앱을 실행할 수 있음
+
+===== Being a Responsible Background App
+* Foreground 앱이 시스템 리소스, 하드웨어 사용과 관련해서 항상 Backgorund 앱보다 우선순위가 높음
+* Backgorund에서 실행되는 앱은 이러한 차이에 준비하고 Background에서 작동할 때 행동을 맞춰야 함
+* 앱이 Background에서 이동할 때 지켜야 할 몇 가지 지침이 준수해야 함
+** 코드에서 OpenGL ES를 부르면 안 됨
+*** Backgorund에서 실행하는 동안 _EAGLContext_ 객체를 만들거나 OpenGL ES 드로잉 명령어를 날리면 안됨
+*** 앱이 바로 죽어버림. 그래서 앱이 Background로 이동하기 전에 위 내용을 처리해야 함
+*** Background에서 OpenGL ES 다루는 방법은 `OpenGL ES Programming Guide > implementing a Multitasking-aware OpenGL ES Application` 링크 참고
+** 앱이 정지되기 전까지 Bonjour 관련 서비스를 취소해야 함
+*** 앱이 Backgorund 이동해 정지하기 전에 Bonjour에서 등록 취소하고 네트워크 서비스와 관련된 수신 대기 소켓을 닫아야 함
+*** 정지된 앱은 Request에 응답할 수 없음
+*** 만약 Bonjour 서비스를 직접 종료하지 않으면 서비스가 자동으로 종료됨
+** 네트워크 기반 소켓의 연결 오류를 처리할 수 있는 준비해야 함
+*** 시스템은 여러 가지 이유로 앱이 정지된 동안 소켓 연결을 끊을 수 있음
+*** 신호 손실이나 네트워크 전환 오류 등 다른 네트워크 오류에 준비해야 예상치 못한 문제가 발생하지 않음
+*** 앱을 다시 시작해 소켓을 사용한다면 연결만 다시 설정해주면 됨
+** 앱이 Background 상태로 이동하기 전에 앱을 저장해야 함
+*** 메모리가 부족할 때 정지한 앱을 먼저 제거함
+*** 정지된 앱의 메모리가 해제되기 전에 앱에서 알림이 제공되지 않기 때문에 iOS 6 이상부터 상태보존 메커니즘을 활용해 앱의 인터페이스 상태를 디스크에 저장해야 함
+*** `Preserving Your App’s Visual Appearance Across Launches` 참고
+** Background 이동할 때 불필요한 Strong 참조는 없애야 함
+*** 앱에서 객체(특히 이미지)의 In-memory 캐시를 많이 유지하는 경우, Backgorund로 이동할 때 해당 캐시에 대한 Strong 참조는 제거해야 함
+*** `Reduce Your Memory Footprint` 참고
+** 정지되기 전에 공유 시스템 자원 사용을 중지해야 함
+*** 주소록이나 캘린더 같은 공유 시스템 리소스와 상호 작용하는 앱은 정지되기 전에 해당 리소스 사용을 중지해야 함
+*** Foreground 앱에 리소스 사용에 우선순위가 있음
+*** 앱이 정지된 동안 리소스를 사용하는 것이 발견되면 그 앱을 종료시킴
+** Window와 View 업데이트하면 안 됨
+*** 앱이 Background에 있을 경우 View 표시가 되지 않기 때문에 업데이트하는 것을 피해야 함
+*** 그러나 앱의 스냅 샷을 만들기 전 Window 내용을 업데이트 해야 하는 경우는 Backgorund에서 업데이트가 필요함
+** 외부 악세사리에 대한 연결 알림 및 연결 해제 알림에 응답해야 함
+*** 외부 악세사리와 통신하는 앱은 앱이 Backgorund로 이동할 때 시스템에서 자동으로 연결 해제 알림을 보냄
+*** 앱은 이 알림에 대해 등록해야 하며 현재 악세사리 세션을 종료하는 데 사용해야 함
+*** 앱이 Foreground로 다시 이동하면 연결 알림이 전달되어 앱을 다시 연결할 수 있음
+*** `External Accessory Programming Topics` 링크 참고
+** Background로 이동할 때 활성화된 경고 창을 정리해야 함
+*** 앱이 Backgorund로 전환할 때 시스템이 자동으로 _UIActionSheet 또는 UIAlertView_ 를 닫지 않기 때문에 Backgorund 이동 전에 적절한 처리가 필요함
+** Backgorund로 이동하기 전에 View에 민감한 정보를 제거해야 함
+*** 앱이 Backgorund로 이동할 때 시스템은 앱 Main Window의 스냅 샷으로 찍은 다음, 다시 Foreground로 옮겨질 때 Main Window에 표시함
+*** _applicationDidEnterBackground:_ 메서드가 돌아오기 전에 비밀번호나 다른 민감한 개인정보를 숨겨야 함
+** Backgorund에 있는 동안 최소한 작업을 수행해야 함
+*** Background에게 처리할 수 있는 시간이 많지 않음. 만약 Backgorund 처리로 시간을 많이 쓴다면 시스템이 종료하거나 조절함
+* 메모리가 부족하여 앱을 종료할 때, 종료하기 전에 App Delegate는 _applicationWillTerminate:_ 메서드를 호출하여 최종 작업을 완료함
+
+===== Opting Out of Background Execution 
+* Backgorund에서 앱이 실행되는 것이 원하지 않다면 `Info.plist > UIApplicationExitsOnSuspend 키, 값을 YES` 로 설정하면 됨
+* 앱의 옵션을 해제하면 Not-running, Inactive, Actvie 상태로 순환하거나 Backgorund나 정지된 상태로 들어가지 않음
+* 사용자가 앱을 종료하기 위해 홈 버튼을 누를 때, _App Delegate의 applicationWillTerminate:_ 메서드는 앱이 종료되기 전에 5초간 정리하고 난 뒤 Not-running 상태가 됨
+* Backgorund 실행하는 옵션을 해제하는 것은 권장하지 않지만 특정 상황에서 기본 옵션이 될 수 있음
+** 코딩을 통해 앱의 복잡성이 커지는 경우 앱을 종료하는 것이 더 나은 방법일 수 있음
+** 또한 앱이 메모리를 많이 사용하고 쉽게 해제할 수 없을 때 시스템이 앱을 종료하여 다른 앱 실행을 위해 메모리를 확보할 수 있음
+
 
 === 참고
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]
@@ -267,4 +383,7 @@ image:./image/state-change-in-ios-app.png[]
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW1[Responder Object 설명]
 * https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497[Location and Maps Programming Guide]
 * https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156[Drawing and Printing Guide for iOS]
-https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW14[Target-Action 설명]
+* https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW14[Target-Action 설명]
+* https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html#//apple_ref/doc/uid/TP40008194[Local and Remote Notification Programming Guide]
+* https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/ImplementingaMultitasking-awareOpenGLESApplication/ImplementingaMultitasking-awareOpenGLESApplication.html#//apple_ref/doc/uid/TP40008793-CH5[OpenGL ES Programming Guide > mplementing a Multitasking-aware OpenGL ES Application]
+* https://developer.apple.com/library/content/featuredarticles/ExternalAccessoryPT/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009502[External Accessory Programming Topics]
