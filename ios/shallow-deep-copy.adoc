@@ -1,1 +1,74 @@
 = 깊은 복사와 얕은 복사
+
+=== 객체 복사
+* 객체 인스턴스 데이터를 새로운 객체 인스턴스로 복사해야 하는 경우가 있음
+
+=== NSCopying 계열 프로토콜
+* NSCopying 또는 NSMutableCopying 프로토콜을 지정해서 필요한 메서드를 구현하는 방법을 권장함
+* NSCopying
+** 애플이 만든 코코아 객체는 이미 NSCopying 프로토콜 기반으로 만들어져 있어 객체를 복사하기 쉬움
+** 객체를 복사하기 위해 클래스를 미리 구현해야 하는 복사용 메서드 목록을 지정해놓은 프로토콜
+
+===== 복사만 가능한 객체
+* Objective-C => _(id)copyWithZone:(NSZone*)zone;_
+* Swift => _copy(with:)_
+
+[source, swift]
+----
+class Person: NSObject, NSCopying {
+    var firstName: String
+    var lastName: String
+    var age: Int
+
+    init(firstName: String, lastName: String, age: Int) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.age = age
+    }
+
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Person(firstName: firstName, lastName: lastName, age: age)
+        return copy
+    }
+}
+
+let paul = Person(firstName: "Paul", lastName: "Hudson", age: 36)
+let sophie = paul.copy() as! Person
+
+sophie.firstName = "Sophie"
+sophie.age = 6
+
+print("\(paul.firstName) \(paul.lastName) is \(paul.age)")
+print("\(sophie.firstName) \(sophie.lastName) is \(sophie.age)")
+----
+
+===== 복사와 수정이 가능한 객체
+* NSCopying 프로토콜을 구현하는 것은 기존과 동일한 객체 인스턴스를 새로 생성하고 내부 데이터를 복사하도록 구현하는 것
+* -copy 메서드로 복사하는 객체는 Immutable 객체라고 함
+* 수정 가능한 Mutable 객체로 복사하려면 -mutableCopy 메서드로 복사해야 함
+* 가변 객체로 복사 가능도록 만들고 싶다면 NSMutableCopying 프로토콜을 구현하면 됨
+* Objective-C => _mutableCopyWithZone:_
+* Swift => _mutableCopy(with:)_
+
+=== 얕은 복사와 깊은 복사
+
+===== 얕은 복사
+* 참조하는 포인터에 있는 주소 값만 복사하는 방식
+* _mutableCopy_ 하면 객체를 복사해서 새로운 객체를 만드는 것이 아니라 참조 포인터만 복사함
+* 그렇기 때문에 복사한 객체의 값을 변경하면 오리지널 객체의 값도 변경됨
+
+===== 깊은 복사
+* 객체를 복사해서 새로운 객체를 만듬
+* *깊은 복사는 복사하는 객체 내부에서 다른 객체를 참조하는 경우 꼭 고민해야 할 문제임*
+** 얕은 복사만 해도 문제가 없는지, 아니면 깊은 복사를 해서 모두 새로운 객체를 만들어야 하는지 판단을 내려야 함
+** 깊은 복사가 어떤 형태의 객체 그래프로 그려지는지 확인 한 뒤 참조 관계에 따라서 복사 방식을 결정해야 함
+
+===== 추가 정리 
+* 코코아 프레임워크의 클래스는 객체를 복사할 경우 얕은 복사 형태로 참조 관계를 유지
+* NSArray, NSSet 같은 컬렉션 객체나 다른 객체를 참조하는 객체를 복사해야 하는 경우 깊은 복사 방식을 고민해봐야 함
+* _객체 그래프가 복잡한 경우 깊은 복사만으로 하위 객체들 참조 관계가 완벽하게 복사되지 않는다는 점을 주의해야 함_
+
+=== 참고
+* https://www.hackingwithswift.com/example-code/system/how-to-copy-objects-in-swift-using-copy[How to copy objects in Swift using copy()]
+* https://developer.apple.com/documentation/foundation/nsmutablecopying/1414175-mutablecopy[mutableCopy(with:)]
+* Cocoa Internals
