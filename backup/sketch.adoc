@@ -769,3 +769,19 @@ wireframe 스케치 작업
 * size => 축적계수. 오른쪽 + 를 눌러서 설정할 수 있음
 * 프리셋을 이용할 수 있음
 * PNG
+* Slicing은 Make Exportable이랑 다름
+** Slicing => 특정 영역을 Export 하겠음
+** Make Exportable => 오브젝트를 Export 하겠음
+*** Export의 영역을 없애는 방법 => ctrl + e, 
+** Object 선택 후 cmd + R로 이름 바꾸기
+
+=== Arrange 영역
+
+===== Round to Pixel: 픽셀 맞추기
+* 정수에 맞춰주는 기능을 스케치에서 제공함
+* 복잡한 외형을 가지고 있는 오브젝트는 => 레이어에서 구체적인 도형을 선택하고 Round to pixel 메뉴를 사용함
+
+===== 픽셀 맞추기
+
+===== 리소스 출력 해보기
+* 종류_화면_이름_상태(btn_home_start_n)
