@@ -1,0 +1,14 @@
+= Bundle
+
+* A bundle is a directory in the file system that groups executable code and related resources such as images and sounds together in one place. In iOS and OS X, applications, frameworks, plug-ins, and other types of software are bundles. A bundle is a directory with a standardized hierarchical structure that holds executable code and resources used by that code. Foundation and Core Foundation include facilities for locating and loading code and resources in bundles.
+
+> Applications are the only type of bundle that third-party developers can create on iOS.
+
+* Bundles bring several advantages to users and developers. They make it easy to install or relocate an application or other piece of software by simply moving it from one location to another. Bundles are also an important factor in internationalization. You store localized resources in specially named subdirectories of a bundle; programmatic facilities look for localized resources in the location that corresponds with a user’s language preferences.
+
+* Most types of Xcode projects create a bundle for you when you build the executable. Therefore you rarely need to construct a bundle by hand. Even so, it is important to understand their structure and how to access the code and resources inside them.
+
+===== Structure and Content of Bundles
+* A bundle can contain executable code, images, sounds, nib files, private frameworks and libraries, plug-ins, loadable bundles, or any other type of code or resource. It also contains a runtime-configuration file called the information property list (Info.plist). Each of these items has its proper place in the bundle structure. Resources such as images, sounds, and nib files are deposited in the Resources subdirectory. They can be either localized or nonlocalized. Localized files (including strings files, which are collections of localized strings) are put in subdirectories of Resources that have the extension of lproj and a name corresponding to a language and possibly a locale.
+
+image:./image/bundle.png[]
