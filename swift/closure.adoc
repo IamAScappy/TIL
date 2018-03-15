@@ -55,6 +55,8 @@ print(stringsArray) // ["OneSix", "FiveEight", "FiveOneZero"]
 // 값 획득(Capture Values)
 // () -> Int -> 함수객체를 반환함
 // 클로저는 참조 타입
+// Swift: default => 값을 참조하는 형태
+// Objective-C: default => 캡쳐할 때 값을 참조하고 닫힘 
 func makeIncrementer(forIncrement amount: Int) -> (() -> Int) {
     var runningTotal = 0
     func incrementer() -> Int {
