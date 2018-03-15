@@ -9,8 +9,9 @@
 * https://developer.apple.com/ios/human-interface-guidelines/visual-design/adaptivity-and-layout/[Adaptivity and Layout]
 * Pixel Based
 
-image:./image/ios-image-1.png[50%, 50%]
-image:./image/ios-image-2.png[50%, 50%]
+image:./image/ios-image-1.png[]
+
+image:./image/ios-image-2.png[]
 
 ===== 축적계수
 * 1배수, 2배수, 3배수
@@ -44,7 +45,7 @@ image:./image/ios-image-2.png[50%, 50%]
 
 ===== 사이트, 리소스
 * https://material.io[Material Design]
-* _Materail Design > Resources > Color / Devices / templates / ..._
+* `Materail Design > Resources > Color / Devices / templates / ...`
 
 === 디자이너, 기획자, 개발자의 협의해야 할 사항
 * 대응 OS
