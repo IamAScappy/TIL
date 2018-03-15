@@ -27,21 +27,21 @@
 * 내가 만든 앱은 아래 리소스 및 파일들을 포함해야 함
 ** `Info.plist`
 *** 정보 속성 목록 파일, 앱에 대한 메타 정보
-*** `The Information Property List File` 내용 참고
+*** `The Information Property List File 참고`
 ** 앱 실행에 필요한 하드웨어 기능 및 필수 기능
-*** `Declaring the Required Device Capabilities` 내용 참고
+*** `Declaring the Required Device Capabilities 참고`
 ** 하나 이상 아이콘
 *** 사용자 기기의 홈 화면에 아이콘이 보임
-*** `App Icons` 내용 참고
+*** `App Icons 내용 참고`
 ** 하나 이상 런처 이미지
-*** `App Launch (Default) Images` 내용 참고
+*** `App Launch (Default) Images 참고`
 
 ===== The App Bundle
 * iOS 앱을 만들면 XCode는 앱을 _Bundle_ 로 묶음
 * _Bundle_ 은 앱과 관련된 리소스를 그룹화한 파일 시스템
 * _Bundle_ 에 앱 실행 파일, 앱 아이콘, 이미지 파일 및 현지화(Localize)된 내용 등 리소스 파일이 포함되어 있음
 * 아래 내용은 일반적인 iOS 앱 Bundle 내용을 보여줌
-* `Bundle Programming Guide, Resource Programming Guide` 링크 참고
+* `Bundle Programming Guide, Resource Programming Guide 링크 참고`
 
 |===
 | File | Example | 설명
@@ -51,7 +51,7 @@
 | Launch Images | Default.png, Default-Portrait.png, Default-Landscape.png | 앱이 실행될 동안 배경에서 사용하는 파일임. 앱이 실행할 준비가 끝나면 이미지가 사라짐. 적어도 하나 이상 이미지가 필요함
 | Storyboard files(or nib files) | MainBoard.storyboard | 스토리보드는 View, View Controller이 있음. 앱에서 스토리보드 파일 대신 Nib files을 사용할 수 있음. _NSMainNibFile_ 과 _UIMainStoryboardFile_ 는 스토리보드를 대체할 수 있음. 스토리보드를 사용해도 그만, 안 사용해도 그만이지만 사용하는 것을 추천함
 | Ad hoc distribution icon | iTunesArtwork | 임시 배포할 경우 512x512 픽셀 단위로 앱 아이콘이 필요함. 아이콘 이름은 iTunesArtwork 이여야 하며 파일 이름 확장명을 포함하면 안 됨. 이 파일은 선택적임
-| Settings bundle | Settings.bundle | 앱 설정을 커스텀하여 노출하고 싶다면 Settings.bundle이 필요함. `Preferences and Settings Programming Guide` 링크 참고
+| Settings bundle | Settings.bundle | 앱 설정을 커스텀하여 노출하고 싶다면 Settings.bundle이 필요함. `Preferences and Settings Programming Guide 링크 참고`
 | Nonlocalized resource files | sun.png, mydata.plist | 지역화하지 않은 리소스는 앱에서 사용하는 이미지, 사운드 파일, 동영상 및 데이터 파일은 같은 항목에 포함됨. 이 파일들은 App Bundle 최상위에 있어야 함
 | Subdirectories for localized resources | en.lproj, fr.lproj, es.lproj | 지역화된 리소스는 언어별 프로젝트 디렉토리에 위치해야 함. 이름은 ISO 639-1와 .lproj 접미사로 구성됨. 지역화된 버전을 제공하는 것 외에도 언어별 프로젝트 폴더와 같은 이름의 파일을 위치하여 앱 아이콘, 실행 이미지 및 설정 아이콘을 현지화할 수 있음
 |===
@@ -64,20 +64,20 @@
 * 가능하면 General, Capabilities 탭을 이용하여 앱의 구성 정보를 선택하는 것이 좋지만 특정한 환경 설정은 Info나 다른 탭에서 설정할 수 있음 
 ** Info 탭에서 하드웨어 사양을 설정할 수 있음
 ** Wi-Fi 연결, Custom URL 스키마, 사진 앨범 접근 등을 위해서 info.plist에 해당 사항에 맞는 키를 설정해줘야 함
-** `Document-Based App Programming Guide for iOS, Using URL Schemes to Communicate with Apps.` 링크 참고
-** info.plist의 다양한 키와 값에 관해서 확인하려면 `Information Property List Key Reference - Info.plist Keys and Values` 링크 참고
+** `Document-Based App Programming Guide for iOS, Using URL Schemes to Communicate with Apps 링크 참고`
+** info.plist의 다양한 키와 값에 관해서 확인하려면 `Information Property List Key Reference - Info.plist Keys and Values 링크 참고`
 
 ===== App Icons
 ** 모든 앱은 기기의 홈 화면과 앱 스토어에 보여줄 아이콘을 제공해야 함
 ** 앱 아이콘은 Image Assets에 포함됨
-** 아이콘 디자인 가이드는 `HIG - iOS Design Themes` 링크 참고
+** 아이콘 디자인 가이드는 `HIG - iOS Design Themes 링크 참고`
 
 ===== App Launch (Default) Images
 * 앱이 처음 시작할 때 잠깐 보여주는 이미지
 * 앱 실행할 준비가 끝나면 런치 이미지가 사라짐
 * 앱이 Foreground에서 Background로 들어갈 때 사용 중인 앱의 스냅샷이 생성되고 다시 Foreground로 다시 돌아올 때 런치 이미지가 아닌 스냅샷을 활용함
 * 오랫동안 앱을 실행하지 않으면 스냅샷을 삭제하고 기존 런치 이미지를 활용함
-* 런치 이미지 가이드는 `HIG - iOS Design Themes` 링크 참고
+* 런치 이미지 가이드는 `HIG - iOS Design Themes 링크 참고`
 
 ==== Supporting User Privacy
 * 사용자 개인 정보 보호는 매우 중요함. 대부분 iOS 장비는 개인 정보를 포함하고 있음
@@ -88,10 +88,10 @@
 ** 블루투스, 캘린더, 카메라, 접근, 건강 정보, 홈킷, 위치, 모션, 음악 및 동영상 라이브러리, 사진, Siri , 음성, TV 등
 * 자료를 수집하여 저장할 때 로컬이면 암호화된 형식으로 저장해야 함. 네트워크를 통해 데이터를 보낼 때 App Transport Security를 사용함
 ** `Strategies for Implementing Specific App Features - Protecting Data Using On-Disk Encryption 내용이나 NSAppTransportSecurity 링크 참고`
-* 앱에서 _ASIdentifierManager_ 사용하는 경우 `advertisingTrackingEnabled 프로퍼티` 의 값을 준수해야 함
+* 앱에서 _ASIdentifierManager_ 사용하는 경우 _advertisingTrackingEnabled_ 프로퍼티의 값을 준수해야 함
 ** NO => 제한된 광고 목적에만 사용해야 함 
 * 장치 식별자를 사용하면 안 됨. iOS 5.0 이상부터 사용할 수 없으며 해당 식별자를 사용하는 새로운 앱이나 업데이트를 허용하지 않음
-** `UIDevice의 identifierForVendor 프로퍼티나 ASIdentifierManager의 advertisingIdentifier 프로퍼티`
+** _UIDevice의 identifierForVendor 프로퍼티나 ASIdentifierManager의 advertisingIdentifier 프로퍼티_
 * _앱에서 보호된 항목에 접근하려면 시스템에서 사용자에게 접근 권한을 요청하는 Alert를 표시함. iOS 10부터 info.plist에 각각 개인 정보를 활용하려는 목적 문구를 보여주며 접근 권한 요청 Alert에 보이도록 해야함_
 
 ==== Internationalizing Your App
@@ -137,14 +137,14 @@ image:./image/key-objects-in-ios-app.png[]
 ** 모든 앱에서 존재할 수 있는 유일한 객체이기 때문에 앱의 데이터 초기화할 때 많이 사용함
 * `Documents and data model` 객체
 ** 앱의 내용을 저장하며 앱에만 적용됨
-** `Document-Based Applications in iOS` 링크 참고
+** `Document-Based Applications in iOS 링크 참고`
 * `View Controller` 객체
 ** _View Controller_ 객체는 화면에서 앱 콘텐츠의 프레젠테이션을 관리함
 ** 단일 View와 View의 하위 View를 관리함
 ** _UIViewController_ 클래스는 모든 View Controller 객체의 기본 클래스임
 ** View 로딩, 프리젠테이션, 화면 회전에 대한 응답 그리고 몇 가지 시스템 표준 동작을 기본으로 제공함
 ** UIKit과 다른 프레임워크는 Picker, Tab Bar, Navigation 인터페이스를 구현할 수 있도록 추가적으로 View Controller 클래스들을 정의함
-** `View, View Controller(The Role of View Controllers를 번역함)` 링크 참고 
+** `View, View Controller(The Role of View Controllers를 번역함) 링크 참고`
 * `UIWindow` 객체
 ** _UIWindow_ 객체는 화면에서 하나 이상 View의 프리젠테이션 표현을 조정함 
 ** 대부분 앱은 콘텐츠를 제공하는 Window는 하나지만 다른 앱에서 Window가 여러 개 일 수 있음
@@ -155,7 +155,7 @@ image:./image/key-objects-in-ios-app.png[]
 ** _View_ 는 지정된 영역에 내용을 그리고 그 영역 내의 이벤트에 응답하는 객체
 ** _Control_ 은 Button, Textfield, Toggle Switch 같은 View의 특수한 유형
 ** UIKit 프레임워크는 다양한 유형의 콘텐츠를 보여주기 위해 표준 View를 제공함
-** _UIView 의 서브클래스_ 를 통해 Custom View도 정의할 수 있음
+** _UIView의 서브클래스_ 를 통해 Custom View도 정의할 수 있음
 
 ==== The Main Run Loop
 * 앱의 _Main Run Loop_ 는 모든 사용자 관련 이벤트를 처리함
@@ -168,15 +168,15 @@ image:./image/main-run-loop.png[]
 * iOS에서 다양한 이벤트를 제공함
 * 대부분 이벤트는 앱의 Main Run Loop를 통해 전달되지만, 일부 이벤트는 그렇지 않음
 * 일부 이벤트는 _Delegate_ 객체를 통해 보내거나 개발자가 제공한 Block을 통해 전달됨
-* 터치, 원격 제어, 모션, 가속도계 및 자이로 스코프 이벤트 등이 있음. `Event Handling Guide for UIKit Apps` 링크 참고
+* 터치, 원격 제어, 모션, 가속도계 및 자이로 스코프 이벤트 등이 있음. `Event Handling Guide for UIKit Apps 링크 참고`
 
 |===
 | Event Type | Delivered To.. | 설명
 | Touch | 이벤트를 발생한 View 객체 | View는 Responder 객체. View에 의해 처리되지 않은 모든 Touch 이벤트를 처리하기 위해 Responder Chain으로 전달됨
 | Remote control, Shake motion events | First `Responder Object` | 원격 제어 이벤트는 미디어 재생을 제어하기 위한 것. 헤드폰 및 기타 악세사리에 의해 발생함
 | Accelerometer, Magnetometer, Gyroscope | 사용자가 지정한 객체 | 가속도계, 자력계, 자이로 스코프 하드웨어는 사용자가 지정한 객체로 전달됨
-| Location | 사용자가 지정한 객체 | Core Location Framework를 사용하여 위치 이벤트를 수신할 수 있도록 위치를 등록해야 함. `Location and Maps Programming Guide` 링크 참고
-| Redraw | 업데이트가 필요한 View | Redraw 이벤트는 이벤트 객체를 포함하지 않지만, View를 그리기 위해 View 자체를 호출함. `Drawing and Printing Guide for iOS` 링크 참고
+| Location | 사용자가 지정한 객체 | Core Location Framework를 사용하여 위치 이벤트를 수신할 수 있도록 위치를 등록해야 함. `Location and Maps Programming Guide 링크 참고`
+| Redraw | 업데이트가 필요한 View | Redraw 이벤트는 이벤트 객체를 포함하지 않지만, View를 그리기 위해 View 자체를 호출함. `Drawing and Printing Guide for iOS 링크 참고`
 |===
 
 * 터치, 원격 제어 같은 일부 이벤트는 _Reponder Object_ 에 의해 처리됨
@@ -195,7 +195,7 @@ image:./image/main-run-loop.png[]
 ** _Not running_ => 앱이 실행되지 않았거나 시스템에 의해 종료된 상태
 ** _Inactive_ => 앱이 Foreground에서 실행하지만, 사용자 이벤트를 받지 못하는 상태
 ** _Active_ => 앱이 Foreground에서 실행되고 사용자 이벤트를 받을 수 있는 상태
-** _Background_ => 앱이 Background에서 실행되고 있는 상태. `Background Execution` 참고
+** _Background_ => 앱이 Background에서 실행되고 있는 상태. `Background Execution 참고`
 ** _Suspended_ => Background에 있는 앱이 더 실행하지 않고 정지한 상태
 
 image:./image/state-change-in-ios-app.png[]
@@ -212,7 +212,7 @@ image:./image/state-change-in-ios-app.png[]
 * 앱은 언제든지 종료될 수 있어야 함. 종료되기 전 사용자 정보를 저장하거나 특별한 기능을 수행하기 위해 기다리지 않음
 * 시스템에 의한 앱 종료는 앱 수명 주기에서 정상적인 부분이며 시스템이 사용하지 않은 메모리를 회수하여 다른 앱을 실행할 수 있는 공간을 확보하기 위해 종료함
 * 그러나 오작동하거나 앱이 응답하지 않은 경우에도 앱이 종료될 수 있음. 중지된 앱은 종료될 때까지 알림을 받지 않음. 시스템은 종료하고 해당 메모리를 회수함
-* 앱이 현재 Background에서 실행 중이며 일시 중지되지 않고 종료 전이라면 _AppDelegate의 applicationWillTerminate_ 호출함
+* 앱이 현재 Background에서 실행 중이며 일시 중지되지 않고 종료 전이라면 AppDelegate의 _applicationWillTerminate_ 호출함
 
 ==== Threads and Concurrency
 * 시스템은 기본적으로 앱의 Main Thread를 생헝성함. 필요에 따라 추가 Thread를 생성하여 다른 작업을 수행할 수 있음
@@ -237,17 +237,17 @@ image:./image/state-change-in-ios-app.png[]
 * Background에서 계속 앱을 실행하면 배터리가 소모되고 완전히 종료될 수 있기 때문에 가능하면 Background 작업은 피해야 함
 
 ==== Executing Finite-Length Tasks
-* Background로 이동한 앱이 작업을 완료하기 위해 약간의 시간이 필요하다면 _UIApplication의 beginBackgroundTaskWithName:expirationHandler:, beginBackgroundTaskWithExpirationHandler:_ 메서드를 호출하여 작업을 완료할 수 있을 때까지 시간을 요청할 수 있음
+* Background로 이동한 앱이 작업을 완료하기 위해 약간의 시간이 필요하다면 UIApplication의 _beginBackgroundTaskWithName:expirationHandler, beginBackgroundTaskWithExpirationHandler_ 메서드를 호출하여 작업을 완료할 수 있을 때까지 시간을 요청할 수 있음
 * 이 메서드 중 하나를 호출하면 일시적으로 앱의 일시 중지가 지연되어 작업을 완료할 수 있음
 * 작업이 끝나면 _endBackgroundTask_ 메서드를 호출하여 작업이 끝난 것을 시스템에 알림
-** _beginBackgroundTaskWithName:expirationHandler: 또는 beginBackgroundTaskWithExpirationHandler:_ 메서드를 호출할 때마다 유일한 토큰을 생성하고 해당 작업과 연관됨. 작업이 완료되면 해당 토큰과 함께 _endBackgroundTask_ 메서드를 호출하여 완료되었음을 시스템에 알림
+** _beginBackgroundTaskWithName:expirationHandler 또는 beginBackgroundTaskWithExpirationHandler_ 메서드를 호출할 때마다 유일한 토큰을 생성하고 해당 작업과 연관됨. 작업이 완료되면 해당 토큰과 함께 _endBackgroundTask_ 메서드를 호출하여 완료되었음을 시스템에 알림
 * _UIApplication의 backgroundTimeRemaining_ 를 통해 작업의 남은 시간을 확인할 수 있음
 * Expiration Handler를 사용하면 작업을 종료하기 전에 코드를 추가할 수 있지만, 코드를 실행하는데 너무 오래 걸리지 말아야 함
 
 ==== Downloading Content in the Background
 * 파일 다운로드 할 때 _NSURLSession(URLSession)_ 객체를 이용해 다운로드 해야 앱이 중지되거나, 종료될 경우 시스템에서 다운로드 과정을 제어할 수 있음
 * Background 다운로드 지원하는 객체를 만드는 과정은 아래와 같음
-** _NSURLSessionConfiguration의 backgroundSessionConfigurationWithIdentifier:_ 메서드를 사용해 설정 객체를 만듬
+** _NSURLSessionConfiguration의 backgroundSessionConfigurationWithIdentifier_ 메서드를 사용해 설정 객체를 만듬
 ** _sessionSendsLaunchEvents_ 프로퍼티 값을 YES로 설정
 ** Foreground 있을 때 앱이 전송을 시작하면 설정 객체의 임의 속성을 YES로 설정하는 것이 좋음
 ** 설정 객체의 속성값을 설정함
@@ -280,7 +280,7 @@ image:./image/state-change-in-ios-app.png[]
 | Remote notifications | remote-notification
 |===
 
-* 구현하는 방법은 `[Background Execution] Tracking the User’s Location -> Communicating with a Bluetooth Accessory` 본문 내용 참고
+* 구현하는 방법은 `[Background Execution] Tracking the User’s Location -> Communicating with a Bluetooth Accessory 참고``
 
 ==== Getting the User’s Attention While in the Background
 * 앱이 Background에 있거나 실행 중이지 않을 때 앱이 관심을 끄는 방법 중 _Notification_ 하나
@@ -294,10 +294,10 @@ image:./image/state-change-in-ios-app.png[]
 ** _UIApplication_ 클래스의 메서드를 이용해 일정을 예약할 수 있음
 ** 로컬 알림 객체는 알림 유형(사운드, 경고, 배지) 또는 알림 시간에 대한 정보가 들어있음
 ** _UIApplication_ 클래스의 메서드는 바로 전달하거나 예약된 시간에 알림 기능을 제공함
-** App Delegate의 `application:didReceiveLocalNotification:` 메서드로 호출할 수 있음
+** App Delegate의 _application:didReceiveLocalNotification:_ 메서드로 호출할 수 있음
 ** 로컬 알림으로 지원할 수 있는 사운드 파일 유형은 _PCM, MA4, μ-Law, or a-Law_ 이며 기본 경고 소리는 _UILocalNotificationDefaultSoundName_ 클래스를 이용할 수 있음
 ** _UIApplication_ 클래스의 메서드를 통해 알림 목록을 가져오거나 예약된 알림 일정을 취소할 수 있음
-* `Local and Remote Notification Programming Guide` 링크 참고
+* `Local and Remote Notification Programming Guide 링크 참고`
 
 ==== Understanding When Your App Gets Launched into the Background
 * Backgorund에서 실행을 지원하는 앱은 시스템이 이벤트 처리를 위해 재실행시킬 수 있음
@@ -325,7 +325,7 @@ image:./image/state-change-in-ios-app.png[]
 ** 코드에서 OpenGL ES를 부르면 안 됨
 *** Backgorund에서 실행하는 동안 _EAGLContext_ 객체를 만들거나 OpenGL ES 드로잉 명령어를 날리면 안됨
 *** 앱이 바로 죽어버림. 그래서 앱이 Background로 이동하기 전에 위 내용을 처리해야 함
-*** Background에서 OpenGL ES 다루는 방법은 `OpenGL ES Programming Guide > implementing a Multitasking-aware OpenGL ES Application` 링크 참고
+*** Background에서 OpenGL ES 다루는 방법은 `OpenGL ES Programming Guide > implementing a Multitasking-aware OpenGL ES Application 링크 참고`
 ** 앱이 정지되기 전까지 Bonjour 관련 서비스를 취소해야 함
 *** 앱이 Backgorund 이동해 정지하기 전에 Bonjour에서 등록 취소하고 네트워크 서비스와 관련된 수신 대기 소켓을 닫아야 함
 *** 정지된 앱은 Request에 응답할 수 없음
@@ -337,10 +337,10 @@ image:./image/state-change-in-ios-app.png[]
 ** 앱이 Background 상태로 이동하기 전에 앱을 저장해야 함
 *** 메모리가 부족할 때 정지한 앱을 먼저 제거함
 *** 정지된 앱의 메모리가 해제되기 전에 앱에서 알림이 제공되지 않기 때문에 iOS 6 이상부터 상태보존 메커니즘을 활용해 앱의 인터페이스 상태를 디스크에 저장해야 함
-*** `Preserving Your App’s Visual Appearance Across Launches` 참고
+*** `Preserving Your App’s Visual Appearance Across Launches 참고`
 ** Background 이동할 때 불필요한 Strong 참조는 없애야 함
 *** 앱에서 객체(특히 이미지)의 In-memory 캐시를 많이 유지하는 경우, Backgorund로 이동할 때 해당 캐시에 대한 Strong 참조는 제거해야 함
-*** `Reduce Your Memory Footprint` 참고
+*** `Reduce Your Memory Footprint 참고`
 ** 정지되기 전에 공유 시스템 자원 사용을 중지해야 함
 *** 주소록이나 캘린더 같은 공유 시스템 리소스와 상호 작용하는 앱은 정지되기 전에 해당 리소스 사용을 중지해야 함
 *** Foreground 앱에 리소스 사용에 우선순위가 있음
@@ -352,37 +352,37 @@ image:./image/state-change-in-ios-app.png[]
 *** 외부 악세사리와 통신하는 앱은 앱이 Backgorund로 이동할 때 시스템에서 자동으로 연결 해제 알림을 보냄
 *** 앱은 이 알림에 대해 등록해야 하며 현재 악세사리 세션을 종료하는 데 사용해야 함
 *** 앱이 Foreground로 다시 이동하면 연결 알림이 전달되어 앱을 다시 연결할 수 있음
-*** `External Accessory Programming Topics` 링크 참고
+*** `External Accessory Programming Topics 링크 참고`
 ** Background로 이동할 때 활성화된 경고 창을 정리해야 함
 *** 앱이 Backgorund로 전환할 때 시스템이 자동으로 _UIActionSheet 또는 UIAlertView_ 를 닫지 않기 때문에 Backgorund 이동 전에 적절한 처리가 필요함
 ** Backgorund로 이동하기 전에 View에 민감한 정보를 제거해야 함
 *** 앱이 Backgorund로 이동할 때 시스템은 앱 Main Window의 스냅 샷으로 찍은 다음, 다시 Foreground로 옮겨질 때 Main Window에 표시함
-*** _applicationDidEnterBackground:_ 메서드가 돌아오기 전에 비밀번호나 다른 민감한 개인정보를 숨겨야 함
+*** _applicationDidEnterBackground_ 메서드가 돌아오기 전에 비밀번호나 다른 민감한 개인정보를 숨겨야 함
 ** Backgorund에 있는 동안 최소한 작업을 수행해야 함
 *** Background에게 처리할 수 있는 시간이 많지 않음. 만약 Backgorund 처리로 시간을 많이 쓴다면 시스템이 종료하거나 조절함
-* 메모리가 부족하여 앱을 종료할 때, 종료하기 전에 App Delegate는 _applicationWillTerminate:_ 메서드를 호출하여 최종 작업을 완료함
+* 메모리가 부족하여 앱을 종료할 때, 종료하기 전에 App Delegate는 _applicationWillTerminate_ 메서드를 호출하여 최종 작업을 완료함
 
 ==== Opting Out of Background Execution 
 * Backgorund에서 앱이 실행되는 것이 원하지 않다면 `Info.plist > UIApplicationExitsOnSuspend 키, 값을 YES` 로 설정하면 됨
 * 앱의 옵션을 해제하면 Not-running, Inactive, Actvie 상태로 순환하거나 Backgorund나 정지된 상태로 들어가지 않음
-* 사용자가 앱을 종료하기 위해 홈 버튼을 누를 때, _App Delegate의 applicationWillTerminate:_ 메서드는 앱이 종료되기 전에 5초간 정리하고 난 뒤 Not-running 상태가 됨
+* 사용자가 앱을 종료하기 위해 홈 버튼을 누를 때, App Delegate의 _applicationWillTerminate_ 메서드는 앱이 종료되기 전에 5초간 정리하고 난 뒤 Not-running 상태가 됨
 * Backgorund 실행하는 옵션을 해제하는 것은 권장하지 않지만 특정 상황에서 기본 옵션이 될 수 있음
 ** 코딩을 통해 앱의 복잡성이 커지는 경우 앱을 종료하는 것이 더 나은 방법일 수 있음
 ** 또한 앱이 메모리를 많이 사용하고 쉽게 해제할 수 없을 때 시스템이 앱을 종료하여 다른 앱 실행을 위해 메모리를 확보할 수 있음
 
 === Strategies for Handling App State Transitions
 * 앱의 런타임 상태에 따라 시스템은 다른 기대치를 가지고 있음. 상태가 바뀌면 시스템은 앱의 App Delegate에게 알림
-* `UIApplicationDelegate 프로토콜` 은 상태 전이 메서드를 통해 상태 변화를 감지하고 적절히 대응할 수 있음
+* _UIApplicationDelegate_ 프로토콜은 상태 전이 메서드를 통해 상태 변화를 감지하고 적절히 대응할 수 있음
 ** 예를 들어 Foreground에서 Backgorund로 이동할 때 저장하지 않은 데이터를 저장하고 진행중인 작업을 중지 할 수 있음
 * 상태 전환에 대한 코드 구현 방법과 팁, 가이드 라인을 제공함
 
 ==== What to Do at Launch Time
-* 앱이 시작되면(Foreground나 Background) App Delegate의 _application:willFinishLaunchingWithOptions나 application:didFinishLaunchingWithOptions:_ 메서드를 사용하여 다음과 같은 내용을 할 수 있음
+* 앱이 시작되면(Foreground나 Background) App Delegate의 _application:willFinishLaunchingWithOptions나 application:didFinishLaunchingWithOptions_ 메서드를 사용하여 다음과 같은 내용을 할 수 있음
 ** 앱의 런치 옵션을 확인하고 시작한 이유를 확인하고 적절하게 대응해야 함
 ** 앱의 중요한 데이터 구조를 초기화해야 함
 ** 앱으로 보여줄 Window, View를 준비해야 함
-*** OpenGL ES를 사용하는 앱은 드로잉 환경을 준비하기 위해 위 메서드 사용하면 안 됨. 대신 _applicationDidBecomeActive:_ 메서드를 이용해 OpenGL ES 드로잉 호출을 지연해야 함
-*** _application:willFinishLaunchingWithOptions:_ 의하여 앱의 Window 보여줘야 함. UIKit은 _application:didFinishLaunchingWithOptions_ 메서드가 반환될 때까지 Window 표시되는 것을 지연함
+*** OpenGL ES를 사용하는 앱은 드로잉 환경을 준비하기 위해 위 메서드 사용하면 안 됨. 대신 _applicationDidBecomeActive_ 메서드를 이용해 OpenGL ES 드로잉 호출을 지연해야 함
+*** _application:willFinishLaunchingWithOptions_ 의하여 앱의 Window 보여줘야 함. UIKit은 _application:didFinishLaunchingWithOptions_ 메서드가 반환될 때까지 Window 표시되는 것을 지연함
 * 런칭 때, 시스템은 자동으로 Main 스토리보드와 초기 View Controller를 로드함. 상태 복원(State Restoration)을 지원하는 앱이면 _application:willFinishLaunchingWithOptions 및 application:didFinishLaunchingWithOptions_ 메서드 사이에서 인터페이스의 이전 상태를 복원함
 ** _application:willFinishLaunchingWithOptions_ => 앱 Window를 표시하고 상태 복원이 일어나는지에 대해 판단할 때 사용함
 ** _application:didFinishLaunchingWithOptions_ => 앱 UI를 최종적으로 만들 때 사용함
@@ -407,7 +407,7 @@ image:./image/launching-app-into-background.png[]
 * Foreground나 Backgorund로 시작되는 여부는 _UIApplication의 applicationState_ 프로퍼티로 확인함
 ** Foreground에서 시작하면 이 프로퍼티가 _UIApplicationStateInactive의 값_ 을 가지고 있음
 ** Backgorund에서 시작하면 이 프로퍼티가 _ UIApplicationStateBackground의 값_ 을 가지고 있음
-* URL 요청하는 처리로 앱으로 시작할 때 위 이미지와 시작 순서도가 다름. URL 요청처리는 `Handling URL Requests` 참고
+* URL 요청하는 처리로 앱으로 시작할 때 위 이미지와 시작 순서도가 다름. URL 요청처리는 `Handling URL Requests 참고`
 
 ===== Launching in Landscape Mode
 * UI를 가로 방향만 사용하는 앱은 시스템이 해당 방향으로 실행하도록 명시적으로 설정해야 함
@@ -416,9 +416,9 @@ image:./image/launching-app-into-background.png[]
 * 앱이 가로 방향의 View만 지원하는 경우 아래와 같은 작업을 수행하여 설정하면 됨
 ** Info.plist에서 `UIInterfaceOrientation 키를 추가하고 UIInterfaceOrientationLandscapeLeft나 UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight` 둘 중 하나를 설정함
 ** `Layout이나 Autosizing` 옵션이 설정되어 있는지 확인함
-** _shouldAutorotateToInterfaceOrientation:_ 메서드가 YES로 반환하도록 오버라이드함. NO인 경우 세로모드 지원함
+** _shouldAutorotateToInterfaceOrientation_ 메서드가 YES로 반환하도록 오버라이드함. NO인 경우 세로모드 지원함
 * *중요! 앱은 Window 내용을 다루기 위해서 View Controller를 사용해야 함*
-* _applicationDidFinishLaunching:_ 메서드를 실행 초기에 _UIApplication의 setStatusBarOrientation:animated:_ 메서드를 호출하는 것과 같음
+* _applicationDidFinishLaunching_ 메서드를 실행 초기에 UIApplication의 _setStatusBarOrientation:animated_ 메서드를 호출하는 것과 같음
 
 ===== Installing App-Specific Data Files at First Launch
 * 앱이 실행할 때 요구되는 데이터나 설정 값에 대한 설정을 위해 _First Launch Cycle_ 를 이용할 수 있음
@@ -426,7 +426,7 @@ image:./image/launching-app-into-background.png[]
 * _<BundleID>_ 는 앱의 Bundle 식별자임. 이 디렉토리를 세분화하여 필요에 따라 데이터 파일을 구성할 수 있거나 앱의 iCloud 컨테이너 디렉토리 같은 디렉토리 파일을 만들 수 있음
 * 앱의 Bundle에 수정해야 할 데이터 파일이 있는 경우 복사한 파일을 수정해야 함
 * iOS 앱에서 코드로 서명되어 있기 때문에 앱 Bundle 외에서 수정하면 앱을 실행할 수 없음
-* 앱 관련 데이터 파일에 대해서 `File System Programming Guide` 링크 참고
+* 앱 관련 데이터 파일에 대해서 `File System Programming Guide 링크 참고`
 
 ==== What to Do When Your App Is Interrupted Temporarily
 * 시스템 알림이 전달되면 앱은 한때 제어권을 잃게 됨
@@ -458,7 +458,7 @@ image:./image/handling-alert-based-interruptions.png[]
 
 ==== What to Do When Your App Enters the Foreground
 * Foreground로 돌아올 때 Background 상태로 이동하면서 중지한 작업을 다시 시작할 수 있음
-* _applicationWillEnterForeground:_ 메서드는 _applicationDidEnterBackground_ 메서드에서 수행한 작업을 원래 상태로 되돌려야 함
+* _applicationWillEnterForeground_ 메서드는 _applicationDidEnterBackground_ 메서드에서 수행한 작업을 원래 상태로 되돌려야 함
 * _applicationDidBecomeActive_ 메서드는 앱 런칭때와 같은 작업의 수행을 계속해야 함
 * _UIApplicationWillEnterForegroundNotification_ 알림은 앱이 Foreground로 다시 들어올 때 추적할 수 있음. 앱의 객체는 기본 알림 센터를 사용해 알림을 등록할 수 있음
 
@@ -500,7 +500,7 @@ image:./image/app-enter-foreground.png[]
 * Locale 관련 문제를 피할 수 있는 가장 좋은 방법은 View를 쉽게 업데이트할 수 있도록 코드를 작성하는 것
 ** NSLocale 객체를 검색할 때 _autoupdatingCurrentLocale_ 메서드를 사용하면 변경되는 Locale 객체를 반환하기 때문에 코드를 수정할 필요 없음. 그러나 Locale이 변경되면 현재 Locale과 관련된 콘텐츠, View는 새로 고쳐야 함
 ** 현재 Locale 정보가 변경할 때마다 캐시된 날짜와 숫자 포맷 객체를 만듦
-* `Internationalization and Localization Guide` 링크 참고
+* `Internationalization and Localization Guide 링크 참고`
 
 ===== Handle Changes to Your App’s Settings
 * 앱에서 설정 앱에서 관리하는 옵션이 있는 경우 _NSUserDefaultsDidChangeNotification_ 알림을 준수해야 함
@@ -508,50 +508,47 @@ image:./image/app-enter-foreground.png[]
 * _NSUserDefaultsDidChangeNotification_ 알림을 받고 앱에서 관련 설정을 다시 로드해야 하는 경우 UI를 적절하게 재설정해야 함. 암호 또는 보안 관련 정보가 변경된 경우 이전에 보여주던 정보를 숨기고 사용자가 새 암호를 입력하도록 해야 함
 
 ==== What to Do When Your App Enters the Background
-* Foreground에서 Background 실행으로 바뀔 때 App Delegate의 _applicationDidEnterBackground:_ 메서드를 사용하여 다음과 같은 작업을 수행할 수 있음
+* Foreground에서 Background 실행으로 바뀔 때 App Delegate의 _applicationDidEnterBackground_ 메서드를 사용하여 다음과 같은 작업을 수행할 수 있음
 ** 앱 스냅샷 준비
 *** _applicationDidEnterBackground_ 메서드가 반환되면 시스템은 앱의 UI를 켑쳐하여 애니메이션 전환하기 위해 캡처한 이미지를 사용할 수 이씅ㅁ
 *** View의 인터페이스에 중요한 정보가 있다면 _applicationDidEnterBackground_ 메서드가 반환하기 전에 해당 정보를 숨기거나 수정해야 함
-*** `Prepare for the App Snapshot` 참고
+*** `Prepare for the App Snapshot 참고`
 ** 앱의 상태와 관련된 정보 저장
 *** Background 전환할 때 앱 상태에 대한 마지막 변경된 정보를 저장해야 함
 ** 메모리 확보함
 *** 캐시된 데이터 중 사용하지 않은 데이터의 메모리는 해제하고 정리를 통해 메모리 사용량을 줄일 수 있음
 *** 메모리 사용량이 많은 앱은 시스템에서 가장 먼저 종료되므로 이미지 리소스, 캐시된 데이터 등 사용하지 않는 객체는 해제함
-*** `Reduce Your Memory Footprint` 참고
+*** `Reduce Your Memory Footprint 참고`
 * _App Delegate의 applicationDidEnterBackground_ 메서드는 모든 작업을 5초 이내로 처리하고 메서드를 반환해야 함. 그렇지 않으면 앱이 종료되거나 메모리에서 제거됨
 * 작업을 수행하는데 더 많은 시간이 필요한 경우 _beginBackorundTaskWithExpirationHandler_ 메서드를 호출하여 Secondary Thread에서 처리해야 함
 * Background의 작업 시작 여부와 상관없이 _applicationDidEnterBackground_ 메서드는 5초 이내로 작업을 끝내야 함
-* 시스템은 _applicationDidEnterBackground_ 메서드 호출외에도 _ UIApplicationDidEnterBackgroundNotification_ 알림을 보냄. 이 알림을 통해 다른 객체에게 정리 작업를 할당하는데 사용할 수 있음
-* Background으로 이동할 때 할 수 있는 일의 목록에 대해서 `Being a Responsible Background App` 참고
+* 시스템은 _applicationDidEnterBackground_ 메서드 호출외에도 _UIApplicationDidEnterBackgroundNotification_ 알림을 보냄. 이 알림을 통해 다른 객체에게 정리 작업를 할당하는데 사용할 수 있음
+* Background으로 이동할 때 할 수 있는 일의 목록에 대해서 `Being a Responsible Background App 참고`
 
 ===== The Background Transition Cycle
 * Home 버튼을 누르거나 Sleep/Wake 버튼을 누르거나 시스템에서 다른 앱을 실행할 때 Foreground에 있는 앱은 Inactive 상태나 Background 상태로 전환함
-* 이러한 전환을 통해 App Delegate의 _applicationWillResignActive: 와 applicationDidEnterBackground:_ 메서드를 호출함
+* 이러한 전환을 통해 App Delegate의 _applicationWillResignActive, applicationDidEnterBackground_ 메서드를 호출함
 * _applicationDidEnterBackground_ 메서드가 돌아온 후, 대부분 앱은 일시 중지 상태가 됨
 * 음악 재생 같은 특정 Background 작업이나 시스템에서 실행 시간을 조금 더 요청하는 앱은 오래동안 실행될 수 있음
 
 ===== Prepare for the App Snapshot
-* App Delegate의 _applicationDidEnterBackground:_ 메서드가 반환되고 잠시 후, 시스템은 앱의 Window 스냅 샷을 촬영함
+* App Delegate의 _applicationDidEnterBackground_ 메서드가 반환되고 잠시 후, 시스템은 앱의 Window 스냅 샷을 촬영함
 * 앱이 Backgorund 작업을 위해 실행되면 시스템은 관련 변경 사항을 반영하기 위해 새로운 스냅 샷을 찍음
 * 멀티 테스킹 UI에서 스냅샷 이미지를 이용해 앱 상태를 보여줌
-* Background로 진입할 때 View의 변화가 생기면 _snapshotViewAfterScreenUpdates:_ 메서드를 호출해 변경 사항을 강제로 렌더링할 수 있음
+* Background로 진입할 때 View의 변화가 생기면 _snapshotViewAfterScreenUpdates_ 메서드를 호출해 변경 사항을 강제로 렌더링할 수 있음
 * View에서 _setNeedsDisplay_ 메서드를 호출하면 다음 드로잉 주기 전에 스냅 샷을 호출하여 변경 사항에 대한 렌더링이 없기 때문에 비효율적임
-* _snapshotViewAfterScreenUpdates:_ 메서드를 YES 값으로 호출하면 강제로 스냅 샷을 업데이트함
+* _snapshotViewAfterScreenUpdates_ 메서드를 YES 값으로 호출하면 강제로 스냅 샷을 업데이트함
 
 ===== Reduce Your Memory Footprint
 * 시스템은 최대한 많은 메모리를 유지하려고 하며 메모리가 부족한 경우 정지된 앱을 종료하여 메모리를 회수함. Background에서 많은 메모리를 소비하는 앱은 첫 번째로 해제함
 * 결론적으로 더 이상 필요없는 객체에 대한 Strong 참조는 제거해야 함. Strong 참조를 제거하면 컴파일러가 해당 메모리를 다시 사용할 수 있도록 객체의 메모리를 즉시 회수함 
 * 그러나 일부 객체는 캐시해서 성능을 향상시켜야 하는 경우도 있으므로 참조를 없애기 전까지 Backgorund 상태로 전환되는 것을 기다려야 함
 * Strong 참조를 빨리 제거해야 하는 경우
-** 이미지 객체(`UIImage Overview` 참고)
+** 이미지 객체(`UIImage Overview 링크 참고`)
 ** 디스크에서 다시 로드할 수 있는 대용량 미디어나 데이터 파일
 ** 앱에 당장 필요하지 않으며 다시 쉽게 만들 수 있는 모든 객체
 
 image:./image/app_bg_life_cycle.png[]
-
-
-
 
 
 === 참고

@@ -10,7 +10,7 @@
 ** 객체를 복사하기 위해 클래스를 미리 구현해야 하는 복사용 메서드 목록을 지정해놓은 프로토콜
 
 ===== 복사만 가능한 객체
-* Objective-C => _(id)copyWithZone:(NSZone*)zone;_
+* Objective-C => _copyWithZone:_
 * Swift => _copy(with:)_
 
 [source, swift]
