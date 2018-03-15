@@ -145,8 +145,3 @@ image:./image/checkbox.png[30%, 30%]
 
 image:./image/toggle-button.png[30%, 30%]
 image:./image/switch.png[30%, 30%]
-
-=== 연습
-
-image:./image/weather-icons.png[]
-

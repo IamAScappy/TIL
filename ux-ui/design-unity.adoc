@@ -19,6 +19,6 @@
 ** Card 여백, 화면과의 여백, Round 값
 * Text Color + Size
 
-=== 모작
+=== 연습
 
 image:./image/gui-design.png[]

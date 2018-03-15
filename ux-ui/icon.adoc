@@ -36,3 +36,7 @@
 * 장식적인 효과
 
 image::./image/icon-example-1.png[]
+
+=== 연습
+
+image:./image/weather-icons.png[]
