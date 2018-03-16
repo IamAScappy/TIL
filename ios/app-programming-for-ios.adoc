@@ -1,7 +1,7 @@
 = App Programming for iOS
 
 > 이 글은 https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS] 을 
-개인 학습 및 핸드북으로 이용하려는 목적으로 번역하였기 때문에 잘못된 번역이나 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다 :)
+개인 학습의 목적으로 번역하였기 때문에 잘못된 번역이나 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다 :)
 
 === 카테고리 소개
 . Introduction
