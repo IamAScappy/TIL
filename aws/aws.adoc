@@ -1,0 +1,289 @@
+= AWS 기본
+
+=== 기본
+
+===== 주요 용어
+* 리전
+* 가용 영역
+* 에지(PoP) 로케이션
+* 내구도와 가용성
+
+===== AWS 서비스로 활용하기
+* Multi AZ를 통한 고가용성 확보
+* VPC, 보안 그룹 등을 활용한 보안 향상
+* 리전간 데이터 복제
+* 에지 로케이션을 활용한 응답성 향상
+* 타 벤더사의 플랫폼을 활용한 더 높은 가용성 확보
+
+===== AWS 주요 서비스
+* S3, Glacier => 스토리지
+* EC2, ELB, Auto Scaling => 컴퓨팅
+* VPC , Route53, CloudFront => 네트워크
+* RDS, DynamoDB => 데이터베이스
+* IAM => 계정 관리 서비스
+* CloudWatch => 모니터링 서비스
+
+===== AWS 서비스 범위
+* 글로벌 서비스
+** IAM, CloudFront, Route53
+* 리전 기반 서비스
+** S3, DynamoDB 등 관리형 서비스
+** 고가용성, 높은 내구성 특성
+* AZ 기반 서비스
+** EC2와 관련된 서비스
+** EC2, EBS, 서브넷, ENI 등
+
+===== 설명
+* AWS가 구성하고 있는 요소마다 특징을 잘 알아야 함
+* 단점 => AWS 종속성
+* 잘못된 상식 => 인스턴스 크기에 의해서 동접자 수 한계를 정하는 것이 아니라 아키텍처로 결정하는 것
+
+=== AWS 간단 실습
+
+===== IAM 서비스 선택 => 사용자 추가
+. IAM 서비스 선택 => 사용자 추가
+. 아이디 생성시 - managment console 접근 선택, 패스워드 리셋 선택은 해제할 것
+. 그룹 추가
+. 생성하고 csv 파일을 다운받음
+
+===== EC2 기본 실습
+
+[source, shell]
+----
+# 400 => 리눅스 접속권한
+$ chmod 400 name.pem      
+$ ssh -i name.pem AWS접속정보
+
+# Ubuntu 인스턴스 생성할 때 아래 명령어 이용
+# AWS 접속 시, 아이디/비밀번호로 접속하는 것이 아니라 pem 파일로 접속하기 때문에 sudo를 쳐도 비밀번호를 묻징 않음
+$ sudo apt update
+$ sudo apt -y upgrade
+
+$ cat hello.txt
+$ mv hello.txt hello.js
+----
+
+=== AWS 스크립트 제어하기 및 슬랙 연동
+
+===== AWS CLI 설치
+
+[source, shell]
+----
+$ pip install awscli
+----
+
+===== 키 생성하기 
+* IAM 서비스 - 사용자 - Access Key 및 Secret Key 생성
+* 절대로 유출하면 안됨
+* Github 외 다양한 클라우드 저장소에 업로드 금지하기
+
+===== Access Key 및 Secret Key 등록
+
+[source, shell]
+----
+$ aws configure
+$ AWS Access Key ID [****************2TMA]:
+$ AWS Secret Access Key [****************gt+P]:
+$ Default region name [ap-northeast-2]:
+$ Default output format [json]:
+----
+
+===== 등록 확인
+
+[source, shell]
+----
+$ cat ~/.aws/credentials
+$ cat ~/.aws/config
+----
+
+===== 사용해보기
+
+[source, shell]
+----
+$ aws ec2 describe-instances
+$ aws s3 ls
+----
+
+===== AWS EC2 조회 스크립트
+
+[source, shell]
+----
+$ ec2 describe-instances \
+$ --filters "Name=tag:Name,Values=honux*"
+
+$ ec2 describe-instance --instance-ids i-1234abcd
+$ ec2 start-instances --instance-ids i-1234abcd
+$ ec2 stop-instances --instance-ids i-1234abcd
+----
+
+===== EC2 Start, Stop Script
+
+[source, shell]
+----
+#!/bin/bash
+
+instance=i-1234abcd
+
+aws ec2 describe-instances --instance-ids $instance --query Reservations[*].Instances[*].[InstanceId,State.Name,Tags[0].Value,PublicDnsName] --output text 
+
+echo '+-------------------+'
+echo '| 1. start instance |'
+echo '| 2. stop instance  |'
+echo '+-------------------+'
+printf "choose (1-2): "
+read choice
+
+echo $choice
+if [ $choice -eq 1 ];then
+	echo "start instance $instane"
+	aws ec2 start-instances --instance-ids $instance 
+elif [ $choice -eq 2 ]; then
+	echo "stop instance $instance"
+	aws ec2 stop-instances --instance-ids $instance
+else 
+	echo "bye~"
+fi
+----
+
+===== Slack 연동해보기
+** Incoming Webhook을 먼저 설정함
+** 설정을 마치면 생성한 Webhook-URL을 잘 관리함
+
+
+===== 스크립트 
+
+[source, shell]
+----
+#!/bin/bash
+
+url=webhook url here
+
+if [ $# -ge 1 ]; then
+    msg=$@
+else
+    msg="hello world"
+fi
+
+payload='{"text": "'$msg'"}'
+echo Try send $payload to Slack channel
+
+curl -X POST -H 'Content-type: application/json' \
+--data "$payload" $url
+----
+
+===== Python Script
+
+[source, python]
+----
+import simplejson as json
+import requests
+
+webhook_url = 'hookhook"
+
+msg = {
+    "attachments": [
+        {
+            "pretext": "Message from aming-bot",
+            "title": "iOS 개발자가 되고 싶어요:)",
+            "title_link": "https://github.com/yuaming",
+            "text": "iOS 개발자 취뽀 성공:)",
+            "color": "#7CD197"
+        }
+    ]
+}
+
+response = requests.post(
+    webhook_url, data=json.dumps(msg),
+    headers={'Content-Type': 'application/json'})
+
+if response.status_code != 200:
+    raise ValueError(
+        'Request to slack returned an error %s, the response is:\n%s'
+        % (response.status_code, response.text)
+    )
+----
+
+===== EC2 시작 시 알려주기
+* /home/ubuntu/slack.sh
+
+[source, shell]
+----
+#!/bin/bash
+ip=`/usr/bin/curl -s -w '\n' http://169.254.169.254/latest/meta-data/public-ipv4`
+instance=`/usr/bin/curl -s -w '\n' http://169.254.169.254/latest/meta-data/instance-id`
+url=WEBHOOK_URL_HERE
+name="YOURNAME HERE"
+
+payload="{\"text\": \"`date`: $name $instance $ip started\"}"
+
+/usr/bin/curl -X POST -H 'Content-type: application/json' \
+--data "$payload" $url
+----
+
+* /etc/systemd/system/slack.service
+
+[source, shell]
+----
+$ sudo vi /etc/systemd/system/slack.service
+----
+
+[source, shell]
+----
+[Unit]
+Description=Slack IP Notification
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/script
+ExecStart=/home/ubuntu/script/slack.sh
+
+[Install]
+WantedBy=multi-user.target
+----
+
+[source, shell]
+----
+$ sudo systemctl enable slack.service
+$ sudo systemctl status slack
+----
+
+===== 설치시 바로 넣을 수 있는 EC2 User-Data 스크립트
+
+[source, shell]
+----
+#!/bin/bash
+
+mkdir /home/ubuntu/script/
+cat <<'EOF' >> /home/ubuntu/script/slack.sh
+#!/bin/bash
+ip=`/usr/bin/curl -s -w '\n' http://169.254.169.254/latest/meta-data/public-ipv4`
+instance=`/usr/bin/curl -s -w '\n' http://169.254.169.254/latest/meta-data/instance-id`
+url="WEBHOOK URL HERE"
+name="YOUR NAME HERE"
+payload="{\"text\": \"`date`: $name  $instance  ($ip) started\"}"
+/usr/bin/curl -X POST -H 'Content-type: application/json' \
+	--data "$payload" $url
+EOF
+
+chmod +x /home/ubuntu/script/slack.sh
+
+cat <<'EOF' >> /etc/systemd/system/slack.service
+[Unit]
+Description=Slack IP Notification
+Wants=network-online.target
+After=network-online.target
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/script
+ExecStart=/home/ubuntu/script/slack.sh
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable slack.service
+systemctl status slack
+
+/home/ubuntu/script/slack.sh
+----
