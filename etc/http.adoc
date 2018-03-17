@@ -1,0 +1,34 @@
+= HTTP
+
+=== 웹
+* WWW(World Wide Web)
+* 팀 버너리스에 의해 개발됨
+** 웹과 인터넷은 다른 것
+** 웹 3요소 => HTTP, HTML, URL
+
+=== TCP/IP 4계층
+* Network 7계층이 표준이지만, 복잡하여 구현하지 못함. 4계층으로 사용함
+* Application => HTTP, VIP
+* Transport => TCP, UDP
+* Internet => IP
+* Network => LAN, Wifi
+
+=== Proxy
+* Reverse Proxy
+* 서버와 클라이언트 사이에서 중계기 역할을ㄴㄹ을 겨 하며 대리로 통신을 수행하는 기능
+
+=== HTTP
+* 간단
+* 확장 가능
+* 상태가 없음(= Stateless)
+** 클라이언트와 서버 사이에서 Connection이 있음. 클라이언트가 서버를 끊을 때까지 연결이 유지됨 => 상태가 있음
+** HTTP는 한번 보내고 연결을 끊음
+** 서버 부하가 크지 않지만 오버헤드가 발생함
+** HTTP/1 => HTTP/1.1
+** HTTP/2
+** `HTTP/1.1와 HTTP/2 차이점` => HTTP/1.1의 Connection Keep-Alive, Pipelining(= 동시성 프로그래밍에서 사용하는 구조 중 하나)의 개선
+* Sticky Session
+
+=== 참고
+* https://www.slideshare.net/eungjun/http2-40582114[HTTP/2 더 빠른 웹을 위해]
+* http://www.popit.kr/나만-모르고-있던-http2/[나만 모르고 있던 – HTTP/2]
