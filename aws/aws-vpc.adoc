@@ -150,7 +150,7 @@
 ===== VPC 생성
 . Services - Network.. - VPC 클릭함
 . VPC 메뉴에서 Your VPCs를 선택함
-. Create VPC` 클릭하고 아래와 같이 정보를 입력함
+. Create VPC 클릭하고 아래와 같이 정보를 입력함
 ** Name Tag: 자신의아이디VPC CIDR block: 10.100.0.0/16
 . Create 클릭함
 . 생성된 VPC의 Name과 VPC ID를 확인함
@@ -168,22 +168,22 @@
 . Create Subnet 클릭함
 . Create Subnet 대화상자에서 아래와 같이 입력함
 ** Name Tag: 아이디 pub1 
-** VPC: 생성한 VPC 선택 
-** Availability Zone: 첫번째 AZ 선택 
+** VPC: 생성한 VPC 선택함
+** Availability Zone: 첫번째 AZ 선택함
 ** CIDR Block: 10.100.10.0/24
 . Yes, Create 클릭함
 
 ===== Private Subnet 생성하기
-. 4와 같은 방법으로 추가적으로 서브넷을 하나 더 생성함 
+. 4와 같은 방법으로 추가적으로 Subnet을 하나 더 생성함 
 . 대화상자에서는 아래와 같이 입력함
-** Name ㅆag: 아이디private1 
-** VPC: 생성한 VPC선택 
-** Availability Zone: 두번째 AZ 선택 
-** CIDR ㅠlock: 10.100.20.0/24
+** Name Tag: 아이디private1 
+** VPC: 생성한 VPC 선택함
+** Availability Zone: 두번째 AZ 선택함
+** CIDR Block: 10.100.20.0/24
 
 ===== Public Routing Table 설정하기
-* VPC를 생성하면 기본 라우팅 테이블이 생성됨 
-* 기본 라우팅 테이블과는 별도로 각 서브넷에 다른 규칙을 가진 라우팅 테이블을 연결할 수 있음
+* VPC를 생성하면 기본 Routing Table이 생성됨 
+* 기본 Routing Table과는 별도로 각 Subnet에 다른 규칙을 가진 Routing Table을 연결할 수 있음
 . VPC 메뉴에서 Route Tables 선택함
 . Create Route Table 클릭함
 . 대화상자에서 다음과 같이 입력 후 Create 클릭함
@@ -193,19 +193,19 @@
 . Edit - Add another route 클릭함
 . 아래와 같이 입력함
 ** Destination: 0.0.0.0/0
-** Target: 생성한 인터넷게이트웨이 (igw- 로 시작)
+** Target: 생성한 인터넷 게이트웨이 (igw- 로 시작)
 . Save 클릭
 
-===== 퍼블릭 서브넷과 퍼블릭 라우팅 테이블 연결하기
-. 퍼블릭 라우팅 테이블이 선택한 상태에서 아래쪽 탭에서 Subnet Assocations 탭 선택함
-. Edit클릭 후 4단계에서 생성한 서브넷 중 퍼블릭 서브넷 (10.100.10.0/24) 의 Associate 체크함
+===== Public Subnet과 Public Routing Table 연결하기
+. Public Routing Table이 선택한 상태에서 아래쪽 탭에서 Subnet Assocations 탭 선택함
+. Edit 클릭 후 4단계에서 생성한 Subnet 중 Public Subnet (10.100.10.0/24) 의 Associate 체크함
 . Save 클릭함
 
-===== 프라이빗 라우팅 테이블 생성 및 프라이빗 서브넷과 연결하기
-. 앞 단계와 같은 방식으로 아이디PriRT라우팅 테이블을 생성한다. 단 6.5 ~ 7 단계는 생략하고 추가적인 route 규칙은 생성하지 않음
-. 생성한 PriRT 테이블과 프라이빗 서브넷을 7번 과정과 같이 서로 연결함
+===== Private Routing Table 생성 및 Private Subnet과 연결하기
+. 앞 단계와 같은 방식으로 아이디PriRT라우팅 테이블을 생성함. 단 6.5 ~ 7 단계는 생략하고 추가적인 Route 규칙은 생성하지 않음
+. 생성한 PriRT 테이블과 Private Subnet을 7번 과정과 같이 서로 연결함
 
-===== NAT 인스턴스 생성하기 
+===== NAT Instance 생성하기 
 . Services - EC2 선택함
 . Launch Instance 클릭함
 . Amazon Linux AMI 선택함
@@ -243,9 +243,9 @@ EOF
 ** Source: Custom, 10.100.20.0/24 입력함 (Private CIDR)
 . Launch 클릭 후 Key Pair 대화 상자에서 Create a new key pair 선택함. Key Pair Name에는 아이디 입력 후 Download Key Pair 클릭 pem 파일을 다운받음
 . Launch Instances - View Instances 를 각각 클릭함
-. 잠시 후 생성된 NAT 인스턴스의 Instance ID i-0b0..를 메모장 등에 기록해 놓음
+. 잠시 후 생성된 NAT Instance의 Instance ID i-0b0..를 메모장 등에 기록해 놓음
 
-===== NAT 인스턴스 접속하기
+===== NAT Instance 접속하기
 . EC2 인스턴스의 Description 항목에서 IPv4 Public IP 정보를 메모장 등에 기록함
 . 다운받은 pem 파일이 있는 폴더로 이동한 후 아래 명령을 통해 접속을 할 수 있음
 
@@ -283,28 +283,30 @@ net.ipv4.conf.eth0.send_redirects = 0
 EOF
 ----
 
-===== 프라이빗 라우팅 테이블에 NAT 추가하기
+===== Private Routing Table에 NAT 추가하기
 . Services - VPC 선택함
 . Route Tables 선택함
-. 기존에 생성한 아이디pri 테이블 선택 후 아래쪽 Routes 탭 선택. 반드시 private 라우팅 테이블을 선택함
+. 기존에 생성한 아이디pri 테이블 선택 후 아래쪽 Routes 탭 선택. 반드시 Private Routing Table을 선택함
 . Edit 클릭, 아래쪽에 Add another route 클릭함
 ** Destination: 0.0.0.0/0 Target: NAT인스턴스아이디
 . Save 클릭함
 
-===== 프라이빗 인스턴스 생성하기
-. 앞 단계와 같은 방식으로 프라이빗 서브넷에 인스턴스를 생성함. 단 아래의 몇 가지 사항을 주의해야 함
+===== Private Instance 생성하기
+. 앞 단계와 같은 방식으로 Private Subnet에 Instance를 생성함. 단 아래의 몇 가지 사항을 주의해야 함
 ** Network: 생성한 VPC 선택함
 ** Subnet: 프라이빗 서브넷 선택함
 ** Auto-assign Public IP: Disable Add 
-** Tag: Key: Name, Value: 아이디PRI
+** Tag: 
+*** Key: Name 
+*** Value: 아이디PRI
 ** Security Group은 새로 생성함. Name: 아이디-pri-sg 룰 추가
 ** Key Pair: 기존에 생성했던 NAT와 동일한 Key Pair를 선택할 것 
-** 특히 Key Pair Choose an existing key pair를 선택하고 NAT와 동일한 key-pair를 선택함에 주의 
+** 특히 Key Pair Choose an existing key pair를 선택하고 NAT와 동일한 Key Pair를 선택함에 주의 
 ** 체크박스에 체크도 해야 인스턴스를 생성할 수 있음
-. 생성된 프라이빗 인스턴스의 Private IP를 메모장에 기록해 놓음. Subnet 규칙대로 10.100.20.xxx의 주소를 가지는 것을 확인할 수 있음
+. 생성된 Private Instance의 Private IP를 메모장에 기록해 놓음. Subnet 규칙대로 10.100.20.xxx의 주소를 가지는 것을 확인할 수 있음
 
-===== 프라이빗 인스턴스에 접속하기
-* 프라이빗 인스턴스의 경우 Public IP가 따로 없고, 프라이빗 서브넷도 인터넷과 연결되어 있지 않으므로 직접 접속이 불가능함. NAT를 통해 프라이빗 서브넷에 접속해봄
+===== Private Instance에 접속하기
+* Private Instance의 경우 Public IP가 따로 없고, Private Subnet도 인터넷과 연결되어 있지 않으므로 직접 접속이 불가능함. NAT를 통해 Private Subnet에 접속해봄
 * 맥 터미널에서 아래의 명령을 입력함
 
 [source, shell]
@@ -313,7 +315,7 @@ $ ssh-add -K mykey.pem
 $ ssh -A -i mykey.pem ec2-user@NAT퍼블릭IP
 ----
 
-* NAT 인스턴스의 Bash에서 아래와 같이 입력함. 접속 후 아래처럼 프롬프트를 통해서 프라이빗 인스턴스임을 확인할 수 있음
+* NAT Instance의 Bash에서 아래와 같이 입력함. 접속 후 아래처럼 프롬프트를 통해서 Private Instance임을 확인할 수 있음
 
 [source, shell]
 ----
@@ -322,7 +324,7 @@ $ ssh ec2-user@프라이빗인스턴스IP
 ----
 
 ===== 인터넷 테스트하기
-* 프라이빗 인스턴스의 Bash에서 아래처럼 입력해봄. 인터넷이 연결되지 않아서 아무것도 나오지 않음
+* Private Instance의 Bash에서 아래처럼 입력해봄. 인터넷이 연결되지 않아서 아무것도 나오지 않음
 
 [source, shell]
 ----
@@ -331,8 +333,8 @@ PING ietf.org (4.31.198.44) 56(84) bytes of data.
 ----
 
 * Service - EC2 선택, Running Instances 클릭함
-* NAT 인스턴스를 선택하고 Actions - Networking - Change Source/Dest. Check 선택, Disable 을 선택함
-* 다시 ping 명령을 입력 정상적으로 동작하는지 확인해봄
+* NAT Instance를 선택하고 Actions - Networking - Change Source/Dest. Check 선택, Disable 을 선택함
+* 다시 ping 명령을 입력 정상적으로 동작하는지 확인함
 
 [source, shell]
 ----
