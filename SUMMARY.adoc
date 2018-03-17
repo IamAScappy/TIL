@@ -68,7 +68,7 @@
 ** link:ios/model-view-controller.adoc[MVC]
 ** link:ios/nib-file.adoc[Nib Files]
 ** link:ios/responder-object.adoc[Responder Object]
-** link:ios/storyboard-scene-segue.adoc[StoryBoard, Scene, Segue 개념]
+** link:ios/storyboard-scene-segue.adoc[Storyboard, Scene, Segue 개념]
 ** link:ios/imagepicker-delegate.adoc[UIImagePickerController, UIImagePickerControllerDelegate]
 ** link:ios/image-imageview.adoc[UIImage, UIImageView]
 ** link:ios/tabbar-tabbar-controller.adoc[UITabBar, UITabBarController]
