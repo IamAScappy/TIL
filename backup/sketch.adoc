@@ -785,3 +785,42 @@ wireframe 스케치 작업
 
 ===== 리소스 출력 해보기
 * 종류_화면_이름_상태(btn_home_start_n)
+
+= 6주
+
+=== Sketch 
+
+===== 컬러 심볼 전환
+* 마스킹 개념으로 이용해서 컬러 심볼을 바꿈
+* 그러나, 블랜딩 모드를 이용해서도 컬러를 바꿀 수 있음
+* 마스킹으로 적용하지 않으면 배경색깔이 보임. 두개를 포함할 수 있는 배경을 만들어서 마스킹 모드를 적용함
+
+===== Export
+* 너비 28을 가진 아이콘을 출력하려고 함
+** Insert Slice => 원하는 사이즈를 자를 수 있음
+
+===== 제플린
+* cmd + ctrl + e
+* Section 나누기
+
+* 스타일 가이드 라인
+** Make exportable 설정하지 않으면 Resource로 파일을 다운로드 받을 수 없음
+** Add Tag
+** Add Communication
+*** 코멘트를 달 수 있음
+
+===== Sketch Prototyping은 심플함
+* 링크(w)
+* 핫스팟 선택
+* 핫스팟 레이어(h)를 심볼로 관리할 수 있음
+
+
+===== 추가적인 Prototype 타입 툴
+* Marvel App
+** Hotspot Destination 설정
+** Screen Transition
+** Action
+*** move to last View
+*** 중복되는 요소에 대해 핫스팟을 복사하고 적용하는 방법
+*** 앱으로도 사용할 수 있음
+* inVision
