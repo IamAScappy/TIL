@@ -20,6 +20,7 @@
 ===== 용어 설명
 * Delegating Object => 위임 객체
 * Delegate => 위임자
+* `일을 처리하라고 시키는 객체(위임 객체)와 일을 대신 처리해주는 객체 관계(위임자)로 생각하면 쉬움`
 
 ===== Delegation and the Cocoa Frameworks
 * 위임 객체는 일반적으로 프레임워크 객체이고 위임자는 사용자가 정의한 Controller 객체
@@ -30,7 +31,6 @@
 * 위임은 위임 객체에 의해 전달되는 알림은 옵저버에 등록됨
 * 위임자는 알림을 받기 위해 프레임워크에 선언된 알림 메서드만 구현하면 됨
 * Window 객체는 NSWindowWillCloseNotification에게 메세지를 보내지만 옵저버는 windowShouldClose 메세지를 위임자에게 보냄 
-* 위 내용을 보자면 `일을 처리하라고 시키는 객체(위임 객체)와 일을 대신 처리해주는 객체 관계(위임자)로 생각하면 쉬움`
 
 ===== Data Source
 * Delegate와 비슷하지만 차이점은 위임 객체와 관계임
