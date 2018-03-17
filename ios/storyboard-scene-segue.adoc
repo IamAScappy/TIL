@@ -8,13 +8,10 @@
 
 ===== 요약
 * iOS 앱 UI를 시각적으로 보여줌
-* 스토리보드는 Scene의 순서로 구성되어 있으며 각 Scene은 View, View Controller로 표현함
+* Storyboard는 Scene의 순서로 구성되어 있으며 각 Scene은 View, View Controller로 표현함
 * 여러 Scene은 Segue로 연결되어 있고 Segue은 View Controller 간의 전환을 나타냄
 
 === Scene
-* App UI를 만듬
-* StoryBoard 안에 여러 개 Scene으로 구성되어 있음
-* 두 개의 Scene 연결 관계를 담당하는 Segue가 있음
 
 ===== A Scene Corresponds to a Single View Controller and Its Views
 * On iPhone, each scene corresponds to a full screen’s worth of content; on iPad, multiple scenes can appear on screen at once—for example, using popover view controllers. Each scene has a dock, which displays icons representing the top-level objects of the scene. The dock is used primarily to make action and outlet connections between the view controller and its views.
