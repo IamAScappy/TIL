@@ -112,7 +112,7 @@
 ** link:swift/swift-development-environment.adoc[Swift 프로젝트 개발 환경]
 ** link:swift/mutating-function.adoc[객체를 init으로 초기화와 mutating func으로 속성 바꾸기]
 ** link:swift/methods.adoc[메서드]
-** link:swift/subscripts.adoc[서브스크립트]
+** link:swift/inheritance.adoc[상속]
 ** link:swift/subscripts.adoc[서브스크립트]
 ** link:swift/properties.adoc[속성]
 ** link:swift/joined.adoc[여러 문자열 결합하기]
