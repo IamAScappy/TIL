@@ -1,4 +1,4 @@
-= 프로퍼티(Property)
+= 프로퍼티(Properties)
 
 === Stored Property 
 

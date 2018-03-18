@@ -1,0 +1,135 @@
+= 메서드(Methods)
+
+=== Instance Methods
+
+[source, swift]
+----
+// Instance Methods
+// 특정 클래스, 구조체, 열거형의 인스턴스에 속하는 함수. 인스턴스 속성이에 접근하고 수정하는 방법이나
+// 인스턴스 용도에 관련된 기능을 지원함. 함수와 동일한 문법을 가짐
+// 속해있는 인스턴스 없이 독립적으로 호출할 수 없음
+class Counter {
+    var count = 0
+    func increment() {
+        count += 1
+    }
+
+    func increment(by amount: Int) {
+        count += amount
+    }
+
+    func reset() {
+        count = 0
+    }
+}
+
+let counter = Counter()
+// the initial counter value is 0
+counter.increment()
+// the counter's value is now 1
+counter.increment(by: 5)
+// the counter's value is now 6
+counter.reset()
+// the counter's value is now 0
+
+// The self Property
+// 모든 인스턴스 타입은 인스턴스 자체와 명확하게 self 라고 불리는 명시적인 프로퍼티를 가지고 있음
+// 자식이 속한 인스턴스 메서드 내에서 현재 인스턴스를 참조하는데 사용할 수 있음
+// 명시적으로 self를 작성하지 않으면 Swift는 메서드내에서 알려진 프로퍼티나 메서드를 사용할 때마다 현재 인스턴스의 프로퍼티나 메서드를 참조할 것을 가정하고 있음
+func increment() {
+    self.count += 1
+}
+
+// 예외가 있는데, 파라미터 이름은 우선적으로 더 확실하게 속성을 참조할 필요가 있음
+// self 속성을 사용해서 파라미터 이름과 프로퍼티 이름을 구분지을 수 있음
+// self는 x라고 불리는 메서드 파라미터와 x라고 불리는 인스턴스 파라미터 사이에서 명확하게 구분지어 주고 있음
+struct Point {
+    var x = 0.0, y = 0.0
+    func isToTheRightOf(x: Double) -> Bool {
+        return self.x > x
+    }
+}
+
+let somePoint = Point(x: 4.0, y: 5.0)
+if somePoint.isToTheRightOf(x: 1.0) {
+    print("This point is to the right of the line where x == 1.0")
+}
+// Prints "This point is to the right of the line where x == 1.0"
+
+
+// Modifying Value Types from Within Instance Methods
+// mutating 키워드를 추가해서 프로퍼티를 변경시킬 수 있게 만듬. 그러나 구조체 타입의 상수에서 mutating 함수를 호출할 수 없음
+// 해당 프로퍼티가 변수 형태로 되어 있어도 그 프로퍼티는 변경될 수 없기 때문임
+struct Point {
+    var x = 0.0, y = 0.0
+    mutating func moveBy(x deltaX: Double, y deltaY: Double) {
+        x += deltaX
+        y += deltaY
+    }
+}
+
+var somePoint = Point(x: 1.0, y: 1.0)
+somePoint.moveBy(x: 2.0, y: 3.0)
+print("The point is now at (\(somePoint.x), \(somePoint.y))")
+// Prints "The point is now at (3.0, 4.0)"
+
+
+// Assigning to self Within a Mutating Method
+// mutating 메서드는 self 프로퍼티에 완전한 새 인스턴스를 할당할 수 있음
+struct Point {
+    var x = 0.0, y = 0.0
+    mutating func moveBy(x deltaX: Double, y deltaY: Double) {
+        self = Point(x: x + deltaX, y: y + deltaY)
+    }
+}
+
+enum TriStateSwitch {
+    case off, low, high
+    mutating func next() {
+        switch self {
+        case .off:
+            self = .low
+        case .low:
+            self = .high
+        case .high:
+            self = .off
+        }
+    }
+}
+
+var ovenLight = TriStateSwitch.low
+ovenLight.next()
+// ovenLight is now equal to .high
+ovenLight.next()
+// ovenLight is now equal to .off
+----
+
+=== Type Methods
+
+[source, swift]
+----
+// Type Methods
+// 타입 자체에 호출하는 메서드 또한 정의할 수 있음
+// 클래스 => class 키워드
+// 구조체, 열거형 => static 키워드를
+
+/*
+    Objective-C는 클래스를 위한 타입 단계 메서드만 정의할 수 있음
+    Swift는 모든 클래스, 구조체, 열거형에 타입 단계 메서드를 정의할 수 있음. 개별 타입 메서드는 지원하는 타입에 대해 명시적으로 범위를 지정함
+*/
+
+class SomeClass {
+    class func someTypeMethod() {
+        // type method implementation goes here
+    }
+}
+
+// 타입에 대한 타입 메서드를 호출해야지, 그 타입에 대한 인스턴스를 호출하는 것이 아님
+// Type Method 안에서 self 프로퍼티는 타입에 대한 인스턴스가 아니라 타입 그 자체를 가르킴. 구조체에서 열거형에서 Instance Property와 인스턴스 메서드 매개변수처럼
+// static 프로퍼티와 static 메서드 매개변수 사이의 명확하기 위해 self를 쓸 수 있는 것을 뜻함
+SomeClass.someTypeMethod()
+----
+
+=== 참고
+* https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]
