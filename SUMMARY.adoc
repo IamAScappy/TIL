@@ -118,6 +118,7 @@
 ** link:swift/joined.adoc[여러 문자열 결합하기]
 ** link:swift/enum.adoc[열거형]
 ** link:swift/optional.adoc[옵셔널]
+** link:swift/intialization.adoc[초기화]
 ** link:swift/collection-type.adoc[콜렉션 타입]
 ** link:swift/class-struct.adoc[클래스, 구조체]
 ** link:swift/closure.adoc[클로저]
