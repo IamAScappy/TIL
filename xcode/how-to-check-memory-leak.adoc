@@ -17,7 +17,7 @@ image::../xcode/image/memory-leak-3.png[]
 ** Object references => 왼쪽 화면에 있는 정보 중 하나를 선택하면 참조하고 있는 인스턴스를 보여줌
 ** Backtrace => 가운데 화면에 있는 인스턴스 중 하나를 선택하면 메모리 정보와 Backtrace가 나타남
 
-===== 추가 설명
+===== 추가 정리
 
 image::../xcode/image/memory-leak-tip-1.png[]
 * Heap contents 하단 화면에 있는 느낌표를 누르면 메모리 릭이 있는 인스턴스만 보여줌

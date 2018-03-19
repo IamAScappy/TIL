@@ -31,6 +31,7 @@
 === Swift 코드를 통한 개선하기
 
 ===== 6 Tips For A Software Development Success Philosophy 요약
+. `6 Tips For A Software Development Success Philosophy 링크 참고` 
 . Quality pays
 ** Time and resources spent on quality give a positive return on investment on development time, development costs, team and customer satisfaction etc
 . Careful risk-management

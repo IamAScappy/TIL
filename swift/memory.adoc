@@ -87,6 +87,7 @@ image::../swift/image/os-process-memory-model.png[]
 
 ===== Equality
 * 메모리 영역은 다르지만 값이 같은 경우 Equality가 같다고 함
+* `Identity, Equality 링크 참고`
 
 ===== 객체(인스턴스)를 비교한다는 것
 * 같은 클래스인가 ?

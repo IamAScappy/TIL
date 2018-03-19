@@ -58,6 +58,7 @@ let someVideoMode = VideoMode()
 ===== Foundation NSString, NSArray, NSDictionary
 * 클래스로 구현되어 있음
 * 복사가 아닌 기존 인스턴스에 대한 참조로 할당되고 전달됨
+* `Using Swift with Cocoa and Objective-C 링크 참고`
 
 === 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]

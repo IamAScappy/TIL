@@ -20,7 +20,7 @@ var rangeOfT hreeItems = FixedLengthRange(firstValue: 0,  length: 3)
 rangeOfThreeItems.firstValue = 6
 
 // 상수로 선언된 구조체는 구조체 내부에서 저장 프로퍼티가 변수로 선언되어 있더라도 값을 수정할 수 없음
-// 왜냐하면, 구조체가 Value Type 이기 때문에 값 타입의 인스턴스가 상수로 선언되면 그 속성들도 모두 상수가 됨
+// 왜냐하면, 구조체가 값 타입 이기 때문에 값 타입의 인스턴스가 상수로 선언되면 그 속성들도 모두 상수가 됨
 let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4)
 
 // 에러가 발생함

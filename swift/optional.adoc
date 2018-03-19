@@ -5,7 +5,7 @@
 [source, swift]    
 ----
 // 옵셔널
-// Swift가 `Type-Safe` 언어라는 것을 보여주는 사례 중 하나
+// Swift가 Type-Safe 언어라는 것을 보여주는 사례 중 하나
 // nil 가능성을 명시적으로 알려줌
 
 // 옵셔널 변수 선언
@@ -24,7 +24,7 @@ let message = text + stockCode!
 println(message)
 ----
 
-=== 옵셔널 바인딩(Optional Binding)
+=== 옵셔널 바인딩
 
 [source, swift]    
 ----
@@ -38,11 +38,11 @@ if let tempStockCode = stockCode {
 }
 ----
 
-=== 암시적 추출 옵셔널(Implicitly Unwrapped Optionals)
+=== 암시적 추출 옵셔널
 
 [source, swift]    
 ----
-// 암시적 추출 옵셔널(Implicitly Unwrapped Optionals)
+// 암시적 추출 옵셔널
 // 로직상 nil이 들어가지 않는다면 확신이 있을 때 사용함
 // 타입 뒤에 `!` 를 붙여주면 됨
 var myName: String! = "aming"
@@ -64,11 +64,11 @@ if var name = myName {
 myName.isEmpty   
 ----
 
-=== 옵셔널 체이닝(Optional Chaining)
+=== 옵셔널 체이닝
 
 [source, swift]    
 ----
-// 옵셔널 체이닝(Optional Chaining)
+// 옵셔널 체이닝
 // 옵셔널의 내부의 내부가 옵셔널로 연결되어 있을 때 사용할 수 있음
 // 중첩된 옵셔널 증 하나라도 값이 없다면 nil을 반환함
 // 옵셔널 체이닝 반환 값은 항상 옵셔널
