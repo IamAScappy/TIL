@@ -3,7 +3,7 @@
 [source, swift]
 ----
 // Subscript Syntax
-// 클래스, 구조체, 열거형, Collection, List, Sequence의 요소를 접근하기 위한 축약형으로 서브스크립트로 정의할 수 있음
+// 클래스, 구조체, 열거형, Collection, List, Sequence의 요소에 접근하기 위한 축약형으로 서브스크립트로 정의할 수 있음
 
 // getter, setter 
 subscript(index: Int) -> Int {
@@ -65,7 +65,7 @@ var matrix = Matrix(rows: 2, columns: 2)
 matrix[0, 1] = 1.5
 matrix[1, 0] = 3.2
 
-// 경게를 넘어가는 값이 Subscript로 들어오면 Assertion이 발생함
+// 경계를 넘어가는 값이 Subscript로 들어오면 Assertion이 발생함
 let someValue = matrix[2, 2]
 // this triggers an assert, because [2, 2] is outside of the matrix bounds
 ----

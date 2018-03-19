@@ -20,7 +20,7 @@ var rangeOfT hreeItems = FixedLengthRange(firstValue: 0,  length: 3)
 rangeOfThreeItems.firstValue = 6
 
 // 상수로 선언된 구조체는 구조체 내부에서 저장 프로퍼티가 변수로 선언되어 있더라도 값을 수정할 수 없음
-// 왜냐하면, 구조체가 값 타입 이기 때문에 값 타입의 인스턴스가 상수로 선언되면 그 속성들도 모두 상수가 됨
+// 왜냐하면, 구조체가 값 타입이기 때문에 값 타입의 인스턴스가 상수로 선언되면 그 속성들도 모두 상수가 됨
 let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4)
 
 // 에러가 발생함
@@ -28,9 +28,9 @@ rangeOfFourItems.firstValue = 6
 
 // Lazy Stored Property
 // 그 초기값이 최초로 사용되기 전까지 계산되지 않음. @lazy Attribute를 선언하면 됨
-// Lazy Stored Property는 초기화(Initialzation)이 끝난 뒤에도 초기값을 언제 꺼낼 수 있을지 모르기 때문에 var 키워드를 사용해야 함. 상수는 초기화 끝나기 전에 값을 반드시 가져야 하기 때문에 Lazy Stored Property로 선언할 수 없음
-// 속성의 초기값이 객체의 초기화가 끝날때까지도 값을 알 수 없는 외부 변수에 의존하고 있을때 유용함
-// 속성의 값이 매우 복잡하거나 리소스를 많이 사용하는(expensive) 계산이어서 필요한 경우가 아니면 수행되지 말아야 하는 경우에도 역시 유용함
+// Lazy Stored Property는 초기화(Initialzation)가 끝난 뒤에도 초기값을 언제 꺼낼 수 있을지 모르기 때문에 var 키워드를 사용해야 함. 상수는 초기화 끝나기 전에 값을 반드시 가져야 하므로 Lazy Stored Property로 선언할 수 없음
+// 속성의 초기값이 객체의 초기화가 끝날 때까지도 값을 알 수 없는 외부 변수에 의존하고 있을 때 유용함
+// 속성의 값이 매우 복잡하거나 리소스를 많이 사용하는(expensive) 계산이어서 필요한 경우가 아니면 수행되지 말아야 할 때에도 역시 유용함
 
 // @lazy으로 표시되어 있기 때문에 DataImporter 인스턴스의 DataManager의 importer 속성은 fileName 속성을 조회할 때처럼 최초 접근 시 생성됨
 class DataImporter {
@@ -64,7 +64,7 @@ manager.data.append("Some more data")
 [source, swift]
 ----
 // Computed Property 
-// 값을 저장하는 것이 아니라 다른 속성이나 값들이 간접적으로 접근하여 값을 조회하거나 수정할 수 있는 gettre, setter를 제공함
+// 값을 저장하는 것이 아니라 다른 속성이나 값들이 간접적으로 접근하여 값을 조회하거나 수정할 수 있는 getter, setter를 제공함
 // 클래스와 구조체, 열거형에서 사용할 수 있음
 struct Point {
     var x = 0.0, y = 0.0
@@ -113,7 +113,7 @@ struct AlternativeRect {
 
 // Read-Only Computed Property 
 // getter만 있음. 언제나 값을 반환하며 다른 값으로 설정할 수 없음
-// 모든 계산 속성은 반드시 var 키워드로 선언되어야 함. 왜냐하면 계산 속성의 값은 고정되지 않기 때문임. let 키워드는 초기화할 때 한번 지정되면 변경할 수 없다는 것을 표시하기 위해 상수 선언에만 사용해야 함
+// 모든 계산 속성은 반드시 var 키워드로 선언되어야 함. 왜냐하면, 계산 속성의 값은 고정되지 않기 때문임. let 키워드는 초기화할 때 한번 지정되면 변경할 수 없다는 것을 표시하기 위해 상수 선언에만 사용해야 함
 struct Cuboid {
     var width = 0.0, height = 0.0, depth = 0.0
     var volume: Double {
@@ -126,8 +126,8 @@ print("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
 // Prints "the volume of fourByFiveByTwo is 40.0"
 
 // Property Observers
-// 속성값 변경을 감시하고 대응함. 속성 감시자는 속성값이 설정될 때마다 호출되는데 새 값이 현재 값과 동일하더라도 호출됨
-// Lazy Stored Property 선언한 한 곳은 속성 감시자를 추가 할 수 있음. 하위 클래스 안에서 오버라이딩해서 모든 상속받은 Property(Stored Property, Computed Property 상관없이) 속성 감시자를 추가할 수 있음
+// 속성값 변경을 감시하고 대응함. 속성 감시자는 속성값이 설정될 때마다 호출되는데 새 값이 현재 값과 같더라도 호출됨
+// Lazy Stored Property 선언한 한 곳은 속성 감시자를 추가할 수 있음. 하위 클래스 안에서 오버라이딩해서 모든 상속받은 Property(Stored Property, Computed Property 상관없이) 속성 감시자를 추가할 수 있음
 // 오버라이딩 되지 않은 Computed Property에서 속성 감시자를 추가할 필요 없음. Computed Property Setter에서 직접 해당 값 변화를 감시하고 대응할 수 있기 때문임
 
 // willSet => 값이 저장되기 직전 호출됨
@@ -175,12 +175,12 @@ stepCounter.totalSteps = 896
 ----
 // Type Property
 // 특정 타입의 인스턴스에 속한 속성
-// 해당 타입에 대한 새로운 인스턴스가 생성할 때마다 다른 인스턴스와 분리된 인스턴스 자신이 속성 값을 세트로 가짐
+// 해당 타입에 대한 새로운 인스턴스가 생성할 때마다 다른 인스턴스와 분리된 인스턴스 자신이 속성값을 세트로 가짐
 // 얼마나 많은 인스턴스를 만들었는지 관계없이 한 개의 복사본만이 존재함
 // 모든 인스턴에스 영향을 미치는 값을 정의할 때 유용함
 
 // 구조체와 열거형에서 Stored, Computed Type Property 정의할 수 있음
-// 구조체와 열거형에서 정의한 Stored Type Property는 변수가 상수로 될 수 있음. Stored Instance Property와 동일함
+// 구조체와 열거형에서 정의한 Stored Type Property는 변수가 상수로 될 수 있음. Stored Instance Property와 같음
 // 클래스에서 Computed Type Property만 정의할 수 있음
 
 // Type Property Syntax
