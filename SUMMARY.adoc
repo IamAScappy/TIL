@@ -70,7 +70,7 @@
 ** link:ios/ui-classes.adoc[iOS UI 클래스 계층도]
 ** link:ios/model-view-controller.adoc[MVC]
 ** link:ios/nib-file.adoc[Nib Files]
-** link:ios/nsnotificationcenter.adoc[NSNotification]
+** link:ios/nsnotificationcenter.adoc[NSNotificationCenter]
 ** link:ios/observer.adoc[Observer]
 ** link:ios/responder-object.adoc[Responder Object]
 ** link:ios/storyboard-scene-segue.adoc[Storyboard, Scene, Segue 개념]
