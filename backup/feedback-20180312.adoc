@@ -1,8 +1,0 @@
-Swift
-
-Continus Array 존재함
-
-Objective-C: default => 값을 참조하고 닫힘
-Swift: default => 값을 참조하는 형태
-
-순환참조 문제 때문에 캡쳐 리스트를 써야 할 때가 있음
