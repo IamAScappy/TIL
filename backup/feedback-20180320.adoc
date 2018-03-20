@@ -1,0 +1,54 @@
+= 2018.03.20
+
+=== 생성자 상속과 재정의
+* C 언어 시절, 객체 인스턴스를 생성하면 쓰레기 값이 들어있었음
+* OOP 시절로 넘어오면서 초기값이 없으면 생성자에서 값을 셋팅해줌
+* 초기값 중에서 Primitive Type 이 아닌 경우 객체 안의 객체를 만들었을 때(= 소유권을 가진 형태). 이럴 때 소멸자가 해제하자!
+* 생성자와 소멸자는 쌍으로 만들어야 했음 => C++, Java, Objective-C(deallow)
+
+===== 지정 생성자
+
+===== 편의 생성자
+
+===== 2단계 초기화
+* Subclass의 프로퍼티 값을 초기화하고
+* Superclass 생성자를 호출하고 Superclass의 프로퍼티 값을 초기화함
+* 그래서 self가 완전함
+
+===== 상속 초기화
+* 상속받은 Subclass에서 보통 생성자에서 super를 먼저 호출하는 경우가 많지만
+내가 만든 Superclass, Subclass가 존재하는데 Superclass의 메서드에 로직이 몰려 있는 경우. Subclass에서 super를 나중에 호출해야 함
+* Stack 구조보다 다형성으로 인한 이유 때문에 부르는 호출 구조가 뒤로 가야 하는 경우가 있음
+
+=== Application, Main
+* @UIApplicationMain => UI Main을 만들어주는 함수
+* var window: UIWindow?를 지우면 화면이 뜨지 않음. 컴파일 에러가 나지 않음
+** AppDelegate가 참조만 하고 있을 뿐 실제로 지워지지 않음. Application이 가지고 있기 Window 배열을 가지고 있음
+* UIKit에 있는 init을 잘 써야함
+* ViewController.init()을 직접 부를 일이 거의 없음
+** `instan-`
+* Storyboard를 빼는 설정 부분도 있
+
+```swift
+self.window = UIWindow
+let storyboard = 
+window.rootViewController = 
+self.window.makeVisible~
+```
+
+* 세부적인 경우 View 를 Subclassing 하여 사용하는 것을 권장함
+* 한군데만 바꾸기 위해서 extension 하는 것보다 상속받아서 처리하는 것이 좋음
+
+=== UIView
+* 그리는 것만 담당함
+* UIResponder => 터치 이벤트
+
+=== Responder Chain
+* UIResponder 상속받는 얘들은 체인 형태를 만들 수 있음. Linked List 주고같음
+* 이벤트가 처리할 때 특정 View 객체가 처리하지 않도록 하자!
+* Responder Chain를 통해 이벤트가 지정한 순서대로 이동함. => View Controller가 받을 수 있음. View에 따라서 좌표값이 다를 수 있음
+** 이벤트가 다 날라감. View Controller가 처리하지 않으면 Window => Application으로 날라감(App Delegate)
+
+=== Main run loop
+* 이벤트 처리 관련
+* Background 실행은 앱이 정지한 상태에서 클로저를 이용함... 결국 앱은 정지 상태!
