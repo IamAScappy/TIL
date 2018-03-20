@@ -3,6 +3,23 @@
 === 2018.03.19
 
 ===== 할 일
+* [*] VendingMachineApp 6단계 진행하기
+* [*] Swift 문법 다시보기
+
+===== 느낀 점
+* 이니셜라이저를 정리하다가 아래 내용이 헷갈렸음. 어떻게 이해하는 것이 좋을까? 머리가 돌아가지 않아 생각하다가 내일 다시 생각해보기로 함
+----
+Initializer Delegation for Class Types
+* Designated initializers must always delegate up.
+* Convenience initializers must always delegate across.
+----
+
+=== 2018.03.20
+
+===== 할 일 
 * [ ] VendingMachineApp 6단계 진행하기
-* [ ] Swift 문법 다시보기
-* [ ] Advanced Swift 읽기 
+* [ ] SLIPP 발표 준비하기
+
+===== 느낀 점
+* 카드게임 과제를 진행할 때 이벤트가 거쳐가는 객체들에 관계, 흐름을 잘 생각해야 함
+** UML에서 시퀀스 다이어그램으로 나타낼 수 있음
