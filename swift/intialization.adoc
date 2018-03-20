@@ -319,8 +319,9 @@ image:./image/initializer-delegation-2.png[]
 ** 상위 클래스의 지정 이니셜라이저가 종료하면 하위 클래스의 이니셜라이저가 추가 사용자 정의를 수행할 수 있음. 이때도 해도 그만, 안해도 그만!
 ** 서브 클래스 지정 이니셜라이저가 종료하면 처음 지정 이니셜라이저를 호출한 편의 이니셜라이저가 추가적으로 사용자 정의를 수행함
 
-image:./image/two-phase-initialization-1.png[45%, 45%]
-image:./image/two-phase-initialization-2.png[45%, 45%]
+image:./image/two-phase-initialization-1.png[]
+
+image:./image/two-phase-initialization-2.png[]
 
 [source, swift]
 ----
