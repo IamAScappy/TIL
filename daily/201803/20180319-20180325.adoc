@@ -28,3 +28,11 @@ Initializer Delegation for Class Types
 
 ===== 할 일, 느낀 점
 * SLIPP에서 하는 발표 말고 아무것도 하지 않을 예정. 감기 때문에 머리도 아프고 쉬는 날. 휴식:)
+
+=== 2018.03.22
+
+===== 할 일
+* [ ] VendingMachineApp 6-7단계 진행하기
+* [ ] iOS AutoLayout을 활용한 실전 UI구성 전략 - 카카오톡 같은 고급 UI 만들기 강의 듣고 정리하기
+
+===== 느낀 점
