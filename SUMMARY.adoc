@@ -73,7 +73,7 @@
 ** link:ios/nsnotificationcenter.adoc[NSNotificationCenter]
 ** link:ios/observer.adoc[Observer]
 ** link:ios/responder-object.adoc[Responder Object]
-** link:ios/storyboard-nib-code-difference[Storyboard, Nib(Xib), Custom Code로 만드는 것에 대한 차이점]
+** link:ios/storyboard-nib-code-difference.adoc[Storyboard, Nib(Xib), Custom Code로 만드는 것에 대한 차이점]
 ** link:ios/storyboard-scene-segue.adoc[Storyboard, Scene, Segue 개념]
 ** link:ios/imagepicker-delegate.adoc[UIImagePickerController, UIImagePickerControllerDelegate]
 ** link:ios/image-imageview.adoc[UIImage, UIImageView]
