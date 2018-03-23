@@ -45,3 +45,13 @@ Initializer Delegation for Class Types
 * 내 페이스를 잃지 말고 내가 하고자 하는 것에 집중하자:)
 * 그리고, JK 말을 들으면서 강의 내용을 따라 적는 것이 아니라 배운 내용에 대해 내가 표현할 수 있는 언어로 정리하자:)
 * 지금 하고 있는 것들이 서로 연결이 될 수 있는 공부를 하자:)
+
+=== 2018.03.23
+
+===== 할 일
+* [ ] VendingMachine 8단계 진행하기
+* [ ] Core Graphics 선, 면, 여러 패스 그려보고 결과물 만들어보기
+* [ ] 디자인패턴 정리하기
+** [ ] Bridge Pattern
+* [ ] Advanced Swift 1장 읽기
+
