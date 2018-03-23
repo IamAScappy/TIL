@@ -1,0 +1,6 @@
+= Frame, Bounds
+
+=== 참고
+* https://developer.apple.com/documentation/uikit/uiview/1622580-bounds[bounds]
+* https://developer.apple.com/documentation/uikit/uiview/1622621-frame?language=objc[frame]
+* http://zeddios.tistory.com/203[Frame과 Bounds의 차이 (1/2)]
