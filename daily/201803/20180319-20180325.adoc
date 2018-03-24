@@ -49,9 +49,10 @@ Initializer Delegation for Class Types
 === 2018.03.23
 
 ===== 할 일
-* [ ] VendingMachine 8단계 진행하기
-* [ ] Core Graphics 선, 면, 여러 패스 그려보고 결과물 만들어보기
-* [ ] 디자인패턴 정리하기
-** [ ] Bridge Pattern
-* [ ] Advanced Swift 1장 읽기
+* [*] VendingMachineApp 8단계 진행하기
 
+=== 2018.03.24
+
+===== 할 일
+* [ ] VendingMachineApp 8단계 진행하기
+** [ ] Core Graphics 이용하여 그래프 그리기
