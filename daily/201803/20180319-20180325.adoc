@@ -60,6 +60,9 @@ Initializer Delegation for Class Types
 === 2018.03.25
 
 ===== 할 일
-* [ ] RXSwift
-* [ ] AutoLayout
-* [ ] TDD 
+* [*] RxSwift
+* [*] AutoLayout
+* [*] TDD 
+
+===== 느낀 점
+* 어제 공부하면서 코딩하고 싶다는 욕구가 마구마구 솟아남. 역시 공부하면 잠시라도 자극을 받을 수 있어서 좋은 것 같음!!
