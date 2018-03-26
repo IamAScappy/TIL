@@ -159,5 +159,5 @@
 ** link:etc/http.adoc[HTTP]
 ** link:etc/msa.adoc[MSA]
 ** link:etc/subroutine.adoc[Subroutine]
-** link:etc/sync-asysnc.adoc[Sync, Async, Blocking, Non-Blocking]
+** link:etc/sync-async.adoc[Sync, Async, Blocking, Non-Blocking]
 ** link:etc/indirection.adoc[간접참조]
