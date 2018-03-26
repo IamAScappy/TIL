@@ -66,6 +66,3 @@ RxSwift에서 그것을 지원함. 각각 View의 속성을 Observerable 객체�
 
 === 참고
 * https://homoefficio.github.io/2017/02/19/Blocking-NonBlocking-Synchronous-Asynchronous/[Blocking-NonBlocking-Synchronous-Asynchronous]
-그때마다 View Model에 바인딩함. 그래서 View 에 대한 테스트가 조금 더 쉬워짐ㅏ
-그때마다 View Model에 바인딩함. 그래서 View 에 대한 테스트가 조금 더 쉬워짐
-그때마다 View Model에 바인딩함. 그래서 View 에 대한 테스트가 조금 더 쉬워짐
