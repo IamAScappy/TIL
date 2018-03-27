@@ -50,6 +50,7 @@ Initializer Delegation for Class Types
 
 ===== 할 일
 * [*] VendingMachineApp 8단계 진행하기
+** [*] Core Graphics 학습하기
 
 === 2018.03.24
 
