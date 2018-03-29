@@ -93,3 +93,59 @@ Target 환경을 빌드하기 위해 크로스 컴파일를 통해 각 실행 �
 * 시뮬레이터와 에뮬레이터의 차이점 이해하기
 * iOS는 어디서 빌드 하냐에 따라서 Shared Object File가 없기 때문에 앱 배포할 때 포함해서 배포해야 함. 앱 번들 파일에다가 넣으면 됨
 * ~.app에 있음
+
+
+```
+// main.c        
+        .arch armv6
+        .eabi_attribute 27, 3
+        .eabi_attribute 28, 1
+        .fpu vfp
+        .eabi_attribute 20, 1
+        .eabi_attribute 21, 1
+        .eabi_attribute 23, 3
+        .eabi_attribute 24, 1
+        .eabi_attribute 25, 1
+        .eabi_attribute 26, 2
+        .eabi_attribute 30, 6
+        .eabi_attribute 34, 1
+        .eabi_attribute 18, 4
+        .file   "main.c"
+        .section        .rodata
+        .align  2
+.LC0:
+        .ascii  "total = %d\012\000"
+        .text
+        .align  2
+        .global main
+        .type   main, %function
+main:
+        @ args = 0, pretend = 0, frame = 8
+
+
+// sum.c
+        .arch armv6
+        .eabi_attribute 27, 3
+        .eabi_attribute 28, 1
+        .fpu vfp
+        .eabi_attribute 20, 1
+        .eabi_attribute 21, 1
+        .eabi_attribute 23, 3
+        .eabi_attribute 24, 1
+        .eabi_attribute 25, 1
+        .eabi_attribute 26, 2
+        .eabi_attribute 30, 6
+        .eabi_attribute 34, 1
+        .eabi_attribute 18, 4
+        .file   "sum.c"
+        .text
+        .align  2
+        .global sum
+        .type   sum, %function
+sum:
+        @ args = 0, pretend = 0, frame = 16
+        @ frame_needed = 1, uses_anonymous_args = 0
+        @ link register save eliminated.
+        str     fp, [sp, #-4]!
+        add     fp, sp, #0
+```
