@@ -1,0 +1,95 @@
+=== Raspberry Pi
+
+* 모바일 환경과 유사함
+* 원격으로 접속 가능함
+** 안드로이드나 아이폰도 권한을 풀면 가능함
+
+=== 운영체제 
+
+* 안드로이드 => 리눅스
+* iOS => 유닉스 가까움
+** iOS는 유닉스 인증을 받지 못함. MacOS 유닉스 인증을 받음
+* 화면을 사용할 수 있는 UI
+
+=== 컴파일
+* C Programming
+* h.c -> Compiler(gcc -S) -> h.s -> Assembler(gcc or as) -> h.o -> Linker(Libraries, gcc or ld) -> h.out
+
+=== Generate Host Assembly
+* 시뮬레이터와 에뮬레이터 차이
+** 시뮬레이터 -> 호스트 아키텍처로 돌아감
+** 에뮬레이터 -> 실행 타겟으로 돌아감
+** 그렇기 때문에 시뮬레이터는 호스트 아키텍처로 빠르지만, 에뮬레이터는 느림
+
+```
+// Host의 Assembly로 만듬
+// -S(호스트)
+// Host => Mac 
+// 실행 타겟을 정해줘야 함 => iOS나 시뮬레이터
+$ gcc main.c -S -arch armv7
+```
+
+=== Link Executable Binary
+
+```
+$ ld -o main main.o printf.o
+
+$ gcc -o main main.c -lLibrary
+```
+
+=== 실습
+* `ssh ios@192.168.1.166` = 타겟
+* 내 컴퓨터가 = 호스트
+** 타겟으로 작업하려니 힘듬
+** 호스트에서 작업하기가 편함
+** ls -l -rwxr-xr-x => x가 있어야 실행파일임
+
+=== Running a program
+* 운영체제 실행파일 규격
+* 장비에서 실행하는 기계어도 맞아야 함
+
+=== Memory Model
+* Text
+* Enum, Static => Gvar, BSS
+* 클래스 => Heap
+* Stack
+* 서브루틴 => Stack을 쌓았다가 다음 함수에다가 넘겨서 버리고
+* 재귀 => 쌓았던 것을 버리지 못하면 스택오버 플로우가 바생함ㄴ
+
+=== Stack Variable, Heap Object
+* Link3
+** 포인터 변수 => CPU가 사용하는 비트
+** Heap => 인스턴스의 크기
+
+=== CPU
+* Memory => 명령어 한줄씩 복사함
+** 4개 클락이 들어감 
+** 등록. 1개 클락
+** 분석. 1개 클락
+** 실행. 1개 클락
+* 프로그래밍 카운터 체크하면서 메모리의 명렁어를 몇 번째까지 하였는지 확인함
+
+=== Cross Compile Toolchain
+* Cross Compiler
+** 실행 파일을 실행할 수 있는 규격이 맞아야 하는데.. 조건이 2가지
+** 어떤 OS에서 실행하냐?
+** 어떤 장비에서 실행하냐?
+** 결국 Target을 알아야 빌드가 됨
+** 임베디드 시스템인 경우 Target을 알지 못해도 가능함
+
+=== APCS
+
+=== 실행파일
+* 규격이 맞아야 함
+
+=== LLVM
+* Swift 처럼 LLVM으로 나온다면 디버깅할 때 중간언어로 디버깅 해야 함
+
+
+=== 결론
+* Host와 Target을 이해하고, Target 환경에서 개발하기 불편하기 때문에 Host에서 개발하고
+Target 환경을 빌드하기 위해 크로스 컴파일를 통해 각 실행 규격에 맞는 실행파일을 만듬
+* 그래서 안드로이드는 에뮬레이터가 있고 iOS는 없는 대신 시뮬레이터가 있음
+* 시뮬레이터와 에뮬레이터의 차이점 이해하기
+* iOS는 어디서 빌드 하냐에 따라서 Shared Object File가 없기 때문에 앱 배포할 때 포함해서 배포해야 함. 앱 번들 파일에다가 넣으면 됨
+* ~.app에 있음
