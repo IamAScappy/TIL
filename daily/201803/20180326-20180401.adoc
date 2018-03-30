@@ -33,3 +33,57 @@
 ===== 할 일
 * [ ] VendingMachineApp 9단계 진행하기
 * [ ] 4월 할 일 정리하기
+
+===== 참고
+* 파이썬 크롤링 
+
+```python
+import requests
+import re
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+urls = {"http://www.apple.com/kr/shop/browse/home/specialdeals/mac"}
+API_TOKEN = '114868148:AAFWClCKFTXCmVLwuFvezsBANDik7rd0Eyo'
+filterStr = {"2017", "13.3", "8GB", "256GB"}
+#filterStr = {"2014", "15.4", "16GB", "512GB"}
+seq = 1
+
+def getSoup(url):
+    return BeautifulSoup(requests.get(url).text, 'lxml')
+
+def getMacbookList(targetUrl):
+    soup = getSoup(targetUrl)
+    refurbList = soup.find("div", attrs={"class":"box refurb-list"}).find_all("td", attrs={"class":"specs"})
+    return refurbList
+
+def isContain(s, f):
+    if(1 > s.count(f)):
+        return False
+
+    return True
+
+def checkMyItem(s):
+    for filStr in filterStr:
+        if False == isContain(s, filStr):
+            return False
+
+    return True
+
+def go(lists):
+    for l in lists:
+        t = l.text.replace(" ", "").strip("\r")
+        if (False == checkMyItem(t)):
+            continue
+
+        print(str(datetime.now()) + "\t" + str(seq).zfill(2) + " found matched : " + str(filterStr))
+        break
+
+print(str(datetime.now()) + "\tStarting lookup...")
+for targetUrl in urls:
+    print(str(datetime.now()) + "\t" + str(seq).zfill(2) + " Lookup " + targetUrl)
+    lists = getMacbookList(targetUrl)
+    go(lists)
+    seq += 1
+print(str(datetime.now()) + "\tdone")
+```
