@@ -31,8 +31,8 @@
 === 2018.03.30
 
 ===== 할 일
-* [ ] VendingMachineApp 9단계 진행하기
-* [ ] 4월 할 일 정리하기
+* [*] VendingMachineApp 9단계 진행하기
+* [*] 4월 할 일 정리하기
 
 ===== 참고
 * 파이썬 크롤링 
@@ -87,3 +87,8 @@ for targetUrl in urls:
     seq += 1
 print(str(datetime.now()) + "\tdone")
 ```
+
+=== 2018.03.31
+
+===== 할 일
+* [*] 두꺼운 IT서적 제본하기
