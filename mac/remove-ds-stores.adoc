@@ -1,0 +1,8 @@
+= .DS_Store 일괄 삭제
+
+===== 정리
+
+[source, shell]
+----
+$ sudo find / -name “.DS_Store” -depth -exec rm {} \;
+----
