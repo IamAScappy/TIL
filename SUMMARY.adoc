@@ -84,6 +84,7 @@
 ** link:ios/imagepicker-delegate.adoc[UIImagePickerController, UIImagePickerControllerDelegate]
 ** link:ios/image-imageview.adoc[UIImage, UIImageView]
 ** link:ios/tabbar-tabbar-controller.adoc[UITabBar, UITabBarController]
+** link:ios/view-controller.adoc[UIViewController]
 ** link:ios/view-controller-container.adoc[View Controller Container]
 ** link:ios/view-life-cycle.adoc[View Life Cycle]
 ** link:ios/view-view-controller.adoc[View, View Controller]
