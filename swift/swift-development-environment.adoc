@@ -113,5 +113,47 @@ image:./image/behaviors.png[]
 
 === Debugging Tip => Static Analysis
 
+===== ASAN(= AddressSanitizer)
+* Swift 컴파일러가 정적 분석을 함. Objective-C는 정적 분석이 힘듬
+* Objective-C 포인트 관리가 잘못되었을 때 어떤 객체가 잘못한 것인지 알려줌
+* Swift에서 C와 연결할 때 사용함
+** 죽은 코드
+** 메모리 누수
+** 널 참조
+** 논리적 오류
+
+=== Debugging Tip => Diagnostics
+
+===== Edit Scheme ... -> Run -> Diagnostics
+* 단축키 => `Command + Shift + ,`
+
+image:./image/diagnostics.png[]
+
+===== Runtime Sanitization
+* Address Sanitizer
+* Thread Sanitizer
+
+===== Memory Management
+* Malloc
+** Enable Scribble
+** Enable Guard Edges
+* Guard Malloc
+* Objective-C -> Zombie Objects
+
+===== Logging
+* Malloc Stack
+* Dyld API Usage
+* Library Loads
+
+=== Debugging Tip => Multi-tap, Multi-window
+
+=== Debugging Tip => LLDB
+* 개인적으로 `po` 보다 `expr` 를 자주 씀:)
+
+image:./image/lldb-framework.png[]
+
+=== Quicklook
+
 === 참고
-* 추가적으로 조사해서 정리가 필요함
+* https://www.slideshare.net/JiandSon/xcode-debugtipskey[Xcode를 활용한 디버깅 팁(OSXDEV)]
+* https://academy.realm.io/kr/posts/swift-tools-xcode-lldb-instrument/[스위프트 개발 환경의 변화]
