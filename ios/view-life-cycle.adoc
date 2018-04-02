@@ -2,7 +2,7 @@
 
 image:./image/view-life-cycle.png[]
 
-image:./image/view-life-cycle-2.png[]
+image:./image/view-life-cycle-2.jpg[]
 
 ===== viewWillAppear
 * Window의 View 계층에 새로운 View가 추가되기 직전
@@ -28,3 +28,6 @@ image:./image/view-life-cycle-2.png[]
 ===== loadView
 * loadView를 직접 호출하면 안됨 => 오버라이드 하지 말라는 뜻이 아님
 * 호출하면 검정색 화면만 뜸. 호출하기 위해서 `super.loadView()` 를 호출해야 함
+
+=== 참고
+* https://rdkw.wordpress.com/2013/02/24/ios-uiviewcontroller-lifecycle/[iOS UIViewController Lifecycle]
