@@ -149,10 +149,14 @@ image:./image/diagnostics.png[]
 
 === Debugging Tip => LLDB
 * 개인적으로 `po` 보다 `expr` 를 자주 씀:)
+* Mac, XCode에서 전체적으로 쓸 수 있는 디버거 도구
 
 image:./image/lldb-framework.png[]
 
 === Quicklook
+
+=== 메모리 디버깅 그래프
+* 사이클이 있는지, 섬이 있는지 메모리 누수 확인이 필요함
 
 === 참고
 * https://www.slideshare.net/JiandSon/xcode-debugtipskey[Xcode를 활용한 디버깅 팁(OSXDEV)]
