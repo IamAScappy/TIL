@@ -1,0 +1,25 @@
+= Test Double
+
+===== Dommy
+* 아무 의미 없는 값을 넘김
+* 더미 값, 더미 객체
+
+===== Fake
+* 실제 동작하는 객체가 아닌 비슷하게 동작한 객체를 만들어서 테스트 함
+
+===== Stub
+* Fake와 비슷하지만 차이가 있음
+
+===== Fake, Stub 차이
+* Fake => 구성하고 있는 것을 거의 동작하게 만듬
+* Stub => 일반적으로 리턴 값을 하드코딩해서 동작하게 함
+
+===== Spy
+* 호출할 때마다 기록함
+* 도구를 사용하기도 함
+
+===== Mock
+* 특정 함수의 동작(또는 동작 여부)를 확인하기 위해 호출함
+
+=== 참고
+* https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da[Test Doubles — Fakes, Mocks and Stubs.]
