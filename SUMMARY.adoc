@@ -28,7 +28,8 @@
 *** link:daily/201803/20180312-20180318.adoc[20180312 - 20180318]
 *** link:daily/201803/20180319-20180325.adoc[20180319 - 20180325]
 *** link:daily/201803/20180326-20180401.adoc[20180326 - 20180401]
-
+** link:daily/201804/README.adoc[2018-04]
+*** link:daily/201804/20180402-20180408.adoc[20180402 - 20180408]
 == WIKI
 
 * link:algorithm/README.adoc[Algorithm]
