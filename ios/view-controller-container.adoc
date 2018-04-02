@@ -2,9 +2,66 @@
 
 === View Controller Container
 
-image:.image/view-controller-container.png[] 
+image:./image/view-controller-container.png[] 
 
-image:.image/view-controller-container-2.png[] 
+image:./image/view-controller-container-2.png[] 
+
+=== Controller 계층 관련 API 
+
+===== 하위 컨트롤러 추가, 삭제
+* _addChildViewController_
+* _removeFromParentViwController_
+
+===== 하위 컨트롤러 접근
+* _var childViewControllers: [UIViewController]_
+
+===== 하위 콜백
+* _willMove_
+* _didMove_
+
+===== Subview 추가
+* 하위 View Controller에서 상위 View를 추가하면 안됨
+
+image:./image/addSubview.png[]
+
+===== VC 계층과 View 계층 추가할 때
+* 부모 컨트롤러에서 _addChildViewController_ 호출
+* 자식 컨트롤러에서 Root View를 컨테이너에 추가함
+* 자식 View에 대해 레이아웃, 크기, 제약 변경
+* 자식 컨트로럴에서 _didMove_ 호출
+
+===== VC 계층과 View 계층 제거할 때
+* 자식 컨트롤러에서 _willMove_ 호출
+* 자식 View에 대한 제약 제거
+* 자식 컨트롤러 Root View를 컨테이너에서 제거함
+* 자식 컨트롤러에서 _removeFromParentViwController_ 호출
+
+===== 자식 컨트롤러 사이 전환
+
+[source, swift]
+----
+self.addChildViewController(note)
+self.transition(from: recipe, to: note, duration: 3, options: .transitionFlipFromRight, animations: nil) { (finished) in 
+    note.didMove(toParentViewController: self)
+}
+----
+
+=== Presented View Controller, Presenting View Controller
+* Presented View Controller => 자신
+* Presenting View Controller => 호출한 주체
+
+image:./image/presented-view-controller.png[]
+
+=== Built-in UIKit View Controller
+* Image Picker
+* Video Editor
+* Document Browser, Previewing
+* iCloude Sharing
+* Shared Activities
+* Printer Picker
+* Word Lookup
+* 이 외에도 여러가지 존재함
+
 
 === 추가 정리
 * 서로 다른 View에서 View만 추가하지 말고
@@ -23,3 +80,7 @@ image:.image/view-controller-container-2.png[]
 * 하나의 Window 위에 여러 개 View가 있을 수 있음
 * UIApplication, UiWindow가 실행되지만 Application에서 이벤트를 받고 Target으로 이동하거나
 * Target에 지정되어 있지 않으면 Responder Chain에 의해 이벤트 처리할 곳을 찾아가거나 First Responder를 설정할 수 있음
+
+=== 참고 
+* https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/ImplementingaContainerViewController.html#//apple_ref/doc/uid/TP40007457-CH11-SW1[Implementing a Container View Controller]
+* https://soulpark.wordpress.com/2012/07/10/ios5-parentviewcontroller-property-changed/[iOS5 parentViewController 프로퍼티 변경점]
