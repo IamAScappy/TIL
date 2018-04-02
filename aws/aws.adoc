@@ -48,7 +48,7 @@
 
 ===== EC2 기본 실습
 
-[source, shell]
+[source, bash]
 ----
 # 400 => 리눅스 접속권한
 $ chmod 400 name.pem      
@@ -67,7 +67,7 @@ $ mv hello.txt hello.js
 
 ===== AWS CLI 설치
 
-[source, shell]
+[source, bash]
 ----
 $ pip install awscli
 ----
@@ -79,7 +79,7 @@ $ pip install awscli
 
 ===== Access Key 및 Secret Key 등록
 
-[source, shell]
+[source, bash]
 ----
 $ aws configure
 $ AWS Access Key ID [****************2TMA]:
@@ -90,7 +90,7 @@ $ Default output format [json]:
 
 ===== 등록 확인
 
-[source, shell]
+[source, bash]
 ----
 $ cat ~/.aws/credentials
 $ cat ~/.aws/config
@@ -98,7 +98,7 @@ $ cat ~/.aws/config
 
 ===== 사용해보기
 
-[source, shell]
+[source, bash]
 ----
 $ aws ec2 describe-instances
 $ aws s3 ls
@@ -106,7 +106,7 @@ $ aws s3 ls
 
 ===== AWS EC2 조회 스크립트
 
-[source, shell]
+[source, bash]
 ----
 $ ec2 describe-instances \
 $ --filters "Name=tag:Name,Values=honux*"
@@ -118,7 +118,7 @@ $ ec2 stop-instances --instance-ids i-1234abcd
 
 ===== EC2 Start, Stop Script
 
-[source, shell]
+[source, bash]
 ----
 #!/bin/bash
 
@@ -152,7 +152,7 @@ fi
 
 ===== 스크립트 
 
-[source, shell]
+[source, bash]
 ----
 #!/bin/bash
 
@@ -206,7 +206,7 @@ if response.status_code != 200:
 ===== EC2 시작 시 알려주기
 * /home/ubuntu/slack.sh
 
-[source, shell]
+[source, bash]
 ----
 #!/bin/bash
 ip=`/usr/bin/curl -s -w '\n' http://169.254.169.254/latest/meta-data/public-ipv4`
@@ -222,12 +222,12 @@ payload="{\"text\": \"`date`: $name $instance $ip started\"}"
 
 * /etc/systemd/system/slack.service
 
-[source, shell]
+[source, bash]
 ----
 $ sudo vi /etc/systemd/system/slack.service
 ----
 
-[source, shell]
+[source, bash]
 ----
 [Unit]
 Description=Slack IP Notification
@@ -243,7 +243,7 @@ ExecStart=/home/ubuntu/script/slack.sh
 WantedBy=multi-user.target
 ----
 
-[source, shell]
+[source, bash]
 ----
 $ sudo systemctl enable slack.service
 $ sudo systemctl status slack
@@ -251,7 +251,7 @@ $ sudo systemctl status slack
 
 ===== 설치시 바로 넣을 수 있는 EC2 User-Data 스크립트
 
-[source, shell]
+[source, bash]
 ----
 #!/bin/bash
 

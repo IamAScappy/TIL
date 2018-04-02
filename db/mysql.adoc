@@ -7,7 +7,7 @@
 
 ===== 최초 접속 후 우분투 패키지 업그레이드 및 한글 설정
 
-[source, shell]
+[source, bash]
 ----
 $ sudo apt-get update
 $ sudo apt-get upgrade
@@ -17,7 +17,7 @@ $ sudo locale-gen ko_KR.UTF-8
 
 ===== 한글 로케일 설정
 
-[source, shell]
+[source, bash]
 ----
 $ locale
 $ sudo -i
@@ -32,7 +32,7 @@ $ locale
 
 ===== MySQL 설치
 
-[source, shell]
+[source, bash]
 ----
 # 중간에 root password를 꼭 넣어줘야 함
 # 클라우드이기 때문에 패스워드 분실할 때 새로 설치하는 것이 빠름 
@@ -44,7 +44,7 @@ mysql> quit
 
 ===== UTF-8 설정
 
-[source, shell]
+[source, bash]
 ----
 # 리눅스는 초기 설정이 latin1으로 되어 있는 경우가 많음
 # 한글을 처리하기 위해 utf8로 설정을 바꾸는 것이 좋음
@@ -80,7 +80,7 @@ mysql> status
 
 ===== 일반 사용자 외부 접속 허용
 
-[source, shell]
+[source, bash]
 ----
 # 주의 => root 사용자는 외부 접속을 허용하면 안됨
 $ sudo -i
@@ -96,7 +96,7 @@ $ exit
 
 ===== 재부팅할 때 자동실행
 
-[source, shell]
+[source, bash]
 ----
 $ sudo reboot
 $ mysql -u root -p 

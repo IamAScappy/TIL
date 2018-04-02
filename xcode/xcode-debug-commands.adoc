@@ -53,7 +53,7 @@
 ** po => 디버그 상태에서 값만 출력함
 ** expr => 디버그 상태에서 코드를 조작할 수 있음
 
-[source, shell]
+[source, bash]
 ----
 (lldb) expr arr
 (__NSArrayM *) $2 = 0x00007fa450477460 @"100 objects"

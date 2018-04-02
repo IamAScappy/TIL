@@ -2,7 +2,7 @@
 
 ===== 정리
 
-[source, shell]
+[source, bash]
 ----
 # 스크린샷 찍은 파일명 변경
 $ defaults write com.apple.screencapture name "자신이저장하고 싶은 스크린샷파일이름" && killall SystemUIServer

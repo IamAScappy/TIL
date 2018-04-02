@@ -217,7 +217,7 @@
 ** Auto-assign Public IP: 반드시 Enable로 선택함
 . 아래쪽 Advanced Details 클릭 후 User Data 입력 주의 => User Data의 내용은 아래 링크에서 붙여넣음
 
-[source, shell]
+[source, bash]
 ----
 #!/bin/sh
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -249,7 +249,7 @@ EOF
 . EC2 인스턴스의 Description 항목에서 IPv4 Public IP 정보를 메모장 등에 기록함
 . 다운받은 pem 파일이 있는 폴더로 이동한 후 아래 명령을 통해 접속을 할 수 있음
 
-[source, shell]
+[source, bash]
 ----
 $ chmod 400 mypemfile.pem
 $ ssh -i mypemfile.pem ec2-user@서버ip
@@ -258,7 +258,7 @@ $ ssh -i mypemfile.pem ec2-user@서버ip
 ===== 인터넷 접속 테스트하기
 * Bash Shell 아래 명령어 입력 후, 아래와 같이 나오면 VPC 및 Public Subnet 설정이 정상적으로 이루어진 것을 확인할 수 있음
 
-[source, shell]
+[source, bash]
 ----
 $ ping ietf.org
 PING ietf.org (4.31.198.44) 56(84) bytes of data.
@@ -268,7 +268,7 @@ PING ietf.org (4.31.198.44) 56(84) bytes of data.
 
 * User data 가 정상적으로 입력되었는지도 확인해봄
 
-[source, shell]
+[source, bash]
 ----
 $ curl -s -w '\n' 169.254.169.254/latest/user-data
 #!/bin/sh
@@ -309,7 +309,7 @@ EOF
 * Private Instance의 경우 Public IP가 따로 없고, Private Subnet도 인터넷과 연결되어 있지 않으므로 직접 접속이 불가능함. NAT를 통해 Private Subnet에 접속해봄
 * 맥 터미널에서 아래의 명령을 입력함
 
-[source, shell]
+[source, bash]
 ----
 $ ssh-add -K mykey.pem
 $ ssh -A -i mykey.pem ec2-user@NAT퍼블릭IP
@@ -317,7 +317,7 @@ $ ssh -A -i mykey.pem ec2-user@NAT퍼블릭IP
 
 * NAT Instance의 Bash에서 아래와 같이 입력함. 접속 후 아래처럼 프롬프트를 통해서 Private Instance임을 확인할 수 있음
 
-[source, shell]
+[source, bash]
 ----
 $ ssh ec2-user@프라이빗인스턴스IP
 [ec2-user@ip-10-100-20-42 ~]$
@@ -326,7 +326,7 @@ $ ssh ec2-user@프라이빗인스턴스IP
 ===== 인터넷 테스트하기
 * Private Instance의 Bash에서 아래처럼 입력해봄. 인터넷이 연결되지 않아서 아무것도 나오지 않음
 
-[source, shell]
+[source, bash]
 ----
 $ ping ietf.org
 PING ietf.org (4.31.198.44) 56(84) bytes of data.
@@ -336,7 +336,7 @@ PING ietf.org (4.31.198.44) 56(84) bytes of data.
 * NAT Instance를 선택하고 Actions - Networking - Change Source/Dest. Check 선택, Disable 을 선택함
 * 다시 ping 명령을 입력 정상적으로 동작하는지 확인함
 
-[source, shell]
+[source, bash]
 ----
 [ec2-user@ip-10-100-20-42 ~]$ ping ietf.org
 PING ietf.org (4.31.198.44) 56(84) bytes of data.

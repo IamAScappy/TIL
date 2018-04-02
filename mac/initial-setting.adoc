@@ -51,7 +51,7 @@
 
 ===== XCode
 
-[source, shell]
+[source, bash]
 ----
 # 확인
 $ gcc
@@ -60,14 +60,14 @@ clang: error: no input files
 
 ===== Homebrew
 
-[source, shell]
+[source, bash]
 ----
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ----
 
 ===== Git
 
-[source, shell]
+[source, bash]
 ----
 # 설치
 $ brew install git git-lfs
@@ -91,7 +91,7 @@ $ git config --global core.quotepath false
 *** `Advanced > Height of top and bottom margins in terminal panes` => 10
 *** `Advanced > Width of left and right margins in terminal panes` => 12
 
-[source, shell]
+[source, bash]
 ----
 # 설치
 $ brew cask install iterm2
@@ -99,7 +99,7 @@ $ brew cask install iterm2
 
 ===== zsh with oh-my-zsh
 
-[source, shell]
+[source, bash]
 ----
 # zsh 설치
 $ brew install zsh zsh-completions
@@ -128,7 +128,7 @@ $ source ~/.zshrc
 
 ===== oh-my-zsh 테마 설정
 
-[source, shell]
+[source, bash]
 ----
 $ brew install nodejs # nodejs가 설치되어 있다면 skip
 $ npm install --global pure-prompt
@@ -152,7 +152,7 @@ $ source ~/.zshrc
 
 ===== vim
 
-[source, shell]
+[source, bash]
 ----
 # 설치
 $ brew install neovim
@@ -177,7 +177,7 @@ $ source ~/.zshrc
 
 ===== vim 테마
 
-[source, shell]
+[source, bash]
 ----
 # ~/.SpaceVim.d/init.vim 아래 설정 추가
 let g:spacevim_colorscheme = 'onedark' 
@@ -190,7 +190,7 @@ let g:spacevim_colorscheme = 'onedark'
 * 증분 검색을 통하여 원하는 파일이나 히스토리를 쉽고 빠르게 찾을 수 있게 해줌 
 * 정확하게 원하는 값을 입력하지 않고 일부만 입력해도 실시간으로 검색 결과를 보여줌
 
-[source, shell]
+[source, bash]
 ----
 $ brew install fzf
 
@@ -214,7 +214,7 @@ $ source ~/.zshrc
 ===== fasd
 * 열어본 파일이나 이동한 디렉토리를 기억하고 우선순위를 정해서 빠르게 검색할 수 있게 도와줌
 
-[source, shell]
+[source, bash]
 ----
 # 설치 
 $ brew install fasd
@@ -244,7 +244,7 @@ $ source ~/.zshrc
 * 하나의 화면에서 창을 여러 개 만들 수 있고 가로 분할, 세로 분할 할 수 있음
 * 사용법은 공부해야 함. https://github.com/gpakosz/.tmux[tmux]
 
-[source, shell]
+[source, bash]
 ----
 $ brew install tmux
 
@@ -284,7 +284,7 @@ set -g mode-keys vi
 * 1번 윈도우는 webpack을 실행하고 2번 윈도우는 rails server를 실행하고 3번 윈도우는 log를 실행하게 설정할 수 있음
 * 사용법 익혀야 함. https://github.com/tmuxinator/tmuxinator[tmuxinator]
 
-[source, shell]
+[source, bash]
 ----
 $ brew install ruby
 $ gem install tmuxinator
@@ -310,7 +310,7 @@ alias mux="tmuxinator"
 
 ===== 왠만하면 brew, brew cask로 프로그램 관리하자!
 
-[source, shell]
+[source, bash]
 ----
 $ brew cask install java
 $ brew cask install visual-studio-code 
@@ -324,7 +324,7 @@ $ brew install jetbrains-toolbox
 * Markdown 플러그인 설치
 * Asciidoc 플러그인 설치
 
-[source, shell]
+[source, bash]
 ----
 # AsciiDoctor가 깔려있어야 함
 $ brew install asciidoctor 

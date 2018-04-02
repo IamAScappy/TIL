@@ -10,7 +10,7 @@ Ultimately the goal is to improve discoverability of, and engagement in, third p
 
 === CocoaPod 설치
 
-[source, shell]
+[source, bash]
 ----
 $ sudo gem install cocoapods
 ----
@@ -20,7 +20,7 @@ $ sudo gem install cocoapods
 ===== SwiftLint를 설치할 수 있는 5가지 방법
 * Homebrew 
 
-[source, shell]
+[source, bash]
 ----
 # 최신버전만 깔림
 $ brew install swiftlint
@@ -29,7 +29,7 @@ $ brew install swiftlint
 * CocoaPod
 * Mint
 
-[source, shell]
+[source, bash]
 ----
 $ mint run realm/SwiftLint
 ----
@@ -39,7 +39,7 @@ $ mint run realm/SwiftLint
 ===== SwiftLint 설치
 * SwiftLint를 적용하려는 프로젝트 경로로 이동함
 
-[source, shell]
+[source, bash]
 ----
 # CocoaPod 설치
 $ pod setup

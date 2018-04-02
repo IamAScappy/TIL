@@ -84,7 +84,7 @@
 
 === 실습에서 사용한 리눅스 명령어
 
-[source, shell]
+[source, bash]
 ----
 # 400 : 리눅스 접속권한
 $ chmod 400 name.pem      

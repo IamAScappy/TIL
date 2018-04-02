@@ -9,7 +9,7 @@
 
 image::../git/image/git-changing-message-1.png[]
 
-[source, shell]
+[source, bash]
 ----
 # amend를 이용해서 메세지를 바꾸면 git commit id도 바뀜
 # 보이지 않지만 커밋내역이 저장소 어딘가에 쌓이고 있음
@@ -23,12 +23,12 @@ image::../git/image/git-changing-message-2.png[]
 
 * 아래에서 두 번째 커밋 메세지를 "1" -> "1111"으로 바꾸고 싶음
 
-[source, shell]
+[source, bash]
 ----
 $ git rebase -i HEAD~3
 ----
 
-[source, shell]
+[source, bash]
 ----
 # edit으로 설정합니다.
 edit 0a8829b 1
@@ -55,7 +55,7 @@ pick f8483fc 33
 # Note that empty commits are commented out
 ----
 
-[source, shell]
+[source, bash]
 ----
 $ git commit --amend 
 
@@ -78,7 +78,7 @@ $ git commit --amend
 # 커밋이 바뀌는 파일
 ----
 
-[source, shell]
+[source, bash]
 ----
 $ git rebase --continue
 
