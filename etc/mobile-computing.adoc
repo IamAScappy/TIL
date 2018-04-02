@@ -17,8 +17,8 @@
 image:./image/mobile-computing.png[]
 
 ===== 앨런 케이
-* http://www.venturesquare.net/47938[앨런 케이]
-* https://namu.wiki/w/PARC[제록스 연구소]
+* `앨런 케이 링크 참고`
+* `제록스 연구소 링크 참고`
 * DynaBook
 
 === IoT
@@ -30,3 +30,7 @@ image:./image/mobile-computing.png[]
 * 불과 50년 전까지 계산사가 존재함
 * 체스나 바둑은 이미 기계가 앞선 시대
 * 패러다임이 바뀌고 있음 => 얘가 맞나? 안 맞나? 의심해봐야 함
+
+=== 참고
+* http://www.venturesquare.net/47938[앨런 케이]
+* https://namu.wiki/w/PARC[제록스 연구소]
