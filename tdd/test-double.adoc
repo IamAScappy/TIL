@@ -1,6 +1,6 @@
 = Test Double
 
-===== Dommy
+===== Dummy
 * 아무 의미 없는 값을 넘김
 * 더미 값, 더미 객체
 
