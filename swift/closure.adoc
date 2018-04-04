@@ -2,6 +2,23 @@
 
 [source, swift]
 ----
+// 함수형 프로그래밍
+// 함수가 1등 시민(First-Class Citizen)
+// 함수를 타입으로 지정하거나
+// 인자값으로 넘기거나
+// 리턴값으로 받을 수 있음
+
+// 함수 
+func squared(n: Int) -> Int { return n * n }
+
+// 클로저
+// 람다계산식 구현체
+// 익명함수로 작성 가능함
+// 선언된 범위의 변수를 캡쳐해서 저장하고 닫힘
+// 스위프트 클로저는 캡쳐한 변수를 Reference
+let closure1: (Int) -> Int = { n in return n * n }
+let closure2 = { (n: INt) -> Int in return n * n } 
+
 var array = ["John", "Tim", "Steve"]
 
 // 기본 클로저
