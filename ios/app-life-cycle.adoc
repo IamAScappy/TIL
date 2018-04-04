@@ -1,0 +1,29 @@
+= App Life Cycle
+
+=== 3가지 실행모드, 5가지 상태
+
+image:./image/excution-status.png[]
+
+=== Launching an app into the foreground 
+
+image:https://wiki.yuaming.com/ios/image/launching-app-into-foreground.png[]
+
+=== Launching an app into the background
+
+image:https://wiki.yuaming.com/ios/image/launching-app-into-background.png[]
+
+=== App interruptions
+
+image:https://wiki.yuaming.com/ios/image/handling-alert-based-interruptions.png[]
+
+=== Background to foreground
+
+image:./image/background-to-foreground.png[]
+
+=== Foreground to background
+
+image:./image/foreground-to-background.png[]
+
+=== Termination
+
+image:./image/termination.png[]
