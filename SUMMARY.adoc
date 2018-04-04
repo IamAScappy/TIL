@@ -172,5 +172,6 @@
 ** link:etc/msa.adoc[MSA]
 ** link:etc/subroutine.adoc[Subroutine]
 ** link:etc/sync-async.adoc[Sync, Async, Blocking, Non-Blocking]
+** link:etc/target-host.adoc[Target, Host]
 ** link:etc/indirection.adoc[간접참조]
 ** link:etc/mobile-computing.adoc[모바일 컴퓨팅]
