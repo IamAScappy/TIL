@@ -1,4 +1,4 @@
-= Storyboard, Scene, Segue 개념
+= Storyboard, Scene, Segue
 
 === Storyboard
 
