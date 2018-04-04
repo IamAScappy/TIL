@@ -25,11 +25,17 @@
 * NSCoding 프로토콜을 이용해야 함
 * NSCoder => 인터페이스를 선언한 추상화한 클래스
 * NSKeyedArchiver, NSKeyedUnarchiver => 실제 구현 클래스
+** 객체 그래프 그대로 저장
+** 상위, 하위 호환성 유지
+** 인코딩, 디코딩 과정에서 대체 가능
+** 객체가 Plist 지원하도록 강제할 필요 없음
 
 ===== 객체 그래프와 아카이브
 * NSCoder가 정확하게 저장하고 복원하기 위해 Root Objects, Conditional Objects 두 가지 개념을 사용함
 * Root Objects => 객체 그래프 시작점
 * Conditional Objects => 객체 그래프에서 반드시 아카이브하지 않아도 되는 참조 객체. 소유권이 명확해서 다시 인코딩할 필요가 없는 객체
+
+image:./image/object-graph.png[]
 
 ===== NSCoding
 
@@ -120,6 +126,10 @@ func retrieveProducts() -> [Product]? {
     }
 }
 ----
+
+=== Persistence 
+
+image:./image/persistence.png[]
 
 === 참고
 * Cocoa Internals
