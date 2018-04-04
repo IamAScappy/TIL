@@ -1,0 +1,31 @@
+= @UIApplicationMain
+
+[source, swift]
+----
+// @UIApplicationMain 
+// UI Main을 만들어주는 함수
+
+// var window: UIWindow? 를 지우면 화면이 뜨지 않음. 그러나 컴파일 에러가 나지 않음
+// => AppDelegate가 참조만 하고 있을 뿐 실제로 지워지지 않음. Application이 가지고 있기 Window 배열을 가지고 있음
+
+// UIKit에 있는 init 잘 사용해야 함 
+// ViewController.init()을 직접 부를 일이 거의 없음
+
+// Storyboard를 빼는 부분도 있음
+
+// main.swift
+let argc = CommandLine.argc
+let argv = UnsafeMutableRawPointer(CommandLine.unsafeArgv).bindMemory(to: UnsafeMutablePointer<Int8>.self, capacity: Int(CommandLine.argc))
+UIApplicationMain(argc, argv, nil, NSStringFromClass(AppDelegate.self))
+
+// AppDelegate.swift
+self.window = UIWindow(frame: UIScreen.main.bounds)
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
+let viewController = storyboard.instantiateViewControllerWithIdentifier("ViewController") as ViewController
+self.window.rootViewController = viewController
+self.window.makeKeyAndVisible()
+----
+
+=== 참고
+* https://stackoverflow.com/questions/27093157/why-window-is-nil-in-appdelegate[Why window is nil in AppDelegate?]
+* https://stackoverflow.com/questions/24516250/what-does-uiapplicationmain-mean[What does “@UIApplicationMain” mean?]
