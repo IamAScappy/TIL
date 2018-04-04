@@ -94,7 +94,6 @@
 ** link:ios/archives-serialization.adoc[아키이빙과 직렬화]
 * link:java/README.adoc[Java]
 ** link:java/java-8-lambda.adoc[Java8: 람다표현식]
-* link:links/README.adoc[Links]
 * link:mac/README.adoc[MacOS]
 ** link:mac/remove-ds-stores.adoc[.DS_Store 일괄 삭제]
 ** link:mac/initial-setting.adoc[Mac 초기화 후 세팅하기]
