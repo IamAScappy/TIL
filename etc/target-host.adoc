@@ -33,7 +33,7 @@ image:./image/compile.png[]
 * 그렇기 때문에 시뮬레이터는 빠르지만 에뮬레이터는 느림
 
 ===== 실습
-* 코드
+* `target-host-example 링크 참고`
 
 [source, bash]
 ----
@@ -70,6 +70,7 @@ $ gcc -o sum sum.o main.o
 ----
 
 * 결과물 
+
 ----
 // main.c
         .arch armv6
@@ -149,6 +150,8 @@ image:./image/java-compile.png[]
 ** 포인터 변수 => CPU가 사용하는 비트
 ** Heap => 인스턴스의 크기
 
+image:./image/stack-variable-heap-object.png[]
+
 === CPU
 * Memory => 명령어 한줄씩 복사함
 ** 명령어 한줄씩 실행하는데 4클락이 필요함
@@ -171,7 +174,5 @@ image:./image/java-compile.png[]
 * -.app에 있음
 
 
-
-
-
-image:./image/stack-variable-heap-object.png[]
+=== 참고 
+* https://github.com/yuaming/wiki/tree/master/etc/target-host-example[Target, Host Example]
