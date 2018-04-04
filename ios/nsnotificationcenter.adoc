@@ -4,11 +4,15 @@
 
 image:./image/nsnotification.png[]
 
+image:./image/notification-2.png[]
+
+image:./image/notification-3.png[]
+
 === Adding and Removing Notification Observers
 
 ===== addObserver
-* func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?)
-* func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol
+* `func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?)`
+* `func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol`
 * `NSNotificationCenter 링크 참고`
 
 ===== @objc?
@@ -16,8 +20,8 @@ image:./image/nsnotification.png[]
 * `Using Swift with Cocoa and Objective-C > Configuring Swift Interfaces in Objective-C 링크 참고`
 
 ===== removeObserver
-* func removeObserver(_ observer: Any)
-* func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)
+* `func removeObserver(_ observer: Any)`
+* `func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)`
 * `NSNotificationCenter 링크 참고` 
 
 ===== Objective-C에서 dealloc 에서 removeObserver 를 사용하는데, Swift는 어디에서 사용하는가 ?
