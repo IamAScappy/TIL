@@ -38,7 +38,7 @@ image:./image/mvc-1.png[]
 * Notification
 ** Observer Pattern
 
-image:./image/notification.png[]
+image:https://wiki.yuaming.com/ios/image/nsnotification.png[]
 
 * Delegation
 ** 사용자가 Return 키를 누르면 _UITextField가 UITextFieldDelegate에게 끝내도 되는건지 질문하고 UITextFieldDelegate가 답변을 줌_
