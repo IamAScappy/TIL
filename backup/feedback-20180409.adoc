@@ -1,0 +1,17 @@
+* [Pipe Operator](https://gist.github.com/godrm/7f5b8d024e866ab8aa6ef152da693862)
+
+```swift
+public func filter<S: Sequence, F>(_ seq: S, _ function: (S.Element) -> Bool) -> [S.Element] {
+    return seq.filter(function)
+}
+
+let increment: (Int) -> Int = { value in value + 10 }
+var result1 = 5 |> increment |> increment |> increment
+// increment(increment(increment(5)))
+
+let isEven: (Int) -> Bool = { $0 % 2 == 0 }
+var result2 = [1, 2, 3, 4, 5] |> (filter, isEven)
+
+// filter([1, 2, 3, 4, 5]. isEven)
+// [1, 2, 3, 4, 5].filter(isEven)
+```
