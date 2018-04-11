@@ -4,5 +4,5 @@
 
 [source, bash]
 ----
-$ sudo find / -name “.DS_Store” -depth -exec rm {} \;
+$ sudo find / -name .DS_Store -print -delete
 ----
