@@ -6,13 +6,13 @@
 
 == DAILY
 
-* link:daily/README.adoc[2017]
+* link:daily/2017/README.adoc[2017]
 ** link:daily/201712/README.adoc[2017-12]
 *** link:daily/201712/20171204-20171210.adoc[20171204 - 20171210]
 *** link:daily/201712/20171211-20171217.adoc[20171211 - 20171217]
 *** link:daily/201712/20171218-20171224.adoc[20171218 - 20171224]
 *** link:daily/201712/20171225-20171231.adoc[20171225 - 20171231]
-* link:daily/README.adoc[2018]
+* link:daily/2018/README.adoc[2018]
 ** link:daily/201801/README.adoc[2018-01]
 *** link:daily/201801/20180101-20180107.adoc[20180101 - 20180107]
 *** link:daily/201801/20180108-20180114.adoc[20180108 - 20180114]
