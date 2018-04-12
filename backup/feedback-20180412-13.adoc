@@ -58,6 +58,7 @@
 
 [source, java]
 ----
+// 리팩토링 되기 전
 public class List {
 	private Object[] elements = new Object[10];
 	private boolean readOnly;
@@ -146,3 +147,556 @@ public class ListTest {
 	}
 }
 ----
+
+===== TDD가 쉽잖아. 하지만 잘 안됨
+* Backward byicycle 
+** 뇌 회로가 빨리 형성이 되어야 함. 일반적으로 한달 정도 걸림
+** 어른은 시간이 걸리지만 어린이는 빠름
+* TDD도 말처럼 쉽지만, 습관이 되기 위해서 최소 핟날이 걸림
+* 이틀 들어서 TDD가 되지 않음. 결국 수련이 필요함
+* 변화하고 싶으면 뇌 회로가 생겨야 함
+
+====== 마틴파울러 리팩토링 1장
+* 코드 스멜을 찾는 방법
+* 단위 테스트를 작성하는 방법
+* 레거시 코드를 리팩토링을 하는 방법
+* 툴을 이용한 리랙토링 자동화를 사용하는 방법
+* 클린 코드를 작성하는 방법
+** Eclipse => eclEmma Java Code Coverage 2.3.2
+
+===== 리팩토링 전제 조건
+* 외부 동작을 바꾸지 않으면서 내부 구조를 개선하는 것
+* 코드를 변경했을 때, 외부 동작이 바뀌지 않았다는 것을 증명해야 함
+* 소프트웨어 요구사항이 들어오면 내가 해야할 일을 다른 사람에게 넘겼을 때 발생함
+
+===== 레거시 코드 단위 테스트 작성하기
+* 생성자 테스트 작성하기
+* 테스트 커버리지를 측정함
+* 테스트 되지 않은 코드를 커버할 수 있는 새로운 테스트를 작성함(= Characterization Test)
+* 테스트 커버리지가 100%에 가까워질 때까지 테스트 코드를 작성함
+* Characterization Test
+** 코드를 이해하고 짜는 것이 아니라 레거시 코드에 대한 테스트를 작성하면서 레거시 코드를 이해함
+* IntelliJ => cmd + shift + t
+
+===== 생성자 테스트 작성하기
+* 목적 : 객체 생성 비용을 파악함
+* JUnit test Class를 생성함
+* 테스트 메서드 이름을 testCreate 라고 함
+* Customer 클래스의 객체를 생성함
+* 테스트함
+** ctrl + space => 자동완성
+** ctrl + shift + r => 테스트 실행
+** 인텔리제이 커버리지 확인 => Run function name with Coverage
+** org.junit.ComparisonFailure:  <Click to see difference>
+** addRental 할 때 그때서야 분석이 필요함
+** 라인 커버리지도 존재하며, 브랜치 커버리지도 존재함. 각각 상황에 대한 커버리지가 존재함
+** eclEmma Java Code Coverage 2.3.2는 Complexity 커버리지를 확인할 수 있음. Complexity 커버리지를 보는 것이 좋음
+** 입력 데이터를 만드려고 하는 것이 아니라 null도 넣어보고 다양한 형태로 하면 됨:)
+** 테스트 케이스 5줄 이내 작성하는 것이 좋음
+** 매개변수로 인라인 작성보다 새로운 변수로 만들고 테스트 케이스 작성하는 것이 좋음
+** IntelliJ Tip 
+*** Color Scheme > General > Line Coverage > Foreground 같은 색깔로 Background 설정하고 Foreground 선택 해제
+** JUnit에서 전역변수로 사용할 때 테스트 값을 공유하는 것인가 ? 개별적으로 인스턴스를 만드는가 ?
+*** @Before setUp(), @After tearDown()
+** 코드 중복을 없애야 함. 추상화를 해야 함 => 메서드 이름이 필요함 => 이름을 짓는 순간 추상화를 하는 것임
+** 테스트 코드도 제품 코드에 의존적일 수 밖에 없음. 최대한 중복을 피하고 한 곳에서만 수정할 수 있게 테스트코드도 리팩토링이 필요함
+** 중요한 것을 앞으로 뺌
+** 실무에서 연습할 때 혼자서 연습할 때....
+*** CodeKata
+*** 같은 스탭을 여러 번 익혀봄
+** Validation은 경계값에서 해야 함. 그래서 테스트는 비지니스 로직만 남겨두는 것이 거의 좋음
+*** Complexity Coverages 100%를 가져가야 함
+*** 그러나, 세상에 정답이 있는 문제는 많지 않음
+*** 커뮤니케이션이 되지 않아서 백단에서도 제품 로직에 단순한 유효성 검사가 들어간다면 그거에 대한 테스트 코드가 필요함
+*** Loop가 있다면 적어도 2번 이상은 돌려서 누적되는 값을 확인해야 함
+
+[source, java]
+----
+// Before
+public class CustomerTest {
+    public static final String TITLE = "비디오";
+    public static final int TWO_DAYS = 2;
+    public static final int THREE_DAYS = 3;
+
+    // 이름을 중요하지 않음
+    String name= "NAME_NOT_IMPORTANT";
+    Customer customer = new Customer(name);
+    public static final int REGULAR = 0;
+    public static final int NEW_RELEASE = 1;
+    public static final int CHILDRENS = 2;
+
+    @Before
+    public void setUp() {
+        System.out.println("setUp Object: " + this);
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("tearDown Object: " + this);
+    }
+
+    @Test
+    public void test_객체_생성() {
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "Amount owed is 0.0\n" +
+                "You earned 0 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_regular_2일초과() {
+        String statement = createRentalFor(TWO_DAYS, REGULAR);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t2.0(비디오)\n" +
+                "Amount owed is 2.0\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_regular_3일초과() {
+        String statement = createRentalFor(THREE_DAYS, REGULAR);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t3.5(비디오)\n" +
+                "Amount owed is 3.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_newRelease_3일초과() {
+        String statement = createRentalFor(THREE_DAYS, NEW_RELEASE);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t9.0(비디오)\n" +
+                "Amount owed is 9.0\n" +
+                "You earned 2 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_newRelease_2일초과() {
+        String statement = createRentalFor(TWO_DAYS, NEW_RELEASE);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t6.0(비디오)\n" +
+                "Amount owed is 6.0\n" +
+                "You earned 2 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_3일초과() {
+        String statement = createRentalFor(THREE_DAYS, CHILDRENS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t1.5(비디오)\n" +
+                "Amount owed is 1.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_2일초과() {
+        String statement = createRentalFor(TWO_DAYS, CHILDRENS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t1.5(비디오)\n" +
+                "Amount owed is 1.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    private String createRentalFor(int daysRented, int priceCode) {
+        Movie movie = new Movie(TITLE, priceCode);
+        Rental rental = new Rental(movie, daysRented);
+        customer.addRental(rental);
+
+        return customer.statement();
+    }
+}
+
+// After
+public class CustomerTest {
+    public static final int ONE_DAY = 1;
+    public static final int TWO_DAYS = 2;
+    public static final int THREE_DAYS = 3;
+    public static final int FOUR_DAYS = 4;
+
+    // 이름을 중요하지 않음
+    String name= "NAME_NOT_IMPORTANT";
+    Customer customer = new Customer(name);
+
+    @Before
+    public void setUp() {
+        System.out.println("setUp Object: " + this);
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("tearDown Object: " + this);
+    }
+
+    @Test
+    public void test_객체_생성() {
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "Amount owed is 0.0\n" +
+                "You earned 0 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_regular_2일초과() {
+        String statement = createRegularRentalFor(TWO_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t2.0(비디오)\n" +
+                "Amount owed is 2.0\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_regular_3일초과() {
+        String statement = createRegularRentalFor(THREE_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t3.5(비디오)\n" +
+                "Amount owed is 3.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_newRelease_2일초과() {
+        String statement = createNewReleaseRentalFor(TWO_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t6.0(비디오)\n" +
+                "Amount owed is 6.0\n" +
+                "You earned 2 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_newRelease_3일초과() {
+        String statement = createNewReleaseRentalFor(THREE_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t9.0(비디오)\n" +
+                "Amount owed is 9.0\n" +
+                "You earned 2 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_2일미만() {
+        String statement = createChildrensRentalFor(ONE_DAY);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t1.5(비디오)\n" +
+                "Amount owed is 1.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_2일초과() {
+        String statement = createChildrensRentalFor(TWO_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t1.5(비디오)\n" +
+                "Amount owed is 1.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_3일초과() {
+        String statement = createChildrensRentalFor(THREE_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t1.5(비디오)\n" +
+                "Amount owed is 1.5\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statement_childrens_4일초과() {
+        String statement = createChildrensRentalFor(FOUR_DAYS);
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t3.0(비디오)\n" +
+                "Amount owed is 3.0\n" +
+                "You earned 1 frequent renter pointers", statement);
+    }
+
+    @Test
+    public void statementFor_() {
+        customer.addRental(createRental(Movie.NEW_RELEASE, FOUR_DAYS));
+        customer.addRental(createRental(Movie.NEW_RELEASE,THREE_DAYS));
+        customer.addRental(createRental(Movie.REGULAR, FOUR_DAYS));
+        customer.addRental(createRental(Movie.CHILDRENS, TWO_DAYS));
+
+        assertEquals("Rental Record for NAME_NOT_IMPORTANT\n" +
+                "\t12.0(비디오)\n" +
+                "\t9.0(비디오)\n" +
+                "\t5.0(비디오)\n" +
+                "\t1.0(비디오)\n" +
+                "Amount owed is 27.0\n" +
+                "You earned 6 frequent renter pointers", customer.statement());
+    }
+
+
+    private String createRegularRentalFor(int daysRented) {
+        int priceCode = Movie.REGULAR;
+        return createRentalFor(priceCode, daysRented);
+    }
+
+    private String createNewReleaseRentalFor(int daysRented) {
+        int priceCode = Movie.NEW_RELEASE;
+        return createRentalFor(priceCode, daysRented);
+    }
+
+    private String createChildrensRentalFor(int daysRented) {
+        int priceCode = Movie.CHILDRENS;
+        return createRentalFor(priceCode, daysRented);
+    }
+
+    private String createRentalFor(int priceCode, int daysRented) {
+        String title = "비디오";
+        Movie movie = new Movie(title, priceCode);
+        Rental rental = new Rental(movie, daysRented);
+        customer.addRental(rental);
+        return customer.statement();
+    }
+
+    private Rental createRental(int priceCode, int daysRented) {
+        String title = "비디오";
+        Movie movie = new Movie(title, priceCode);
+        Rental rental = new Rental(movie, daysRented);
+        return rental;
+    }
+}
+----
+
+===== High Cohesion, Low Coupling
+* 응집도가 높아야 함
+** 응집도는 왜 클래스에 있어야 하나 ?
+** Customer f1, f2 메서드와 m1, m2 필드가 존재할 때 
+** f1 - m1, f2 - m2 만 사용한다면 서로 다른 것이기 때문에 분리가 필요함
+** f1 - m1, f2 - m2, f1 - m2, f2 - m1을 사용한다면 응집도가 높기 때문에 그 클래스가 하는 역할이 맞음
+** 자기 것을 쓰는 것이 좋음
+* 복잡도가 낮아야 함
+** 복잡도 종류가 많음
+** 입력 타입이나 반환 타입이 바뀌는 경우 툴이 자동적으로 해주지 않음
+** 너도 알고 나도 알면 좋지만 싸이클 의존성이 생기면 좋지 않음:)
+* 그렇게 가야 하는 근거가 중요함!
+
+[source, java]
+----
+// before
+// Rental
+// * Rental에서 Movie로 옮길 때 Rental이 매개변수로 넘어감
+double amountFor() {
+    int thisAmount = 0;
+
+    switch (getMovie().getPriceCode()) {
+    case Movie.REGULAR:
+        thisAmount += 2;
+        if (getDaysRented() > 2)
+            thisAmount += (getDaysRented() - 2) * 1.5;
+        break;
+
+    case Movie.NEW_RELEASE:
+        thisAmount += getDaysRented() * 3;
+        break;
+
+    case Movie.CHILDRENS:
+        thisAmount += 1.5;
+        if (getDaysRented() > 3)
+            thisAmount += (getDaysRented() - 3) * 1.5;
+        break;
+    }
+    return thisAmount;
+}
+
+// after
+// Movie
+// * Rental 매개변수가 없어짐
+double amountFor(int daysRented) {
+    double thisAmount = 0;
+
+    switch (getPriceCode()) {
+        case REGULAR:
+            thisAmount += 2;
+            if (daysRented > 2)
+                thisAmount += (daysRented - 2) * 1.5;
+            break;
+
+        case NEW_RELEASE:
+            thisAmount += daysRented * 3;
+            break;
+
+        case CHILDRENS:
+            thisAmount += 1.5;
+            if (daysRented > 3)
+                thisAmount += (daysRented - 3) * 1.5;
+            break;
+    }
+
+    return thisAmount;
+}
+
+// Rental 
+double amountFor() {
+    int daysRented = getDaysRented();
+    return movie.amountFor(daysRented);
+}
+----
+
+* 단일 책임의 원칙
+
+[source, java]
+----
+// before
+// Rental
+for(Rental rental : rentals) {
+    double thisAmount = rental.amountFor();
+
+    // add bonus for a two day new release rental
+    if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
+        frequentRenterPoints++;
+    // show figures
+    result += "\t" +  String.valueOf(thisAmount) + "(" + rental.getMovie().getTitle() + ")" + "\n";			// add frequent renter points
+
+    frequentRenterPoints++;
+    
+    totalAmount += thisAmount;
+}
+
+// after
+// Customer
+for(Rental rental : rentals) {
+    double thisAmount = rental.amountFor();
+    frequentRenterPoints += rental.getFrequentRenterPoints();
+
+    result += "\t" +  String.valueOf(thisAmount) + "(" + rental.getMovie().getTitle() + ")" + "\n";
+
+    totalAmount += thisAmount;
+}
+
+// Rental
+// #1.
+// Rental 기준에서 movie 속성이나 메서드를 2개를 사용함. 자신의 것은 1개를 사용함. 그렇기 때문에 movie로 옮기는 것이 좋음
+int getFrequentRenterPoints() {
+    int frequentRenterPoints = 1;
+    int daysRented = getDaysRented();
+    
+    if ((movie.getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
+        frequentRenterPoints++;
+
+    return frequentRenterPoints;
+}
+
+// #2.
+// 수정된 버전
+public int getFrequentRenterPoints() {
+    int daysRented = getDaysRented();
+    return movie.getFrequenRenterPoints(daysRented);
+}
+
+// Movie
+public int getFrequenRenterPoints(int daysRented) {
+    int frequentRenterPoints = 1;
+
+    if ((getPriceCode() == NEW_RELEASE) && daysRented > 1)
+        frequentRenterPoints++;
+
+    return frequentRenterPoints;
+}
+----
+
+* 마틴 파울러 책에서 나오는 이야기임 -> for loop 3번 도는 것. 성능 이슈가 있지 않나 ?
+** 성능 기준으로 포커싱을 맞추면 코드가 나빠짐
+** 요즘 시대 멀티 코어
+** 일반적으로 성능은 나중에 고려함. 역할을 나누는 것이 중요함
+
+[source, java]
+----
+// before
+// 성능 차이가 많이 나지 않음
+// #1
+for(Rental rental : rentals) {
+    frequentRenterPoints += rental.getFrequentRenterPoints();
+
+    result += "\t" +  String.valueOf(rental.amountFor()) + "(" + rental.getMovie().getTitle() + ")" + "\n";
+
+    totalAmount += rental.amountFor();
+}
+
+// #2 
+for(Rental rental : rentals) {
+    frequentRenterPoints += rental.getFrequentRenterPoints();
+}
+
+for(Rental rental : rentals) {
+    result += "\t" + String.valueOf(rental.amountFor()) + "(" + rental.getMovie().getTitle() + ")" + "\n";
+}
+
+for(Rental rental : rentals) {
+    totalAmount += rental.amountFor();
+}
+----
+
+[source, java]
+----
+public String statement() {
+    String result = statementHeader() + showFigures() + statementTail();
+    return result;
+}
+
+private String statementTail() {
+    String result = "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
+    result += "You earned " + String.valueOf(getFrequentRenterPoints()) + " frequent renter pointers";
+    return result;
+}
+
+private String showFigures() {
+    String result = "";
+
+    for(Rental rental : rentals) {
+        result += "\t" + String.valueOf(rental.amountFor()) + "(" + rental.getMovie().getTitle() + ")" + "\n";
+    }
+
+    return result;
+}
+
+private String statementHeader() {
+    return "Rental Record for " + getName() + "\n";
+}
+
+private double getTotalAmount() {
+    double totalAmount = 0;
+
+    for(Rental rental : rentals) {
+        totalAmount += rental.amountFor();
+    }
+
+    return totalAmount;
+}
+
+private int getFrequentRenterPoints() {
+    int frequentRenterPoints = 0;
+
+    for(Rental rental : rentals) {
+        frequentRenterPoints += rental.getFrequentRenterPoints();
+    }
+
+    return frequentRenterPoints;
+}
+----
+
+===== 오래 기억하고 싶은 것은 ? 반복적으로 끄집어내는 것이 좋음. 책을 여러 번 읽는 것보다 셀프 테스트를 하는 것이 더 좋음
+
+===== Statement 대신 HTML를 어떻게 꺼내올 것인가?
+* Customer에 있는 Statement 를 다 제거해야 함. Customer는 Statement를 알 수 없음
+* List보다 iterable을 사용하는 것이 좋음
+
+===== ATDD
+* TDD, BDD, Step by Egen
+* 요구사항 파악(인수조건) -> 인수테스트 케이스 만듬 -> 인수테스트 케이스 개수만큼 자동화함 -> 개발팀은 빨간불이 켜진 것을 초록색으로 만드는 것이 중요함. 하나의 케이스에 대해 TDD로 작성함 -> 자동화로 넘어와서 다른 클래스 작성함
+* Outside-inside approch
+* Inside-outside approch
