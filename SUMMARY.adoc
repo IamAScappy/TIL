@@ -82,6 +82,7 @@
 ** link:ios/nsnotificationcenter.adoc[NSNotificationCenter]
 ** link:ios/observer-pattern.adoc[Observer Pattern]
 ** link:ios/responder-object.adoc[Responder Object]
+** link:ios/singleton.adoc[Singleton Pattern]
 ** link:ios/storyboard-nib-code-difference.adoc[Storyboard, Nib(Xib), Custom Code로 만드는 것에 대한 차이점]
 ** link:ios/storyboard-scene-segue.adoc[Storyboard, Scene, Segue]
 ** link:ios/touch-event.adoc[Touch Event]

@@ -1,0 +1,68 @@
+= Singleton Pattern
+
+=== 설명
+* 싱글톤 패턴은 전역적으로 접근할 수 있는 객체 인스턴스. 인스턴스가 하나만 있는 객체이기 때문에 공유 인스턴스라고 함
+* 프로그램 종료시까지 항상 메모리에 있기 때문에 잘 사용해야 효율적으로 메모리를 관리할 수 있음
+* iOS에서도 싱글톤 패턴은 자주 사용함
+** UIApplication.sharedApplication()
+** NSUserDefaults.standardUserDefaults()
+** NSFileManager.defaultManager()
+* 전역 변수
+* Static Property, Private Initializer
+** Static property가 다른 객체에서 싱글톤 객체를 접근할 수 있게 해줌
+** lazy 키워드가 필요하지 않음. Static property와 전역 변수는 이미 lazy 처리할 수 있도록 되어있음
+
+=== 싱글톤 패턴을 피해야 하는 경우
+* 전역으로 선언된 가변 객체
+* `Avoiding singletons in Swift 링크 참고`
+
+=== 구현 
+
+[source, swift]
+----
+/*
+ * How to create a singleton pattern ?
+ */
+// #1. Global Variables
+class Singleton01 {
+    static let sharedInstance = Singleton01()
+}
+
+class Singleton02 {
+    static let sharedInstance: Singleton02 = {
+        let instance = Singleton02()
+        return instance
+    }()
+}
+
+// #2. Static Property and Private Initializer
+class Singleton03 {
+    static let sharedInstance = Singleton03()
+    
+    private init() {}
+}
+
+class Singleton04 {
+    private static var sharedInstance: Singleton04 = {
+        let instance = Singleton04("Singleton")
+        
+        // Configure
+        // ..
+        
+        return instance
+    }()
+    
+    private let parameter: String
+    
+    private init(_ parameter: String) {
+        self.parameter = parameter
+    }
+    
+    class func share() -> Singleton04 {
+        return sharedInstance
+    }
+}
+----
+
+=== 참고 
+* https://medium.com/@johnsundell/avoiding-singletons-in-swift-5b8412153f9b[Avoiding singletons in Swift]
