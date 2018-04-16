@@ -17,6 +17,10 @@
 * 신기술을 쫓는 메뚜기가 되지 말 것
 * *모든 것을 다 해야한다는 강박관념을 버릴 것*
 
+=== History
+
+image:https://ghchart.rshah.org/yuaming[]
+
 === Links 
 * miennes3@gmail.com
 * https://github.com/yuaming[Github]
