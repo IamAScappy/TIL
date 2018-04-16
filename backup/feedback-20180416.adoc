@@ -22,6 +22,7 @@
 * Content Hugging, Compression Resistance 안 쓴다는 생각을 버려라!
 * translatesAutoresizingMaskIntoConstraints 아니면 Auto Layout
 * Visual Format Language 사용함
+* 제약을 적용 하기 위해서 두 객체의 x, y 좌표를 알아야 함
 
 === ReactorKit
 * https://www.youtube.com/watch?v=ASwBnMJNUK4&t=1439s[ReactorKit]
