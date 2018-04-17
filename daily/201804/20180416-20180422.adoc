@@ -3,9 +3,29 @@
 === 2018.04.16
 
 ===== 할 일
-* [*] 주소록앱 1-2단계 진행하기
+* [*] 주소록 앱 1-2단계 진행하기
 * [*] 뮤직 플레이어 앱 프로젝트 진행하기
 
 ===== 느낀 점
 * 잘못 알고 있던 디자인 패턴, 구현 패턴 / 각 플랫폼에서 돌아가는 MVC, MVVM, MVP에 대한 오개념을 잡음
 * TDD를 하기 위해 단위테스트 의식적으로 작성하는 것도 까먹지 말자:)
+* XCode 단축키 몇 가지
+** `Command + Shift + , > Test > Into > Gether Coverage Data`
+** `Report Navigator에서 Test 클릭하면 Coverage 확인 가능함`
+** _Command + U_ => 테스트 빌드
+** _Command + Shift + U_ => 해당 테스트 실행
+** _Command + Ctrl+ Shift + U_ => 클릭한 함수 테스트만 실행함
+* IntelliJ 단축키 몇 가지
+** _Command + Option + blabla_ => Refactor 관련 단축키
+** _Option + Enter_
+** _Ctrl + T_
+** _Ctrl + Shift + R_ => 테스트 실행
+** _Ctrl + Space_ => 자동완성
+
+=== 2018.04.17
+
+===== 할 일 
+* [ ] 주소록 앱 2단계 피드백 반영하기
+** [ ] 주소록 앱 Model, View Controller 역할 분리
+* [ ] 주소록 앱 3단계 진행하기
+* [ ] 뮤직 플레이어 앱(토이 프로젝트) 재생화면 만들기
