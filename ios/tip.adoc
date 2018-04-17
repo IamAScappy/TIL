@@ -1,0 +1,32 @@
+= TIp
+
+=== Runtime Header
+
+===== 설명
+* `UIViewController.h, UIStoryboard.h, UIController.h 등` 구글에서 검색함
+* Objective-C는 런타임 언어이기 때문에 private으로 선언하더라도 실제로 private으로 동작하지 않음
+* Swift에서 꼼수로 사용 가능. 왜냐하면, Key-Value 형태이기 때문임
+
+===== 예제
+
+[source, swift]
+----
+func testJoinButton_push() {
+    // given
+    let storybaord = UIStoryboard(name: "Main", bundle: nil)
+    let navigationController = storybaord.instantiateInitialViewController() as! UINavigationController
+    let viewController = navigationController.topViewController as! LoginViewController
+    UIApplication.shared.keyWindow?.rootViewController = navigationController
+    _ = viewController.view
+    
+    let templates = viewController.value(forKey: "storyboardSegueTemplates") as? [AnyObject]
+    let template = templates?.first as AnyObject
+    
+    let targetActions = viewController.joinButton.value(forKey: "_targetActions") as? [AnyObject]
+    let buttonTarget = targetActions?.first?.value(forKey: "_target") as AnyObject
+    
+    XCTAssert(template === buttonTarget)
+
+    // ...
+}
+----

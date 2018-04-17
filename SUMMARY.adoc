@@ -85,6 +85,7 @@
 ** link:ios/singleton.adoc[Singleton Pattern]
 ** link:ios/storyboard-nib-code-difference.adoc[Storyboard, Nib(Xib), Custom Code로 만드는 것에 대한 차이점]
 ** link:ios/storyboard-scene-segue.adoc[Storyboard, Scene, Segue]
+** link:ios/tip.adoc[iOS Tip]
 ** link:ios/touch-event.adoc[Touch Event]
 ** link:ios/imagepicker-delegate.adoc[UIImagePickerController, UIImagePickerControllerDelegate]
 ** link:ios/image-imageview.adoc[UIImage, UIImageView]
