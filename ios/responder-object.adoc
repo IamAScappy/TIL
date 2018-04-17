@@ -25,6 +25,3 @@ image:./image/iOS_and_OSX_responder_chain.png[]
 * _The path of an event._ The general path of an event up the responder chain starts with a view—the first responder or the view under the mouse pointer or finger. From there, it proceeds up the view hierarchy to the window object and then to the global app object. However, the responder chain for events in iOS adds a variation to this path: If a view is managed by a view controller and if the view cannot handle an event, the view controller becomes the next responder.
 
 * _The path of an action message._ For action messages, both OS X and iOS extend the responder chain to other objects. In OS X, the responder chain for action messages differs for an app based on the document architecture, an app that uses window controllers (NSWindowController), and an app that fits neither of those categories. Additionally, if an app on OS X has both a key window and a main window, the responder chain along which an action message travels might involve the view hierarchies of both windows.
-
-===== Prerequisite Articles
-* https://developer.apple.com/library/content/documentation/General/Conceptual/Devpedia-CocoaApp/View%20Hierarchy.html#//apple_ref/doc/uid/TP40009071-CH2-SW1[View hierarchy]

@@ -14,16 +14,6 @@
 ===== Data Source
 * A data source is almost identical to a delegate. The difference is in the relationship with the delegating object. Instead of being delegated control of the user interface, a data source is delegated control of data. The delegating object, typically a view object such as a table view, holds a reference to its data source and occasionally asks it for the data it should display. A data source, like a delegate, must adopt a protocol and implement at minimum the required methods of that protocol. Data sources are responsible for managing the memory of the model objects they give to the delegating view.
 
-
-===== Prerequisite Articles
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/ClassDefinition.html#//apple_ref/doc/uid/TP40008195-CH6-SW1[Class definition]
-
-===== Related Articles
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Notification.html#//apple_ref/doc/uid/TP40008195-CH35-SW1[Notification]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW1[Protocol]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/ControllerObject.html#//apple_ref/doc/uid/TP40008195-CH11-SW1[Controller Objects]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html#//apple_ref/doc/uid/TP40010810-CH11[Delegates and Data Sources]
-
 === 요약
 * 위임 객체는 위임자에 대한 참조 관계를 유지하고 위임 객체가 처리 중이거나 처리한 이벤트에 대헤 위임자에게 메세지로 알림
 
