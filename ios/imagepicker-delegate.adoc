@@ -1,39 +1,5 @@
 = UIImagePickerController, UIImagePickerControllerDelegate
 
-=== 사진과 동영상 가져오기
-* Camera, Photo Library 가져오는 방법은 `UIImagePickerController Overview 참고`
-* 이벤트 처리 방식에 https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html[`Delegates and Data Sources`] 과 https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Target-Action/Target-Action.html#//apple_ref/doc/uid/TP40010810-CH12-SW1[`Target-Action`] 방법이 있음
-** The programming mechanism of delegation gives objects a chance to coordinate their appearance and state with changes occurring elsewhere in a program, changes usually brought about by user actions. More importantly, delegation makes it possible for one object to alter the behavior of another object without the need to inherit from it. The delegate is almost always one of your custom objects, and by definition it incorporates application-specific logic that the generic and delegating object cannot possibly know itself. 
-** Delegate 패턴을 쓰지 않고 객체 자체를 넘겨주거나 상속하게 되면 로직과 관련되지 않는 부분까지 신경써야 하지만, Delegate 패턴로 Protocol을 사용하면 위임받은 객체가 위임받은 부분 만 구현하기 때문에 관리 포인트가 줄어듬
-** 문서에서 *required* 표시된 부분은 필수로 구현해야 함
-
-=== Delegate, DataSource 를 연결하는 방법은 2가지 존재
-
-===== 스토리 보드에서 연결하는 방법
-* `Control + 드래그` 하여 View Controller을 선택함 
-
-image:https://github.com/yuaming/practice-swift/raw/master/image/delegate-view-controller-2.png[45%, 45%]
-image:https://github.com/yuaming/practice-swift/raw/master/image/delegate-view-controller-3.png[45%, 45%]
-    
-===== 코드로 연결하는 방법
-
-[source, swift]
-----
-extension SecondViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // ...
-    
-    private func openPhotoLibrary() {
-        let imagePicker: UIImagePickerController = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        
-        self.present(imagePicker, animated: true)
-    }
-    
-    // ...
-}
-----
-
 === 참고
 * https://developer.apple.com/documentation/uikit/uiimagepickercontroller[UIImagePickerController]
 * https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate[UIImagePickerControllerDelegate]

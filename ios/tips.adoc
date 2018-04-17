@@ -1,4 +1,4 @@
-= TIp
+= iOS Tips
 
 === Runtime Header
 

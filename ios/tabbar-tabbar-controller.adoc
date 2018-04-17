@@ -1,40 +1,5 @@
 = UITabBar, UITabBarController
 
-=== UITabBar
-* 일반적으로 `UITabBarController` 와 함께 사용하지만, 독립적인 컨트롤 형태로도 사용할 수 있음
-* 하단에 있으며 `UITabBarItem` 객체를 보여줌
-* UITabBar는 Interface Builder, 생성자, setItems를 통해 설정할 수 있지만 _UITabBarController는 TabBar에 제공하는 객체를 개발자가 직접 만들어야 함_
-* UIToolBar와 비슷하지만, 목적이 다름
-* UITabbar
-** 화면 전환 시 사용
-* UIToolbar
-** 하나의 화면에서 탭 메뉴 사용
-* TabBar는 선택 항목, 사용자 지정 항목에 대해 Delegate 객체에 알려야 함
-* TabBar를 만들 때 TabBar 항목의 선택, 추가, 삭제, 정렬에 대한 정보를 `UITabBarDelegate` 객체에 알려야 함
-
-=== UITabBarController
-* 보이는 화면과 선택된 탭 관계는 일반적으로 AS-IS 관계지만, Subclass일 수도 있음
-* TabBarController Interface의 탭은 사용자가 선택하였을 때 Root View를 보여줌
-* 이전 화면과 관계없이 Root View를 보여줌
-* TabBar Interface는 서로 다른 유형의 화면을 보여줌
-* 아이폰의 시계 앱에서 하단 메뉴를 TabBar Interface로 이용하여 만듦 
-
-image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/clock-app.png[]
-
-* TabBarController에 직접 접근하면 안 됨. `viewControllers 프로퍼티` 를 이용해야 함
-* 개발자가 지정한 순서대로 화면에 나타나며 `selectedViewController 프로퍼티` 를 이용하여 먼저 보여줄 화면을 정할 수 있음
-* 사용자가 TabBar Interface를 선택하였을 때 TabBarController 객체에서 일어나는 상호작용을 Delegate에게 알려야 함
-* `UITabBarControllerDelegate` 프로토콜에 준수해야 함
-* Delegate는 TabBar를 선택할 때 작업을 추가하거나 선택하지 못하게 제어할 수 있음. 그리고 Navigation Controller로 구성된 TabBar의 변화를 알 수 있음
-* UITabBarController는 UIViewController를 상속받았기 때문에 TabbarController는 `view` 속성으로 접근할 수 있는 View를 소유할 수 있음
-* TabBarController View는 TabBar View와 View 내용을 담는 컨테이너
-* TabBar View는 항목에 대한 선택을 제어할 수 있음
-* ToolBar View와 TabBar에 대한 항목은 변하지만, 그것을 관리하는 View는 변하지 않음
-* 현재 선택된 Tab의 View Controller만 반영하여 View를 바꿈
-* Navigation Controller와 Custom View Controller는 Tab의 RootViewController로 사용할 수 있음
-
-image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/the-primary-views-of-a-tab-bar-controller.png[]
-
 === 참고 
 * https://developer.apple.com/documentation/uikit/uitabbar[UITabBar]
 * https://developer.apple.com/documentation/uikit/uitabbarcontroller[UITabBarController]
