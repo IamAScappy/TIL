@@ -1,6 +1,6 @@
 = VIM 기본
  
-=== 단축키
+===== 단축키
 
 |===
 | 단축키 | 용도
@@ -78,11 +78,11 @@
 | 현재 문서 저장하고 닫음
 |===
 
-=== 관련 자료
+===== 관련 자료
 * vimtutor ko : vim 가이드
 * vim golf : vim 대회
 
-=== 실습에서 사용한 리눅스 명령어
+===== 실습에서 사용한 리눅스 명령어
 
 [source, bash]
 ----
@@ -93,5 +93,5 @@ $ cat hello.txt
 $ mv hello.txt hello.js
 ----
 
-=== 참고
+===== 참고
 * https://ko.wikipedia.org/wiki/Vim[Vim]

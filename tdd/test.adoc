@@ -18,6 +18,8 @@
 * 함수의 매개변수, 객체의 속성이나 메서드도 꼭 필요한 경우 추가함
 
 === 요구사항(Requirements)
+
+===== 요구사항
 * Requirement -> Feature -> Specification
 
 ===== 요구사항관리
@@ -28,24 +30,26 @@
 ** Integration + Debug => 25%
 
 === 테스트
+
+===== 테스트
 * 테스트 코드를 짤 때 객체에 의존적이여서 안됨
 
-* SW 품질(Quality)
-** 사용자는 개발자가 생각한 의도대로 사용하지 않음
+===== SW 품질(Quality)
+* 사용자는 개발자가 생각한 의도대로 사용하지 않음
 
-* SW공학
-** Waterfall Process
-** Requirements -> Specification(Design) -> Development(Implement) -> Test(Verification) -> Depolyment & Maintenance
-** 단계가 줄어들 수 없음
+===== SW공학
+* Waterfall Process
+* Requirements -> Specification(Design) -> Development(Implement) -> Test(Verification) -> Depolyment & Maintenance
+* 단계가 줄어들 수 없음
 
-* SW 공학적 개발 단계
-** Code Complete에서 SW 개발과정 제시함
-** 현재 하나로 바라보던 공학분야에서 여러 공학분야로 나눠지고 있음
-** System Test 이 후, 인수 테스트도 존재함
+===== SW 공학적 개발 단계
+* Code Complete에서 SW 개발과정 제시함
+* 현재 하나로 바라보던 공학분야에서 여러 공학분야로 나눠지고 있음
+* System Test 이 후, 인수 테스트도 존재함
 
 image:./image/sw-dev-process.png[]
 
-==== 단계별 산출물
+=== 단계별 산출물
 
 ===== 상세 설계
 * UML, ERD 등 같은 설계도
@@ -67,21 +71,24 @@ image:./image/sw-dev-process.png[]
 * 벤치마크 보고서
 * 알고리즘 성능 측정 확인
 
-==== SW개발 - V패턴
-** 짝을 지어서 테스트함
+=== SW개발
+
+===== V패턴
 
 image::../tdd/image/v-pattern.png[]
 
-==== 디버깅 비용
+===== 디버깅 비용
 * Waterfall로 진행하게 되면 요구사항이 잘못된 것이
 ** 개발 단계에서 발견하면 5-10배 비용과 노력이 들어감
 ** 시스템 테스트 단계에서 발견하면 10배 비용과 노력이 들어감
 ** 실제 배포 단계에서 발견하면 10-100배 비용과 노력이 들어감
 
 === 언제 테스트 할 것인가?
+
+===== 방법
 * Agile, XP, Scrum
 
-==== 애자일 방법론
+===== 애자일 방법론
 * 소프트웨어 개발 방법의 하나
 * 개발 대상을 다수의 작은 기능으로 나누어 하나의 기능을 하나의 반복 주기 내에 개발하는 개발 방법
 * 기간은 1-4주, 한 기능을 추가 개발함
@@ -89,7 +96,7 @@ image::../tdd/image/v-pattern.png[]
 * 반복이 끝날 때마다 기능이 추가된 새로운 소프트웨어(빌드)를 출시하는 것을 목표함
 * 반복이 끝나면 프로젝트팀은 프로젝트의 우선순위를 재평가하여 다음 반복을 시행
 
-==== 단위테스트
+=== 단위테스트
 
 ===== print, NSLog
 * 일일이 프린트로 찍어보고 손으로 직접 테스트하는 것을 `Smoke Test` 라고 함

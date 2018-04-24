@@ -37,7 +37,7 @@
 == WIKI
 
 * link:algorithm/README.adoc[Algorithm]
-** link:algorithm/big-o.adoc[복잡도분석]
+** link:algorithm/big-o-notation.adoc[복잡도분석]
 ** link:algorithm/recursion.adoc[순환]
 ** link:algorithm/updated.adoc[정렬]
 * link:aws/README.adoc[AWS]

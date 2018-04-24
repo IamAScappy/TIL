@@ -1,19 +1,18 @@
 = ADS
 
-image::./image/photo-app.png[]
-
-=== 제품 정의
+===== 제품 정의
 * 기능 목록을 모으지 말고 솔루션을 정의하라
 
-=== 솔루션 정의하기
+===== 솔루션 정의하기
+* 핵심 솔루션 정의하기
+** 정리하기
+** 편집하기
+** 공유하기
 
-===== 핵심 솔루션 정의하기
-* 정리하기
-* 편집하기
-* 공유하기
-
-=== ADS(Application Definition Statement)
+===== ADS(Application Definition Statement)
 * *고객* 을 위한
 * 자신만의 *차이점*
 * 자신의 *솔루션* 
 * 캐주얼 및 아마추어 사진가를 위한 사용하기 쉬운 사진 편집, 정리, 공유 앱
+
+image::./image/photo-app.png[]

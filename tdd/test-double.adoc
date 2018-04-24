@@ -21,5 +21,5 @@
 ===== Mock
 * 특정 함수의 동작(또는 동작 여부)를 확인하기 위해 호출함
 
-=== 참고
+===== 참고
 * https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da[Test Doubles — Fakes, Mocks and Stubs.]

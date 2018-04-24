@@ -5,13 +5,13 @@
 
 ===== 정리
 
-image::../xcode/image/memory-leak-1.png[]
+image::./image/memory-leak-1.png[]
 * `⌘ + ⇧ + ,` 단축키를 누르고 설정창이 뜸. 이미지와 같이 옵션을 설정함
 
-image::../xcode/image/memory-leak-2.png[]
+image::./image/memory-leak-2.png[]
 * 메모리 디버깅 버튼을 누름
 
-image::../xcode/image/memory-leak-3.png[]
+image::./image/memory-leak-3.png[]
 * 메모리 디버깅 그래프
 ** Heap contents => 힙 영역에 있는 정보를 보여줌
 ** Object references => 왼쪽 화면에 있는 정보 중 하나를 선택하면 참조하고 있는 인스턴스를 보여줌
@@ -19,8 +19,8 @@ image::../xcode/image/memory-leak-3.png[]
 
 ===== 추가 정리
 
-image::../xcode/image/memory-leak-tip-1.png[]
+image::./image/memory-leak-tips-1.png[]
 * Heap contents 하단 화면에 있는 느낌표를 누르면 메모리 릭이 있는 인스턴스만 보여줌
 
-image::../xcode/image/memory-leak-tip-2.png[]
+image::./image/memory-leak-tips-2.png[]
 * 런타임 이슈 네비게이터에서도 확인할 수 있음

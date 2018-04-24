@@ -104,6 +104,8 @@ image:./image/toast.png[30%, 30%]
 image:./image/popup.png[30%, 30%]
 
 === Picker
+
+===== Pickers
 * 제공된 메뉴에서 사용자가 고를 수 있는 컨트롤러
 * DatePicker, ColorPicker
 
