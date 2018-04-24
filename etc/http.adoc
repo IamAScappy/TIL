@@ -1,23 +1,23 @@
 = HTTP
 
-=== 웹
+===== 웹
 * WWW(World Wide Web)
 * 팀 버너리스에 의해 개발됨
 ** 웹과 인터넷은 다른 것
 ** 웹 3요소 => HTTP, HTML, URL
 
-=== TCP/IP 4계층
+===== TCP/IP 4계층
 * Network 7계층이 표준이지만, 복잡하여 구현하지 못함. 4계층으로 사용함
 * Application => HTTP, VIP
 * Transport => TCP, UDP
 * Internet => IP
 * Network => LAN, Wifi
 
-=== Proxy
+===== Proxy
 * Reverse Proxy
 * 서버와 클라이언트 사이에서 중계기 역할을ㄴㄹ을 겨 하며 대리로 통신을 수행하는 기능
 
-=== HTTP
+===== HTTP
 * 간단
 * 확장 가능
 * 상태가 없음(= Stateless)
@@ -29,6 +29,6 @@
 ** `HTTP/1.1와 HTTP/2 차이점` => HTTP/1.1의 Connection Keep-Alive, Pipelining(= 동시성 프로그래밍에서 사용하는 구조 중 하나)의 개선
 * Sticky Session
 
-=== 참고
+===== 참고
 * https://www.slideshare.net/eungjun/http2-40582114[HTTP/2 더 빠른 웹을 위해]
 * http://www.popit.kr/나만-모르고-있던-http2/[나만 모르고 있던 – HTTP/2]

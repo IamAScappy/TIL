@@ -95,5 +95,5 @@ $ git push -f
 * _upstream 저장소 브랜치에 자신의 github 아이디에 해당하는 브랜치가 존재해야 함_
 * _자신의 github 아이디에 해당하는 브랜치가 있는지 확인해야 함_
 
-=== 참고
+===== 참고
 * https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/[초심자를 위한 Github협업]

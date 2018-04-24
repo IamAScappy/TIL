@@ -285,6 +285,8 @@ SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
 * explain을 이용해서 외래 키가 있는 경우와 없는 경우 확인해봄
 
 === Entity-Relationship 모델
+
+===== 정의
 * 개체와 관계를 이용해 데이터를 표현하는 방식
 
 ===== Entity
@@ -300,7 +302,9 @@ SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
 ===== Entity와 Relationship의 물리적 표현
 * 모두 테이블을 통해 저장됨
 
-=== 관계의 종류
+=== 관계
+
+===== 관계의 종류
 * One to One
 ** One to One 관계는 일반적으로 다른 객체에 포함시킴
 * One to Many
@@ -309,7 +313,7 @@ SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
 ** Many to Many 를 표현하기 위해서는 추가적인 테이블 생성 필요
 ** 사용자 to 아이템
 
-=== 물리적 조인의 종류
+===== 물리적 조인의 종류
 * Nested-loop Join
 * Sort merge join
 * Hash join

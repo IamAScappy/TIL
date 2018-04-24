@@ -1,12 +1,14 @@
 = 트랜잭션(Transaction)
 
-=== Jim Gray
+=== 트랙잭션
+
+===== Jim Gray
 * 세계 최초 관계형 데이터베이스 System-R 개발함
 * 트랜잭션 개념 제안함
 * 2 Phase Locking
 * Granularity Locking
 
-=== DBMS 복습
+===== DBMS
 * InnoDB는 MySQL을 위한 데이터베이스 엔진, 레코드(=> 행) 기반 저장구조 cf. Columnstore(=> 열 기반, Amazon Redshift)
 * RID(page # => 페이지 번호, slot # => 슬롯 번호)를 통해 레코드 접근함 
 * B-Tree 기반 클러스터링 인덱스 => Key - RID와 Value - 실제적인 물리 위치 값을 가지고 있음
@@ -54,6 +56,8 @@ Record locks always lock index records, even if a table is defined with no index
 * 즉, 시스템에 문제가 발생하더라도 성공적으로 수행한 트랙잭션은 유지되어야 함
 
 === CAP 이론
+
+===== 개념
 * 분산 시스템에서는 3개 속성을 모두 가지는 것은 불가능함
 
 ===== C(Consistency)
@@ -143,13 +147,14 @@ SET SESSION transaction_isolation='SERIALIZABLE';
 ----
 
 === MVCC
-* MySQL의 InnoDB는 오라클과 같이 MVCC를 내부적으로 사용함
-** 업데이트 중에도 읽기가 블록 되지 않음
-** 읽기 내용은 격리 수준에 따라 달라질 수 있음
-** 업데이트 시 X락이 인덱스에 걸림
-** 업데이트 시 락의 대상이 실제 업데이트 아이템보다 더 클 수 있음
-** 동시 업데이트를 수행 시 나중 트랜잭샌은 블록 됨. 일정 시간 지나면 Lock Timeout이 발생함
-** 업데이트 시 이전 값을 Undo Log로 롤백 세그먼트에 유지함. 이 값은 롤백 시와 격리 수준에 따라 다른 값을 읽기 위해 사용됨
+
+===== MySQL의 InnoDB는 오라클과 같이 MVCC를 내부적으로 사용함
+* 업데이트 중에도 읽기가 블록 되지 않음
+* 읽기 내용은 격리 수준에 따라 달라질 수 있음
+* 업데이트 시 X락이 인덱스에 걸림
+* 업데이트 시 락의 대상이 실제 업데이트 아이템보다 더 클 수 있음
+* 동시 업데이트를 수행 시 나중 트랜잭샌은 블록 됨. 일정 시간 지나면 Lock Timeout이 발생함
+* 업데이트 시 이전 값을 Undo Log로 롤백 세그먼트에 유지함. 이 값은 롤백 시와 격리 수준에 따라 다른 값을 읽기 위해 사용됨
 
 ===== Repeatable Read
 * MySQL의 기본 동작 모드
@@ -168,11 +173,11 @@ SET SESSION transaction_isolation='SERIALIZABLE';
 * Repeatable Read에서도 Phantom 문제가 발생하지 않으므로 많이 사용하지 않음
 * 매우 위험함
 
-===== 기타
+===== 추가 설명
 * MySQL에서는 트랜잭션 레벨에 따라 binlog 형태가 바뀜
 * 이전 버전에서는 Row 레벨이 용량과 성능문제가 있어서 주로 Mixed나 Statement를 사용했는데 5.7부터 Row 레벨에 많은 개선이 있었다고 함
 
-===== 초급 Tip
+===== Tips
 * AutoCommit을 끄자(특히 JDBC 등에서 주의)
 * 긴 트랜잭션은 데드락의 원인
 * 배치 작업 중간에 커밋을 하자

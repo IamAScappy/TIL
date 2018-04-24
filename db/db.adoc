@@ -42,6 +42,8 @@ image:./image/dbms-os-database.png[]
 image:./image/data-information-knowledge.png[]
 
 === RDBMS
+
+===== 설명
 * Relational Database Management System
 * E.F. Codd, "A Relational Model of Data for Large Shared Data Banks"
 ** IBM System R
@@ -55,12 +57,16 @@ image:./image/data-information-knowledge.png[]
 *** 최소한으로 필요한 데이터만 저장함
 
 === SQL
+
+===== 설명
 * Structured Query Language
 * 국제 표준
 * 선언적 언어 => cf. 절차적 언어
 * RDMBS 제어하기 위해 사용함
 
 === NOSQL
+
+===== 설명
 * Not Only SQL
 * RDBMS가 아닌 나머지
 
