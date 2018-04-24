@@ -1,6 +1,6 @@
 = 상속(Inheritance)
 
-=== 상속
+===== 상속
 * 하나의 클래스는 또 다른 클래스의 메서드, 프로퍼티 이외에 다른 특징을 상속받을 수 있음
 * Subclass => 상속받은 클래스 
 * Superclass => 상속하는 클래스
@@ -8,7 +8,7 @@
 자신의 행동을 재정의하거나 수정할 수 있음
 * 프로퍼티 관잘자에 상속한 프로퍼티에 추가할 수 있음
 
-=== Base Class
+===== Base Class
 
 [source, swift]
 ----
@@ -25,7 +25,7 @@ class Vehicle {
 }
 ----
 
-=== Subclass
+===== Subclass
 
 [source, swift]
 ----
@@ -59,7 +59,7 @@ print("Tandem: \(tandem.description)")
 // Tandem: traveling at 22.0 miles per hour
 ----
 
-=== Overriding
+===== Overriding
 
 [source, swift]
 ----
@@ -126,6 +126,6 @@ print("AutomaticCar: \(automatic.description)")
 // final 메서드, 프로퍼티, 서브스크립트를 오버라이드 하면 컴파일 에러가 발생함
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

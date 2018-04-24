@@ -1,4 +1,4 @@
-= 프로퍼티(Properties)
+= 프로퍼티(Property)
 
 === Stored Property 
 
@@ -210,7 +210,7 @@ class SomeClass {
     }
 }
 
-// Querying and Setting Type Properties
+// Querying and Setting Type Property
 
 print(SomeStructure.storedTypeProperty)
 // Prints "Some value."

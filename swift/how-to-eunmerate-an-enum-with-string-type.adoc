@@ -48,6 +48,6 @@ extension Filter: CustomStringConvertible {
 print(Filter.allValues) // ["Salary", "Experience", "Technology", "Unutilized", "Unutilized High Value"]
 ----
 
-=== 참고
+===== 참고
 * https://stackoverflow.com/questions/24007461/how-to-enumerate-an-enum-with-string-type/24137319[How to enumerate an enum with String type?]
 * https://theswiftdev.com/2017/10/12/swift-enum-all-values/[Swift enum all values]

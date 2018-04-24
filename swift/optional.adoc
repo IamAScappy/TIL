@@ -1,6 +1,6 @@
 = 옵셔널(Optional)
 
-=== 옵셔널 추출
+===== 옵셔널 추출
 
 [source, swift]    
 ----
@@ -24,7 +24,7 @@ let message = text + stockCode!
 println(message)
 ----
 
-=== 옵셔널 바인딩
+===== 옵셔널 바인딩
 
 [source, swift]    
 ----
@@ -38,7 +38,7 @@ if let tempStockCode = stockCode {
 }
 ----
 
-=== 암시적 추출 옵셔널
+===== 암시적 추출 옵셔널
 
 [source, swift]    
 ----
@@ -64,7 +64,7 @@ if var name = myName {
 myName.isEmpty   
 ----
 
-=== 옵셔널 체이닝
+===== 옵셔널 체이닝
 
 [source, swift]    
 ----
@@ -109,6 +109,6 @@ if let sharePrice = findStockCode("Apple")?.price {
 }
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245[Swift Optional Chaining]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

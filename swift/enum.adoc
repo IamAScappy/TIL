@@ -128,6 +128,6 @@ if let lineFeed = ASCIIControlCharacter(rawValue: "\r") {
 }
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

@@ -20,5 +20,5 @@ extension String {
 ===== String타입 _append(), +, joined()_ 어떻게 다른가 ?
 * append()는 기존 메모리에 저장된 문자열과 뒤에 추가하는 문자열 크기를 보고, 더 큰 메모리 공간을 잡은 다음 두 개를 복사함. + 연산자는 내부에서 append()를 부름. joined()는 배열 같은 Sequence 내부에 문자열이 있을 때 내부 요소들을 합쳐주는 동작을 함. 내부동작도 마찬가지로 계속 append()를 부르기 때문에 세 개 다 같은 부분이니 신경을 쓰지 않아도 됨. 그러나 빈번하게 문자열을 계속 더하는 것은 무거운 동작이기 때문에 한꺼번에 하나의 문자열을 만드는 게 더 좋을 수 있음
 
-=== 참고
+===== 참고
 * https://developer.apple.com/documentation/swift/array/1690077-joined[joined(separator:)]

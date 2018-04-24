@@ -67,5 +67,5 @@ VehicleType(rawValue: .bus)?.rawValue.name => "Autobus"
 VehicleType(rawValue: .bus)?.rawValue.wheels => 8
 ----
 
-=== 참고
+===== 참고
 * https://stackoverflow.com/questions/27706832/can-swift-enums-have-multiple-raw-values[Can Swift enums have multiple raw values?]

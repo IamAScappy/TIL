@@ -1,6 +1,6 @@
-= Dynamic Types
+= Dynamic Type
 
-=== Dynamic Types
+===== Dynamic Type
 
 [source, swift]
 ----
@@ -18,5 +18,5 @@ type(of: string) == SType   // true
 type(of: string) == AnyType // false
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/documentation/swift/2885064-type[type(of:)]

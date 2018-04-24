@@ -1,6 +1,6 @@
 = ObjectIdentifier
 
-=== ObjectIdentifier
+===== ObjectIdentifier
 
 [source, swift]
 ----
@@ -21,7 +21,7 @@ var type2 = ObjectIdentifier(type(of: v2))
 print(type1 == type2)   // true
 ----
 
-=== Any, AnyObject, AnyClass 차이
+===== Any, AnyObject, AnyClass 차이
 
 [source, swift]
 ----
@@ -30,7 +30,7 @@ let anyObjects: [AnyObject] = [Class1(), Class2()]  // AnyObject can represent a
 // AnyClass -> typealias AnyClass = AnyObject.Type  // AnyObject MetaType
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html[TypeCasting - Any]
 * https://developer.apple.com/documentation/swift/anyobject[AnyObject]
 * https://developer.apple.com/documentation/swift/anyclass[AnyClass]

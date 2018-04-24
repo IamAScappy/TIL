@@ -97,5 +97,5 @@ master: while true {
 }
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]

@@ -67,8 +67,8 @@ image:./image/project-target.png[]
 *** App, Library, Unit Tests => x축
 *** 시뮬레이터, 디바이스 => y축
 *** Debug, Release => z축
-    *** Build and Debug => 시뮬레이터, 디바이스
-    *** Unit Tests => 시뮬레이터
+*** Build and Debug => 시뮬레이터, 디바이스
+*** Unit Tests => 시뮬레이터
 
 ===== Project vs Workspace
 * 설정에 따라
@@ -111,7 +111,7 @@ image:./image/breakpoint-3.png[]
 
 image:./image/behaviors.png[]
 
-=== Debugging Tip => Static Analysis
+=== Debugging Tips
 
 ===== ASAN(= AddressSanitizer)
 * Swift 컴파일러가 정적 분석을 함. Objective-C는 정적 분석이 힘듬
@@ -121,8 +121,6 @@ image:./image/behaviors.png[]
 ** 메모리 누수
 ** 널 참조
 ** 논리적 오류
-
-=== Debugging Tip => Diagnostics
 
 ===== Edit Scheme ... -> Run -> Diagnostics
 * 단축키 => `Command + Shift + ,`
@@ -145,17 +143,17 @@ image:./image/diagnostics.png[]
 * Dyld API Usage
 * Library Loads
 
-=== Debugging Tip => Multi-tap, Multi-window
+===== Multi-tap, Multi-window
 
-=== Debugging Tip => LLDB
+===== Debugging Tip => LLDB
 * 개인적으로 `po` 보다 `expr` 를 자주 씀:)
 * Mac, XCode에서 전체적으로 쓸 수 있는 디버거 도구
 
 image:./image/lldb-framework.png[]
 
-=== Quicklook
+===== Quicklook
 
-=== 메모리 디버깅 그래프
+===== 메모리 디버깅 그래프
 * 사이클이 있는지, 섬이 있는지 메모리 누수 확인이 필요함
 
 === 참고

@@ -113,7 +113,7 @@ if number == 60 * 60 {
 }
 ----
 
-=== 참고
+===== 참고
 * https://hackernoon.com/speed-up-swift-compile-time-6f62d86f85e6[Speed up Swift compile time]
 * https://github.com/RobertGummesson/BuildTimeAnalyzer-for-Xcode[Build Time Analyzer for Xcode]
 * https://theappspace.com/software-development-success-philosophy/[6 Tips For A Software Development Success Philosophy]
