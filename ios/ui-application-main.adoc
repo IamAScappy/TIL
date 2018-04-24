@@ -26,6 +26,6 @@ self.window.rootViewController = viewController
 self.window.makeKeyAndVisible()
 ----
 
-=== 참고
+===== 참고
 * https://stackoverflow.com/questions/27093157/why-window-is-nil-in-appdelegate[Why window is nil in AppDelegate?]
 * https://stackoverflow.com/questions/24516250/what-does-uiapplicationmain-mean[What does “@UIApplicationMain” mean?]

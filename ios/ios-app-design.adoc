@@ -58,7 +58,7 @@
 
 image::./image/ios-7.png[]
 
-=== User eXperience
+===== User eXperience
 
 image::./image/ios-ux.png[]
 

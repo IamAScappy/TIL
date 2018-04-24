@@ -1,6 +1,6 @@
 = Observer Pattern
 
-=== 설명
+===== 설명
 * 객체의 상태가 바뀌면 그 객체를 의존하는 다른 객체들한테 연락이 가고 내용이 갱신함
 * Push 알림이 필요한 곳에서 사용함
 * 모델과 컨트롤러가 직접 참조하는 경우 발생하는 문제점
@@ -12,7 +12,7 @@
 ** 주제와 옵저버는 서로 독립적으로 재사용 할 수 이음
 ** 주제나 옵저버가 바뀌더라도 서로에게 영향을 미치지 않음
 
-=== 구현
+===== 구현
 
 [source, swift]
 ----
@@ -90,5 +90,5 @@ subject.number = 2
 subject.number = 3
 ----
 
-=== 참고
+===== 참고
 * https://medium.com/99ridho/swift-design-pattern-observer-pattern-fc009b783d19[Swift Design Pattern: Observer Pattern]

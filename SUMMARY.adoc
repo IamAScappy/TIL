@@ -96,7 +96,7 @@
 ** link:ios/view-life-cycle.adoc[View Life Cycle]
 ** link:ios/view-view-controller.adoc[View, View Controller]
 ** link:ios/shallow-deep-copy.adoc[깊은 복사와 얕은 복사]
-** link:ios/my-app-1.adoc[나의 앱 - 첫 번째 기획]
+** link:ios/my-app-1.adoc[첫 번째 앱 기획]
 ** link:ios/view-segue.adoc[다양한 화면 전환]
 ** link:ios/archives-serialization.adoc[아키이빙과 직렬화]
 * link:java/README.adoc[Java]

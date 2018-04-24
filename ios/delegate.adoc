@@ -4,6 +4,7 @@
 
 === 원문
 
+===== Description
 * Delegation is a simple and powerful pattern in which one object in a program acts on behalf of, or in coordination with, another object. The delegating object keeps a reference to the other object—the delegate—and at the appropriate time sends a message to it. The message informs the delegate of an event that the delegating object is about to handle or has just handled. The delegate may respond to the message by updating the appearance or state of itself or other objects in the application, and in some cases it can return a value that affects how an impending event is handled. The main value of delegation is that it allows you to easily customize the behavior of several objects in one central object.
 
 ===== Delegation and the Cocoa Frameworks
@@ -17,6 +18,8 @@
 * A data source is almost identical to a delegate. The difference is in the relationship with the delegating object. Instead of being delegated control of the user interface, a data source is delegated control of data. The delegating object, typically a view object such as a table view, holds a reference to its data source and occasionally asks it for the data it should display. A data source, like a delegate, must adopt a protocol and implement at minimum the required methods of that protocol. Data sources are responsible for managing the memory of the model objects they give to the delegating view.
 
 === 요약
+
+===== 설명
 * 위임 객체는 위임자에 대한 참조 관계를 유지하고 위임 객체가 처리 중이거나 처리한 이벤트에 대헤 위임자에게 메세지로 알림
 
 ===== 용어 설명
@@ -40,15 +43,6 @@
 * 일반적으로 Table View와 같은 View 객체는 Data Source와 참조 관계이며 화면에 보여줄 데이터를 요청하는 경우가 있음
 * Data Source도 Delegate와 같이 프로토콜을 채택하고 필요한 메서드를 구현해야 함
 * Data Source가 위임한 View의 데이터 객체 메모리도 관리함
-
-===== Prerequisite Articles
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/ClassDefinition.html#//apple_ref/doc/uid/TP40008195-CH6-SW1[Class definition]
-
-===== Related Articles
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Notification.html#//apple_ref/doc/uid/TP40008195-CH35-SW1[Notification]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW1[Protocol]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/ControllerObject.html#//apple_ref/doc/uid/TP40008195-CH11-SW1[Controller Objects]
-* https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html#//apple_ref/doc/uid/TP40010810-CH11[Delegates and Data Sources]
 
 === 참고
 * https://magi82.github.io/ios-delegate/[iOS Delegate 패턴에 대해서 알아보기]

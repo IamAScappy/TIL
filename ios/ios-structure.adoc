@@ -1,12 +1,10 @@
 = iOS 구조
 
-=== 구조
+===== 구조
 
 image::./image/ios-structure-1.png[]
 
 image::./image/ios-structure-2.png[]
-
-=== 설명
 
 ===== 앱(APP)
 * 스마트폰, 태블릿 PC 등 모바일 장치에서 실행되는 응용 소프트웨어
@@ -34,6 +32,6 @@ image::./image/ios-structure-2.png[]
 ===== 스위프트 표준 라이브러리
 * Solve complex problems and write high-performance, readable code
 
-=== 참고 
+===== 참고 
 * https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html[Cocoa Framework]
 * https://developer.apple.com/documentation/swift[Swift Standard Library]

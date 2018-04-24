@@ -2,6 +2,8 @@
 
 === NSNotificationCenter
 
+===== 구성
+
 image:./image/nsnotification.png[]
 
 image:./image/notification-2.png[]

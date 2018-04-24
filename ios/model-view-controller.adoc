@@ -66,7 +66,7 @@ image:./image/delegation.png[]
 ** Delegation
 ** 특이한 작업
 
-===== Tip
+===== Tips
 * 프레임워크와 싸우지 마라 => 프레임워크의 존재 이유를 생각해라!
 ** UIViewController의 View는 제거하면 안됨
 ** 나눠진 View가 필요하면 UISplitViewController

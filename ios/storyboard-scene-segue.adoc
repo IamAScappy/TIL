@@ -51,9 +51,9 @@
 * Scene은 Dock이 하나있음. 이 Dock은 View와 View Controller 사이에서 Outlet과 Action 연결하는데 사용함
 * Storyboard에서 View Controller 초기화 작업을 완료하려면 awakeFromNib를 오버라이드 해야 함
 
-=== Segue
+==== Segue
 
-==== A Segue Manages the Transition Between Two Scenes
+===== A Segue Manages the Transition Between Two Scenes
 * Segue에서 Segue Action을 선택할 수 있음
 * Segue를 커스텀할 수 있음
 * View Controller에 있는 _prepareForSegue:sender:_ 메서드를 통해 Scene 간에 데이터를 전달할 수 있음

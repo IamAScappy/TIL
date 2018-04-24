@@ -1,14 +1,12 @@
 = CocoaPod을 이용하여 SwiftLint 적용하기
 
 === CocoaPod 
+
+===== 정의
 * 프로젝트 라이브러리 의존성 관리해줌
 * Maven 또는 Gradle 역할과 비슷함
 
-> CocoaPods manages library dependencies for your Xcode projects.
-The dependencies for your projects are specified in a single text file called a Podfile. CocoaPods will resolve dependencies between libraries, fetch the resulting source code, then link it together in an Xcode workspace to build your project.
-Ultimately the goal is to improve discoverability of, and engagement in, third party open-source libraries by creating a more centralised ecosystem.
-
-=== CocoaPod 설치
+===== CocoaPod 설치
 
 [source, bash]
 ----

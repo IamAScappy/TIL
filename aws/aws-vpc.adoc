@@ -53,6 +53,8 @@
 * AWS에서 앞 4, 마지막 1 주소를 사용함
 
 === Subnet
+
+===== 설명
 * 반드시 한 AZ에 속해야 함
 * Routing 테이블과 연결되어야 함
 * EC2 등 서비스는 Subnet에 연결됨
@@ -96,12 +98,16 @@
 * Private Subnet의 라우팅 테이블 규칙 수정
 
 === 보안 Subnet
+
+===== 설명
 * VPN 전용 서브넷
 * 인터넷 망과 완벽 분리됨
 * 민감한 정보 저장용으로 사용함
 * 인터넷망과의 통신은 VPN을 이용해서 연결
 
 === VPC Peering
+
+===== 설명
 * 같은 리전의 VPC끼리 연결
 * 다른 계정의 VPC와 연결 가능
 * 쉽고 간단함
@@ -112,16 +118,22 @@
 ===== VPC Peering 주의사항
 * A - Peering - B, B - Peering - C 라도 A - C 서로간 통신 불가
 
-=== AWS VPN 구성
+=== AWS VPN
+
+===== 구성
 * AWS Hardware VPN
 * AWS Direct Connect
 * AWS VPN CloudHub
 * 소프트웨어 VPN
 
 === NACL 
+
+===== 설명
 * 서브넷의 트래픽을 수용하거나 거절할 수 있음
 
 === 보안그룹
+
+===== 설명
 * 인스턴스의 Inbound, Outbound 트래픽 제어에 사용함
 * 기존 방화벽과 유사한 용도
 
@@ -133,9 +145,9 @@
 | 서브넷에 적용	| EC2(그룹)에 적용
 |===
 
-=== VPC S3 Endpoint
-
 === VPC 운영
+
+===== Tips
 * 서비스 별로 따로 운영함
 * 테스트 환결별로 따로 운영함
 * 기능별 VPC를 나누면 어떨까요?

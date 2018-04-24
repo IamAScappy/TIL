@@ -2,9 +2,29 @@
 
 === View Controller Container
 
+===== 정의
+
 image:./image/view-controller-container.png[] 
 
 image:./image/view-controller-container-2.png[] 
+
+===== 정리
+* 서로 다른 View에서 View만 추가하지 말고
+* SuperView, SubView의 View Controller가 다른 경우 View Controller도 관계를 만들어야 함 => Parent View Controller와 Child View Controller 관계로 만들어야 함
+** Tab bar Controller, Navigation Controller
+* View Controller에서 다른 View에서 추가할 때 Container View Controller를 하나 만들고 Array 자료구조에 넣었다가 뺐다가 View를 관리함
+* View 중심이 아니라 View Controller 단위로 생각해라:)
+** 하나의 View에 무조건 View Controller가 있어야 하나?
+** View 입장에서 View Controller가 꼭 있어야 하는 것은 아니지만
+** VIew Controller 입장에서 View가 꼭 하나 있어야 함
+* _Editor -> Embed in -> .._ 을 통해서 View Controller Container를 만들 수 있음
+* View Controller가 전환할 때마다 애니메이션 효과를 줄 수 있음
+* View => 이벤트 전달
+* View Model => View 속성 값을 테스함
+* Application이 시작할 때 Window가 깔리고 그 위로 View가 생김
+* 하나의 Window 위에 여러 개 View가 있을 수 있음
+* UIApplication, UiWindow가 실행되지만 Application에서 이벤트를 받고 Target으로 이동하거나
+* Target에 지정되어 있지 않으면 Responder Chain에 의해 이벤트 처리할 곳을 찾아가거나 First Responder를 설정할 수 있음
 
 === Controller 계층 관련 API 
 
@@ -46,13 +66,15 @@ self.transition(from: recipe, to: note, duration: 3, options: .transitionFlipFro
 }
 ----
 
-=== Presented View Controller, Presenting View Controller
+===== Presented View Controller, Presenting View Controller
 * Presented View Controller => 자신
 * Presenting View Controller => 호출한 주체
 
 image:./image/presented-view-controller.png[]
 
 === Built-in UIKit View Controller
+
+===== 종류
 * Image Picker
 * Video Editor
 * Document Browser, Previewing
@@ -61,25 +83,6 @@ image:./image/presented-view-controller.png[]
 * Printer Picker
 * Word Lookup
 * 이 외에도 여러가지 존재함
-
-
-=== 추가 정리
-* 서로 다른 View에서 View만 추가하지 말고
-* SuperView, SubView의 View Controller가 다른 경우 View Controller도 관계를 만들어야 함 => Parent View Controller와 Child View Controller 관계로 만들어야 함
-** Tab bar Controller, Navigation Controller
-* View Controller에서 다른 View에서 추가할 때 Container View Controller를 하나 만들고 Array 자료구조에 넣었다가 뺐다가 View를 관리함
-* View 중심이 아니라 View Controller 단위로 생각해라:)
-** 하나의 View에 무조건 View Controller가 있어야 하나?
-** View 입장에서 View Controller가 꼭 있어야 하는 것은 아니지만
-** VIew Controller 입장에서 View가 꼭 하나 있어야 함
-* _Editor -> Embed in -> .._ 을 통해서 View Controller Container를 만들 수 있음
-* View Controller가 전환할 때마다 애니메이션 효과를 줄 수 있음
-* View => 이벤트 전달
-* View Model => View 속성 값을 테스함
-* Application이 시작할 때 Window가 깔리고 그 위로 View가 생김
-* 하나의 Window 위에 여러 개 View가 있을 수 있음
-* UIApplication, UiWindow가 실행되지만 Application에서 이벤트를 받고 Target으로 이동하거나
-* Target에 지정되어 있지 않으면 Responder Chain에 의해 이벤트 처리할 곳을 찾아가거나 First Responder를 설정할 수 있음
 
 === 참고 
 * https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/ImplementingaContainerViewController.html#//apple_ref/doc/uid/TP40007457-CH11-SW1[Implementing a Container View Controller]
