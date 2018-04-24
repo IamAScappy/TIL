@@ -79,6 +79,7 @@ image::../oop/image/class-instance.png[클래스, 인스턴스]
 * 초기 상태를 위한 초기화 메서드 제공
 * Milk => 추상화, 일반화를 통해 코드로 표현
 * 수학적으로 카테고리 이론, 타입이론이 존재함
+* `카테고리 이론, 타입 이론 링크 참고`
 
 [source, swift]
 ----
@@ -104,6 +105,8 @@ let chocoMilk1 = Milk(brand: "서울우유", amount: 150, title: "에너지초�
 ----
 
 ===== 구조체와 클래스 비교
+* `Value Object, Reference Object 링크 참고`
+
 [options="header"]
 |===
 | 구조체 | 클래스
@@ -282,6 +285,7 @@ x.speak()
 * 자기만의 기준을 세우는 것이 중요함
 
 === 객체 설계 5대 원칙(SOLID)
+* `객체 설계 5원칙(SOLID) 링크 참고`
 
 ===== 단일 책임의 원칙(SRP)
 * 객체는 하나의 역할과 책임을 가짐
@@ -382,6 +386,7 @@ class MessageListViewController: UITableViewController {
 * 객체 상속관계는 클래스 다이어그램으로 표현함 
 
 ===== 상속을 중복코드 제거를 위한 최후의 보루라고 생각하고 protocol, extension이나 HAS-A 관계로 문제를 해결하려고 노력해야 함
+* `상속은 코드 중복 제거를 위한 최후의 보류 링크 참고`
 
 === 참고
 * https://gamecodingschool.org/2008/04/03/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EC%9D%B4%EB%A1%A0category-theory/[카테고리 이론]

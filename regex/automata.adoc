@@ -101,6 +101,7 @@ image::../regex/image/dfa-web-ebay.png[]
 * 개발자가 다루는 프로그래밍 언어는 문맥자유문법
 * 문자열은 정규 언어
 ** 정규 언어를 구현한 문법(Regular Grammar) 
+* `놈 촘스키 형식언어 계층 링크 참고`
 
 === 정규표현식(Regular Expression)
 * 정규 언어를 기술한 수학적 표현
@@ -145,6 +146,7 @@ image::../regex/image/dfa-web-ebay.png[]
 ** 문자열을 자르고 구문도 확인함
 * Scanner
 ** 문자열을 자름
+* `컴파일러 구조 링크 참고`
 
 ===== Lexer Generator Lex
 * Lexer 

@@ -128,14 +128,13 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 } 
 ----
 
-===== `dismiss` 와 `뒤로 돌아가는 Segue 연결` 차이점
+===== `dismiss` 와 `unwind segue` 차이점
 * `Dismiss` deals with only single view-controller it will remove the current view-controller from memory.
 * `Unwind segue` can be used to navigate back through push, modal or popover segues, On top of that you can actually unwind through not only one but a series of push/modal/popover segues, e.g. "go back" multiple steps in your navigation hierarchy with a single unwind action.
 * `SecondViewController().dismiss(animated: true, completion: nil)`를 BlueViewController에서 호출할 때 반응이 없음
 ** https://developer.apple.com/documentation/uikit/uiviewcontroller/1621505-dismiss[dismiss(animated:completion:)] 에서 아래 내용을 확인함
 ** _If you present several view controllers in succession, thus building a stack of presented view controllers, calling this method on a view controller lower in the stack dismisses its immediate child view controller and all view controllers above that child on the stack._
-* JK's feedbacks 
-** 포토프레임은 되는것만 확인하기 보다 이런저런 상황에서 자기 확신을 가질 수 있도록 이상하다? 싶으면 확인해보는게 중요합니다. 그래야 다른 경우에 실수를 안하게 됩니다. 현재 `presenting 되어있는 VC에서 self.dismiss() 하는 것과 이전에 presentedVC에서 띄워놓은 VC를 dismiss 하는 것과 차이`를 꼭 알고 넘어가세요.
+** 포토프레임은 되는것만 확인하기 보다 이런저런 상황에서 자기 확신을 가질 수 있도록 이상하다? 싶으면 확인해보는게 중요함. 그래야 다른 경우에 실수를 안함. 현재 `presenting 되어있는 VC에서 self.dismiss() 하는 것과 이전에 presentedVC에서 띄워놓은 VC를 dismiss 하는 것과 차이` 를 꼭 알고 넘어가야 함
 
 ===== UIButton의 IBAction과 Segue 연결의 우선순위
 * UIButton에 IBAction 과 Segue를 둘 다 연결하면 어떻게 되나요? 둘 중에 어느게 우선일까요? 둘 다 연결해서 사용하는 경우가 있을까요?

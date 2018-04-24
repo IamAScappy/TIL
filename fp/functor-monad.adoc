@@ -10,6 +10,7 @@
 * Charles Babbage, Ada
 ** 찰스 베비지가 계산이 가능한 기계, 최초 컴퓨터를 개발함. 공동 협력자로 에이다가 있었음
 ** 에이다는 Sub Routine, GOTO, 제어문 개념을 만듬
+* `Charles Babbage, Ada 링크 참고`
 
 ===== 두가지 패러다임
 * Alonzo Church
@@ -21,6 +22,7 @@
 ** 절차식 언어, 객체지향 언어
 * 전자 컴퓨터가 나오면서 패러다임과 함께 언어도 발전함
 * 일반적으로 모던 언어는 객체 지향, 함수형 패러다임을 가지고 있음
+* `Alonzo Church, Alan Turing 링크 참고`
 
 ===== 범주론(Category Theory)
 * 수학 이론을 추상화함
