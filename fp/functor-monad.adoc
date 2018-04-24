@@ -27,7 +27,7 @@
 ===== 범주론(Category Theory)
 * 수학 이론을 추상화함
 
-image::../fp/image/category-theory.png[범주론]
+image::./image/category-theory.png[범주론]
 
 ===== 함수객체, 변환(Functor, Natural Transformation)
 * 범주론을 한번 더 추상화함
@@ -38,7 +38,7 @@ image::../fp/image/category-theory.png[범주론]
 * F(f)
 ** map
 
-image::../fp/image/functor-natural-transformation.png[] 
+image::./image/functor-natural-transformation.png[] 
 
 === 함수형 프로그래밍(Functional Programming)
 
@@ -59,7 +59,7 @@ image::../fp/image/functor-natural-transformation.png[]
 *** 원래 재귀형태로 구현해야 하지만 읽기 불편하여 체이닝 형태로 불러옴 
 *** 절차식 프로그램처럼 실행되는 함수형 프로그래밍의 불편함을 해결하기 위해 모나드를 사용함
 
-image::../fp/image/functional-programming.png[]     
+image::./image/functional-programming.png[]     
 
 === Swift Functor, Monad
 
@@ -93,9 +93,9 @@ image::../fp/image/functional-programming.png[]
 * flatMap
 ** map 함수와 비슷하게 동작하지만, 차이점은 flatMap함수는 내부에 포장된 값도 추출함
     
-image::../fp/image/optional-array.png[]
+image::./image/optional-array.png[]
 
-image::../fp/image/multiple-container.png[]
+image::./image/multiple-container.png[]
 
 ===== map, flatMap
 

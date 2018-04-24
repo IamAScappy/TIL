@@ -75,7 +75,7 @@ image:./image/sw-dev-process.png[]
 
 ===== V패턴
 
-image::../tdd/image/v-pattern.png[]
+image::./image/v-pattern.png[]
 
 ===== 디버깅 비용
 * Waterfall로 진행하게 되면 요구사항이 잘못된 것이

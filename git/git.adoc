@@ -487,7 +487,7 @@ $ git symbolic-ref refs/heads/master
 $ git log
 ----
 
-image::../git/image/git-commit.png[]
+image::./image/git-commit.png[]
 
 === 참고
 * https://github.com/honux77/practice/wiki/learngit[Git 참고(honux77 Github)]

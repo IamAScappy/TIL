@@ -111,7 +111,7 @@
 * link:oop/README.adoc[Object-Oriented Programming]
 ** link:oop/object-oriented-programming.adoc[Object-Oriented Programming with Swift]
 ** link:oop/slap.adoc[SLAP]
-** link:oop/need-a-setter.adoc[Setter는 꼭 필요한가?]
+** link:oop/is-setter-absolutely-necessary.adoc[Setter는 꼭 필요한가?]
 ** link:oop/how-to-practice-object-design-with-swift.adoc[Swift로 객체 설계 연습하기]
 ** link:oop/di.adoc[의존성주입]
 * link:regex/README.adoc[Regular Expression]

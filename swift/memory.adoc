@@ -78,7 +78,7 @@ print(myMilk.amount)
 * 참조할 때 해당 메모리 주소에 화살표가 생긴다고 생각하면 됨
 * Stack이 위에서 아래로 쌓이고 Heap이 아래에서 위로 쌓임. 더 쌓일 수 없을 때 오버플로가 발생함
 
-image::../swift/image/os-process-memory-model.png[]
+image::./image/os-process-memory-model.png[]
 
 === Identity vs Equality
 
@@ -173,7 +173,7 @@ robot1 = nil
 robot2 = nil
 ----
     
-image::../swift/image/strong.png[]
+image::./image/strong.png[]
 
 ===== 약한 참조
 * 순환 참조 문제 때문에 `weak` 생김
@@ -215,7 +215,7 @@ robot2 = nil
 * 서로 바라보고 있다가 하나의 객체가 사라지면 weak 변수에 nil로 담아줌
 * View 소유관계
 
-image::../swift/image/weak.png[]
+image::./image/weak.png[]
 
 ===== unowned 미소유 참조
 * `unowned` 을 사용하면 참조 카운트를 반영하지 않음
@@ -258,7 +258,7 @@ john = nil
 * 클로저도 하나의 객체로 생각해야 함
 * 객체 안의 클로저가 self 값 캡처로 사용될 때 weak 또는 unowned 키워드를 사용함
 
-image::../swift/image/closure-strong-reference.png[]
+image::./image/closure-strong-reference.png[]
 
 [source, swift]
 ----

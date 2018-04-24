@@ -11,6 +11,6 @@
 정보 은닉(또는 정보 은폐라고도 한다.)은 1972년 Davis Parnas가 발표한 “On the Criteria To Be Used in Decomposing Systems Into Modules”에 소개된 이후로 오랜 세월 동안 소프트웨어 개발 분야에 지대한 영향을 끼친 원리이다. 
 그러나 이런 중요성에도 정보 은닉의 개념을 정확하게 이해하고 있는 사람은 많지 않다. 소프트웨어 개발 분야에서 가장 큰 영향력을 지닌 동시에 가장 큰 오해를 받고 있는 두 가지 원리가 있다면 바로 정보 은닉과 캡슐화(Encapsulation)일 것이다.
 
-=== 참고
+===== 참고
 * http://qna.iamprogrammer.io/t/encapsulation-getter-setter/193[캡슐화(Encapsulation)를 위한 Getter, Setter는 정말 필요한 걸까요?]
 * http://egloos.zum.com/aeternum/v/1232020[Information Hiding]
