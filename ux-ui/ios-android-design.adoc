@@ -34,7 +34,7 @@ image:./image/ios-image-2.png[]
 * 삼성, LG, HTC 등 다양한 모바일 제조사가 자사에 맞게 커스텀해서 사용하는 구글의 소프트웨어 생태계 시스템으로 이해할 수 있음
 
 ===== 디바스 해상도
-* https://material.io/devices/[Device Metrics]
+* `Device Metrics 링크 참고`
 * dp, dpi Based(= Dots Per Inch), 1인치 안으로 들어가는 점의 개수. 점의 개수가 높아질수록 고해상도
 
 ===== 축적 게수
@@ -66,3 +66,4 @@ image:./image/ios-image-2.png[]
 * https://developer.apple.com/design/resources/[Apple UI Design Resources]
 * https://material.io[Material Design]
 * http://www.suiux.com/gui_specification/[디자인 규격 알기]
+* https://material.io/devices/[Device Metrics]
