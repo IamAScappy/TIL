@@ -1,4 +1,4 @@
-= DB 기본
+= 기초
 
 === Data, Database, DBMS?
 

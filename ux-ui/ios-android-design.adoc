@@ -37,7 +37,7 @@ image:./image/ios-image-2.png[]
 * `Device Metrics 링크 참고`
 * dp, dpi Based(= Dots Per Inch), 1인치 안으로 들어가는 점의 개수. 점의 개수가 높아질수록 고해상도
 
-===== 축적 게수
+===== 축적계수
 * 다양한 해상도를 지원하기 위해 축적 계수를 사용함
 ** ldpi, mdpi, hdpi .. ⇒ 저밀도, 중밀도, 고밀도..
 ** 밀도의 범위를 의미함

@@ -1,4 +1,4 @@
-= AWS VPC 기초
+= VPC 기초
 
 === VPC
 

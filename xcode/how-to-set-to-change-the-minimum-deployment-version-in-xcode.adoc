@@ -1,4 +1,4 @@
-= XCode에서 Deployment Version 바꾸는 방법
+= Deployment Version 바꾸는 방법
 
 ===== 문제
 * Another's PC runs macOS 10.12.6, which is lower than LadderGame’s minimum deployment target. Change your project’s minimum deployment target or upgrade Eunjin의 MacBook Pro’s version of macOS.

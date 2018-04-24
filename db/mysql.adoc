@@ -1,4 +1,4 @@
-= MySQL 기본
+= MySQL 기초
 
 === MySQL 설치 실습
 

@@ -1,4 +1,4 @@
-= iOS App Design
+= App Design
 
 === iOS SDK
 
