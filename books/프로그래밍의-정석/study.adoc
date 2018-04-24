@@ -186,7 +186,6 @@ image::./image/client-interface.png[범주론]
 * 스프링 Controller와 Dao에서 디커플링을 어떻게 할 것인가??
 ** 서비스 레이어를 추가하지만, 결국 결론이 달라지지 않음
 ** 초기 단계에 Controller과 Model을 코드에 옮기지 않으려고 노력함
-** http://vandbt.tistory.com/13[OOD - 커플링이란 무엇이며, 어떻게 줄일 수 있을까?]
 * Objective-C의 순환참조 자연스러움. 자바 또한 최근에 디스패치로 옮겨가면서 순환참조인지 판별하기 어려움
 
 ===== 아키텍처 선택의 기로
@@ -212,7 +211,7 @@ image::./image/client-interface.png[범주론]
 ===== 의견 나눔
 * 기능별 ? 도메인별로 팀을 나누느냐?
 * 도메인별로 한 명씩 맡게 된다면 리스크 관리는 어떻게 할 것인가?
-** https://brunch.co.kr/@hika/7[개발자의 효율성]
+
 
 ===== MVC, MVP
 * MVC => Controller, Model 문제
@@ -242,6 +241,8 @@ image::./image/client-interface.png[범주론]
 * 다른 사람의 코드를 보면서 is-a <==> has-a 관계를 자유롭게 왔다갔다하면서 연습을 해봄
 
 === 참고 
+* https://brunch.co.kr/@hika/7[개발자의 효율성]
+* http://vandbt.tistory.com/13[OOD - 커플링이란 무엇이며, 어떻게 줄일 수 있을까?]
 * https://www.slideshare.net/sunhyouplee/functional-reactive-programming-with-rxswift-62123571[Reactive Programming]
 * https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/[안드로이드의 MVC, MVP, MVVM 종합 안내서]
 * http://wonwoo.ml/index.php/post/1490[토비의 봄 (더블 디스패치)]

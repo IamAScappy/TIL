@@ -44,8 +44,8 @@ image::./image/from-prototype-to-storyboard.png[]
 * 좌표, 높이, 넓이, 레이아웃, 비율, 색상
 
 === 참고
-* http://inspired-ui.com
-* http://www.lovelyui.com
-* http://mobile-patterns.com
-* https://dribbble.com
-* http://pttrns.com/
+* http://inspired-ui.com[Inspired UI]
+* http://www.lovelyui.com[LovelyUI]
+* http://mobile-patterns.com[MOBILE PATTERNS]
+* https://dribbble.com[Dribbble]
+* http://pttrns.com/[pttrns]

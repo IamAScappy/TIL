@@ -125,7 +125,7 @@ public class Main {
 ----
 
 === 자바에서 제공하는 함수형 인터페이스
-* https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html[Java8 Documents]
+* `Java8 Documents 링크 참고`  
 
 ===== Predicate
 * `(T) -> boolean`
@@ -222,3 +222,4 @@ Supplier<Apple> c = Apple::new;
 
 === 참고
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788968481796&orderClick=LAH&Kc=[자바 8 인 액션]
+* https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html[Java8 Documents]

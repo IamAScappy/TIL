@@ -46,8 +46,8 @@
 ** 사진 앱이 복잡함
 ** 혼자 공부한다면 애플 기본 앱을 만들어 보는 것도 좋음
 
-===== Evolution of the Desktop
-* https://www.youtube.com/watch?v=uGI00HV7Cfw[Evloution of the desktop]
+===== Evloution of The Desktop
+* `Evloution of The Desktop 링크 참고` 
 
 === Multi-touch
 
@@ -67,3 +67,4 @@ image::./image/ios-ux.png[]
 * https://ko.wikipedia.org/wiki/HCI[HCI Wiki]
 * http://wonwoo.ml/index.php/post/1717[의존성 역전(DIP)]
 * https://developer.apple.com/ios/human-interface-guidelines/overview/themes/[Human Interface Guideline]
+* https://www.youtube.com/watch?v=uGI00HV7Cfw[Evloution of The Desktop]

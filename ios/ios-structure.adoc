@@ -31,8 +31,9 @@ image::./image/ios-structure-2.png[]
 * Foundation
 ** **Access essential data types, collections, and operating-system services** to define the base layer of functionality for your app
 
-===== 스위프트 표준 라이브러리(https://developer.apple.com/documentation/swift[Swift Standard Library])
+===== 스위프트 표준 라이브러리
 * Solve complex problems and write high-performance, readable code
 
 === 참고 
 * https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html[Cocoa Framework]
+* https://developer.apple.com/documentation/swift[Swift Standard Library]
