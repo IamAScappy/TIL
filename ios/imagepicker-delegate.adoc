@@ -1,6 +1,5 @@
-= UIImagePickerController, UIImagePickerControllerDelegate
+= UIImagePickerController
 
 === 참고
 * https://developer.apple.com/documentation/uikit/uiimagepickercontroller[UIImagePickerController]
-* https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate[UIImagePickerControllerDelegate]
 * https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406[Taking Pictures and Movies]
