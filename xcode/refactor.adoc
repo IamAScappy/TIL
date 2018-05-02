@@ -1,0 +1,22 @@
+= Refactor 메뉴
+
+===== Renaming
+* _Command + Shift + A_
+
+image:./image/xcode-refactor-1.png[]
+
+===== Extract..
+* _Editor > Refactor > .._
+* _Command + Shift + ? > Extract_
+
+image:./image/xcode-refactor-2.png[]
+
+===== Userful Actions
+* _Command + Shift + A_
+* if-else, switch-case, enum에서도 사용가능함
+
+image:./image/xcode-refactor-3.png[]
+
+===== Test Coverage 설정
+
+image:./image/xcode-refactor-4.png[]

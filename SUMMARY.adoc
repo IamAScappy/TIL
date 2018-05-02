@@ -158,6 +158,7 @@
 * link:xcode/README.adoc[XCode]
 ** link:xcode/how-to-set-to-change-the-minimum-deployment-version-in-xcode.adoc[Deployment Version 바꾸는 방법]
 ** link:xcode/xcode-cheat-sheet.adoc[Cheat Sheet]
+** link:xcode/refactor.adoc[Refactor]
 ** link:xcode/xcode-shortcuts.adoc[단축키]
 ** link:xcode/xcode-debug-commands.adoc[디버그 명령어]
 ** link:xcode/how-to-check-memory-leak.adoc[메모리 릭 확인하는 방법]
