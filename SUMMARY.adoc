@@ -141,6 +141,7 @@
 ** link:swift/pattern.adoc[패턴]
 ** link:swift/function.adoc[함수]
 * link:tdd/README.adoc[TDD]
+** link:tdd/tdd-refactoring-overview.adoc[TDD, Refactoring Overview]
 ** link:tdd/test-double.adoc[Test Double]
 ** link:tdd/test.adoc[테스트]
 * link:ux-ui/README.adoc[UX/UI]
