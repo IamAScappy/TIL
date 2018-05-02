@@ -48,16 +48,6 @@ image:./image/tdd-overview-1.jpg[]
 ** _너도 알고 나도 알면 좋지만 싸이클 의존성이 생기면 좋지 않음_
 * *결국 클래스 내 메서드나 변수가 옮겨야 하는 이유가 중요함*
 
-===== ATDD
-* TDD, BDD, Step by Egen
-* 요구사항 파악(인수조건) -> 인수테스트 케이스 만듬 -> 인수테스트 케이스 개수만큼 자동화함 -> 개발팀은 빨간불이 켜진 것을 초록색으로 만드는 것이 중요함. 하나의 케이스에 대해 TDD로 작성함 -> 자동화로 넘어와서 다른 클래스 작성함
-* Outside-inside approch
-* Inside-outside approch
-
-===== 추천 서적
-* http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=671339[패턴을 활용한 리팩터링]
-* http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=27490110[테스트 주도 개발로 배우는 객체 지향 설계와 실천]
-
 === TDD
 
 ===== 요구사항 분석
@@ -91,11 +81,6 @@ image:./image/tdd-overview-1.jpg[]
 image:./image/tdd-overview-3.jpg[45%, 45%]
 image:./image/tdd-overview-4.jpg[45%, 45%]
 image:./image/tdd-overview-5.jpg[45%, 45%]
-
-===== TDD 연습하기 좋은 사이트
-* http://exercism.io/[Exercism]
-* http://www.cyber-dojo.org[Cyber Dojo]
-* https://www.codingame.com/home[Coding Game]
 
 ===== 단위 테스트
 * Arrange(Given) => 데이터 준비
@@ -131,9 +116,25 @@ image:./image/tdd-overview-2.jpg[45%, 45%]
 
 image:./image/tdd-overview-6.jpg[45%, 45%]
 
+===== ATDD
+* `ATDD 링크 참고`
+* TDD, BDD, Step by Egen
+* 요구사항 파악(인수조건) -> 인수테스트 케이스 만듬 -> 인수테스트 케이스 개수만큼 자동화함 -> 개발팀은 빨간불이 켜진 것을 초록색으로 만드는 것이 중요함. 하나의 케이스에 대해 TDD로 작성함 -> 자동화로 넘어와서 다른 클래스 작성함
+* Outside-inside approch
+* Inside-outside approch
+
 ===== Tip
 * IntelliJ
 ** Color Scheme > General > Line Coverage > Foreground 같은 색깔로 Background 설정하고 Foreground 선택 해제
 * 새로운 기능이 추가되면 함수, 새로운 타입이 추가된다면 계층 구조가 좋음
 
 image:./image/tdd-overview-7.jpg[45%, 45%]
+
+* http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=671339[패턴을 활용한 리팩터링]
+* http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=27490110[테스트 주도 개발로 배우는 객체 지향 설계와 실천]
+* http://exercism.io/[Exercism]
+* http://www.cyber-dojo.org[Cyber Dojo]
+* https://www.codingame.com/home[Coding Game]
+
+=== 참고
+* https://www.slideshare.net/jaehoonoh/ss-63436044[ATDD]
