@@ -30,20 +30,20 @@ image:./image/tableview-2.png[45%, 45%]
 
 ===== Deleting Rows
 * Delete 버튼을 이용하여 Row 삭제
-** `tableView(_:commitEditingStyle:forRow  AtIndexPath:)`
+** `tableView(_:commitEditingStyle:forRowAtIndexPath:)`
 ** Model 객체를 삭제함
 ** 삭제한 정보를 Table View에 반영함
 
-* Navigation Bar에 있는 Edit 버튼을 이용하여 줄 삭제
+* Navigation Bar에 있는 Edit 버튼을 이용하여 Row 삭제
 ** `editButtonItem()`
 
 ===== Inserting Rows
-* _Add New Row_ TableView에서 보여주기
+* _Add New Row_ 버튼을 TableView 활성화하기
 ** `tableView(_:numberOfRowsInSection:)` 
 ** `tableView(_:cellForRowAtIndexPath:)`
 ** `setEditing(_:animated:)`
 ** `tableView(_:commitEditingStyle:forRowAtIndexPath:)`
-* 줄 추가 이벤트 다루기
+* Row 추가 이벤트 다루기
 ** `tableView(_:commitEditingStyle:forRowAtIndexPath:)`
 ** `tableView(_:didSelectRowAtIndexPath:):`
 
@@ -53,7 +53,7 @@ image:./image/tableview-2.png[45%, 45%]
 
 ===== Custom Cells
 * _Attribute Inspector > Table View Cell > Style => Custom 선택, Identifier 설정_
-* Subview Tag로 접근하면 안됨 => Runtime 에러 발생
+* Subview Tag로 접근하면 안됨 => Runtime 에러 발생함
 
 [source, swift]
 ----
@@ -61,7 +61,7 @@ let label = cell.viewWithTag(1) as! UILabel
 label.text = icon.title`
 ----
 
-* Custom Cell 정의
+* Custom Cell 만들기
 ** Subclass 만듦
 ** Custom class 정의함
 ** IconTableViewCell Outlet 연결함
@@ -70,7 +70,7 @@ image:./image/tableview-custom-cell-1.png[45%, 45%]
 image:./image/tableview-custom-cell-2.png[45%, 45%]
 image:./image/tableview-custom-cell-3.png[45%, 45%]
 
-* Custom Cell 높이 
+* Custom Cell 높이 정하기
 [source, swift]
 ----
 // 직접 설정
@@ -127,10 +127,19 @@ collation.sectionForObject(icon, collationStringSelector:
 * Indexing
 ** Indices => `sectionIndexTitlesForTableView(_:)`
 ** Sections => `tableView(_:sectionForSection IndexTitle:atIndex:)`
-** Index Titles => `UILocalizedIndexedCollation.currentCollation().sectionTitles`
-** Index Title을 통해 Section 찾기 => `UILocalizedIndexedCollation.currentCollation().sectionForSectionIndexTitleAtIndex(index)``
+
+[source, swift]
+----
+// Index Titles
+UILocalizedIndexedCollation.currentCollation().sectionTitles
+
+// Index Title을 통해 Section 찾기
+UILocalizedIndexedCollation.currentCollation().sectionForSectionIndexTitleAtIndex(index)
+----
  
-=== 참고
+===== 참고
 * https://videos.raywenderlich.com/courses/22-table-views-in-ios/lessons/1[Table Views in iOS]
 * https://developer.apple.com/documentation/foundation/nsindexpath[NSIndexPath]
 * https://developer.apple.com/documentation/foundation/indexpath[IndexPath]
+* https://developer.apple.com/documentation/uikit/uitableview[UITableView]
+* https://developer.apple.com/documentation/uikit/uitableviewcontroller[UITableViewController]
