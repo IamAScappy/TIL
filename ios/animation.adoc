@@ -1,0 +1,35 @@
+= Animation
+
+=== Animating Constraints
+
+===== Animating Constraint Constants
+* _Auto Layout Constant_
+* _UIView.animate_
+* `self.view.layoutIfNeeded()` 사용하지 않으면 View 애니메이션 진행하는 동안 Text Label 사이즈가 깨지는 이유 ?
+
+image:./image/ios-animation-1.gif[45%, 45%]
+image:./image/ios-animation-2.gif[45%, 45%]
+
+[source, swift]
+----
+@IBAction func toggleMenu(_ sender: AnyObject) {
+    menuIsOpen = !menuIsOpen
+
+    //TODO: Build your first constraint animation!
+   titleLabel.text = menuIsOpen ? "Select Item" : "Package List"
+   self.view.layoutIfNeeded()
+
+    menuConstant.constant = menuIsOpen ? 200.0 : 60.0
+
+    UIView.animate(
+        withDuration: 0.33,
+        delay: 0.0,
+        options: .curveEaseIn,
+        animations: {
+        self.view.layoutIfNeeded()
+        },
+        completion: nil
+    )
+}
+----
+
