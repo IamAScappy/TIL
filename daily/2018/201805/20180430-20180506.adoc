@@ -12,3 +12,9 @@
 ** [ ] Concurrent Programming
 ** [ ] 배포
 ** [ ] Objective-C 
+
+===== 느낀 점
+* 요즘 1인 개발에 대한 생각이 많아진 요즘..
+** https://brunch.co.kr/@dongkang/1[회사를 그만두었다.]
+** http://soulduse.tistory.com/62[개인앱 개발 세미나 후기 [2017-08-12]
+** https://www.slideshare.net/jinsubjung3/1-72452606[1인 개발자가 되기 전 알아야 할 것]
