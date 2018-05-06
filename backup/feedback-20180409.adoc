@@ -1,6 +1,9 @@
-* [Pipe Operator](https://gist.github.com/godrm/7f5b8d024e866ab8aa6ef152da693862)
+= 2018.04.09
 
-```swift
+===== Pipe Operator
+
+[source, swift]
+----
 public func filter<S: Sequence, F>(_ seq: S, _ function: (S.Element) -> Bool) -> [S.Element] {
     return seq.filter(function)
 }
@@ -14,4 +17,7 @@ var result2 = [1, 2, 3, 4, 5] |> (filter, isEven)
 
 // filter([1, 2, 3, 4, 5]. isEven)
 // [1, 2, 3, 4, 5].filter(isEven)
-```
+----
+
+===== 참고
+* https://gist.github.com/godrm/7f5b8d024e866ab8aa6ef152da693862[Pipe Operator]

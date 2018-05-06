@@ -6,15 +6,15 @@
 * [*] 주소록 앱 5단계 피드백 반영하기 
 * [ ] iOS 프로그래밍
 ** [*] TableView 관련 내용
-** [ ] Auto Layout
+** [*] Auto Layout 기초
 ** [*] TDD, 단위테스트, XCode Refactor 메뉴
-** [ ] Animation
+** [*] Animation 기초
 ** [ ] Concurrent Programming
 ** [ ] 배포
-** [ ] Objective-C 
 
 ===== 느낀 점
 * 요즘 1인 개발에 대한 생각이 많아진 요즘..
 ** https://brunch.co.kr/@dongkang/1[회사를 그만두었다.]
-** http://soulduse.tistory.com/62[개인앱 개발 세미나 후기 [2017-08-12]
+** http://soulduse.tistory.com/62[개인앱 개발 세미나 후기 [2017-08-12]]
 ** https://www.slideshare.net/jinsubjung3/1-72452606[1인 개발자가 되기 전 알아야 할 것]
+* 개발 모임 나갔다가 하이브리드 앱 관련 기술 이야기를 들음. 키워드는 코모도라, 아이오닉, PWA, React Native :)
