@@ -1,0 +1,24 @@
+= MVC, MVP, MVVM
+
+===== 설계 패턴
+* 디자인 패턴이 아닌 설계 패턴. 아키텍쳐 패턴. 구현 코드와 상관없음
+* 왠만하면 서비스는 MVC 패턴이라고 하면 됨
+* 우리가 부르는 디자인 패턴은 객체와 객체끼리 관계, 사소한 역할을 나누고 실제 구현함
+* 설계 패턴은 실제 구현보다 역할을 나눔
+* **어느 플랫폼에서 지원하는 기술에서 어떻게 구현하느냐?** 따라 달라짐
+
+===== MVP
+* Controller가 있을 수 있음
+* View가 Presenter나 Controller로 갈 수 있음
+* View와 Presenter 의존성 역전관계이기 때문에 Presenter 프로토콜만 알고 있기 때문에 Controller에서 결국 주입을 해줘야 함
+
+===== MVC
+* 하나의 View가 View Controller의 소유권을 가지고 있음
+* View Controller => Presenter까지 가지고 있음. 역할이 너무 커짐
+
+===== MVVM
+* View Controller에서 이벤트 흐름을 Rx- 의 객체에다가 넣고 View Model 바인딩해줌
+* 결국 View Model에서 바인딩된 데이터에서 버그가 발생하기보다 View Controller에서 VM 바인딩하는 과정에서 버그가 많이 발생함
+* 카드게임 같은 경우는 이미 시작 시점에서 데이터가 바인딩이 됨
+
+===== MVC, MVP, MVVM 관련 내용은 계속 채워갈 예정:)
