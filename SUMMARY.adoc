@@ -62,7 +62,7 @@
 ** link:git/how-to-send-github-pull-request.adoc[Github Pull-request 보내기]
 * link:ios/README.adoc[iOS]
 ** link:ios/ui-application-main.adoc[@UIApplicationMain]
-** link:ios/animation.adoc[Animation]
+** link:ios/animating-constraints.adoc[Animating Constraints]
 ** link:ios/ios-app-design.adoc[App Design]
 ** link:ios/app-life-cycle.adoc[App Life Cycle]
 ** link:ios/app-programming-for-ios.adoc[App Programming for iOS]
