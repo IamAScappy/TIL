@@ -319,5 +319,97 @@ extension SpringsView {
 view.button.addTarget(view, action: #selector(view.animate), for: .touchUpInside)
 ----
 
+===== View Transitions
+* Transition Triggers
+** `isHidden`
+** `addSubview()`
+** `removeFromSuperview()`
+* Transitions
+
+image:./image/animation-transitions.png[]
+
+image:./image/ios-animation-7.gif[45%, 45%]
+
+[source, swift]
+----
+delay(seconds: 1.0, completion: {
+  UIView.transition(
+    with: imageView,
+    duration: 1.0,
+    options: [
+      .curveEaseIn,
+      .transitionFlipFromBottom
+    ],
+    animations: {
+      imageView.isHidden = true
+    },
+    completion: {_ in
+      imageView.removeFromSuperview()
+    }
+  )
+})
+----
+
+image:./image/ios-animation-8.gif[45%, 45%]
+
+[source, swift]
+----
+let view = TransitionsView(frame: CGRect(
+  x: 0, y: 0,
+  width: 400, height: 400
+))
+
+PlaygroundPage.current.liveView = view
+
+view.duration = 2.0
+
+let beachballOptions: UIViewAnimationOptions = [.transitionFlipFromTop]
+
+let drinkOptions: UIViewAnimationOptions = [.transitionCrossDissolve]
+
+let icecreamTransitionIn: UIViewAnimationOptions = [.transitionCurlUp]
+let icecreamTransitionOut: UIViewAnimationOptions = [.transitionCurlDown]
+
+extension TransitionsView {
+  @objc func transition() {
+    let shouldHide = self.beachball.isHidden ? false : true
+    
+    UIView.transition(
+      with: beachball,
+      duration: duration,
+      options: beachballOptions,
+      animations: {
+        self.beachball.isHidden = shouldHide
+      },
+      completion: nil
+    )
+    
+    UIView.transition(
+      with: drink,
+      duration: duration,
+      options: drinkOptions,
+      animations: {
+        self.drink.isHidden = shouldHide
+      },
+      completion: nil
+    )
+    
+    UIView.transition(
+      with: icecream,
+      duration: duration,
+      options: shouldHide ? icecreamTransitionIn : icecreamTransitionOut,
+      animations: {
+        self.icecream.isHidden = shouldHide
+      },
+      completion: {_ in
+//        self.icecream.isHidden = true
+      }
+    )
+  }
+}
+
+view.button.addTarget(view, action: #selector(view.transition), for: .touchUpInside)
+----
+
 ===== 참고
 * https://videos.raywenderlich.com/courses/104-beginning-ios-animations[Beginning iOS Animations]
