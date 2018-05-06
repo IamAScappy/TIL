@@ -1,13 +1,9 @@
 = Tips
 
-=== Runtime Header
-
-===== 설명
+===== Runtime Header
 * `UIViewController.h, UIStoryboard.h, UIController.h 등` 구글에서 검색함
 * Objective-C는 런타임 언어이기 때문에 private으로 선언하더라도 실제로 private으로 동작하지 않음
 * Swift에서 꼼수로 사용 가능. 왜냐하면, Key-Value 형태이기 때문임
-
-===== 예제
 
 [source, swift]
 ----
@@ -30,3 +26,9 @@ func testJoinButton_push() {
     // ...
 }
 ----
+
+===== Auto Layout 관련 팁 
+* Content Hugging, Compression Resistance 안 쓴다는 생각을 버려라!
+* translatesAutoresizingMaskIntoConstraints 아니면 Auto Layout
+* Visual Format Language 사용함
+* 제약을 적용 하기 위해서 두 객체의 x, y 좌표를 알아야 함
