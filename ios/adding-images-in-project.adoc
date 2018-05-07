@@ -1,0 +1,36 @@
+= 프로젝트에 이미지 추가하기
+
+===== 에셋 카탈로그
+* 프로젝트 생성 시, _Asstes.xcassets_ 폴더가 자동으로 생성됨
+* 어플리케이션에서 사용될 다양한 에셋을 관리함
+
+===== 에셋 카탈로그 구성
+* Groups
+* Assets => 한 가지 타입의 관련된 속성과 파일들의 집합
+* Asset Name => 에셋에 접근하기 위해 개발자가 정의한 문자열
+* Asset Files => 선택한 에셋의 데이터 파일 또는 리소스
+* Attributes
+
+===== 에셋 카탈로그 타입
+
+|===
+| 타입 | 확장자 | 설명
+| App Icon Type	| .appiconset	| 애플리케이션 아이콘 원본 이미지
+| Catalog Type	| .xcassets	    | 에셋 카탈로그의 최상위 폴더. 한 개의 에셋 카탈로그에 하나만 존재할 수 있음
+| Image Set Type | .imageset	| UIImage와 NSImage의 인스턴스에 사용되는 이미지 파일
+| Data Set Type	 | .dataset	        | 치 실행 가능 코드(device-executable code)를 제외한 Xcode에 의해 생성된 모든 종류의 데이터를 포함하는 파일들의 집합
+| Launch Image Type	| .launchimage	| 애플리케이션 실행화면 이미지
+|===
+
+===== 이미지 추가하기
+* 하단 메뉴에서 + 선택 -> New Image Set -> 삽입하려는 이미지를 에셋 파일에 드래그하여 옮김
+
+===== App Thinning, Slicing
+* `App thinning -Asset slicing — How to set images specific to device? 링크 참고`
+* `App Thinning - WWDC2015 링크 참고`
+
+===== 참고
+* https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/AssetTypes.html[Asset Catalog Format Reference]
+* https://help.apple.com/xcode/mac/current/#/dev10510b1f7[Xcode Help]
+* https://developer.apple.com/videos/play/wwdc2015/404/[App Thinning - WWDC2015]
+* https://medium.com/@anilmanukonda/app-thinning-asset-slicing-how-to-set-images-specific-to-device-dcdb887254e3[App thinning -Asset slicing — How to set images specific to device?]

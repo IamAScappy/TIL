@@ -97,6 +97,7 @@
 ** link:ios/my-app-1.adoc[첫 번째 앱 기획]
 ** link:ios/view-segue.adoc[다양한 화면 전환]
 ** link:ios/archives-serialization.adoc[아키이빙과 직렬화]
+** link:ios/adding-images-in-project.adoc[프로젝트에 이미지 추가하기]
 * link:mac/README.adoc[MacOS]
 ** link:mac/how-to-delete-ds-stores.adoc[.DS_Store 일괄 삭제]
 ** link:mac/setting-after-initialization.adoc[Mac 초기화 후 세팅하기]
