@@ -1,0 +1,13 @@
+= 2018.05.07 - 2018.05.13
+
+=== 2018.05.07
+
+===== 할 일 
+* [ ] 카드게임 2단계 진행하기
+* [ ] Beginning Auto Layout 강의 듣고 정리하기
+* [ ] 영어 공부
+* [ ] Getting Started with RxSwift
+** [ ] Introduction
+** [ ] Hello RxSwift
+** [ ] Installing RxSwift
+
