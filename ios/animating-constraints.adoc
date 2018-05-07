@@ -13,9 +13,8 @@ image:./image/ios-animation-2.gif[45%, 45%]
 @IBAction func toggleMenu(_ sender: AnyObject) {
     menuIsOpen = !menuIsOpen
 
-    //TODO: Build your first constraint animation!
-   titleLabel.text = menuIsOpen ? "Select Item" : "Package List"
-   self.view.layoutIfNeeded()
+    titleLabel.text = menuIsOpen ? "Select Item" : "Package List"
+    self.view.layoutIfNeeded()
 
     menuConstant.constant = menuIsOpen ? 200.0 : 60.0
 
@@ -71,9 +70,6 @@ image:./image/ios-animation-4.gif[45%, 45%]
 
 [source, swift]
 ----
-import PlaygroundSupport
-import UIKit
-
 let view = OptionsView(frame: CGRect(
   x: 0, y: 0,
   width: 400, height: 800
@@ -90,23 +86,36 @@ let icecreamOptions: UIViewAnimationOptions = [.curveEaseInOut]
 extension OptionsView {
   @objc func animate() {
     UIView.animate(
-      withDuration: duration, delay: 0.0,
-      options: beachballOptions, animations: {
+      withDuration: duration, 
+      delay: 0.0,
+      options: beachballOptions, 
+      animations: {
         view.beachballConY.constant = view.beachballConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
-    UIView.animate(withDuration: duration, delay: 0.0,
-      options: drinkOptions, animations: {
+
+    UIView.animate(
+      withDuration: duration, 
+      delay: 0.0,
+      options: drinkOptions, 
+      animations: {
         view.drinkConY.constant = view.drinkConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
-    UIView.animate(withDuration: duration, delay: 0.0,
-      options: icecreamOptions, animations: {
+
+    UIView.animate(
+      withDuration: duration, 
+      delay: 0.0,
+      options: icecreamOptions, 
+      animations: {
         view.icecreamConY.constant = view.icecreamConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
   }
 }
@@ -122,7 +131,9 @@ image:./image/ios-animation-5.gif[45%, 45%]
 ----
 func showItem(_ index: Int) {
   let imageView = makeImageView(index: index)
-  view.addSubview(imageView)				//Create constraints
+  view.addSubview(imageView)				
+
+  // Create constraints
   let conX = imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
   let conBottom = imageView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant: imageView.frame.height)
   let conWidth = imageView.widthAnchor.constraint(equalTo: view.widthAnchor multiplier: 0.33, constant: -50.0)
@@ -194,6 +205,7 @@ image:./image/ios-animation-6.gif[45%, 45%]
                 multiplier: menuIsOpen ? 0.67 : 1.0,
                 constant: 5.0
             )
+
             newConstraint.identifier = "TitleCenterY"
             newConstraint.isActive = true
         }
@@ -265,9 +277,6 @@ image:./image/ios-spring-4.gif[45%, 45%]
 
 [source, swift]
 ----
-import PlaygroundSupport
-import UIKit
-
 let view = SpringsView(frame: CGRect(
   x: 0, y: 0,
   width: 400, height: 800
@@ -289,29 +298,42 @@ view.icecreamSpringInitialVelocity = 0.0
 extension SpringsView {
   @objc func animate() {
     UIView.animate(
-      withDuration: duration, delay: 0.0,
+      withDuration: duration, 
+      delay: 0.0,
       usingSpringWithDamping: beachballSpringDamping,
       initialSpringVelocity: beachballSpringInitialVelocity,
-      options: [], animations: {
+      options: [], 
+      animations: {
         view.beachballConY.constant = view.beachballConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
-    UIView.animate(withDuration: duration, delay: 0.0,
+
+    UIView.animate(
+      withDuration: duration, 
+      delay: 0.0,
       usingSpringWithDamping: drinkSpringDamping,
       initialSpringVelocity: drinkSpringInitialVelocity,
-      options: [], animations: {
+      options: [], 
+      animations: {
         view.drinkConY.constant = view.drinkConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
-    UIView.animate(withDuration: duration, delay: 0.0,
+
+    UIView.animate(
+      withDuration: duration, 
+      delay: 0.0,
       usingSpringWithDamping: icecreamSpringDamping,
       initialSpringVelocity: icecreamSpringInitialVelocity,
-      options: [], animations: {
+      options: [], 
+      animations: {
         view.icecreamConY.constant = view.icecreamConY.constant * -1
         view.layoutIfNeeded()
-      }, completion: nil
+      }, 
+      completion: nil
     )
   }
 }
