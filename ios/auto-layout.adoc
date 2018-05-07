@@ -8,7 +8,7 @@ image:./image/auto-layout-15.png[]
 
 ===== 화면 사이즈 변화
 * iPhone 4에서 Retina Display로 인해 Point 단위, 스케일 사용함
-** `Pixel과 Point 차이 참고` 
+** `Pixel과 Point 차이 링크 참고` 
 * iPhone 5가 나오면서 파편화가 심해짐 
 ** `Auto Layout 도입` 
 ** 기존 Frame-based Layout에서 다른 View 관계를 이용하여 View의 위치와 크기를 자동하는 조정하는 Layout 시스템
@@ -34,7 +34,7 @@ image:./image/auto-layout-15.png[]
 === Auto Layout Interface Builder
 
 ===== Prototyping Constraints
-* `What are prototyping constraints? 참고`
+* `What are prototyping constraints? 링크 참고`
 
 ===== Auto Resizing 추가하기
 * Size Inspector > Autoresizing
@@ -64,8 +64,6 @@ image:./image/auto-layout-15.png[]
 * _Command + Option + Enter_ 이나 보조편집기 아이콘을 통해 보조 편집기를 열고 Auto Layout Preview를 확인할 수 있음
 
 image:./image/auto-layout-6.png[45%, 45%]
-image:./image/auto-layout-3.png[45%, 45%]
-image:./image/auto-layout-4.png[45%, 45%]
 image:./image/auto-layout-5.png[45%, 45%]
 
 === Auto Resizing
@@ -204,21 +202,36 @@ image:./image/auto-layout-2.png[45%, 45%]
 ===== Add New Constraints, Add New Alignment Constraints Buttons
 * Add New Constraints 버튼을 누르면 기준이 되는 View로 인접한 View가 설정되어 있음. 기준이 되는 View를 바꿀 수 있음
 * Width, Height
+
+* Aspect Ratio
+** 기준이 되는 너비나 높이가 있어야 함
+
+* BaseLines
+** Leading, Trailing, Top, Bottom은 Frame 기준으로 정렬함
+** BaseLine은 내용을 기준으로 정렬함
+
+===== Dragging Constraints
+* _Editor에서 Control + 드래그_ 
+** 드래그 방향, 각도에 따라 추가할 수 있는 제약이 달라짐
+** View의 현재 Frame을 기준으로 제약이 추가됨
+* _Editor에서 Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
+* _Document Outline에서 Control + 드래그_
+
+===== Editing Constraints
+* Editing Constraints
+
+image:./image/editing-constraints-1.png[45%, 45%]
+image:./image/editing-constraints-2.png[45%, 45%]
+
 * centerX, centerY
 ** Label 같은 요소는 내용으로 크기가 유추할 수 있기 때문에 너비, 높이 제약을 생략할 수 있음. 그렇지 않은 것에 대해서 높이와 너비 제약을 추가해야 함
 ** centerX, centerY는 인접한 상위 View에 제약이 추가됨
 
 image:./image/auto-layout-9.png[45%, 45%]
 
-* AspectRatio
-** 기준이 되는 너비나 높이가 있어야 함
-
-* BaseLine
-** Leading, Trailing, Top, Bottom은 Frame 기준으로 정렬함
-** BaseLine은 내용을 기준으로 정렬함
-
-* Relation
 * Equal 뿐만 아니라 Less Then Equal, More Then Equal로 추가할 수 있음
+
+image:./image/constraints-equals.png[45%, 45%]
 
 * Multiplier
 ** 비율은 정수로 계산하는 것이 좋음
@@ -259,9 +272,8 @@ image:./image/auto-layout-12.png[45%, 45%]
 image:./image/auto-layout-13.png[45%, 45%]
 
 * Priority
-** 우선 순위 1000보다 작으면 ?
-*** 우선 순위가 1000은 필수 제약 조건
-*** 우선 순위가 1000보다 작으면 점선으로 표시되며 선택적 제약 조건
+** Priority가 1000은 필수 제약 조건
+** Priority가 1000보다 작으면 점선으로 표시되며 선택적 제약 조건
 
 image:./image/auto-layout-14.png[45%, 45%]
 
@@ -287,16 +299,11 @@ image:./image/auto-layout-14.png[45%, 45%]
 }
 ---- 
 
-===== Drag constraints
-* _Editor에서 Control + 드래그_ 
-** 드래그 방향, 각도에 따라 추가할 수 있는 제약이 달라짐
-** View의 현재 Frame을 기준으로 제약이 추가됨
-* _Editor에서 Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
-* _Document Outline에서 Control + 드래그_
-
 ===== Tips
 * 노락색 Indicator가 보인다면 Update Frames 메뉴를 선택함
 * Copyright 같은 문구는 UILabel의 _AutoShrink_ 과 Add New Constraints의 _Constraint to margin 체크 박스, Bottom Margin의 Use Standard Value_ 를 이용하여 어느 기기에도 대응할 수 있음
+* 고정된 너비와 높이 값은 피해야 함
+* Subview들의 제약 조건을 개발자가 직접 관리하는 것보다 StackView를 이용할 수 있다면 이용하는 것이 좋음
 
 === 참고
 * https://cocoacasts.com/what-are-prototyping-constraints[What are prototyping constraints?]
@@ -310,3 +317,4 @@ image:./image/auto-layout-14.png[45%, 45%]
 * https://github.com/yuaming/practice-swift/tree/master/BasicConstraints[BasicConstraints]
 * https://academy.realm.io/kr/posts/ios-autolayout/[오토 레이아웃으로 iOS 앱 쉽게 개발하기]
 * https://medium.com/@lingostar/오토-레이아웃이란-4fdfbd9397d9[오토 레이아웃이란?]
+* https://blog.grotesq.com/post/593[Pixel과 Point 차이]
