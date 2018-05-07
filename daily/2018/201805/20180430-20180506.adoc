@@ -18,3 +18,4 @@
 ** http://soulduse.tistory.com/62[개인앱 개발 세미나 후기 [2017-08-12]]
 ** https://www.slideshare.net/jinsubjung3/1-72452606[1인 개발자가 되기 전 알아야 할 것]
 * 개발 모임 나갔다가 하이브리드 앱 관련 기술 이야기를 들음. 키워드는 코모도라, 아이오닉, PWA, React Native :)
+* Concurrent Programming, 배포 관련해서 직접적으로 경험하지 못한 부분이기 때문에 아직 정리하지 않음. 이 주제에 대해서 경험을 더하고 정리하자!
