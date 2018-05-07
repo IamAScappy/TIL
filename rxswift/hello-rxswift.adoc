@@ -80,6 +80,19 @@ public enum Event<Element> {
 
 === RxSwift 설치
 
+===== CocoaPod 이용하여 설치하기
+
+[source, bash]
+----
+platform :ios, '11.0'
+use_frameworks!
+
+target 'RxSwiftPlayground' do
+    pod 'RxSwift', '~> 4.0'
+end
+~
+----
+
 ===== RxSwift가 Import가 제대로 되지 않는다면
 * Project Clean 
 * Project Clean으로 안된다면 ?
