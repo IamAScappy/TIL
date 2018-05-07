@@ -3,11 +3,25 @@
 === 2018.05.07
 
 ===== 할 일 
-* [ ] 카드게임 2단계 진행하기
-* [ ] Beginning Auto Layout 강의 듣고 정리하기
-* [ ] 영어 공부
-* [ ] Getting Started with RxSwift
-** [ ] Introduction
-** [ ] Hello RxSwift
-** [ ] Installing RxSwift
+* [*] CardGameApp 2단계 진행하기
+* [*] Beginning Auto Layout 강의 듣고 정리하기
+* [*] 영어 공부
+* [*] Getting Started with RxSwift
+** [*] Introduction
+** [*] Hello RxSwift
+** [*] Installing RxSwift
 
+===== 느낀 점
+* 1일 1커밋. 1일 1풀리퀘 원칙을 지키자
+* 영어 공부는 가깝게 접할 수 있는 분야에서부터 시작하자!
+
+=== 2018.05.08
+
+===== 할 일
+* [ ] CardGameApp 2단계 진행하기
+* [ ] Mastering Auto Layout 강의 듣고 정리하기
+* [ ] 영어 공부
+* [ ] Beginning RxSwift
+** [ ] Creating Observables
+** [ ] Subscribing to Observables: Part 1
+** [ ] Subscribing to Observables: Part 2
