@@ -1,6 +1,6 @@
 = 프로퍼티(Property)
 
-=== Stored Property 
+===== Stored Property 
 
 [source, swift]
 ----
@@ -59,7 +59,7 @@ manager.data.append("Some more data")
 */
 ----
 
-=== Computed Property 
+=====  Computed Property 
 
 [source, swift]
 ----
@@ -159,7 +159,7 @@ stepCounter.totalSteps = 896
 // Added 536 steps
 ----
 
-=== Global and Local Variables 
+===== Global and Local Variables 
 
 [source, swift]
 ----
@@ -169,7 +169,7 @@ stepCounter.totalSteps = 896
 // 전역 변수와 상수는 Lazy Stored Property와 유사한 방식으로 항상 지연 계산함. 그러나 @lazy Attribute를 표시하지 않아도 됨
 ----
 
-=== Type Property 
+===== Type Property 
 
 [source, swift]
 ----
@@ -226,6 +226,6 @@ print(SomeClass.computedTypeProperty)
 // Prints "27"
 ----
 
-=== 참고
+===== 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]

@@ -2,7 +2,8 @@
 
 === Interface Builder Constants
 
-===== IB- (Interface Builder)
+===== IB- 
+* Interface Builderx
 * UX 요소와 코드를 연결하는 것
 
 === IBOutlet
@@ -65,16 +66,6 @@ image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/photoframe-t
 ===== IBAction에서 여러가지 이벤트 설정할 수 있음
 
 image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/multiple-event.png[40%, 40%]
-
-=== UIEvent, UIResponder 
-
-===== 차이점
-* UIEvent와 UIControlEvents이 연관이 없음. 즉, UIEvent와 UIResponder는 연관이 없다는 말과 같음
-* UIResponder <- UIView <- UIControl <- UIControlEvents
-* UIEvent
-* Target, Action 메커니즘은 UIResponder와 연관이 있으며 UIEvent를 통해 이벤트를 제공함
-
-> The "event" is the one passed to your action method, but I assume your real question is which of the `UIControlEvents` caused the action. `UIEvent` and `UIControlEvents` are unrelated. The target/action pattern provides a `UIEvent`. If you want to handle different `UIControlEvents` differently, you should implement different actions for them. The target/action mechanism comes from `UIResponder`. `UIControlEvents` are related to `UIControl`.
 
 === 참고
 * https://developer.apple.com/documentation/appkit/constants/interface_builder_constants/iboutlet[IBOutlet]

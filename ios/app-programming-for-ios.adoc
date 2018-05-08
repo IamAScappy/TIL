@@ -1,7 +1,6 @@
 = App Programming for iOS
 
-> 이 글은 https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS] 을 
-개인 학습의 목적으로 번역하였기 때문에 잘못된 번역이나 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다 :)
+> 이 글은 https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS] 을 개인 학습의 목적으로 번역하였기 때문에 잘못된 번역이나 의역이 포함되어 있습니다. 잘못된 부분은 메일로 보내주시면 감사하겠습니다. 번역 진행 중입니다:)
 
 === 카테고리 소개
 . Introduction
@@ -144,7 +143,7 @@ image:./image/key-objects-in-ios-app.png[]
 ** _UIViewController_ 클래스는 모든 View Controller 객체의 기본 클래스임
 ** View 로딩, 프리젠테이션, 화면 회전에 대한 응답 그리고 몇 가지 시스템 표준 동작을 기본으로 제공함
 ** UIKit과 다른 프레임워크는 Picker, Tab Bar, Navigation 인터페이스를 구현할 수 있도록 추가적으로 View Controller 클래스들을 정의함
-** `View, View Controller(The Role of View Controllers를 번역함) 링크 참고`
+** `The Role of View Controllers 번역본 링크 참고`
 * `UIWindow` 객체
 ** _UIWindow_ 객체는 화면에서 하나 이상 View의 프리젠테이션 표현을 조정함 
 ** 대부분 앱은 콘텐츠를 제공하는 Window는 하나지만 다른 앱에서 Window가 여러 개 일 수 있음
@@ -173,7 +172,7 @@ image:./image/main-run-loop.png[]
 |===
 | Event Type | Delivered To.. | 설명
 | Touch | 이벤트를 발생한 View 객체 | View는 Responder 객체. View에 의해 처리되지 않은 모든 Touch 이벤트를 처리하기 위해 Responder Chain으로 전달됨
-| Remote control, Shake motion events | First `Responder Object` | 원격 제어 이벤트는 미디어 재생을 제어하기 위한 것. 헤드폰 및 기타 악세사리에 의해 발생함
+| Remote control, Shake motion events | `First Responder Object` | 원격 제어 이벤트는 미디어 재생을 제어하기 위한 것. 헤드폰 및 기타 악세사리에 의해 발생함
 | Accelerometer, Magnetometer, Gyroscope | 사용자가 지정한 객체 | 가속도계, 자력계, 자이로 스코프 하드웨어는 사용자가 지정한 객체로 전달됨
 | Location | 사용자가 지정한 객체 | Core Location Framework를 사용하여 위치 이벤트를 수신할 수 있도록 위치를 등록해야 함. `Location and Maps Programming Guide 링크 참고`
 | Redraw | 업데이트가 필요한 View | Redraw 이벤트는 이벤트 객체를 포함하지 않지만, View를 그리기 위해 View 자체를 호출함. `Drawing and Printing Guide for iOS 링크 참고`
@@ -555,7 +554,6 @@ image:./image/app_bg_life_cycle.png[]
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]
 * https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214[Start Developing iOS Apps (Swift)]
 * https://developer.apple.com/documentation/#//apple_ref/doc/uid/TP40007898[Apple Developer Documentation]
-* https://wiki.yuaming.com/ios/bundle.html[Bundle]
 * https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i[Preferences and Settings Programming Guide]
 * https://developer.apple.com/library/content/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i[Bundle Programming Guide]
 * https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i[Resource Programming Guide]
@@ -563,15 +561,9 @@ image:./image/app_bg_life_cycle.png[]
 * https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247[Information Property List Key Reference - Info.plist Keys and Values] 
 * https://developer.apple.com/ios/human-interface-guidelines/overview/themes/[HIG - iOS Design Themes]
 * https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33[NSAppTransportSecurity]
-* https://wiki.yuaming.com/iosmodel-view-controller.html[Model-View-Controller]
-* https://wiki.yuaming.com/ios/storyboard-scene-segue.html[Storyboard]
 * https://developer.apple.com/documentation/uikit/uiapplication[UIApplication]
-* https://wiki.yuaming.com/ios/delegate.html[App Delegate]
-* https://wiki.yuaming.com/ios/view-view-controller.html[View, View Controller]
-* https://wiki.yuaming.com/ios/model-view-controller.html[View Object]
-* https://wiki.yuaming.com/ios/model-view-controller.html[Control Object]
+* https://wiki.yuaming.com/ios/view-view-controller.html[The Role of View Controllers 번역본]
 * https://developer.apple.com/documentation/uikit/#//apple_ref/doc/uid/TP40009541[Event Handling Guide for UIKit Apps]
-* https://wiki.yuaming.com/ios/responder-object.html[Responder Object]
 * https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497[Location and Maps Programming Guide]
 * https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156[Drawing and Printing Guide for iOS]
 * https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html#//apple_ref/doc/uid/TP40008194[Local and Remote Notification Programming Guide]
