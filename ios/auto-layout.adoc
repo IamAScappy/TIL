@@ -1,10 +1,6 @@
 = Auto Layout
 
-=== 개요
-
-===== 기기별 화면 사이즈
-
-image:./image/auto-layout-15.png[]
+=== 화면 사이즈 변화
 
 ===== 화면 사이즈 변화
 * iPhone 4에서 Retina Display로 인해 Point 단위, 스케일 사용함
@@ -14,7 +10,11 @@ image:./image/auto-layout-15.png[]
 ** 기존 Frame-based Layout에서 다른 View 관계를 이용하여 View의 위치와 크기를 자동하는 조정하는 Layout 시스템
 * *기기별 해상도를 외울 필요 없음. Auto Layout 개념을 익혀서 View 구성하는 것이 중요함*
 
-=== Layout 구성
+===== 기기별 화면 사이즈
+
+image:./image/auto-layout-15.png[]
+
+=== Layout 변화
 
 ===== Frame-based Layout
 * 상위 View 좌표 시스템에서 특정 View 좌표를 나타냄. 개발자가 일일히 계산해야함
@@ -41,23 +41,21 @@ image:./image/auto-layout-15.png[]
 
 ===== Constraints 추가하기
 * _Canvas Menu 이용하기_
+** Update Frames
+*** Designed Frame과 Runtime Frame이 다를 때 활성화 됨
+** Embed In Stack
+*** 새로운 StackView 추가
+*** 균등하게 화면 분할할 때 사용함
+** Align
+*** 정렬 관련 Constraints
+** Add New Constraints
+*** 사이즈 관련 Constraints
+** Resolve Auto Layout Issues
 * _Control + 드래그_ 
 ** 드래그 방향, 각도에 따라 추가할 수 있는 제약이 달라짐
 ** View의 현재 Frame을 기준으로 제약이 추가됨
 * _Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
 * _Document Outline에서 Control + 드래그_
-
-===== Canvas Menu
-* _Update Frames_
-** Designed Frame과 Runtime Frame이 다를 때 활성화 됨
-* _Embed In Stack_
-** 새로운 StackView 추가
-** 균등하게 화면 분할할 때 사용함
-* _Align_
-** 정렬 관련 Constraints
-* _Add New Constraints_
-** 사이즈 관련 Constraints
-* _Resolve Auto Layout Issues_
 
 ===== Auto Layout Preview
 * 시뮬레이터를 통해 매번 확인하는 것이 힘듦
@@ -72,9 +70,6 @@ image:./image/auto-layout-5.png[45%, 45%]
 * Top, Bottom, Left, Right, Width, Height
 * Margin
 ** View 가장자리와 Super View 사이 공간
-
-===== 코드로 Auto Layout 설정할 때 필요한 옵션
-* `UIView().translatesAutoresizingMaskIntoConstraints = false`
 
 ===== Auto Resizing Mask
 * `var autoresizingMask: UIViewAutoresizing { get set }`
@@ -113,6 +108,9 @@ UIView.AutoresizingOptions.flexibleTopMargin
 UIView.AutoresizingOptions.flexibleHeight
 UIView.AutoresizingOptions.flexibleBottomMargin
 ----
+
+===== 코드로 정의할 때 필요한 설정
+* `UIView().translatesAutoresizingMaskIntoConstraints = false`
 
 === Stack View
 
@@ -218,92 +216,9 @@ image:./image/auto-layout-2.png[45%, 45%]
 * _Document Outline에서 Control + 드래그_
 
 ===== Editing Constraints
-* Editing Constraints
-
 image:./image/editing-constraints-1.png[45%, 45%]
 image:./image/editing-constraints-2.png[45%, 45%]
-
-* centerX, centerY
-** Label 같은 요소는 내용으로 크기가 유추할 수 있기 때문에 너비, 높이 제약을 생략할 수 있음. 그렇지 않은 것에 대해서 높이와 너비 제약을 추가해야 함
-** centerX, centerY는 인접한 상위 View에 제약이 추가됨
-
-image:./image/auto-layout-9.png[45%, 45%]
-
-* Equal 뿐만 아니라 Less Then Equal, More Then Equal로 추가할 수 있음
-
 image:./image/constraints-equals.png[45%, 45%]
-
-* Multiplier
-** 비율은 정수로 계산하는 것이 좋음
-
-* Constant
-** 런타임에서 제약을 업데이트할 때 사용함
-** 0이나 양수로 입력하는 것이 좋음
-** Frame 속성을 통해 임시로 변경 가능하지만, 화면 회전 이벤트가 발생할 때 Auto Layout에서 설정한 제약이 적용됨
-
-[source, swift]
-----
-@IBAction func updateFrame(_ sender: Any) {
-    var frame = redView.frame
-    frame.size.width = 100
-    frame.size.height = 100
-}
-----
-
-
-image:./image/auto-layout-10.png[45%, 45%]
-image:./image/auto-layout-11.png[45%, 45%]
-
-
-** 원하는 결과를 얻기 위해서 아래와 같이 수정이 필요함
-
-[source, swift]
-----
-@IBOutlet weak var heightConstraint: NSLayoutConstraint!
-@IBOutlet weak var widthConstraint: NSLayoutConstraint!
-
-@IBAction func updateFrame(_ sender: Any) {
-    widthConstraint.constant = 100
-    heightConstraint.constant = 100
-}
-----
-
-image:./image/auto-layout-12.png[45%, 45%]
-image:./image/auto-layout-13.png[45%, 45%]
-
-* Priority
-** Priority가 1000은 필수 제약 조건
-** Priority가 1000보다 작으면 점선으로 표시되며 선택적 제약 조건
-
-image:./image/auto-layout-14.png[45%, 45%]
-
-[source, swift]
-----
-/* 
-    * 'NSInternalInconsistencyException', reason: 'Mutating a priority from required to not on an installed constraint (or vice-versa) is not supported.  You passed priority 1000 and the existing priority was 800.'
-*/
-
-// 아래 코드로 UI Crash가 발생함
-@IBAction func togglePriority(_ sender: Any) {
-    width1.priority = width1.priority.rawValue < 1000 ? UILayoutPriority(rawValue: 1000) : UILayoutPriority(rawValue: 800)
-    width2.priority = width2.priority.rawValue < 1000 ? UILayoutPriority(rawValue: 1000) : UILayoutPriority(rawValue: 800)
-}
-
-// Priority는 구조체로 되어있기 때문에 아래와 같이 적용해야 함
-// 첫 번째 길이 Size Inspector에서 Priority를 999으로 변경함
-// 첫 번째 길이 Size Inspector에서 Priority를 800으로 변경함
-
-@IBAction func togglePriority(_ sender: Any) {
-    width1.priority = width1.priority.rawValue < 999 ? UILayoutPriority(rawValue: 999) : UILayoutPriority(rawValue: 800)
-    width2.priority = width2.priority.rawValue < 999 ? UILayoutPriority(rawValue: 999) : UILayoutPriority(rawValue: 800)
-}
----- 
-
-===== Tips
-* 노락색 Indicator가 보인다면 Update Frames 메뉴를 선택함
-* Copyright 같은 문구는 UILabel의 _AutoShrink_ 과 Add New Constraints의 _Constraint to margin 체크 박스, Bottom Margin의 Use Standard Value_ 를 이용하여 어느 기기에도 대응할 수 있음
-* 고정된 너비와 높이 값은 피해야 함
-* Subview들의 제약 조건을 개발자가 직접 관리하는 것보다 StackView를 이용할 수 있다면 이용하는 것이 좋음
 
 === 참고
 * https://cocoacasts.com/what-are-prototyping-constraints[What are prototyping constraints?]
@@ -313,8 +228,6 @@ image:./image/auto-layout-14.png[45%, 45%]
 * https://developer.apple.com/ios/human-interface-guidelines/visual-design/adaptivity-and-layout/[Adaptivity and Layout]
 * https://videos.raywenderlich.com/courses/100-beginning-auto-layout/lessons/1[Beginning Auto Layout]
 * https://videos.raywenderlich.com/courses/75-mastering-auto-layout/lessons/1[Mastering Auto Layout]
-* https://github.com/yuaming/practice-swift/tree/master/Constraints[Constraints]
-* https://github.com/yuaming/practice-swift/tree/master/BasicConstraints[BasicConstraints]
 * https://academy.realm.io/kr/posts/ios-autolayout/[오토 레이아웃으로 iOS 앱 쉽게 개발하기]
 * https://medium.com/@lingostar/오토-레이아웃이란-4fdfbd9397d9[오토 레이아웃이란?]
 * https://blog.grotesq.com/post/593[Pixel과 Point 차이]

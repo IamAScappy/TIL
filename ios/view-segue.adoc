@@ -2,20 +2,15 @@
 
 === 전환 방식
 
-===== View Controller의 View 위에 다른 View 교체하기
-* 기존 View를 제거하고 새로운 View를 추가하거나, 기존 View를 숨기고 숨기고 있던 View를 보여줌
-* View Controller에서 최소 두 개 이상의 View를 관리하기 때문에 좋은 방법이 아님
-
-===== Modal
-* View Controller 직접 호출
-** 모달 프레젠테이션 스타일 => UIModalPresentationStyle 객체 속성
+===== Modal 방식
+* UIModalPresentationStyle 객체 속성
 ** `fullScreen`
 ** `currentContext`
 ** `overFullScreen`
 ** `overCurrentContext`
 
 ===== Container 방식
-* Navigation Controller, TabBarController 호출함
+* Navigation Controller, Tabbar Controller 호출함
 
 ===== Segue 방식
 * 스토리보드 연결하는 방법
@@ -23,7 +18,7 @@
 
 === 구현
 
-===== Modal(View Controller를 직접 호출하여 화면 전환하기)
+===== Modal 방식(View Controller를 직접 호출하여 화면 전환하기)
 * 현재 View Controller에서 이동할 대상 View Controller를 직접 호출하여 화면을 표시함. `프레젠테이션 방식` 이라고 함
 
 [source, swift]
@@ -129,7 +124,9 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 ----
 
 ===== dismiss 와 unwind segue 차이점
-* `presenting 되어있는 VC에서 self.dismiss() 하는 것과 이전에 presentedVC에서 띄워놓은 VC를 dismiss 하는 것과 차이` 를 꼭 알고 넘어가야 함
+
+
+===== Presenting VC에서 self.dismiss() 하는 것과 presented VC에서 띄워놓은 VC를 dismiss 하는 것과 차이점
 
 ===== UIButton의 IBAction과 Segue 연결의 우선순위
 * UIButton에 IBAction 과 Segue를 둘 다 연결하면 어떻게 되나요? 둘 중에 어느게 우선일까요? 둘 다 연결해서 사용하는 경우가 있을까요?
