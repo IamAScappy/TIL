@@ -18,10 +18,20 @@
 === 2018.05.08
 
 ===== 할 일
+* [*] CardGameApp 2단계 진행하기
+* [*] 영어 공부
+* [*] Beginning RxSwift
+** [*] Creating Observables
+
+===== 느낀 점
+* 어제 어버이 날이라 아빠, 엄마에게 전화함. 부모님에게 선물을 드리는 대신 겨울에 가족 여행 가기로 함. 여행 준비 고고!
+
+=== 2018.05.09
+
+===== 할 일 
 * [ ] CardGameApp 2단계 진행하기
-* [ ] Mastering Auto Layout 강의 듣고 정리하기
 * [ ] 영어 공부
+* [ ] Mastering Auto Layout 강의 듣고 정리하기
 * [ ] Beginning RxSwift
-** [ ] Creating Observables
 ** [ ] Subscribing to Observables: Part 1
 ** [ ] Subscribing to Observables: Part 2
