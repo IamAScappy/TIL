@@ -106,7 +106,7 @@
 ** link:regex/automata.adoc[오토마타]
 ** link:regex/regular-expression.adoc[정규표현식]
 * link:rxswift/README.adoc[RxSwift]
-** link:rxswift/hello-rxswift.adoc[Hello RxSwfit]
+** link:rxswift/getting-started-with-rxswift.adoc[Getting Started With RxSwift]
 * link:swift/README.adoc[Swift]
 ** link:swift/cannot-use-mutating-member-immutable-value.adoc[Cannot use mutating member on immutable value: function call returns immutable value]
 ** link:swift/dynamic-type.adoc[Dynamic Type]

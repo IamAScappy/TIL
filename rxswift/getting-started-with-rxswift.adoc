@@ -1,0 +1,343 @@
+= Getting Started With RxSwift
+
+=== RxSwift
+
+===== ReactiveX
+* Rx.NET, RxJS, RxJava, RxRuby, RxKotlin, RxSwift 등등 20개 이상 존재함
+* 2009년 Rx.NET으로 ReactiveX가 시작함
+* RxSwift는 2015년부터 시작됨
+
+===== RxSwift
+* Observables가 기본이 되는 Asynchronour Programming Library
+* `ReactiveX 링크 참고` 가 정한 패러다임을 따름
+* Observables
+
+image:./image/rxswift-observables.png[45%, 45%]
+
+===== iOS 비동기 처리가 필요한 상황
+* Button Taps
+* Keyboard Animations
+* Downloading Data
+* Processing Images
+* Writing on Disk
+* Playing Audio, Video
+* UI 구성 요소는 비동기적임. iOS 앱을 만들 때 어떤 순서로 정하는 것은 불가능함. 일반적으로 iOS SDK API를 이용하여 처리함
+
+===== iOS SDK APIs
+* Notification Center
+* KVO(= Key Value Observing), KVC(= Key Value Coding)
+* GCD
+* Operation Queues
+* Closures
+* Target-Action
+* Delegation
+
+image:./image/ios-async.png[]
+
+===== 장점
+* Declarative
+* Functional, Reactive
+* 일관성 있는 패턴과 연산자
+* Mutable State를 다룰 수 있음
+* 복잡도가 없음
+* 여러 플랫폼
+
+===== 단점
+* 러닝커브가 높음
+* 다른 라이브러리들과 의존성
+* 이해하지 않고 쓰면 문제가 발생할 수 있음
+* 만병통치약이 아님
+
+===== 기본이 되는 패턴
+* Observer
+* Iterator
+
+=== Observable
+
+===== Observable<Int>
+* 요소가 가지고 있는 이벤트를 계속 방출함
+* Subcribers가 방출한 이벤트들에 대해 반응할 수 있음
+
+===== Observable의 Life Cycle 
+* Next 
+** Interger 또는 Tap
+* Error 
+** Observable 종료됨
+* Completed 
+** Observable 종료됨
+
+image:./image/observable-life-cycle.png[]
+
+===== Observable Events
+* 열거형으로 구성됨
+
+[source, swift]
+----
+public enum Event<Element> {
+    case next(Element)
+    case error(Swift.Error)
+    case completed
+}
+----
+
+=== RxSwift 설치
+
+===== CocoaPod 이용하여 설치하기
+
+[source, bash]
+----
+platform :ios, '11.0'
+use_frameworks!
+
+target 'RxSwiftPlayground' do
+    pod 'RxSwift', '~> 4.0'
+end
+----
+
+===== RxSwift가 Import가 제대로 되지 않으면?
+* Project Clean 
+* Project Clean으로도 문제가 해결되지 않는다면 _Command + , > Locations > Deviced Data의 경로를 확인_ 하고 해당 경로로 들어가 캐시된 프로젝트 파일을 지우고 해당 프로젝트 다시 염
+
+=== Creating Observables
+
+===== 코드
+
+[source, swift]
+----
+// Supported Code
+public func example(of description: String, action:  -> Void) {
+  print("\n--- Example of:", description, "---")
+  action
+}
+
+public let episodeI = "The Phantom Menace"
+public let episodeII = "Attack of the Clones"
+public let theCloneWars = "The Clone Wars"
+public let episodeIII = "Revenge of the Sith"
+public let solo = "Solo"
+public let rogueOne = "Rogue One"
+public let episodeIV = "A New Hope"
+public let episodeV = "The Empire Strikes Back"
+public let episodeVI = "Return Of The Jedi"
+public let episodeVII = "The Force Awakens"
+public let episodeVIII = "The Last Jedi"
+public let episodeIX = "Episode IX"
+
+// Creating Obserables
+example(of: "Creating Observables") {
+  // just => Observable의 타입 메서드. Obserable Sequence를 만듦
+  let mostPopular: Observable<String> = Observable<String>.just(episodeV)
+
+  // of => 컴파일러가 타입을 추론하여 Obserable Sequence를 만듦
+  let originalTrilogy = Observable.of(episodeIV, episodeV, episodeVI)   // String Type
+  let prequelTrilogy = Observable.of([episodeI, episodeII, episodeIII]) // Array Type
+
+  // from => Obserable<String>. Array 요소를 하나씩 배출함. Array 인자만 가짐
+  let sequelTrilogy = Observable.from([episodeVII, episodeVIII, episodeIX])
+}
+----
+
+=== Subscribing to Observables
+
+===== subscribe
+
+[source, swift]
+----
+let observable = Observable.of(episodeIV, episodeV, episodeVI)
+
+// Observable은 Subcribe 없이 아무 일을 하지 못함. Observable은 subscibe가 있어야 이벤트가 발생함. 아주 중요한 개념:)
+// Next Event를 통해 Observable 요소들이 방출되고 완료가 되면 Complate Event를 호출함
+// 원하는 값에 대해 접근할 수 있으며 이때 값은 옵셔널 형태임
+// subscribe가 반환하는 값 타입은 Disposable임
+observable.subscribe(onNext: { element in
+  print(element)
+})
+
+// onNext, onError, onCompleted => 각자 원하는 값만 취함
+observable.subscribe(onNext: { element in
+  print(element)
+})
+----
+
+===== empty
+
+[source, swift]
+----
+let observable = Observable<Void>.empty()
+
+// Completed만 방출함
+// 의도적으로 아무런 타입이 아닌 Observable를 반환할 때 사용함
+observable.subscribe(onNext: { element in
+    print(element)
+},
+onCompleted: {
+    print("Completed")
+})
+----
+
+===== never
+
+[source, swift]
+----
+let observable = Observable<Any>.never()
+
+observable
+  .subscribe(
+    onNext: { element in
+       print(element)
+   },
+    onCompleted: {
+      print("Completed")
+  }
+)
+----
+
+===== dispose
+
+[source, swift]
+----
+// Obserable 사용이 끝나면 메모리 해제하거나 이벤트 방출을 취소할 때 dispose()를 호출함
+// 그러나, 직접 호출 하는 것은 좋은 코드가 아님
+let mostPopular = Observable.of(episodeV, episodeIV, episodeVI)
+
+let subscription = mostPopular.subscribe { event in
+  print(event)
+}
+
+subscription.dispose()
+----
+
+===== DisposeBag
+
+[source, swift]
+----
+let disposeBag = DisposeBag()
+
+Observable.of(episodeVII, episodeI, rogueOne).subscribe {
+  print($0)
+}
+// 직접 dispose() 호출하거나 DisposeBag에 담아서 disposed() 호출하지 않으면 메모리 릭이 발생함
+.disposed(by: disposeBag)
+----
+
+===== create
+
+[source, swift]
+----
+enum Droid: Error {
+  case OU812
+}
+
+let disposeBag = DisposeBag()
+
+// create를 이용하여 Observable를 만들 수 있음
+// onError 이벤트가 발생하면 Dispose 되는 것을 확인할 수 있음. 즉 메모리가 해제된다는 것을 알 수 있음
+// 만약, Error, Complete도 발생하지 않고 Dispose도 없다면 컴파일러가 메모리 릭이 발생하는 것을 경고함
+Observable<String>.create { observer in
+  observer.onNext("R2-D2")
+  observer.onError(Droid.OU812)
+  observer.onNext("C-3PO")
+  observer.onNext("K-2SO")
+//    observer.onCompleted()
+
+  return Disposables.create()
+}
+.subscribe(
+  onNext: { print($0) },
+  onError: { print("Error:", $0) },
+  onCompleted: { print("Completed") },
+  onDisposed: { print("Disposed") }
+)
+.disposed(by: disposeBag)  
+----
+
+===== Trait
+* Single
+** One Next Event or Error Event
+** `Single 링크 참고`
+
+[source, swift]
+----
+public enum SingleType<Element> {
+  case success(Element)
+  case error(Swift.Error)
+}
+----
+
+* Completable
+** Completed Event or Error Event
+** `Trait - Creating a Completable 링크 참고`
+
+[source, swift]
+----
+public enum CompletableEvent {
+  case error(Swift.Error)
+  case completed
+}
+----
+
+* Maybe
+** One Next, Completed Event or Error Event
+** `Trait - Creating a Maybe 링크 참고`
+
+[source, swift]
+----
+public enum MaybeEvent<Element> {
+  case success(Element)
+  case error(Swift.Error)
+  case completed
+}
+----
+
+[source, swift]
+----
+let disposeBag = DisposeBag()
+
+enum FileReadError: Error {
+  case fileNotFound, unreadable, encodingFailed
+}
+
+func loadText(from filename: String) -> Single<String> {
+  return Single.create { single in
+    let disposable = Disposables.create()
+    
+    guard let path = Bundle.main.path(forResource: filename, ofType: "txt") else {
+      single(.error(FileReadError.fileNotFound))
+      return disposable
+    }
+    
+    guard let data = FileManager.default.contents(atPath: path) else {
+      single(.error(FileReadError.unreadable))
+      return disposable
+    }
+    
+    guard let contents = String(data: data, encoding: .utf8) else {
+      single(.error(FileReadError.encodingFailed))
+      return disposable
+    }
+    
+    single(.success(contents))
+    
+    return disposable
+  }
+}
+
+loadText(from: "ANewHope")
+  .subscribe {
+    switch $0 {
+    case .success(let string):
+      print(string)
+    case .error(let error):
+      print(error)
+    }
+  }
+  .disposed(by: disposeBag)
+----
+
+=== 참고
+* http://reactivex.io[ReactiveX]
+* https://videos.raywenderlich.com/courses/116-beginning-rxswift/lessons/1[Beginning RxSwift]
+* https://store.raywenderlich.com/products/rxswift[RxSwift eBook]
+* http://reactivex.io/documentation/single.html[Single]
+* https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Traits.md#creating-a-completable[Trait - Creating a Completable]
+* https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Traits.md#creating-a-maybe[Trait - Creating a Maybe]
