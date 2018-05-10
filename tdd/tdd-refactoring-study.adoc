@@ -1,4 +1,4 @@
-= TDD, Refactoring Overview
+= TDD, Refactoring 스터디 정리
 
 === 레거시 코드 리팩토링
 
