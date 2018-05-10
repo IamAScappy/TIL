@@ -40,8 +40,7 @@
 ===== 할 일
 * [ ] CardGameApp 3단계 진행하기
 * [ ] 영어 공부
-* [ ] RxSwift로 구구단 완성하기
-* [ ] Mastering Auto Layout 강의 듣고 정리하기
+* [ ] MVVM TDD 정리하기
 
 ===== 느낀 점
 * ttps://www.slideshare.net/myeonginwoo/pptx-75959689[토이 프로젝트를 하자.PPTX]
