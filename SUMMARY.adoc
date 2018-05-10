@@ -159,7 +159,7 @@
 ** link:xcode/xcode-debug-commands.adoc[디버그 명령어]
 ** link:xcode/how-to-check-memory-leak.adoc[메모리 릭 확인하는 방법]
 * link:etc/README.adoc[ETC.]
-** link:etc/mobile-computing.adoc[Akka 스터디 정리]
+** link:etc/akka-study.adoc[Akka 스터디 정리]
 ** link:etc/code.adoc[Code]
 ** link:etc/copy-on-write.adoc[Copy On Write]
 ** link:etc/coroutine.adoc[Coroutine]
