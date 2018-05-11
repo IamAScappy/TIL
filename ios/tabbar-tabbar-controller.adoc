@@ -1,5 +1,0 @@
-= UITabBar, UITabBarController
-
-=== 참고 
-* https://developer.apple.com/documentation/uikit/uitabbar[UITabBar]
-* https://developer.apple.com/documentation/uikit/uitabbarcontroller[UITabBarController]

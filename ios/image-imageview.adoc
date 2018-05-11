@@ -1,5 +1,0 @@
-= UIImage, UIImageView
-
-=== 참고 
-* https://developer.apple.com/documentation/uikit/uiimage[UIImage]
-* https://developer.apple.com/documentation/uikit/uiimageview[UIImageView]

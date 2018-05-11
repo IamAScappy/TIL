@@ -1,34 +1,5 @@
 = Core Graphcis
 
-[source, swift]
-----
-// UIKit에 준비된 API, C API
-class MyView: UIView {
-    // ...
-
-    override func draw(_ rect: CGRect) {
-        UIColor.red.setFill()
-        UIRectFill(self.bounds)
-    }
-    
-    // ...
-}
-
-// UIKit 그래픽 Context => draw(rect:) 함수 내에서 처리
-override func draw(_ rect: CGRect) {
-    let context = UIGraphicsGetCurrentContext()
-    context?.flush()
-
-    // ...
-}
-
-// 그릴 필요가 없음
-// Points, Lines, Arcs, Curves 다양하게 그릴 수 있음
-func buttonTouched(_ sender: UIButton) {
-    myView.setNeedDisplay()
-}
-----
-
 ===== 참고
 * https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html[Quartz 2D Programming Guide]
 * https://developer.apple.com/library/content/samplecode/QuartzDemo/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007531[Quartz2D for iOS]
