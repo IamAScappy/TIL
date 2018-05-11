@@ -129,9 +129,11 @@ UIView.AutoresizingOptions.flexibleBottomMargin
 ===== Intrinsic Content Size
 * Label, Button 요소 등 내용이 있으며 정확한 크기를 가지고 있음
 * Stack View와 Subview의 우선 순위는 더 중요한지, Auto Layout 설정에 따라 달라짐
-* Content hugging
+
+===== Constraint Priorities
+* Content Hugging
 ** 고유 사이즈의 최대 크기를 제한함
-* Compression resistance
+* Compression Resistance
 ** 최소 크기에 제한을 둠
 * `오토 레이아웃으로 iOS 앱 쉽게 개발하기 링크 참고`
 
