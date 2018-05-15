@@ -1,0 +1,28 @@
+= 단일 책임 원칙, 인터페이스 분리 원칙
+
+===== 단일 책임 원칙
+* 클래스는 하나의 책임을 가져야 함
+* _하나의 책임이란 무엇일까?_ 예를 들어, 클래스가 메소드 2개를 갖는다고 해서 2개의 책임을 가지는 것이 아님. 단일 책임 원칙을 지키고 있는 클래스라면, 2개 메소드가 그보다 High Level에서 “무언가(what)“를 하기 위해 존재하는 것. 즉, 여기서 그 하나의 일이라는 것이 하나의 책임이 됨. 어떤 클래스의 책임이라는 것. 클래스의 객체를 사용하는 클라이언트에 의해 정의됨(= 클라이언트가 어떤 일을 하기 위해 그 클래스의 객체를 사용하게 되는 말과 같음). 
+* 그러면, 왜 클래스가 단 하나의 책임만 가져야 하나? _책임은 변경의 이유 라고도 함_. 어떤 클래스를 변경해야 하는 이유가 두 가지 이상이라면 그 클래스에는 두 가지 이상의 책임이 존재한다고 생각해야 함. 클래스 변경이 생기는 경우는 어떤 상황일까? 그 클래스의 객체의 클라이언트 입장에서 현재 상황의 그 클래스는 클라이언트의 요구에 부합하지 못하기 때문에 그 클래스를 변경해야 하는 것. OOP의 진정한 핵심은 현실 세계를 모델링하거나 하는 것보다, 소스 코드상에 존재하는 클래스 간의 의존 관계를 관리하는 것임을 생각한다면, 클래스들은 자신을 변경해야 하는 이유가 하나여야 함. 
+
+> 엉클 밥은 Clean Architecture 라는 책에서 OOP에 대해 다음과 같이 말함. What is OOP? There are many opinions and many answers to this question. To the software architect, however, the answer is clear: OO is the ability, through the use of polymorphism, to gain absolute control over every source code dependency in the system. It allows the architect to create a plugin architecture, in which modules that contain high-level policies are independent of modules that contain low-level details. The low-level details are relegated to plugin modules that can be deployed and developed independently from the modules that contain high-level policies. 
+
+===== 인터페이스 분리 원칙
+* 어떤 인터페이스는 **클라이언트가 요구하는 사항** 을 기준으로 분리되어야 함. 어떤 클래스가 인터페이스 여러 개를 구현하면 여러 개의 책임을 갖는 것이 아닌가라는 의문이 생길지도 모르지만, 여러 인터페이스를 구현한 클래스를 변경해야 하는 상황에서 그 클래스를 변경한다고 그 클라이언트들에도 영향이 생기는게 아니라고 생각함. ISP가 말하고자 하는 것은 _어떤 클래스는 각 클라이언트에 대해서 정말 필요한 인터페이스만 노출해주라고 말하는 것이라고 생각함_.  즉, 클라이언트가 어떤 객체를 인터페이스를 통해 바라볼 때 정말 자신이 필요한 인터페이스만 바라보면 됨. ISP가 적용되지 않은 상황은 어떤 클래스의 클라이언트가 필요하지는 않은 인터페이스에 의존하게 될 때. 어떤 클래스가 2개 이상의 인터페이스를 구현해야 한다면 그렇게 하면 됨. 하지만, 그 클래스의 객체를 사용할 클라이언트는 정말 자신이 필요한 인터페이스를 바탕으로 그 객체를 바라보면 됨. 각 클라이언트는 자기가 필요한 인터페이스만 보기 때문에 자신이 필요하지 않은 인터페이스에는 의존하지 않기 때문에 보호받음. 다시 말하면, ISP 이야기를 떠나서 생각해보면, 클라이언트가 어떤 클래스를 인터페이스를 통해 바라보면 이미 Indirection이 있는 것(= 즉, 클라이언트는 인터페이스에만 의존함). 애플리케이션 런타임에 클라이언트는 결국 그 클래스의 객체를 사용하게 되겠지만, OOP에서 핵심은 정적인 코드 상에서의 의존관계를 줄이는 것. 이미 인터페이스를 통해 클라이언트와 그 클라이언트가 사용하는 클래스의 의존관계를 Decoupled하게 만들었기 때문에 일단 안심이 되는 상황. 그런데 ISP는 클라이언트는 어떤 클래스를 바라볼 때 정말 필요한 것만 바라보도록 하자고 말함. ISP도 결국에는 Dependency Management. **자기가 필요한 인터페이스에만 의존하자는 것이고, 자기가 필요없는 것에는 의존하지 말자는 것**
+
+> 클린 소프트웨어라는 책에 이렇게 설명되어 있음. 
+비대한 클래스는 클라이언트들 간에 기이하고 해로운 결합을 유발한다. 한 클라이언트가 이 비대한 클래스에 변경을 가하면, 이 비대한 클래스를 사용하는 모든 클라이언트가 영향을 받게 된다. 그러므로 클라이언트는 자신이 실제로 호출하는 메서드에만 의존해야 한다. 그러려면, 이 비대한 클래스의 인터페이스를 각 클라이언트에 특정한(Client-specific) 인터페이스 여러 개로 분리해야 한다(각 인터페이스는 그 비대한 인터페이스를 변경의 이유가 같은 것끼리 책임으로 나누어지며 Role을 형성). 각 클라이언트에 Specific한 인터페이스는 자신의 Specific한 클라이언트나 클라이언트 그룹이 호출하는 함수만 선언한다. 그러면 비대한 클래스가 모든 클라이언트에  specific한 인터페이스를 상속하고 구현할 것이다. 이렇게 하면 호출하지 않는 메서드에 대한 클라이언트의 의존성을 끊고, 클라이언트들은 서로에 대해 독립적이 될 수 있다.
+
+===== 결론
+
+image:https://cdn.tutsplus.com/net/uploads/2014/01/segregatedInterfaces.png[]
+
+* 그림을 보면 그림과 다르게 HighWay와 ParkingLot을 하나의 클래스로 만들었다고 하더라도 애플리케이션의 주요 흐름은 왼쪽에 있음. 클라이언트들은 가운데 있는 인터페이스를 통해, 그 인터페이스를 구현한 클래스들로부터 보호받음. 각, 클라이언트은 정말 자기 자신이 필요한 인터페이스에만 의존함 
+
+===== 참고
+* 클린 소프트웨어
+* 토비의 스프링
+* https://www.youtube.com/user/codetemplate/videos[백명석 - 클린코더스]
+* https://code.tutsplus.com/tutorials/solid-part-3-liskov-substitution-interface-segregation-principles--net-36710[SOLID: Part 3 - Liskov Substitution & Interface Segregation Principles]
+* https://imgur.com/a/4aB6QUl[참고 이미지 1]
+* https://imgur.com/a/jOICCCq[참고 이미지 2]
