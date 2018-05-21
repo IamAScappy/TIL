@@ -1,8 +1,6 @@
 = 클래스, 구조체(Class, Struct)
 
-=== 클래스, 구조체
-
-===== 차이점
+===== 클래스, 구조체의 차이점
 * 클래스는 상속을 받을 수 있음
 * Runtime 때 클래스의 인스턴스의 유형을 확인하고 변환할 수 있음
 * Deinitializer는 클래스의 인스턴스가 자원 환원을 가능하게 함 
@@ -48,19 +46,17 @@ let someVideoMode = VideoMode()
 * 구조체가 다른 Type에서부터 프로퍼티나 기능이 상속할 필요가 없는 경우
 * `언제 Class 대신 Struct를 사용하는가? 링크 참고`
 
-=== Swift String, Array, Dictionary 와 Foundation NSString, NSArray, NSDictionary 차이
+===== Swift String, Array, Dictionary 와 Foundation NSString, NSArray, NSDictionary 차이
+* Swift String, Array, Dictionary 같은 기본 데이터 유형
+** 구조체로 구현되어 있음
+** 새로운 상수나 변수에 할당되거나 함수나 메서드에 전달될 때 복사가 일어남 
+** `Copy on write 링크 참고`
+* Foundation NSString, NSArray, NSDictionary
+** 클래스로 구현되어 있음
+** 복사가 아닌 기존 인스턴스에 대한 참조로 할당되고 전달됨
+** `Using Swift with Cocoa and Objective-C 링크 참고`
 
-===== Swift String, Array, Dictionary 같은 기본 데이터 유형
-* 구조체로 구현되어 있음
-* 새로운 상수나 변수에 할당되거나 함수나 메서드에 전달될 때 복사가 일어남 
-* `Copy on write 링크 참고`
-
-===== Foundation NSString, NSArray, NSDictionary
-* 클래스로 구현되어 있음
-* 복사가 아닌 기존 인스턴스에 대한 참조로 할당되고 전달됨
-* `Using Swift with Cocoa and Objective-C 링크 참고`
-
-=== 참고
+===== 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
 * http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162240052&orderClick=LAH&Kc=[스위프트 프로그래밍:Swift4]
 * https://lifetimecoding.wordpress.com/2015/12/02/objective-c-%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B4-swift-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-5/[Objective-C 개발자가 Swift 사용하기(5)]

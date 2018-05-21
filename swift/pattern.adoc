@@ -79,7 +79,7 @@ if case (_, 0) = a {
 }
 
 
-// 열거형 케이스(Enumeration case)
+// 열거형 케이스(Enumeration Case)
 // 값을 Enum case 매치
 // switch를 포함한 if, while, guard, for-in 구문 case 조건 내에서 쓸 수 있음
 // 연관 값이 있어야 비교 가능
@@ -137,7 +137,7 @@ default: print("Int도 아니고 String도 아니네!")
 // ~= 연산자를 통해 매칭을 검증함
 // 오버라이드 => 상속, 재정의
 // 오버로드 => 덮어씌움
-// before
+// Before
 let point = (1, 2)
 switch point {
 case (0, 0):
@@ -148,7 +148,7 @@ default:
     print("x: \(point.0), y: \(point.1)")
 }
 
-// after
+// After
 // Overload the ~= operator to match a string with an integer.
 func ~= (pattern: String, value: Int) -> Bool {
     return pattern == "\(value)"

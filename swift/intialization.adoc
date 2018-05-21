@@ -1,43 +1,13 @@
 = 초기화(Intialization)
 
-=== 초기화
+===== Intialization
 * 클래스, 열거형, 구조체 인스턴스를 사용하기 위한 준비 과정
 * 해당 인스턴스의 각각 저장된 속성의 초기값을 설정하는 것과 그 외의 다른 설정 또는 새 인스턴스 사용하기 전에 필요한 초기화를 함
 * 특정 타입의 새 인스턴스를 만들 때 호출될 수 있는 특수 메서드 
 * Objective-C와 달리 Swift는 값을 반환하지 않음
 * 주요한 역할은 새 인스턴스가 처음 사용되기 전에 잘못된 곳이 없이 초기화되었는지 보장하는 것
 
-=== Stored Property에 초기값 설정하기 
-
-[source, swift]
-----
-// Stored Property에 초기값 설정하기
-// 기본 값을 지정하거나 초기화에서 초기값을 설정할 때 어떠한 속성 감시자도 호출하지 않고 값이 직접 설정됨
-
-init() {
-    // perform some initialization here
-}
-
-struct Fahrenheit {
-    var temperature: Double
-    init() {
-        temperature = 32.0
-    }
-}
-var f = Fahrenheit()
-print("The default temperature is \(f.temperature)° Fahrenheit")
-// Prints "The default temperature is 32.0° Fahrenheit"
-
-
-// 기본 속성값
-// 만약 속성이 언제나 똑같은 초기값을 가진다면 초기화 안에서 값을 설정하기보다 기본값을 주는 것이 나음
-// 결과적으로 같지만, 기본값이 속성 선언에 더 근접해서 속성을 초기화함. 결과적으로 더 짧고 명확한 이니셜라이저를 작성할 수 있게 함. 기본값에서 속성의 타입을 개발자가 유추할 수 있게 함
-struct Fahrenheit {
-    var temperature = 32.0
-}
-----
-
-=== Customizing Initialization
+===== Customizing Initialization
 
 [source, swift]
 ----
@@ -151,7 +121,7 @@ beetsQuestion.ask()
 beetsQuestion.response = "I also like beets. (But not with cheese.)"
 ----
 
-=== Default Initializers
+===== Default Initializers
 
 [source, swift]
 ----
@@ -175,7 +145,7 @@ struct Size {
 let twoByTwo = Size(width: 2.0, height: 2.0)
 ----
 
-=== Initializer Delegation for Value Types
+===== Initializer Delegation for Value Types
 
 [source, swift]
 ----
@@ -227,9 +197,7 @@ let centerRect = Rect(center: Point(x: 4.0, y: 4.0),
 // centerRect's origin is (2.5, 2.5) and its size is (3.0, 3.0)
 ----
 
-=== Class Inheritance and Initialization
-
-===== 지정 이니셜라이저와 편의 이니셜라이저
+===== Class Inheritance, Initialization: 지정 이니셜라이저와 편의 이니셜라이저
 * 지정 이니셜라이저
 ** 클래스의 주 이니셜라이저 
 ** 해당 클래스에서 접하는 모든 속성을 완전히 초기화하고 적절한 부모 클래스 이니셜라이저를 호출하여 초기화 과정을 부모 클래스로 연쇄시킴
@@ -328,22 +296,19 @@ image:./image/two-phase-initialization-2.png[]
 
 ----
 
-=== 추가 정리
-
-===== 생성자 상속과 재정의
-* C 언어 시절, 객체 인스턴스를 생성하면 쓰레기 값이 들어있었음
-* OOP 시절로 넘어오면서 초기값이 없으면 생성자에게 값을 셋팅해줌
-* 초기값 중에서 Primitive Type이 아닌 경우 객체 안의 객체를 만들었을 때(= 소유권을 가진 형태), 이럴 때 소멸자가 해제하자!
-* Java, C++, Objective-C(deallow) => 생성자, 소멸자는 쌍으로 만들어야 했음
-
-===== 2단계 초기화
-* SubClass의 프로러티 값을 초기화하고 
-* SuperClass 생성자를 호출하고 SuperClass의 프로퍼티 값을 초기화함
-* 그리고 self가 완전함
-
-===== 상속 초기화
-* 상속받은 SubClass에서 보통 생성자에서 super를 먼저 호출하는 경우가 많지만 내가 만든 SuperClass, SubClass도 존재함. SuperClass의 메서드에 로직이 몰려 있는 경우 SubClass에서 super를 나중에 호출해야 함
-* Stack 구조보다 다형성으로 인한 문제때문에 호출 구조가 뒤로 가야하는 경우가 있음
+===== 추가 정리
+* 생성자 상속과 재정의
+** C 언어 시절, 객체 인스턴스를 생성하면 쓰레기 값이 들어있었음
+** OOP 시절로 넘어오면서 초기값이 없으면 생성자에게 값을 셋팅해줌
+** 초기값 중에서 Primitive Type이 아닌 경우 객체 안의 객체를 만들었을 때(= 소유권을 가진 형태), 이럴 때 소멸자가 해제하자!
+** Java, C++, Objective-C(deallow) => 생성자, 소멸자는 쌍으로 만들어야 했음
+* 2단계 초기화
+** SubClass의 프로러티 값을 초기화하고 
+** SuperClass 생성자를 호출하고 SuperClass의 프로퍼티 값을 초기화함
+** 그리고 self가 완전함
+* 상속 초기화
+** 상속받은 SubClass에서 보통 생성자에서 super를 먼저 호출하는 경우가 많지만 내가 만든 SuperClass, SubClass도 존재함. SuperClass의 메서드에 로직이 몰려 있는 경우 SubClass에서 super를 나중에 호출해야 함
+** Stack 구조보다 다형성으로 인한 문제때문에 호출 구조가 뒤로 가야하는 경우가 있음
 
 === 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]
