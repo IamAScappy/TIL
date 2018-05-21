@@ -127,7 +127,6 @@
 * link:etc/copy-on-write.adoc[Copy On Write]
 * link:etc/coroutine.adoc[Coroutine]
 * link:etc/http.adoc[HTTP]
-* link:etc/mvc-mvp-mvvm.adoc[MVC, MVP, MVVM]
 * link:etc/msa.adoc[MSA]
 * link:etc/subroutine.adoc[Subroutine]
 * link:etc/sync-async.adoc[Sync, Async, Blocking, Non-Blocking]
