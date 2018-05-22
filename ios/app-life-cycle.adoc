@@ -6,15 +6,15 @@ image:./image/excution-status.png[]
 
 ===== Launching an app into the foreground 
 
-image:https://wiki.yuaming.com/ios/image/launching-app-into-foreground.png[]
+image:./image/launching-app-into-foreground.png[]
 
 ===== Launching an app into the background
 
-image:https://wiki.yuaming.com/ios/image/launching-app-into-background.png[]
+image:./image/launching-app-into-background.png[]
 
 ===== App interruptions
 
-image:https://wiki.yuaming.com/ios/image/handling-alert-based-interruptions.png[]
+image:./image/handling-alert-based-interruptions.png[]
 
 ===== Background to foreground
 
