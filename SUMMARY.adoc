@@ -128,6 +128,7 @@
 * link:etc/coroutine.adoc[Coroutine]
 * link:etc/http.adoc[HTTP]
 * link:etc/msa.adoc[MSA]
+* link:etc/sketch-study.adoc[Sketch 스터디 정리]
 * link:etc/subroutine.adoc[Subroutine]
 * link:etc/sync-async.adoc[Sync, Async, Blocking, Non-Blocking]
 * link:etc/target-host.adoc[Target, Host]
