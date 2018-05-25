@@ -38,4 +38,11 @@
 === 2018.05.24
 
 ===== 할 일
-* [ ] CardGameApp 3단계 피드백 진행하기
+* [*] CardGameApp 3단계 피드백 진행하기
+
+=== 2018.05.25
+
+===== 할 일
+* [ ] CardGameApp 4단계 진행하기
+* [ ] Begining RxSwift
+** [ ] Challenge: Performing Side Effects 진행하기
