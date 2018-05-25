@@ -43,6 +43,10 @@
 === 2018.05.25
 
 ===== 할 일
+* [*] CardGameApp 4단계 진행하기
+
+=== 2018.05.26
+
+===== 할 일
+* [ ] 1인 1앱 만들기 스터디 참가하기
 * [ ] CardGameApp 4단계 진행하기
-* [ ] Begining RxSwift
-** [ ] Challenge: Performing Side Effects 진행하기
