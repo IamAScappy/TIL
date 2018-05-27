@@ -1,0 +1,121 @@
+= VSCode 설정
+
+=== 라이브러리 설정
+
+===== 필수
+* React Native Tools
+* ESLint
+* Prettier formatter for Visual Studio Code
+* Flow Language Support
+* Settings Sync
+** `gist를 이용하여 기기 간 vscode 설정 동기화 링크 참고`
+* vscode-ext-color-highlight
+* TODO Highlight
+* vscode-icons
+ 
+=== 프로젝트마다 설정
+
+===== ESLint 
+* Option + Shift + F => Formmating
+
+[source, js]
+----
+{
+    "extends": [
+        "plugin:flowtype/recommended",
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "prettier",
+        "prettier/flowtype",
+        "prettier/react"
+    ],
+    "plugins": ["flowtype", "react", "prettier"],
+    "globals": {
+        "document": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalDecorators": true
+        }
+    },
+    "env": {
+        "jest": true,
+        "node": true
+    },
+    "rules": {
+        "no-unused-vars": 1,
+        "no-duplicate-imports": 0,
+        "import/no-duplicates": 2,
+        "import/named": 0,
+        "import/no-unresolved": 0,
+        "react/prop-types": [1, { "skipUndeclared": true }],
+        "react/display-name": 0
+    }
+}
+----
+
+===== Prettier 
+* `옵션 설정 링크 참고`
+
+[source, shell]
+----
+$ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
+----
+
+[source, js]
+----
+{
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "singleQuote": true
+}
+----
+
+===== Package.json
+
+[source, js]
+----
+{
+    "name": "ReactNativeStudy1",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "test": "jest"
+    },
+    "dependencies": {
+        "react": "16.3.1",
+        "react-native": "0.55.4"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.2.3",
+        "babel-jest": "22.4.4",
+        "babel-preset-react-native": "4.0.0",
+        "eslint": "4.19.1",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-babel": "^5.1.0",
+        "eslint-plugin-flowtype": "^2.46.3",
+        "eslint-plugin-import": "^2.12.0",
+        "eslint-plugin-prettier": "^2.6.0",
+        "eslint-plugin-react": "^7.8.2",
+        "flow-bin": "^0.67.0",
+        "husky": "^0.14.3",
+        "jest": "23.0.0",
+        "lint-staged": "^7.1.1",
+        "prettier": "1.12.1",
+        "react-test-renderer": "16.3.1"
+    },
+    "jest": {
+        "preset": "react-native"
+    }
+}
+----
+
+
+=== 참고
+* https://medium.com/@kyo504/gist를-이용하여-기기-간-vscode-설정-동기화-c856082b7362[gist를 이용하여 기기 간 vscode 설정 동기화]
+* https://prettier.io/docs/en/options.html[옵션 설정]
