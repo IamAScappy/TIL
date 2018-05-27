@@ -118,7 +118,7 @@ $ react-native run-ios --device
 # 시뮬레이터 실행
 $ react-native run-ios 
 ----
-* Command + R, Command + D
+* _Command + R, Command + D_
 
 image:./images/ios-execution-screen-1.png[]
 
@@ -144,6 +144,5 @@ $ npm run start
 
 ===== 참고
 * https://medium.com/@kyo504/번역-잠깐-내가-만든-리액트-네이티브-앱이-시작하면-무슨일이-일어나는거지-리액트-네이티브-안을-들여다보기-2b4a9bce79a2[리액트 네이티브 안을 들여다보기]
-* http://slides.com/kyo504/react-native-day1?token=7pQgFnYz#/
 * https://medium.com/@alexmngn/from-reactjs-to-react-native-what-are-the-main-differences-between-both-d6e8e88ebf24[What are the main differences between ReactJS and React-Native?]
 * https://snack.expo.io
