@@ -100,6 +100,7 @@
 * link:swift/optional.adoc[옵셔널]
 * link:swift/intialization.adoc[초기화]
 * link:swift/class-struct.adoc[클래스, 구조체]
+* link:swift/closure.adoc[클로저]
 * link:swift/pattern.adoc[패턴]
 
 ===== TDD
