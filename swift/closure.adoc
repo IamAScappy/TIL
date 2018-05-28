@@ -177,6 +177,7 @@ print(instance.x)   // 100
 
 // withoutActuallyEscaping
 // 비탈출 클로저가 탈출 클로저인 척 해야되는 경우가 있음
+// 고차함수가 기본적으로 @escaping이지만, 비탈출 클로저를 호출할 수 없음. 비탈출 클로저 호출되지 않는 문제를 해결하기 위해 withoutActuallyEscaping 키워드가 주어짐
 let numbers: [Int] = [2, 4, 6, 8]
 
 let evenNumberPredicate = { (number: Int) -> Bool in
