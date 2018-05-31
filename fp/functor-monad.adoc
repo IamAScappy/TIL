@@ -58,6 +58,7 @@ image::./image/functor-natural-transformation.png[]
 *** `>>= 모나드 변수`
 *** 원래 재귀형태로 구현해야 하지만 읽기 불편하여 체이닝 형태로 불러옴 
 *** 절차식 프로그램처럼 실행되는 함수형 프로그래밍의 불편함을 해결하기 위해 모나드를 사용함
+*** Pipe Operation
 
 image::./image/functional-programming.png[]     
 
@@ -75,9 +76,10 @@ image::./image/functional-programming.png[]
 
 ===== Functor
 * map 함수를 지원하는 컨테이너 타입
+** 다른 타입과 Mapping이 가능함
 * map
 ** 컨테이너의 값을 변형시킬 수 있는 고차함수
-** Swift Collection Type, Optional
+** Swift Collection Type(Array, Dictionary, Set), Optional
 ** map(a -> b) -> f(a) -> f(b)
 *** map(a -> b)
 **** 함수로 인자를 받음
@@ -87,6 +89,10 @@ image::./image/functional-programming.png[]
 **** 결과 값을 컨텍스트에 넣어 반환하거나 함수를 실행하지 않고 빈 컨텍스트(nil)을 반환함(= 새로운 함수 객체를 반환함) => Optional(5) 또는 nil
 
 ===== Monad
+* Monad를 Endofunctor 라고도 함
+** 타입이 들어가면 나오는 타입과 같음
+** 언어마다 모나드가 약간 다름
+** `Differences between functors and endofunctors 링크 참고` 
 * 값이 있을 수도 있고 없을 수도 있는 상태로 포장하는 타입
 * 컨텍스트를 가진 타입
 * Monad는 Functor의 한 유형
@@ -102,7 +108,7 @@ image::./image/multiple-container.png[]
 [source, swift]
 ----
 // Wrapped : 현재 컨테이너가 포함되는 엘리먼트 타입
-// U : 반환될 컨테이너의 엘리먼트 타입
+// U : 반환될 컨테이너의 엘리먼트 타입 => Transform Closure
 // map
 public func map<U>(_ transform: (Wrapped) throws -> U) rethrows -> U?
 
@@ -116,3 +122,4 @@ public func flatMap<U>(_ transform: (Wrapped) throws -> U?) rethrows -> U?
 * https://ko.wikipedia.org/wiki/%EC%97%90%EC%9D%B4%EB%8B%A4_%EB%9F%AC%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%8A%A4[Ada]
 * https://en.wikipedia.org/wiki/Alonzo_Church[Alonzo Church] 
 * https://en.wikipedia.org/wiki/Alan_Turing[Alan Turing]
+* https://stackoverflow.com/questions/10342876/differences-between-functors-and-endofunctors[Differences between functors and endofunctors]
