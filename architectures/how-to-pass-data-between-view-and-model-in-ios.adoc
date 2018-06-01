@@ -1,0 +1,166 @@
+= iOS View-ViewController과 Model이나 View Model 데이터 바인딩
+
+===== 방법
+* Callback 
+** Closure 이용
+** Property 이용
+* Delegation
+* Notification
+* ReactiveCocoa
+* RxSwift
+
+===== Callback
+* link:swift/memory.adoc[클로저 안에서 weak self가 필요한 이유]
+
+[source, swift]
+----
+// # 1. Closure 이용
+// Data Model
+class DataModel {
+  func requestData(completion: ((_ data: String) -> Void)) {
+    // The data was received
+    let data = "Data Test:)"
+    completion(data)
+  }
+}
+
+// ViewController
+class ViewController: UIViewController {
+  private let dataModel = DataModel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    dataModel.requestData { [weak self] (data: String) in
+      self?.useData(data: data)
+    }
+  }
+  
+  private func useData(data: String) {
+    print(data)
+  }
+}
+
+// # 2. Property 이용
+// Data Model
+class DataModel {
+  var onDataUpdate: ((_ data: String) -> Void)?
+  
+  func dataRequest() {
+    let data = "Data Test:)"
+    onDataUpdate?(data)
+  }
+}
+
+// View Controller
+class ViewController: UIViewController {
+  private let dataModel = DataModel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    dataModel.onDataUpdate = { [weak self] (data: String) in
+      self?.useData(data: data)
+    }
+    dataModel.requestData()
+  }
+}
+----
+
+===== Delegation
+* 프로토콜를 만들고 프로토콜 메서드를 정의하고 View Controller에 `self.dataModel.delegate = self` 할당하고 View Controller로 프로토콜을 준수해야 함
+
+[source, swift]
+----
+// Data Model
+protocol DataModelDelegate {
+  func didRecieveDataUpdate(data: data)
+}
+
+class DataModel {
+  weak var delegate: DataModelDelegate?
+  
+  func requestData() {
+    let data = “Data Test:)”
+    delegate?.didRecieveDataUpdate(data: data)
+  }
+}
+
+// View Controller
+class ViewController: UIViewController {
+  private let dataModel = DataModel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    dataModel.delegate = self
+    dataModel.requestData()
+  }
+}
+
+extension ViewController: DataModelDelegate {
+  func didRecieveDataUpdate(data: String) {
+    print(data)
+  }
+}
+----
+
+===== Notification
+
+[source, swift]
+----
+// Data Model
+class DataModel {
+  static let shared = DataModel()
+  let dataModelDidUpdateNotification = “dataModelDidUpdateNotification”
+  
+  private init() { }
+  private (set) var data: String? {
+    didSet {
+      NotificationCenter.default.post(name: Notification.Name(rawValue: dataModelDidUpdateNotification), object: self)
+    }
+  }
+  
+  func requestData() {
+    self.data = "Data Test:)"
+  }
+}
+
+// View Controller
+class ViewController: UIViewController {
+  private var dataModel: DataModel!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    self.dataModel = DataModel.shared
+    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate(_:)), name: Notification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+  }
+  
+  @objc private func getDataUpdate(_ notification: Notification) {
+    if let model = notification.object as? DataModel {
+      print(model.data)
+    }
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+}
+----
+
+===== ReactiveCocoa
+* Cold Signals
+** `SignalProducer<T, E>`
+* Hot Signals
+** `Signal<T, E>`
+
+===== RxSwift
+* Hot and Cold Signals
+** `Observable<T>`
+
+===== 참고
+* https://brunch.co.kr/@tilltue/18[RxSwift, Hot and Cold Observable]
+* https://github.com/ReactiveX/RxSwift[RxSwift Repository]
+* https://github.com/ReactiveCocoa/ReactiveCocoa[ReactiveCocoa Repository]
+* http://minsone.github.io/mac/ios/ioskey-value-coding-key-value-observing[Key Value Coding, Key Value Observing]
+* https://www.raywenderlich.com/126522/reactivecocoa-vs-rxswift[ReactiveCocoa vs RxSwift]
