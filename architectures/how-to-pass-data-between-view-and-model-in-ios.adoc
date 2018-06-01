@@ -62,7 +62,12 @@ class ViewController: UIViewController {
     dataModel.onDataUpdate = { [weak self] (data: String) in
       self?.useData(data: data)
     }
-    dataModel.requestData()
+
+    dataModel.dataRequest()
+  }
+
+  private func useData(data: String) {
+    print(data)
   }
 }
 ----
@@ -74,15 +79,14 @@ class ViewController: UIViewController {
 ----
 // Data Model
 protocol DataModelDelegate {
-  func didRecieveDataUpdate(data: data)
+  func didRecieveDataUpdate(data: String)
 }
 
 class DataModel {
-  weak var delegate: DataModelDelegate?
+  var delegate: DataModelDelegate?
   
   func requestData() {
-    let data = “Data Test:)”
-    delegate?.didRecieveDataUpdate(data: data)
+    delegate?.didRecieveDataUpdate(data: "Data Test:)")
   }
 }
 
@@ -111,12 +115,11 @@ extension ViewController: DataModelDelegate {
 // Data Model
 class DataModel {
   static let shared = DataModel()
-  let dataModelDidUpdateNotification = “dataModelDidUpdateNotification”
   
   private init() { }
   private (set) var data: String? {
     didSet {
-      NotificationCenter.default.post(name: Notification.Name(rawValue: dataModelDidUpdateNotification), object: self)
+      NotificationCenter.default.post(name: Notification.Name(rawValue: "dataModelDidUpdateNotification"), object: self)
     }
   }
   
@@ -133,12 +136,12 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     self.dataModel = DataModel.shared
-    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate(_:)), name: Notification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate(_:)), name: Notification.Name(rawValue: "dataModelDidUpdateNotification"), object: nil)
   }
   
   @objc private func getDataUpdate(_ notification: Notification) {
     if let model = notification.object as? DataModel {
-      print(model.data)
+      print(model.data!)
     }
   }
   
