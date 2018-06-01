@@ -6,6 +6,9 @@
 
 === 목차
 
+===== Architectures
+* link:architectures/arclean-architecture-in-ios.adoc[Clean Architecture in iOS]
+
 ===== AWS
 * link:aws/aws-vpc.adoc[VPC 기초]
 * link:aws/aws.adoc[기초]
@@ -143,4 +146,5 @@
 * link:etc/target-host.adoc[Target, Host]
 * link:etc/indirection.adoc[간접참조]
 * link:etc/mobile-computing.adoc[모바일 컴퓨팅]
+* link:etc/how-to-study-programming.adoc[프로그래밍, 어떻게 공부할 것인가?]
 * link:etc/programming-study.adoc[프로그래밍 정석 스터디 정리]
