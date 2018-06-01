@@ -318,6 +318,70 @@ loadText(from: "ANewHope")
   .disposed(by: disposeBag)
 ----
 
+===== do
+* `let observable = Observable.of(test1, test2, test4)`
+** 출력결과
+
+----
+do => About to subscribe
+Test1
+Test2
+Test4
+subscribe => Completed
+subscribe => Disposed
+do => Disposed
+----
+
+* `let observable = Observable<Any>.never()`
+** 출력결과
+
+----
+do => About to subscribe
+do => Disposed
+subscribe => Disposed
+----
+
+* `let observable = Observable<Void>.empty()`
+** 출력결과
+
+----
+do => About to subscribe
+subscribe => Completed
+subscribe => Disposed
+do => Disposed
+----
+
+* empty, subcribe와 never의 do 출력결과 순서가 미묘하게 다른 이유?
+
+[source, swift]
+----
+// let observable = Observable.of(test1, test2, test4)
+// let observable = Observable<Any>.never()
+let observable = Observable<Void>.empty()
+let disposeBag = DisposeBag()
+
+// do를 통해 부수효과를 추가할 수 있음. 하지만 이벤트 방출에 영향을 주지 않음. 왜냐하면 subcribe 가지고 있지 않기 때문임
+observable
+  .do(
+    onSubscribe: {
+      print("do => About to subscribe")
+  },
+    onDispose: {
+      print("do => Disposed")
+  })
+  .subscribe(
+    onNext: { element in
+      print(element)
+  },
+    onCompleted: {
+      print("subscribe => Completed")
+  },
+    onDisposed: {
+      print("subscribe => Disposed")
+  })
+  .disposed(by: disposeBag)
+----
+
 === 참고
 * http://reactivex.io[ReactiveX]
 * https://videos.raywenderlich.com/courses/116-beginning-rxswift/lessons/1[Beginning RxSwift]
