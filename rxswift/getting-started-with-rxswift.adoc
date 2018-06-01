@@ -41,6 +41,16 @@ image:./image/ios-async.png[]
 * Mutable State를 다룰 수 있음
 * 복잡도가 없음
 * 여러 플랫폼
+* NSNotification처럼 관찰하다가 변화가 생기면 반응함
+** 따라서 비동기 코드를 핸들링하는 데 좋음
+** 특정 프로퍼티 등 반응형 객체로 만든 후, 이벤트가 발생하면 이를 처리하기 위해 함수 적용함
+** Delegation와 비교
+*** 수많은 프로토콜을 정의할 필요 없음
+** Notification Center(NSNotification)과 비교
+*** RxSwift는 subscribe 함수만 부르면 되지만, NotificationCenter 생성할 때 4개 파라미터가 필요함
+** Property Observer와 비교
+*** 두 개 이상 객체가 새로운 데이터에 신경쓰고 있으면 관찰자 영역이 복잡해짐
+*** RxSwift에서는 각각 함수 내에서 프로퍼티를 관찰할 수 있으므로 더 모듈화 할 수 있음
 
 ===== 단점
 * 러닝커브가 높음
