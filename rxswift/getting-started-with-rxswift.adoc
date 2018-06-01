@@ -104,37 +104,21 @@ end
 
 [source, swift]
 ----
-// Supported Code
-public func example(of description: String, action:  -> Void) {
+public func example(of description: String, action: () -> Void) {
   print("\n--- Example of:", description, "---")
-  action
+  action()
 }
 
-public let episodeI = "The Phantom Menace"
-public let episodeII = "Attack of the Clones"
-public let theCloneWars = "The Clone Wars"
-public let episodeIII = "Revenge of the Sith"
-public let solo = "Solo"
-public let rogueOne = "Rogue One"
-public let episodeIV = "A New Hope"
-public let episodeV = "The Empire Strikes Back"
-public let episodeVI = "Return Of The Jedi"
-public let episodeVII = "The Force Awakens"
-public let episodeVIII = "The Last Jedi"
-public let episodeIX = "Episode IX"
 
-// Creating Obserables
-example(of: "Creating Observables") {
-  // just => Observable의 타입 메서드. Obserable Sequence를 만듦
-  let mostPopular: Observable<String> = Observable<String>.just(episodeV)
+// just => Observable의 타입 메서드. Obserable Sequence를 만듦
+let mostPopular: Observable<String> = Observable<String>.just(episodeV)
 
-  // of => 컴파일러가 타입을 추론하여 Obserable Sequence를 만듦
-  let originalTrilogy = Observable.of(episodeIV, episodeV, episodeVI)   // String Type
-  let prequelTrilogy = Observable.of([episodeI, episodeII, episodeIII]) // Array Type
+// of => 컴파일러가 타입을 추론하여 Obserable Sequence를 만듦
+let originalTrilogy = Observable.of(episodeIV, episodeV, episodeVI)   // String Type
+let prequelTrilogy = Observable.of([episodeI, episodeII, episodeIII]) // Array Type
 
-  // from => Obserable<String>. Array 요소를 하나씩 배출함. Array 인자만 가짐
-  let sequelTrilogy = Observable.from([episodeVII, episodeVIII, episodeIX])
-}
+// from => Obserable<String>. Array 요소를 하나씩 배출함. Array 인자만 가짐
+let sequelTrilogy = Observable.from([episodeVII, episodeVIII, episodeIX])
 ----
 
 === Subscribing to Observables
