@@ -15,7 +15,7 @@
  
 === 프로젝트마다 설정
 
-===== ESLint 
+===== .eslintrc 
 * Option + Shift + F => Formmating
 
 [source, js]
@@ -58,7 +58,7 @@
 }
 ----
 
-===== Prettier 
+===== .prettierrc
 * `옵션 설정 링크 참고`
 
 [source, shell]
@@ -69,7 +69,7 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
 [source, js]
 ----
 {
-  "printWidth": 100,
+  "printWidth": 200,
   "trailingComma": "es5",
   "singleQuote": true
 }
@@ -80,13 +80,8 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
 [source, js]
 ----
 {
-    "name": "ReactNativeStudy1",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node node_modules/react-native/local-cli/cli.js start",
-        "test": "jest"
-    },
+    // ...
+
     "dependencies": {
         "react": "16.3.1",
         "react-native": "0.55.4"
@@ -114,7 +109,6 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
     }
 }
 ----
-
 
 === 참고
 * https://medium.com/@kyo504/gist를-이용하여-기기-간-vscode-설정-동기화-c856082b7362[gist를 이용하여 기기 간 vscode 설정 동기화]

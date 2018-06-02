@@ -67,6 +67,10 @@ $ yarn global add react-native-cli react-native-git-upgrade
 $ vi ~/.bash_profile
 
 # ~/.bash_profile
+# Java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contens/Home
+
+# Android
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -118,7 +122,11 @@ $ react-native run-ios --device
 # 시뮬레이터 실행
 $ react-native run-ios 
 ----
-* _Command + R, Command + D_
+
+* _Command + D_
+** 설정 메뉴
+* _Command + R_
+** 새로고침
 
 image:./images/ios-execution-screen-1.png[]
 

@@ -1,0 +1,106 @@
+= React Native 2
+
+=== React Native를 위한 React
+
+===== UI 라이브러리
+* 웹에서만 사용한다면 단순한 UI 라이브러리
+
+===== Virtual DOM
+* `React and Virtul Dom 링크 참고`
+
+===== 단방향 데이터 흐름
+* `In React JS, data flows in one direction, from Parent to Child. This helps components to be simple and predictable 링크 참고`
+
+===== JSX
+* 자바스크립트 확장 문법
+* UI가 어떻게 보일지 대한 기술
+
+=== Components
+
+===== 정의
+* UI를 구성하는 기본 단위
+* 독립적이고 재사용 가능한 조각
+* 개념적으로는 자바스크립트 함수
+
+===== 어떻게 동작하는지 집중
+* 비즈니스 로직이 들어가 있음
+* Class Component
+* Stateful Component
+* Container Component
+* Smart Component
+
+===== 어떻게 보여는지 집중
+* 데이터를 받아서 처리하는 작업이 없음
+* Functional Component
+* Stateless Component
+* Presentational Component
+* Dumb Component
+
+===== Pure Components
+* 컴포넌트와 비슷한 점은 State를 가지고 처리함
+* 차이점은 데이터를 받을 때(리스트 형태로 뿌려주는 상황) 어떻게 처리할 지 고민해야 함
+
+=== Props, State
+
+===== Props
+* 부모에서 받은 데이터
+* Immutable Data
+* 부모에서 받은 데이터를 변경할 수 있지만, 문제가 발생함
+
+===== State
+* 컴포넌트 내부에서 관리되는 정보
+* Mutable Data
+
+[source, js]
+----
+#----------------------------------------------
+# App.js
+#----------------------------------------------
+import React, { Component } from 'react';
+import { Text, View, Button } from 'react-native';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  updateCount = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Button onPress={this.updateCount} title="Click Me!" />
+        <Text>{this.state.count}</Text>
+      </View>
+    );
+  }
+}
+----
+
+=== React Life Cycle
+
+===== 16.3 이전
+* iOS View Life Cycle과 비슷함
+* `React.JS 강좌 7편 Component LifeCycle API 링크 참고`
+
+image:./images/react-before-16.3.png[]
+
+===== 16.3 이후 
+* construct와 기능이 많이 겹쳐서 16.3 이후, componentWillAmount가 사라짐
+* 
+* `React v16.3.0: New lifecycles and context API 링크 참고`
+
+image:./images/react-after-16.3.png[]
+
+=== 참고
+* https://www.youtube.com/watch?v=BYbgopx44vo[React and Virtul Dom]
+* https://medium.embengineering.com/in-react-js-data-flows-in-one-direction-from-parent-to-child-841103ed3aed[In React JS, data flows in one direction, from Parent to Child. This helps components to be simple and predictable]
+* https://velopert.com/1130[React.JS 강좌 7편 Component LifeCycle API]
+* https://medium.com/@baphemot/understanding-react-react-16-3-component-life-cycle-23129bc7a705[Understanding React — React 16.3 + Component life-cycle]
+* https://reactjs.org/blog/2018/03/29/react-v-16-3.html[React v16.3.0: New lifecycles and context API]
