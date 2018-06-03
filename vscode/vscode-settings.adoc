@@ -2,15 +2,19 @@
 
 === 라이브러리 설정
 
-===== 필수
-* React Native Tools
+===== 라이브러리
+* AsciiDoc
+* C/C++
 * ESLint
-* Prettier formatter for Visual Studio Code
 * Flow Language Support
+* Markdown All in One
+* markdownlint
+* Prettier formatter for Visual Studio Code
+* React Native Tools
 * Settings Sync
 ** `gist를 이용하여 기기 간 vscode 설정 동기화 링크 참고`
-* vscode-ext-color-highlight
-* TODO Highlight
+* TODO Highlight 
+* vscode-ext-pack
 * vscode-icons
  
 === 프로젝트마다 설정
@@ -69,44 +73,61 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
 [source, js]
 ----
 {
-  "printWidth": 200,
-  "trailingComma": "es5",
-  "singleQuote": true
+    "printWidth": 200,
+    "trailingComma": "es5",
+    "singleQuote": true
 }
 ----
 
-===== Package.json
+===== package.json
 
 [source, js]
 ----
 {
-    // ...
-
-    "dependencies": {
-        "react": "16.3.1",
-        "react-native": "0.55.4"
+  "name": "ReactNativeStudy1",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.3.1",
+    "react-native": "0.55.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "23.0.0",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.8.2",
+    "flow-bin": "^0.67.1",
+    "husky": "^0.14.3",
+    "jest": "23.0.0",
+    "lint-staged": "^7.1.1",
+    "prettier": "1.13.4",
+    "prettier-eslint": "^8.8.1",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.{js,json,md}": [
+        "eslint --fix",
+        "git add"
+      ]
     },
-    "devDependencies": {
-        "babel-eslint": "^8.2.3",
-        "babel-jest": "22.4.4",
-        "babel-preset-react-native": "4.0.0",
-        "eslint": "4.19.1",
-        "eslint-config-prettier": "^2.9.0",
-        "eslint-plugin-babel": "^5.1.0",
-        "eslint-plugin-flowtype": "^2.46.3",
-        "eslint-plugin-import": "^2.12.0",
-        "eslint-plugin-prettier": "^2.6.0",
-        "eslint-plugin-react": "^7.8.2",
-        "flow-bin": "^0.67.0",
-        "husky": "^0.14.3",
-        "jest": "23.0.0",
-        "lint-staged": "^7.1.1",
-        "prettier": "1.12.1",
-        "react-test-renderer": "16.3.1"
-    },
-    "jest": {
-        "preset": "react-native"
-    }
+    "ignore": [
+      "package.json"
+    ]
+  }
 }
 ----
 
