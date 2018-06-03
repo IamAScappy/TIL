@@ -3,7 +3,7 @@
 ===== 문제
 * Prettier가 작동하지 않음
 
-image:.images/conflicting-formatter.png[]
+image:./images/conflicting-formatter.png[]
 
 ===== 해결
 * 버전이 1.23.0 이후, 포맷팅 우선순위가 바뀌면서 Beautify와 충돌이 일어남
