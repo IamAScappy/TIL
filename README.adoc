@@ -34,7 +34,7 @@
 * link:ios/ui-application-main.adoc[@UIApplicationMain]
 * link:ios/ios-app-design.adoc[App Design]
 * link:ios/app-life-cycle.adoc[App Life Cycle]
-* link:ios/app-programming-for-ios.adoc[App Programming for iOS]
+* link:ios/app-programming-for-ios.adoc[App Programming Guide for iOS]
 * link:ios/auto-layout.adoc[Auto Layout]
 * link:ios/how-to-apply-swiftlint-with-cocoapod.adoc[CocoaPod을 이용하여 SwiftLint 적용하기]
 * link:ios/core-graphics.adoc[Core Graphics]
