@@ -78,8 +78,7 @@
 ===== React-Native
 * link:react-native/rn-1.adoc[React Native 1]
 * link:react-native/rn-2.adoc[React Native 2]
-* link:react-native/run-ios-command-do-not-work.adoc[React Native: Command `run-ios` unrecognized]
-* link:react-native/vscode-settings.adoc[VSCode 설정]
+* link:react-native/run-ios-command-do-not-work.adoc[React Native: Command run-ios unrecognized]
 * link:react-native/error-running-react-native-app-from-terminal.adoc[xcrun: error: unable to find utility "instruments", not a developer tool or in PATH]
 
 ===== Regular Expression
@@ -128,6 +127,10 @@
 
 ===== VIM
 * link:vim/vim.adoc[기초]
+
+===== VSCode
+* link:vscode/vscode-settings.adoc[설정]
+* link:vscode/why-not-work-prettier.adoc[Prettier가 작동하지 않은 이유?]
  
 ===== XCode
 * link:xcode/how-to-set-to-change-the-minimum-deployment-version-in-xcode.adoc[Deployment Version 바꾸는 방법]
