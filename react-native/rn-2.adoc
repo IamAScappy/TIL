@@ -12,8 +12,33 @@
 * `In React JS, data flows in one direction, from Parent to Child. This helps components to be simple and predictable 링크 참고`
 
 ===== JSX
-* 자바스크립트 확장 문법
+* 자바스크립트 확장 문법(템플릿 언어가 아님)
 * UI가 어떻게 보일지 대한 기술
+
+[source, js]
+----
+const element = (
+  <h1 className="greeting">
+    Hello, world!
+  </h1>
+);
+
+// Babel에 의한 컴파일
+const element = React.createElement(
+  'h1',
+  {className: 'greeting'},
+  'Hello, world!'
+);
+
+// 반환
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Hello, world!'
+  }
+};
+----
 
 === Components
 
@@ -21,20 +46,50 @@
 * UI를 구성하는 기본 단위
 * 독립적이고 재사용 가능한 조각
 * 개념적으로는 자바스크립트 함수
+* 입력을 받아서 리액트 엘리먼트 반환
 
 ===== 어떻게 동작하는지 집중
-* 비즈니스 로직이 들어가 있음
 * Class Component
 * Stateful Component
 * Container Component
 * Smart Component
+* 비즈니스 로직이 들어가 있음
+
+[source, js]
+----
+class Welcome extends Component {
+  state = { data: [] }
+
+  componentDidMount() {
+    fetch(...).then(data => {
+      this.setState({ data });
+    });
+  }
+
+  render (
+    <View>
+      <FlatList data={this.state.data} />
+    </View>
+  )
+}
+----
 
 ===== 어떻게 보여는지 집중
-* 데이터를 받아서 처리하는 작업이 없음
 * Functional Component
 * Stateless Component
 * Presentational Component
 * Dumb Component
+* 데이터를 받아서 처리하는 작업이 없음
+
+[source, js]
+----
+const Welcome = (props) => {
+  const { message } = props;
+  return (
+    <Text>{message}</Text>
+  )
+}
+----
 
 ===== Pure Components
 * 컴포넌트와 비슷한 점은 State를 가지고 처리함
@@ -51,38 +106,6 @@
 * 컴포넌트 내부에서 관리되는 정보
 * Mutable Data
 
-[source, js]
-----
-#----------------------------------------------
-# App.js
-#----------------------------------------------
-import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
-
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      count: 0,
-    };
-  }
-
-  updateCount = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Button onPress={this.updateCount} title="Click Me!" />
-        <Text>{this.state.count}</Text>
-      </View>
-    );
-  }
-}
-----
-
 === React Life Cycle
 
 ===== 16.3 이전
@@ -92,11 +115,96 @@ export default class App extends Component {
 image:./images/react-before-16.3.png[]
 
 ===== 16.3 이후 
-* construct와 기능이 많이 겹쳐서 16.3 이후, componentWillAmount가 사라짐
-* 
+* construct와 기능이 많이 겹쳐서 16.3 이후, componentWillAmount가 사라짐 
 * `React v16.3.0: New lifecycles and context API 링크 참고`
 
 image:./images/react-after-16.3.png[]
+
+=== JavaScript for React
+
+===== ES6
+* `ES6 문법 링크 참고`
+
+===== ES7, 8
+* ES6에서 class안에서 static 함수 사용 가능
+* ES7에서 class 안에 static 프로퍼티 선언 가능
+
+[source, js]
+----
+class Cat {
+  static legCount = 4
+}
+
+console.log(Cat.legCount);
+----
+
+* Class Instance Properties
+
+[source, js]
+----
+// 클래스 인스턴스마다 프로퍼티 선언할 수 있음
+class Cat {
+  name = 'Tom'
+  state = {
+    running: true
+  }
+
+  constructor() {
+    console.log(this.name, this.state.running)
+  }
+}
+
+new Cat() // Tom true
+
+
+// 함수가 클래스 인스턴스 프로퍼티에 할당되면 인스턴스에 바인딩 됨
+class Cat {
+  constructor(name) {
+    this.name = name
+  }
+  printName = () => {
+    console.log(this.name)
+  }
+}
+----
+
+* Async, Await
+** ES8에서 제공되는 비동기 처리 방법
+** 비동기 코드의 겉모습과 동작을 좀 더 동기 코드와 유사하게 만들어 줌
+** promise 같이 Non-blocking 
+** promise로 인해 빚어지는 비동기 콜백 지옥을 해결함
+
+[source, js]
+----
+// Promise
+const fetchData = () => {
+  return fetch('https://localhost:8080/api/');
+}
+
+const printData = () => {
+  fetchData()
+  .then(json => {
+    console.log(json);
+  })
+  .catch(e => {
+    console.error("Problem", e);
+  });
+}
+
+// Async, Await
+const fetchData = async () => {
+  return fetch('https://localhost:8080/api/')
+}
+
+const printData = async () => {
+  try {
+    const json = await fetchData()
+    console.log(json)
+  } catch(e) {
+    console.error("Problem", e)
+  }
+}
+----
 
 === 참고
 * https://www.youtube.com/watch?v=BYbgopx44vo[React and Virtul Dom]
@@ -104,3 +212,4 @@ image:./images/react-after-16.3.png[]
 * https://velopert.com/1130[React.JS 강좌 7편 Component LifeCycle API]
 * https://medium.com/@baphemot/understanding-react-react-16-3-component-life-cycle-23129bc7a705[Understanding React — React 16.3 + Component life-cycle]
 * https://reactjs.org/blog/2018/03/29/react-v-16-3.html[React v16.3.0: New lifecycles and context API]
+* ES6 문법

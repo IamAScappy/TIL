@@ -2,34 +2,33 @@
 
 === 개요
 
-===== What is React Native?
-* 커뮤니티( 지원을 받아 생태계가 커지고 있음
+===== React Native?
 * 크로스 플랫폼 모바일 앱 개발을 위한 프레임워크. 그러나, Native라고 생각하는 것이 좋음
-* React 기반으로 코드 작성
+* React 기반으로 코드 작성(JS + JSX)
 
 ===== 동작원리
-* RN으로 만든 데이터는 String 형태로 보내짐. 브릿지(Native Bridge)을 통해 Native로 파싱해서 가공함
-* Native에서 자바스크립트로 이벤트를 보내기 위해서 브릿지를 통해 콜백(비동기)를 전달함
-* Native 퍼포먼스를 내긴 하지만, JS는 싱글 쓰레드이기 때문에 Native와 비동기로 전송되는 횟수가 많아지면 성능이 안 좋아짐. 예를 들어 애니메이션이 많은 화면이 성능이 좋지 않음
+* React Native으로 만든 데이터는 String 형태로 보내짐. 브릿지(Native Bridge)을 통해 네이티브(iOS, Android)로 파싱해서 가공함
+* 네이티브에서 자바스크립트로 이벤트를 보내기 위해서 브릿지를 통해 콜백(비동기)를 전달함
+* 네이티브 퍼포먼스를 내긴 하지만, JS는 싱글 쓰레드이기 때문에 네이티브와 비동기로 전송되는 횟수가 많아지면 성능이 안 좋아짐. 예를 들어 애니메이션이 많은 화면이 성능이 좋지 않음
 * `리액트 네이티브 안을 들여다보기 링크 참고`
 
-===== Why React Native?
-* Native 수준의 성능 제공
-* Native와 거의 동일한 UX 제공
-** 그러나, 개발하다보면 Native와 미묘한 차이 있음
+===== 왜 React Native 사용하는가?
+* 네이티브 수준의 성능 제공
+* 네이티브와 거의 동일한 UX 제공
+** 그러나, 개발하다보면 네이티브와 미묘한 차이 있음
 * *기존의 React, JavaScript 생태계의 확장*
 ** React로 만들어진 라이브러리를 React Native로 포팅하는 작업을 많이 함
 * HMR 지원 등을 통해 개발 생산성 향상
-* 필요하면 Native 기능을 확장할 수 있지만. Native 기능을 알아야 함 
+* 필요하면 네이티브 기능을 확장할 수 있지만. 네이티브 기능을 알아야 함 
 ** _iOS, Android 의존성이 많이 걸린 앱이냐? 판단이 중요함_
-** 순수하게 React Native로 개발하기 위해서 Native 의존성이 걸린 부분을 제거해야 함
-** Native로 개발하고 React Native을 끼워넣는 개발 방식도 있음
+** 순수하게 React Native로 개발하기 위해서 네이티브 의존성이 걸린 부분을 제거해야 함
+** 네이티브로 개발하고 React Native을 끼워넣는 개발 방식도 있음
 
 ===== React vs. React Native
 * Dom, Styling이 다름
 ** React => <div>, <p>, CSS
-** RN => <View>, <Text>, StyleSheet
-** React와 RN이 다르지만, 컴포넌트 셋을 하나만 만들고 공유해서 쓸 수 있음
+** React Native => <View>, <Text>, StyleSheet
+** React와 React Native가 다르지만, 컴포넌트 셋을 하나만 만들고 공유해서 쓸 수 있음
 ** react-native-web도 있음. RN으로 작성하고 웹으로 바꿔줌
 * Animation, Gesture, Navigation(react-router / react-navigtion => js로만 구성되어 있음. 커스텀마이징이 쉬움, react-native-navigation)이 다름
 
