@@ -1,0 +1,69 @@
+= React Native 3
+
+===== StyleSheet.create
+* 스타일을 위해 특별한 언어나 문법 사용 없이 자바스크립트 이용함
+* 웹과 다르게 클래스 개념을 사용하지 않음. 인라인 스타일만 사용함
+* 스타일 이름과 값은 웹에서 쓰는 것과 비슷함
+* 오브젝트나 스타일을 가진 배열을 전달할 수 있음
+* 같은 스타일이 있다면 뒤로 배치된 것이 우선 순위가 높음
+
+===== Flexbox
+* main axis
+** 컨테이너 주축은 플랙스 아이템들이 배치되는 기본 축
+** flexDirection에 의해 결정됨
+* main-start, main-end
+** 플랙스 아이템들을 주축 시작점에서 주축 끝점으로 이동하여 배치됨
+* cross axis
+** 주축에 교차되는 축
+* cross-start, cross-end
+** 플랙스 라인 아이템으로 채워지고 컨테이너 시작점에서 시작하여 크로스 끝 점으로 이동하여 컨테이너를 배치함
+* 자세한 내용은 아래 링크 참고
+** `Flex 이해: 당신이 알아야 할 모든 것 링크 참고`
+** `A Complete Guide to Flexbox 링크 참고`
+
+image:./images/flexbox-1.png[]
+
+===== flexDirection
+
+image:./images/flexbox-2.png[]
+
+===== flexWrap
+
+image:./images/flexbox-3.png[]
+
+===== justifyContent
+* 기본 축에서 flex 아이템을 배치하는 방법을 정의함
+
+image:./images/flexbox-4.png[]
+
+===== alignItems
+* 교차축을 따라 어떻게 배치할 지 정의함. justifyContent와 반대되는 개념
+
+image:./images/flexbox-5.png[]
+
+===== alignContent
+* 교차 축에 있는 행들을 제어함. 여러 아이템이 한 줄로 배치되어 있다면 아무 효과 없음
+
+image:./images/flexbox-6.png[]
+
+===== flex
+* 주축으로 아이템이 배치되어 넘치게 되는 경우 wrap을 할지 결정
+* Yoga 라이브러리 따라 동작함
+* flex가 양수
+** 컴포넌트 크기는 flex 값에 비례해서 사이즈 결정
+* flex가 0
+** width, height 따라 사이즈가 결정됨
+* flex가 음수
+** width, height 따라 사이즈가 결정되지만, 공간이 충분하지 않다면 minWidth와 minHeight까지 줄어듬
+
+===== alignSelf
+
+image:./images/flexbox-7.png[]
+
+===== Components
+* `React Native - Components 링크 참고`
+
+===== 참고
+* https://www.vobour.com/1-flexbox-이해-당신이-알아야-할-모든-것-understa[Flex 이해: 당신이 알아야 할 모든 것]
+* https://css-tricks.com/snippets/css/a-guide-to-flexbox/[A Complete Guide to Flexbox]
+* https://facebook.github.io/react-native/docs/getting-started.html[React Native - Components]
