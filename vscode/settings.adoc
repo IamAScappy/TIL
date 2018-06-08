@@ -1,4 +1,4 @@
-= VSCode 설정
+= 설정
 
 ===== User Settings
 
@@ -29,16 +29,13 @@
 }
 ----
 
-===== 라이브러리
+===== Extensions
 * AsciiDoc
-* C/C++
 * ESLint
 * Flow Language Support
 * Markdown All in One
-* markdownlint
 * Prettier formatter for Visual Studio Code
 * TODO Highlight 
-* vscode-ext-pack
 * vscode-icons
 
 ===== .eslintrc 
@@ -153,6 +150,5 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
 }
 ----
 
-=== 참고
-* https://medium.com/@kyo504/gist를-이용하여-기기-간-vscode-설정-동기화-c856082b7362[gist를 이용하여 기기 간 vscode 설정 동기화]
+===== 참고
 * https://prettier.io/docs/en/options.html[옵션 설정]
