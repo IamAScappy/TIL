@@ -189,62 +189,6 @@ const element = {
 };
 ----
 
-=== Components
-
-===== 정의
-* UI를 구성하는 기본 단위
-* 독립적이고 재사용 가능한 조각
-* 개념적으로는 자바스크립트 함수
-* 입력을 받아서 리액트 엘리먼트 반환
-* `React Native - Components 링크 참고`
-
-===== 어떻게 동작하는지 집중
-* Class Component
-* Stateful Component
-* Container Component
-* Smart Component
-* 비즈니스 로직이 들어가 있음
-
-[source, js]
-----
-class Welcome extends Component {
-  state = { data: [] }
-
-  componentDidMount() {
-    fetch(...).then(data => {
-      this.setState({ data });
-    });
-  }
-
-  render (
-    <View>
-      <FlatList data={this.state.data} />
-    </View>
-  )
-}
-----
-
-===== 어떻게 보여는지 집중
-* Functional Component
-* Stateless Component
-* Presentational Component
-* Dumb Component
-* 데이터를 받아서 처리하는 작업이 없음
-
-[source, js]
-----
-const Welcome = (props) => {
-  const { message } = props;
-  return (
-    <Text>{message}</Text>
-  )
-}
-----
-
-===== Pure Components
-* 컴포넌트와 비슷한 점은 State를 가지고 처리함
-* 차이점은 데이터를 받을 때(리스트 형태로 뿌려주는 상황) 어떻게 처리할 지 고민해야 함
-
 === Props, State
 
 ===== Props
@@ -417,6 +361,63 @@ image:./images/flexbox-6.png[]
 ===== alignSelf
 
 image:./images/flexbox-7.png[]
+
+
+=== Components
+
+===== 정의
+* UI를 구성하는 기본 단위
+* 독립적이고 재사용 가능한 조각
+* 개념적으로는 자바스크립트 함수
+* 입력을 받아서 리액트 엘리먼트 반환
+* `React Native - Components 링크 참고`
+
+===== 어떻게 동작하는지 집중
+* Class Component
+* Stateful Component
+* Container Component
+* Smart Component
+* 비즈니스 로직이 들어가 있음
+
+[source, js]
+----
+class Welcome extends Component {
+  state = { data: [] }
+
+  componentDidMount() {
+    fetch(...).then(data => {
+      this.setState({ data });
+    });
+  }
+
+  render (
+    <View>
+      <FlatList data={this.state.data} />
+    </View>
+  )
+}
+----
+
+===== 어떻게 보여는지 집중
+* Functional Component
+* Stateless Component
+* Presentational Component
+* Dumb Component
+* 데이터를 받아서 처리하는 작업이 없음
+
+[source, js]
+----
+const Welcome = (props) => {
+  const { message } = props;
+  return (
+    <Text>{message}</Text>
+  )
+}
+----
+
+===== Pure Components
+* 컴포넌트와 비슷한 점은 State를 가지고 처리함
+* 차이점은 데이터를 받을 때(리스트 형태로 뿌려주는 상황) 어떻게 처리할 지 고민해야 함
 
 === 참고
 * https://medium.com/@kyo504/번역-잠깐-내가-만든-리액트-네이티브-앱이-시작하면-무슨일이-일어나는거지-리액트-네이티브-안을-들여다보기-2b4a9bce79a2[리액트 네이티브 안을 들여다보기]
