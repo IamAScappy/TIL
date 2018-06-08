@@ -76,9 +76,7 @@
 * link:oop/di.adoc[의존성주입]
 
 ===== React-Native
-* link:react-native/rn-1.adoc[React Native 1]
-* link:react-native/rn-2.adoc[React Native 2]
-* link:react-native/rn-3.adoc[React Native 3]
+* link:react-native/basic.adoc[React Native 기본]
 * link:react-native/run-ios-command-do-not-work.adoc[React Native: Command run-ios unrecognized]
 * link:react-native/error-running-react-native-app-from-terminal.adoc[xcrun: error: unable to find utility "instruments", not a developer tool or in PATH]
 
