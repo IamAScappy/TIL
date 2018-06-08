@@ -6,9 +6,9 @@
 
 === 목차
 
-===== Architectures
-* link:architectures/clean-architecture-in-ios.adoc[Clean Architecture in iOS]
-* link:architectures/how-to-pass-data-between-view-and-model-in-ios.adoc[iOS View-ViewController과 Model이나 View Model에서 데이터 바인딩]
+===== Architecture
+* link:architecture/clean-architecture-in-ios.adoc[Clean Architecture in iOS]
+* link:architecture/how-to-pass-data-between-view-and-model-in-ios.adoc[iOS View-ViewController과 Model이나 View Model에서 데이터 바인딩]
 
 ===== AWS
 * link:aws/aws-vpc.adoc[VPC 기초]
@@ -75,11 +75,6 @@
 * link:oop/srp-isp.adoc[단일 책임 원칙, 인터페이스 분리 원칙]
 * link:oop/di.adoc[의존성주입]
 
-===== React-Native
-* link:react-native/basic.adoc[React Native 기본]
-* link:react-native/run-ios-command-do-not-work.adoc[React Native: Command run-ios unrecognized]
-* link:react-native/error-running-react-native-app-from-terminal.adoc[xcrun: error: unable to find utility "instruments", not a developer tool or in PATH]
-
 ===== Regular Expression
 * link:regex/automata.adoc[오토마타]
 * link:regex/regular-expression.adoc[정규표현식]
@@ -128,7 +123,7 @@
 * link:vim/vim.adoc[기초]
 
 ===== VSCode
-* link:vscode/vscode-settings.adoc[설정]
+* link:vscode/settings.adoc[설정]
 * link:vscode/why-not-work-prettier.adoc[Prettier가 작동하지 않은 이유?]
  
 ===== XCode

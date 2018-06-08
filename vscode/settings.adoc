@@ -1,6 +1,33 @@
 = VSCode 설정
 
-=== 라이브러리 설정
+===== User Settings
+
+[source, js]
+----
+{
+  "window.zoomLevel": -1,
+  "editor.fontFamily": "D2Coding",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "off",
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "flow.runOnAllFiles": true,
+  "flow.useNPMPackagedFlow": true,
+  "javascript.format.enable": false,
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "workbench.iconTheme": "vscode-icons",
+  "git.autofetch": true,
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "gitlens.historyExplorer.enabled": true,
+  "workbench.colorTheme": "Atom One Dark"
+}
+----
 
 ===== 라이브러리
 * AsciiDoc
@@ -10,14 +37,9 @@
 * Markdown All in One
 * markdownlint
 * Prettier formatter for Visual Studio Code
-* React Native Tools
-* Settings Sync
-** `gist를 이용하여 기기 간 vscode 설정 동기화 링크 참고`
 * TODO Highlight 
 * vscode-ext-pack
 * vscode-icons
- 
-=== 프로젝트마다 설정
 
 ===== .eslintrc 
 * Option + Shift + F => Formmating
@@ -84,7 +106,7 @@ $ npm install --dev prettier eslint flow-bin@^0.67.0 --exact
 [source, js]
 ----
 {
-  "name": "ReactNativeStudy1",
+  "name": "SampleProject",
   "version": "0.0.1",
   "private": true,
   "scripts": {
