@@ -10,7 +10,7 @@
 * RxSwift
 
 ===== Callback
-* link:swift/memory.adoc[클로저 안에서 weak self가 필요한 이유]
+* https://github.com/yuaming/wiki/blob/master/swift/memory.adoc[클로저 안에서 weak self가 필요한 이유]
 
 [source, swift]
 ----
