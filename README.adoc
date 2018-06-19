@@ -107,6 +107,7 @@
 ===== TDD
 * link:tdd/tdd-refactoring-study.adoc[TDD, Refactoring 스터디 정리]
 * link:tdd/test-double.adoc[Test Double]
+* link:tdd/differences-acceptance-test-and-integration-test.adoc[인수테스트, 통합테스트 차이점]
 * link:tdd/test.adoc[테스트]
 
 ===== UX/UI
