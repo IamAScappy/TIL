@@ -118,6 +118,7 @@
 * link:ux-ui/design-unity.adoc[디자인 통일성]
 * link:ux-ui/before-designing.adoc[디자인 하기 전]
 * link:ux-ui/app-planning-and-design.adoc[앱 기획과 디자인 과정]
+* link:ux-ui/what-you-need-in-designing.adoc[화면 디자인에서 필요한 부분]
 
 ===== VIM
 * link:vim/vim.adoc[기초]
