@@ -1,19 +1,17 @@
 = Create ML in iOS 
 
-===== Model은 어디서 가져올 것인가?
+===== MLModel은 어디서 가져올 것인가?
 * Core ML Tool이나 Converter를 제공함
 * `Working with Core ML Models 링크 참고`
 
 ===== Create ML
 
 image:./image/create-ml-in-ios-1.png[45%, 45%]
-
 image:./image/core-ml-1.png[45%, 45%]
 
 ===== Create ML 작업 순서
 
 image:./image/create-ml-in-ios-2.png[45%, 45%]
-
 image:./image/create-ml-in-ios-3.png[45%, 45%]
 
 * 이미지
