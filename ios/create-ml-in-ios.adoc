@@ -1,0 +1,97 @@
+= Create ML in iOS 
+
+===== Model은 어디서 가져올 것인가?
+* Core ML Tool이나 Converter를 제공함
+* `Working with Core ML Models 링크 참고`
+
+===== Create ML
+
+image:./image/create-ml-in-ios-1.png[45%, 45%]
+
+image:./image/core-ml-1.png[45%, 45%]
+
+===== Create ML 작업 순서
+
+image:./image/create-ml-in-ios-2.png[45%, 45%]
+
+image:./image/create-ml-in-ios-3.png[45%, 45%]
+
+* 이미지
+** `Creating an Image Classifier Model 링크 참고`
+
+[source, swift]
+----
+import Foundation
+import CreateML
+
+// Specify Data
+let trainDirectory = URL(fileURLWithPath: “/Users/createml/Desktop/Fruits“)
+let testDirectory = URL(fileURLWithPath: “/Users/createml/Desktop/TestFruits“)
+
+// Create Model
+let model = try MLImageClassifier(trainingData: .labeledDirectories(at: trainDirectory))
+
+// Evaluate Model
+let evaluation = model.evaluation(on: .labeledDirectories(at: testDirectory))
+ 
+// Save Model
+try model.write(to: URL(fileURLWithPath: “/Users/createml/Desktop/FruitClassifier.mlmodel“))
+----
+
+* 텍스트
+** `Creating a Text Classifier Model 링크 참고`
+
+[source, swift]
+----
+import CreateML
+import Foundation
+
+// Specify Data
+let trainDirectory = URL(fileURLWithPath: “/Users/createml/Desktop/train”)
+let testDirectory = URL(fileURLWithPath: “/Users/createml/Desktop/test”)
+
+// Create Model
+let classifier = try MLTextClassifier(trainingData: .labeledDirectories(at: trainDirectory))
+
+// Evaluate Model
+let evaluation = classifier.evaluation(on: .labeledDirectories(at: testDirectory))
+
+// Save Model
+let modelPath = URL(fileURLWithPath: “/Users/createml/Desktop/TextClassifier.mlmodel”)
+try classifier.write(to: modelPath)
+----
+
+* 테이블 데이터(*.csv, *.xlsx)
+** `Creating Data Tables for Training and Evaluation 링크 참고`
+
+[source, swift]
+----
+import CreateML
+
+// Specify Data
+let trainingCSV = URL(fileURLWithPath: “/Users/createml/HouseData.csv”)
+let houseData = MLDataTable(contentsOf: trainingCSV)
+let (trainingData,testData) = houseData.randomSplit(by: 0.8, seed: 0)
+
+// Create Model
+let pricer = try MLRegressor(trainingData: houseData, targetColumn: “price")
+
+// Evaluate Model
+let metrics = try pricer.testingMetrics(on: testData)
+
+// Save Model
+try pricer.write(to: URL(fileURLWithPath: “/Users/createml/HousePricer.mlmodel”))
+----
+
+===== Create ML 만들어진 MLModel 사용하는 방법
+* MLModel를 사용하려는 프로젝트 실행시킨 후, 원하는 폴더에 MLModel 드래그하여 사용함
+
+===== 참고
+* https://developer.apple.com/videos/play/wwdc2018/703/[WWDC 2018 - Introducing Create ML]
+* https://developer.apple.com/machine-learning/build-run-models/[Working with Core ML Models]
+* https://developer.apple.com/documentation/coreml[Core ML]
+* https://www.raywenderlich.com/196233/create-ml-tutorial-getting-started[Create ML Tutorial: Getting Started]
+* https://www.slideshare.net/mobile/yongho/ss-79607172[자습해도 모르겠던 딥러닝, 머리속에 인스톨 시켜드립니다.]
+* https://developer.apple.com/documentation/create_ml/creating_an_image_classifier_model[Creating an Image Classifier Model]
+* https://developer.apple.com/documentation/create_ml/creating_a_text_classifier_model[Creating a Text Classifier Model]
+* https://developer.apple.com/documentation/create_ml/creating_data_tables_for_training_and_evaluation[Creating Data Tables for Training and Evaluation]
