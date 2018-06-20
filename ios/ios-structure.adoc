@@ -31,18 +31,8 @@ image::./image/ios-structure-2.png[]
 **** Keyboard and Menu: 키보드 입력을 처리 및 사용자 정의 메뉴 표시
 * WebKit
 ** **Display web content in windows.** Implement browser features such as following user-activated links, managing a back-forward list, and managing a history of recently visited pages
-* CloudKit
-* MapKit
-* HomeKit
-* PassKit
-* SceneKit
-* HealthKit
-* WatchKit
-* SpriteKit
 * CoreData
 ** **Manage object graphs and object lifecycle, including persist**
-* MetalKit
-* ARKit
 * Foundation
 ** **Access essential data types, collections, and operating-system services** to define the base layer of functionality for your app
 ** 기능별 요소
