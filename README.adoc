@@ -97,6 +97,7 @@
 * link:swift/swift.adoc[Swift]
 * link:swift/swift3-swift4-substring.adoc[Swift3, Swift4 문자열 자르기]
 * link:swift/swift-development-environment.adoc[Swift 프로젝트 개발 환경]
+* link:swift/generics-in-swift-4.2.adoc[Swift 4.2에서 Generic]
 * link:swift/withoutActually-escaping-autoclosure-description.adoc[withoutActuallyEscaping, @autoclosure]
 * link:swift/mutating-function.adoc[객체를 init으로 초기화와 mutating func으로 속성 바꾸기]
 * link:swift/joined.adoc[여러 문자열 결합하기]
