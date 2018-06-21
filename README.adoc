@@ -80,9 +80,6 @@
 * link:regex/automata.adoc[오토마타]
 * link:regex/regular-expression.adoc[정규표현식]
 
-===== RxSwift
-* link:rxswift/getting-started-with-rxswift.adoc[Getting Started With RxSwift]
-
 ===== Swift
 * link:swift/cannot-use-mutating-member-immutable-value.adoc[Cannot use mutating member on immutable value: function call returns immutable value]
 * link:swift/dynamic-type.adoc[Dynamic Type]
@@ -97,7 +94,7 @@
 * link:swift/swift.adoc[Swift]
 * link:swift/swift3-swift4-substring.adoc[Swift3, Swift4 문자열 자르기]
 * link:swift/swift-development-environment.adoc[Swift 프로젝트 개발 환경]
-* link:swift/generics-in-swift-4.2.adoc[Swift 4.2에서 Generic]
+* link:swift/generics-in-swift-4.2.adoc[Swift 4.2에서 Generics]
 * link:swift/withoutActually-escaping-autoclosure-description.adoc[withoutActuallyEscaping, @autoclosure]
 * link:swift/value-type-and-reference-type-intialization.adoc[값 타입과 참조 타입의 초기화]
 * link:swift/mutating-function.adoc[객체를 init으로 초기화와 mutating func으로 속성 바꾸기]
