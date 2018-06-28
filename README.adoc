@@ -8,7 +8,7 @@
 
 ===== Architecture
 * link:architecture/clean-architecture-in-ios.adoc[Clean Architecture in iOS]
-* link:architecture/how-to-pass-data-between-view-and-model-in-ios.adoc[iOS View-ViewController과 Model이나 View Model에서 데이터 바인딩]
+* link:architecture/how-to-pass-data-between-view-and-model-in-ios.adoc[iOS에서 View나 ViewController와 Model 또는 View Model에서 데이터 바인딩하기]
 
 ===== AWS
 * link:aws/aws-vpc.adoc[VPC 기초]

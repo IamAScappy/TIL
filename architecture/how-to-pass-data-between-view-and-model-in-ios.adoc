@@ -1,11 +1,11 @@
-= iOS View-ViewController과 Model이나 View Model 데이터 바인딩
+= iOS에서 View나 ViewController와 Model 또는 View Model에서 데이터 바인딩하기
 
 ===== 방법
 * Callback 
 ** Closure 이용
 ** Property 이용
 * Delegation
-* Notification
+* NotificationCenter
 * ReactiveCocoa
 * RxSwift
 
@@ -108,7 +108,7 @@ extension ViewController: DataModelDelegate {
 }
 ----
 
-===== Notification
+===== NotificationCenter
 
 [source, swift]
 ----
