@@ -1,15 +1,22 @@
-= Create ML in iOS 
+= CreateML
+
+===== ML 배경
+* 어떤 입력을 받았을 때 주변 시냅스에게 어떤 영향을 주는가?
+* 즉, 신경망을 따라 만드는 것
+* ANN
 
 ===== MLModel은 어디서 가져올 것인가?
 * Core ML Tool이나 Converter를 제공함
 * `Working with Core ML Models 링크 참고`
 
-===== Create ML
+===== CreateML
+* 얼마나 많은 데이터를 학습하게 하느냐가 중요함
+* 도구, 논문이 많아지면서 공유하기 시작함. 입증을 위한 경쟁이 시작함. Apple의 ML은 물체 인식관련 모델이 많음
 
 image:./image/create-ml-in-ios-1.png[45%, 45%]
 image:./image/core-ml-1.png[45%, 45%]
 
-===== Create ML 작업 순서
+===== CreateML 작업 순서
 
 image:./image/create-ml-in-ios-2.png[45%, 45%]
 image:./image/create-ml-in-ios-3.png[45%, 45%]
@@ -81,7 +88,7 @@ let metrics = try pricer.testingMetrics(on: testData)
 try pricer.write(to: URL(fileURLWithPath: “/Users/createml/HousePricer.mlmodel”))
 ----
 
-===== Create ML 만들어진 MLModel 사용하는 방법
+===== CreateML로 만들어진 MLModel 사용하는 방법
 * MLModel를 사용하려는 프로젝트 실행시킨 후, 원하는 폴더에 MLModel 드래그하여 사용함
 
 ===== 참고
