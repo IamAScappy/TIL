@@ -2,9 +2,9 @@
 
 === iOS
 
-image::./image/ios-structure-1.png[45%, 45%]
-image::./image/ios-structure-2.png[45%, 45%]
-image:./image/ios.png[45%, 45%]
+image::./image/ios-structure-1.png[]
+image::./image/ios-structure-2.png[]
+image:./image/ios.png[]
 
 ===== Cocoa ?
 * Cocoa Touch Framework 는 iOS 애플리케이션 개발 환경으로, 애플리케이션의 다양한 기능 구현에 필요한 여러 프레임워크를 포함하는 최상위 레벨의 프레임워크
@@ -13,9 +13,10 @@ image:./image/ios.png[45%, 45%]
 * _Cocoa Touch_ 는 핵심 프레임워크인 UIKit과 Foundation을 포함함
 
 ===== Framework
-* 동적 라이브러리
-* 리소스(헤더, 이미지 등)
-* 의존성 역전(DIP)
+* Framework
+** 동적 라이브러리
+** 리소스(헤더, 이미지 등)
+** 의존성 역전(DIP)
 ** 프레임워크의 기능을 구현하기 위해서 하위 모듈 기능 구현이 필요함
 * *Assets Library Framework*
 ** 사진앱이 관리하는 사진과 비디오(사용자가 앨범에 저장한 모든 사진과 비디오를 포함)에 접근함
@@ -118,7 +119,7 @@ image:./image/ios.png[45%, 45%]
 *** 포트와 소켓 통신
 ** Core Foundation은 Foundation Framework와 밀접한 관계를 가지고 있으며 Foundation 객체와 Core Foundation 데이터 타입을 조합해서 사용할 때 _툴프리 브릿징_ 기술을 사용함
 * *Core Data Framework*
-* Model, View, Controller 앱에서 데이터 모델을 관리하는 인터페이스를 제공함
+** Model, View, Controller 앱에서 데이터 모델을 관리하는 인터페이스를 제공함
 * *UIKit*
 ** iOS 앱의 사용자 이벤트나 인터페이스를 관리함
 *** View and Control : 화면에 콘텐츠 표시
@@ -167,7 +168,9 @@ image:./image/ios.png[45%, 45%]
 ===== Interaction Metaphors
 * 1픽셀 단위가 아닌 최소 44x44 point 크기는 지킬 것 
 
-=== iOS7 전, 후 디자인 비교
+=== 다자인
+
+===== iOS7 전, 후 디자인 비교
 
 image::./image/ios-7.png[]
 
