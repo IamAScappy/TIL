@@ -37,7 +37,7 @@
 * link:ios/auto-layout.adoc[Auto Layout]
 * link:ios/how-to-apply-swiftlint-with-cocoapod.adoc[CocoaPod을 이용하여 SwiftLint 적용하기]
 * link:ios/core-graphics.adoc[Core Graphics]
-* link:ios/create-ml.adoc[CreateML]
+* link:ios/createml.adoc[CreateML]
 * link:ios/frame-bounds.adoc[Frame, Bounds]
 * link:ios/ib-outlet-action.adoc[IBOutlet, IBAction]
 * link:ios/ios.adoc[iOS]
