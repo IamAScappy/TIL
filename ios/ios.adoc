@@ -6,14 +6,16 @@ image::./image/ios-structure-1.png[]
 image::./image/ios-structure-2.png[]
 image:./image/ios.png[]
 
-===== Cocoa ?
+===== Cocoa 
 * Cocoa Touch Framework 는 iOS 애플리케이션 개발 환경으로, 애플리케이션의 다양한 기능 구현에 필요한 여러 프레임워크를 포함하는 최상위 레벨의 프레임워크
 * Cocoa Framework는 macOS 애플리케이션 제작에 사용하는 프레임워크
-* _Cocoa_ 는 Objective-C 런타임을 기반으로하고, NSObject를 상속받는 모든 클래스 또는 객체를 가리킬 때 사용함
-* _Cocoa Touch_ 는 핵심 프레임워크인 UIKit과 Foundation을 포함함
+* Cocoa ?
+** Objective-C 런타임을 기반으로하고, NSObject를 상속받는 모든 클래스 또는 객체를 가리킬 때 사용함
+* Cocoa Touch ?
+** 핵심 프레임워크인 UIKit과 Foundation을 포함함
 
-===== Framework
-* Framework
+===== Frameworks
+* Framework ?
 ** 동적 라이브러리
 ** 리소스(헤더, 이미지 등)
 ** 의존성 역전(DIP)
