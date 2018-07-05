@@ -62,3 +62,12 @@ image:./image/auto-layout-14.png[45%, 45%]
     width2.priority = width2.priority.rawValue < 999 ? UILayoutPriority(rawValue: 999) : UILayoutPriority(rawValue: 800)
 }
 ---- 
+
+===== 상태바 밝은 테마로 바꾸기
+
+[source, swift]
+----
+override var preferredStatusBarStyle: UIStatusBarStyle {
+    return UIStatusBarStyle.lightContent
+}
+----
