@@ -2,9 +2,9 @@
 
 ===== 개념
 * Director
-** Director 객체는 View 또는 View Controller에서 Coordinates 정보나 입력 시 들어오는 정보를 받아 처리함
+** Director 객체는 View 또는 View Controller에서 Coordinates나 입력값을 받아 Builder에게 넘김
 * Builder
-** Product 객체 생성를 담당함
+** 입력값을 단계별 처리하고 Product 객체 생성를 담당함
 * Product
 ** 실제 로직을 가지고 있으며 생성될 객체
 
