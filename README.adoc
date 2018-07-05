@@ -21,6 +21,7 @@
 
 ===== Design Patterns
 * link:design-patterns/builder-pattern.adoc[Builder Pattern]
+* link:design-patterns/factory-pattern.adoc[Factory Pattern]
 
 ===== Functional Programming
 * link:fp/functional-programming-js.adoc[Functional Programming with JS]
