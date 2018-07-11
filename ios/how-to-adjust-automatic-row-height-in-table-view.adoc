@@ -1,0 +1,33 @@
+= TableView 동적으로 높이 조절하기
+
+===== Cell Constraints 맞추기
+* 스토리보드에서 테이블 Cell 높이를 지정할 때 주의할 점
+** Dynamic Prototype Cell​을 만드는 경우에 TableView의 Row Height는 Cell의 Custom Row Height를 Override => Cell 높이를 500으로 지정해도, TableView에서 Row Height 값이 50이면 그대로 50이 적용함
+** Static Cell일 경우는 반대로 Cell이 Row보다 우위를 갖게 됨
+
+===== UITableViewAutomaticDimension
+* TableView Row가 유동적으로 바뀔 수 있음을 선언함
+* 테이블 Row에 들어가는 컨텐츠의 크기나 양에 따라 어떤 Row는 높이가 높고, 어떤 Row는 낮을 수 있게 됨 
+* 선언해주는 것으로 끝나는게 아니라 Cell 내의 각 요소들의 Constraints가 적절하게 지정되어야 하고, 다음 estimatedRowHeight도 적절히 지정해야 함
+
+[source, swift]
+----
+// iOS 11 이하
+tableView.rowHeight = UITableViewAutomaticDimension
+
+// iOS 12
+tableView.rowHeight = UITableView.automaticDimension
+----
+
+===== estimatedRowHeight
+* estimatedRowHeight는 잘 정해줘야 함. 왜냐하면 테이블을 Reload 할 때 해당 예상치에 따라 스크롤 position 값이 정함 
+* 이 값이 너무 낮으면 테이블 ReloadData 할 때 엉뚱한 곳에 스크롤 되는 경우가 발생함
+
+[source, swift]
+----
+tableView.estimatedRowHeight = 500
+
+func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 500        
+}
+----
