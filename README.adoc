@@ -43,6 +43,7 @@
 * link:ios/core-graphics.adoc[Core Graphics]
 * link:ios/createml.adoc[CreateML]
 * link:ios/frame-bounds.adoc[Frame, Bounds]
+* link:ios/high-performace-auto-layout.adoc[High Performance Auto Layout]
 * link:ios/ib-outlet-action.adoc[IBOutlet, IBAction]
 * link:ios/ios.adoc[iOS]
 * link:ios/model-view-controller.adoc[MVC]
