@@ -1,4 +1,86 @@
 = High Performance Auto Layout
 
+===== 문제
+* `prepareForResue(), layoutSubviews() 에서 Auto Layout 설정을 지정하는 경우, 스크롤 할 때마다 호출이 되는 것을 JK 피드백을 받음`
+
+[source, swift]
+----
+override func prepareForReuse() { 
+    super.prepareForReuse()
+
+    addSubview(foodImageView) 
+    updateConstraintsOfFoodImageView(isActive: true) 
+     
+    addSubview(titleLabel) 
+    updateCostraintsOfTitleLabel(isActive: true) 
+     
+    addSubview(descriptionLabel) 
+    updateConstraintsOfDescriptionLabel(isActive: true) 
+
+ 
+    addSubview(pricesStackView) 
+    updateConstraintsOfPricesStackView(isActive: true) 
+     
+    addSubview(badgesStackView) 
+    updateConstraintsOfBadgesStackView(isActive: true) 
+} 
+
+override func layoutSubviews() { 
+    super.layoutSubviews()
+
+    addSubview(foodImageView) 
+    updateConstraintsOfFoodImageView(isActive: true) 
+     
+    addSubview(titleLabel) 
+    updateCostraintsOfTitleLabel(isActive: true) 
+     
+    addSubview(descriptionLabel) 
+    updateConstraintsOfDescriptionLabel(isActive: true) 
+
+ 
+    addSubview(pricesStackView) 
+    updateConstraintsOfPricesStackView(isActive: true) 
+     
+    addSubview(badgesStackView) 
+    updateConstraintsOfBadgesStackView(isActive: true) 
+} 
+----
+
+===== 정리
+
+[source, swift]
+----
+// ViewController
+override func viewDidLoad() {
+    // ...
+
+    storeItemTableView.register(StoreItemCell.self, forCellReuseIdentifier: cellIndentifier) 
+
+    // ...
+}
+
+
+// StoreItemCell
+override init(style: UITableViewCellStyle, reuseIdentifier: String?) { 
+    super.init(style: style, reuseIdentifier: reuseIdentifier) 
+     
+    initializeLayout() 
+} 
+
+func initializeLayout() {
+    addSubview(foodImageView) 
+    addSubview(titleLabel) 
+    addSubview(descriptionLabel) 
+    addSubview(pricesStackView) 
+    addSubview(badgesStackView) 
+
+    updateConstraintsOfFoodImageView(isActive: true) 
+    updateCostraintsOfTitleLabel(isActive: true) 
+    updateConstraintsOfDescriptionLabel(isActive: true) 
+    updateConstraintsOfPricesStackView(isActive: true)
+    updateConstraintsOfBadgesStackView(isActive: true) 
+----
+
 ===== 참고
+* https://developer.apple.com/videos/play/wwdc2017/412/[WWDC 2017: Auto Layout Techniques in Interface Builder]
 * https://developer.apple.com/videos/play/wwdc2018/220/?time=756#[WWDC 2018: High Performance Auto Layout]
