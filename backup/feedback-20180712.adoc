@@ -1,0 +1,86 @@
+= Concurrent Programming
+
+===== 개념
+* 결국 할 수 밖에 없고 흐름을 알아야 함
+* 더 쉽고 효율적으로 사용하기 위해 진화하고 있음
+* 운영체제와 관련된 용어가 많음. 운영체제 관련 공부 하는 것이 도움이 됨
+* 실제로 운영체제가 돌아가는 일은 사람이 하는 일을 많이 따라서 만듦
+* 하나의 한번 작업 단위만 처리할 수 있나 ?
+** Worker가 하나의 일을 책임지고 작업을 처리하는 놈 => Worker
+** 하던 작업의 맥락 => Context
+** 하던 작업을 바꾸는 것 => Context Switching
+** 효율성을 위해 나온 이야기
+* 효율성에 대한 예측이 되지 않음
+
+===== Parallel vs Concurrent
+* IPC
+* 운영체제가 프로세스에 어떻게 굴릴 것인가에 대한 스케줄링 방법
+** 라운드 로깅 방법
+** 우선 순위 조정하는 방법
+* 화면 GUI에 대해 문제가 생김
+** 입, 출력에 대한 Needs가 생김
+** 그래서 입, 출력만 따로 처리하는 세부적인 Logical 단위가 생김 => Thread
+** GUI를 처리하는 Main Thread
+** 네트워크를 처리하는 Thread
+** File 처리하는 Thread
+** IO 처리 Thread
+** 처리가 필요한 단위에 따라 Thread가 발생함
+** 이러한 것들을 더 빨리 처리하기 위해 CPU도 같이 발전하기 시작함
+* App에서 일반적으로 한 Worker(= 하나 프로세스)가 여러 Thread가 있다고 생각하면 됨?
+** 여러 Thread가 일을 빨리 처리하는가?
+** 여러 쓰레드가 있다고 효율이 좋지도 않음 => 운영체제가 적합한 프로세스와 쓰레드가 얼마인지 알 수 있음
+* App 내의 Thread는 메모리를 공유함. 그래서 개수 제한이 생김
+
+===== iOS GCD 나온 배경
+* Objective-C에서 Thread 관리를 직접 할 수 있었음
+** 화면 처리를 담당하는 Main Thread 말고도 다른 Thread도 같이 담당하면서 화면이 멈추지 않음
+** Thread 코드를 언제 생성하고 작성해야할지 판단이 서지 않고 멀티 쓰레드환경에서 디버깅이 힘듬
+* http://sjava.net/2010/09/concurrent-vs-parallel/
+* https://medium.com/@circlee7/병렬-parallel-vs-병행-concurrent-a1cd82d1a982
+* 미리 쓰레드 풀을 만드는 것 => 코드, 블록 단위로??
+** 쓰레드를 만들어서 개발자가 처리하던 것을 코드나 블록 단위로 처리하도록 바ㄱ뀌는 것
+** Main Queue 들어간 것은 그 쓰레드에서 돌아간다고 보장이 됨. 하지만, 그 이외에 같은 쓰레드에서 돌아간다는 보장이 없기 때문에 그때 쓰레드를 만들어야 함.
+그러나 Dispatch Queue에 넣으면 어느 쓰레드에 최적화될지 보장이 됨. 개발자가 스케줄링 할 필요 없어짐
+** 쓰레드의 특징을 선택할 수 있음. Concurrent Queue => Global Queue. 순차적 처리를 원한다면 Queue Seri~..
+** 결국 Queue 를 선택해서 어떤 스케줄링으로 처리할 것인지 선택해야 함
+
+===== GCD
+* Low Level로 따진다면 POSIX 위에서 돌아감
+* Thread
+** 쓰레드 당 autoreleasepool 1개씩 만들어야 함. Main 쓰레드 만들 때 autoreleasepool는 이미 만들어짐
+** autoreleasepool => for loop를 돌 때 값 객체는 상관없지만, 참조 객체는 loop 안에서 스코프가 끝난다면 autoreleasepool을 만들어주는 것이 좋음
+* Locking
+** 멀티 쓰레드 환경에서 lock을 걸어주면 다른 작업이 들어오지 않고 unlock 될 때까지 기다림. 하나의 한 쓰레드만 들어갈 수 있음
+** GCD는 Queue이기 때문에 하나가 들어가면 하나가 나가는 구조이기 때문에 동시에 실행되지 않음(단, 같은 Queue라는 전제하에)
+* sync, async
+** sync는 함수를 호출하는 것처럼 클로저가 끝날 때까지 다음 라인으로 넘어가지 않음
+*** _끝난 것을 기다린다는 의미_
+** async는 클로저 끝날때까지 기다리지 않고 async 클로저 스코프를 벗어나 다음 라인으로 처리함
+*** Notification, 화면 업데이트
+*** 어느 쓰레드에서 돌아가는지 확인할 수 없으면 명시해주는 것이 좋음
+*** DispatchQueue.main.async => reloadData
+*** GCD인 경우 Queue에 들어간 구조이기 때문에 상관없음
+** asyncAfter
+*** delay 주고 싶을 때 
+** DispatchQueue.global()
+*** 백그라운드에서 돌아가기 원한다면 global을 사용하면 됨
+** main, global 차이
+*** main => 순차적으로 꺼내서 처리함
+*** global => Concurrent Queue 가 생김 => Queue 안에 여러 Queue가 생길 수 있음. 이 생기는 기준은 CPU 사양에 따라 정해짐. 1개가 생길 수도 있고 3개가 생길 수도 있고 알 수 가 없음
+
+
+===== Queues => API
+* DispatchGroup => 100개의 Dispatch 작업을 분산시켰다가 100개 끝나야만 실제 처리되도록 사용할 수 있음
+* concurrentPerform => for loop 같음. 100가지 일을 4개나 10개 개수 제한을 정하면 개수 제한만큼 동시에 처리할 수 있게 함
+
+===== 유의할 점
+* Queue에 블록을 넣으면 돌아간다는 보장이 있음
+** suspend, resume은 가능하나 취소가 되지 않음. suspend를 통해 전체 취소 하지 않는 이상 하나 작업만 정해서 취소할 수 없음
+** 하나의 작업 취소가 중요하다면 DispatchQueue(함수나 블록 단위)보다 OperationQueue(객체 단위)를 사용하는 것이 좋음
+
+===== Type
+* global => 동시에 처리하지만, 어디에서 실행될지 보장이 되지 않음. DispatchQueue.global()
+* main => 순차적으로, main 쓰레드에서 처리된다는 보장이 됨. DispatchQueue.main
+* serial => 순차적으로. 동시에 실행이 안됨. DispatchQueue.init(label: String)
+* 네트워크 처리. 최적의 개수가 있을 수 있음
+* 한 쓰레드에서만 DB처리 해야 함
