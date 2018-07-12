@@ -1,0 +1,562 @@
+= Extension, Enumeration, Generic, Protocol, AssociatedType, Clousre, Tuple, Map/CompactMap, Optional, Boxing 정리
+
+===== Extension
+
+[source, swift]
+----
+// Extensions
+
+// - Function, Computed property 확장 가능
+// - Stored property 확장 안됨
+extension Int {
+  var double: Int {
+    return self * 2
+  }
+  
+  func times(_ time: Int) -> Int {
+    return self * time
+  }
+}
+
+print(3.double)
+print(3.times(3))
+
+// - 오버라이딩 안됨
+//class SomeClass {
+//
+//}
+//
+//extension SomeClass {
+//  func someFunction() {
+//
+//  }
+//}
+//class ExtnededClass: SomeClass {
+//  override func someFunction() {
+//
+//  }
+//}
+//
+//ExtnededClass().someFunction()
+----
+
+===== Class
+
+[source, swift]
+----
+// Class
+class aClass {
+  
+}
+class inheritedClass: aClass {
+  
+}
+protocol ProtocolForClass: class {
+  
+}
+class cClass: ProtocolForClass {
+  
+}
+// - class 전용 Protocol 적용이 안됨
+//struct aStruct: ProtocolForClass {
+//
+//}
+----
+
+===== Enumeration
+
+[source, swift]
+----
+// Enumeration
+// - Associated Value
+enum API {
+  case getList
+  case getDetail(id: Int)
+}
+
+extension API {
+  var host: String {
+    return "https://apiserver.com"
+  }
+  
+  var path: String {
+    switch self {
+    case .getList:
+      return "/list"
+    case .getDetail(let id):
+      return "/list/\(id)/detail"
+    }
+  }
+  
+  var url: URL? {
+    return URL(string: "\(host)\(path)")
+  }
+}
+
+// - indirect
+indirect enum BinaryTree {
+  case leaf
+  case node(left: BinaryTree, right: BinaryTree, data: Int)
+}
+
+extension BinaryTree {
+  func hasData(_ data: Int) -> Bool {
+    switch self {
+    case .leaf: return false
+    case let .node(left: _, right: _, data: nodeData): return data == nodeData
+    case let .node(left: left, right: _, data: nodeData): return data < nodeData
+    case let .node(left: _, right: right, data: nodeData): return data > nodeData
+    case .node: return false
+    }
+  }
+}
+
+let tree: BinaryTree = .node (
+   left: .node( left:  .node(left: .leaf, right: .leaf, data: 1),
+                right:  .node(left: .leaf, right: .leaf, data: 3),
+                data: 2),
+   right: .node( left:  .node(left: .leaf, right: .leaf, data: 5),
+                right:  .node(left: .leaf, right: .leaf, data: 7),
+                data: 6),
+   data: 4)
+
+print(tree.hasData(4))
+print(tree.hasData(10))
+----
+
+===== Generic
+
+[source, swift]
+----
+// Generic
+// - Type Constraint
+indirect enum BinaryTree2<T: Comparable & Equatable> {
+  case leaf
+  case node(left: BinaryTree2<T>, right: BinaryTree2<T>, data: T)
+}
+
+extension BinaryTree2 {
+  func hasData(_ data: T) -> Bool {
+    switch self {
+    case .leaf: return false
+    case let .node(left: _, right: _, data: nodeData): return data == nodeData
+    case let .node(left: left, right: _, data: nodeData): return data < nodeData
+    case let .node(left: _, right: right, data: nodeData): return data > nodeData
+    case .node: return false
+    }
+  }
+}
+
+let intTree: BinaryTree2<Int> = .node (
+  left: .node( left:  .node(left: .leaf, right: .leaf, data: 1),
+               right:  .node(left: .leaf, right: .leaf, data: 3),
+               data: 2),
+  right: .node( left:  .node(left: .leaf, right: .leaf, data: 5),
+                right:  .node(left: .leaf, right: .leaf, data: 7),
+                data: 6),
+  data: 4)
+
+let stringTree: BinaryTree2<String> = .node (
+  left: .node( left:  .node(left: .leaf, right: .leaf, data: "1"),
+               right:  .node(left: .leaf, right: .leaf, data: "3"),
+               data: "2"),
+  right: .node( left:  .node(left: .leaf, right: .leaf, data: "5"),
+                right:  .node(left: .leaf, right: .leaf, data: "7"),
+                data: "6"),
+  data: "4")
+
+print(stringTree.hasData("4"))
+print(stringTree.hasData("10"))
+----
+
+===== Protocol
+
+[source, swift]
+----
+// Protocol
+// - Protocol-Extension
+// - Example of Times
+protocol Times {
+  func times(_ time: Int) -> Times
+}
+
+extension Int: Times {
+  func times(_ time: Int) -> Times {
+    return self * time
+  }
+}
+
+extension String: Times {
+  func times(_ times: Int) -> Times {
+    return Array(0..<times)
+      .map { _ in
+        return self
+      }.reduce("", +)
+  }
+}
+
+print("Why so serious? \n".times(3))
+
+let timesArray: [Times] = [27,1,2,3,"www \n","Was it a cat i saw \n"]
+timesArray.forEach { (item: Times) in
+  print(item.times(3))
+}
+
+extension Times {
+  func printSomeThing() {
+    print("self value is: \(self)")
+  }
+}
+
+3.printSomeThing()
+
+// - Example of UIView
+protocol Shakeable: class { }
+extension Shakeable where Self: UIView {
+  func shake() {
+    let animation = CABasicAnimation(keyPath: "position")
+    animation.duration = 0.05
+    animation.repeatCount = 5
+    animation.autoreverses = true
+    animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 4.0, y: self.center.y))
+    animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 4.0, y: self.center.y))
+    layer.add(animation, forKey: "position")
+  }
+}
+class ShakeableButton: UIButton, Shakeable { }
+
+
+protocol Dimmable: class { }
+
+extension Dimmable where Self: UIView {
+  func dim() {
+    self.alpha = 0.5
+  }
+}
+
+extension UIButton: Dimmable { }
+
+class MyViewController : UIViewController {
+  let shakeButton = ShakeableButton(type: .system)
+  let normalButton = UIButton(type: .system)
+
+  override func loadView() {
+    let view = UIView()
+    view.backgroundColor = .white
+    self.view = view
+    shakeButton.setTitle("shake this button", for: .normal)
+    shakeButton.frame = CGRect(x: 70, y: 200, width: 200, height: 20)
+    view.addSubview(shakeButton)
+    normalButton.setTitle("normal button", for: .normal)
+    normalButton.frame = CGRect(x: 70, y: 220, width: 220, height: 20)
+    view.addSubview(normalButton)
+  }
+
+  @objc func shakeButtonTap(sender: Any) {
+    shakeButton.shake()
+    shakeButton.dim()
+  }
+
+  @objc func normalButtonTap(sender: Any) {
+    normalButton.dim()
+  }
+}
+
+PlaygroundPage.current.liveView = MyViewController()
+----
+
+===== Associated Type
+
+[source, swift]
+----
+// Associated Type
+
+// 1. Protocol의 Generic
+// 2. 사용법
+protocol BinaryTreeProtocol {
+  associatedtype T: Equatable, Comparable
+  func hasData(_ data: T) -> Bool
+}
+
+// - typealias
+class BinaryTree: BinaryTreeProtocol {
+  typealias T = Int
+  static let leaf: BinaryTree = BinaryTree(left: nil, right: nil, data: nil)
+  
+  var left: BinaryTree?
+  var right: BinaryTree?
+  var data: T?
+  
+  init(left: BinaryTree? = BinaryTree.leaf, right:BinaryTree? = BinaryTree.leaf, data: T?) {
+    self.left = left
+    self.right = right
+    self.data = data
+  }
+  
+  func hasData(_ data: T) -> Bool {
+    return true
+  }
+}
+
+// - 추론
+class BinaryTree: BinaryTreeProtocol {
+  static let leaf: BinaryTree = BinaryTree(left: nil, right: nil, data: nil)
+  var left: BinaryTree?
+  var right: BinaryTree?
+  var data: Int?
+  
+  init(left: BinaryTree? = BinaryTree.leaf,
+       right:BinaryTree? = BinaryTree.leaf,
+       data: Int?) {
+    self.left = left
+    self.right = right
+    self.data = data
+  }
+  
+  func hasData(_ data: Int) -> Bool {
+    return true
+  }
+}
+
+
+// - 직접 선언
+class BinaryTree: BinaryTreeProtocol {
+  struct T: Equatable, Comparable {
+    var data: Int
+    static func ==(lhs: T, rhs: T) -> Bool { return lhs.data == rhs.data }
+    static func < (lhs: T, rhs: T) -> Bool { return lhs.data < rhs.data }
+    static func <=(lhs: T, rhs: T) -> Bool { return lhs.data <= rhs.data }
+    static func >=(lhs: T, rhs: T) -> Bool { return lhs.data >= rhs.data }
+    static func > (lhs: T, rhs: T) -> Bool { return lhs.data > rhs.data }
+    
+  }
+  static let leaf: BinaryTree = BinaryTree(left: nil, right: nil, data: nil)
+  var left: BinaryTree?
+  var right: BinaryTree?
+  var data: T?
+  
+  init(left: BinaryTree? = BinaryTree.leaf,right:BinaryTree? = BinaryTree.leaf,data: T?) {
+    self.left = left
+    self.right = right
+    self.data = data
+  }
+  
+  func hasData(_ data: T) -> Bool {
+    return true
+  }
+}
+----
+
+===== Closure
+
+[source, swift]
+----
+// Closure
+// 1. 함수를 변수처럼 다루기 위한 개념
+// - 함수를 인자로 넘길때
+// - 함수를 리턴받을때
+// - 변수에 함수를 저장하고 필요에 따라 바꾸면서 사용할 때
+// 2. 타입 표기 : 무엇을 받아 무엇을 리턴하는지 표기
+
+let isMultiplesOfTwo: (Int) -> Bool = { value in
+  return value % 2 == 0
+}
+
+// 3. 탈출 클로져: @escape
+// 4. Circular Chain을 피하기 위해 [weak self]
+let double: (Int) -> Int = { value in
+  return value * 2
+}
+print(double(3))
+
+let multiply: (Int, Int) -> Int = { value1, value2 in
+  return value1 * value2
+}
+print(multiply(2, 3))
+
+let addition: (Int, Int) -> Int = { value1, value2 in
+  return value1 + value2
+}
+print(addition(2, 3))
+
+
+func printResultByMutableOperator(value1: Int,
+                                  value2: Int,
+                                  operator mutableOperator: (Int, Int) -> Int) {
+  
+  print("result: \(mutableOperator(value1, value2))")
+}
+
+printResultByMutableOperator(value1: 3, value2: 5, operator: addition)
+printResultByMutableOperator(value1: 3, value2: 5, operator: multiply)
+printResultByMutableOperator(value1: 3, value2: 5) { (value1, value2)
+  -> Int in
+  return (value1 + value2) * value2 / value1
+}
+
+// 5. 커링
+func add(value: Int) -> (Int) -> Int {
+  return { value2 in
+    return value + value2
+  }
+}
+
+let addTwo = add(value: 2)
+addTwo(10)
+add(value: 2)(10)
+----
+
+===== Tuple
+
+[source, swift]
+----
+let namedTuple: (first: Int, second: Int) = (3, 6)
+namedTuple.first
+namedTuple.second
+
+
+func getBodyInfo(person: [String: Any] ) ->
+                       (height: Int, weight: Int, isAlive: Bool) {
+    return (170, 70, true)
+}
+getBodyInfo(person: [:]).isAlive
+
+let manyValues: (Int, Int, Int, Int) = (1,2,3,4)
+manyValues.2
+----
+
+===== Optional
+
+[source, swift]
+----
+// Optional
+// - Optional 타입만 nil을 사용할 수 있음
+let optionalValue: Int? = 5
+if let value = optionalValue {
+    print("\(value)")
+}
+
+
+// - if let, guard let, ?? , ! 등으로 옵셔널을 벗겨서 사용할 수 있음
+// - nil 포인터 접근으로 인한 crash를 0까지 줄일 수 있음
+func aFunction(optionalValue: Int?) {
+    guard let value = optionalValue else {
+        print("nil")
+        return
+    }
+
+    print("\(value)")
+}
+
+aFunction(optionalValue: 4)
+let wrappedValue = optionalValue ?? 0
+optionalValue!
+----
+
+===== Map, CompactMap, Filter
+* `map closure type: (T) -> U`
+* `flatMap closure type: (T) -> U`
+
+[source, swift]
+----
+let array = [0,1,2,3,4,5,6,7]
+array.map { (item: Int) -> String in
+  // [0,10,20,30,40,50,60,70]
+  return "\(item * 10)"
+}
+
+array.map { (item: Int) -> Bool in
+  // [true,false,true,false,true,false,true,false]
+  return item % 2 == 0
+}
+
+array.filter { (item: Int) -> Bool in
+  // [0,2,4,6]
+  return item % 2 == 0
+}
+
+let stringArray = ["good",
+                   "http://google.com" ,
+                   "http://agit.io" ,
+                   "some words"]
+let hosts = stringArray.flatMap { (string: String) -> String? in
+    // ["http://google.com", "http://agit.io"]
+    return URL(string: string)?.host
+}
+
+
+// Map, Filter, CompactMap이 없던 시절
+let oldArray = [1,2,3,4,5,6,7,8]
+var newArray: [String] = []
+for item in oldArray {
+  newArray.append(String(item))
+}
+
+var filteredArray: [Int] = []
+for item in oldArray {
+  if item % 2 == 0 {
+    filteredArray.append(item)
+  }
+}
+----
+
+
+===== Boxing
+* 확장의 방법
+** 상속: 기능을 덧붙이는건 아님. 상위클래스를 사용하고 있는 다른 모든것에 영향을 끼칠 수 가 없음
+** Extension: 기능을 덧붙임
+** Boxing: 기존의 기능, 프로퍼티와 내가 확장하고자 하는것을 분리하여 확장
+* RxSwift에서 매우 많이 사용함
+
+[source, swift]
+----
+public struct Some<Base> {
+  init() {
+  }
+}
+
+protocol BoxCompatible {
+  associatedtype CompatibleType
+  var box: Some<CompatibleType> { get set }
+  static var box: Some<CompatibleType>.Type { get set }
+}
+
+extension BoxCompatible {
+  var box: Some<Self> {
+    get { return Some() }
+    set { }
+  }
+  
+  static var box: Some<Self>.Type {
+    get { return Some<Self>.self }
+    set {}
+  }
+}
+class A {}
+extension A: BoxCompatible {}
+
+class B {}
+extension B: BoxCompatible {}
+extension Some where Base: A {
+  var description: String  {
+    return "A.box.description"
+  }
+  
+  static var className: String {
+    return "A"
+  }
+}
+
+extension Some where Base: B {
+  var someBoxingValue: Int {
+    return 10
+  }
+}
+
+let a = A()
+print(a.box.description)
+print(A.box.className)
+
+let b = B()
+print(b.box.someBoxingValue)
+----
