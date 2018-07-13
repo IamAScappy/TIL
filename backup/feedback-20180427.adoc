@@ -108,3 +108,10 @@
 ===== 피씨와 맥은 불편하지 않나 ?
 * 사소한 것을 챙기는 개발자가 되라 :)
 * 사소한 디테일에서 사용자에게 즐거움을 줄 수 있는 개발자가 되자 :)
+
+===== 배포환경 
+* https://www.slideshare.net/MintakSon/ios-80115427[토스 iOS 앱의 개발/배포 환경: 발표 자료]
+* https://www.youtube.com/watch?v=0yj6ftn1Nzw#action=share[토스 iOS 앱의 개발/배포 환경: 발표 영상]
+
+===== 그 외 참고할만한 링크
+* http://osxdev.org/forum/index.php?threads/letswift17.497/[Let'Swift 17]
