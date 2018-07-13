@@ -38,6 +38,31 @@ print(3.times(3))
 //}
 //
 //ExtnededClass().someFunction()
+
+// - 오버라이딩 되는 방법을 찾음
+class SomeClass {
+
+}
+
+extension SomeClass {
+  @objc func someFunction() {
+    print("상위 클래스")
+  }
+}
+
+class ExtnededClass: SomeClass {
+  func test() {
+    print("불러옴\(self.someFunction())")
+  }
+  
+  override func someFunction() {
+    super.someFunction()
+    print("하위 클래스")
+  }
+}
+
+ExtnededClass().test()
+ExtnededClass().someFunction()
 ----
 
 ===== Class
