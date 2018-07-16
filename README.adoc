@@ -155,5 +155,6 @@
 * link:etc/indirection.adoc[간접참조]
 * link:etc/mobile-computing.adoc[모바일 컴퓨팅]
 * link:etc/problem-solving.adoc[취미로 하는 알고리즘 문제풀이 세미나 정리]
+* link:etc/feynman-technique.adoc[파인만 테크닉]
 * link:etc/how-to-study-programming.adoc[프로그래밍, 어떻게 공부할 것인가? 강의 정리]
 * link:etc/programming-study.adoc[프로그래밍 정석 스터디 정리]
