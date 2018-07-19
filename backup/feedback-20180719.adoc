@@ -1,0 +1,128 @@
+= Network Programming
+
+===== 통신 용어
+* Entity Transmitter 
+* Entity Receiver
+* Medium => 통신 주체
+* RS, TS 둘 다 가지고 있는 모델도 있고 RS만 가지고 있는 모델도 있음
+* End-point to End-point가 아닐 수 있음. 중간에 Relay가 있을 수 있음. 그러나, 통신하는 입장에서 End-point to End-point 있음
+* Terminal
+
+===== 네트워킹 용어
+* Node
+* Node Link
+
+===== PSTN
+* 집 전화를 구성함
+* 최근 10년 전까지 유지됨
+* 전화가 연결되어 있는 동안 전화회로가 바뀌지 않음. 그래서 다른 사람이 전화하는 동안 연결이 되지 않음
+
+===== IMS(All-IP)
+* 프로그램끼리 통신하는 것으로 바뀜
+* _모든 장비들이 프로그램이다. 수많은 컴퓨터가 그물처럼 연결되어 있음_
+
+===== 프로토콜
+* 통신에 대한 규약(프로토콜)을 정하는 곳 => IETF
+
+===== 네트워킹 프로그래밍 한다는 것?
+* *네트워킹 용어를 이해* 하고 *원하는 동작을 구현해야 함* 
+** 이론적인 것을 앎
+** 어떤 프로토콜을 사용해서 원하는 동작을 구현할 것인가?
+
+===== OSI 7 Layer
+* 무선 랜카드를 구매한다는 것 => Physical Layer, Data Link Layer
+* Networking Layer => 컴퓨터 IP
+* Transport Layer => 어떤 소켓을 열 것인가?
+* 통신한다는 것은 Physical Layer ~ Transport Layer
+* 나머지 레벨은 논리적인 영역
+
+===== 네트워킹 공부하는 방법
+* 실체화해서 공부하는 것이 좋음 => 프로그램 사용함
+* Hardware Address(= Mac Address)
+** Data Link Layer
+** 제조사마다 사용하는 고유번호가 있음
+** 유니크함
+* IP Address
+** Networking Layer
+** Subnet. Hardware Address과 IP 주로 1 : 1 매칭됨
+
+===== 명령어
+* `arp`
+* `netstat -na | grap ESTA`
+* 도메인 네임서버를 IP로 찾아줌 => `nslookup, dig`
+** 순서가 랜덤적으로 알려줌. 80번 포트로 페이지를 달라고 함
+* IP로 요청을 보냄. `ping` 100% 알 수 없음. 대형 홈페이지는 일반적으로 막아둠
+* 왔다가 온 시간을 Latency라고 함. 오래 걸린다면 물리적인 서버가 멀리 있음
+* cdn 서비스 => 가까운 서버로 갈 수 있게끔 유도함
+
+===== Port Scan
+* 열린 포트를 확인해서 공격함
+
+===== 명령어 동작하게 해주는 원리
+* Network Socket
+** Port를 열려면 Socket을 만들어야 함
+** Socket을 만들 때 Client냐 ? Server냐? 정해야 함
+** Listen => 신호를 받을 준비 상태
+** Connection => TCP
+** UDP는 Connection을 이용할 수도 있고 Connection이 없어도 보낼 수 있음. 순서가 보장이 되지 않음. 성공, 실패도 보장이 되지 않음
+
+===== iOS Networking
+* Packet Problems
+** 휴대폰 설정 중에서 개발자 메뉴가 있음. 패킷 잃어버리는 단계를 조정할 수 있어 부분적으로 확인이 가능함
+* Wifi => Option 키를 누르면 와이파이 정보를 알 수 있음
+* Security => 보안
+* 네트워크 딥하게 들어가려면 어려움
+
+===== Darwin(OS)
+* C API 이용할 수 있음. Socket으로 그냥 만들 수 있음
+
+===== CFNetwork
+* CFSocket
+
+===== Foundation
+* Objective-C, Swift 에서 사용할 수 있는 것을 권함
+* HTTP, HTTPS
+* NSURLConnection 쓰라고 권장함. 오래 되어서 예제도 많음
+** 사파리를 만들 때 필요한 API
+** User Mode이기 때문에 Deprecated 됨
+* NSURLSession
+** Connection을 내부적으로도 받을 수 있음. 세션을 유지해줄 수 있음. 커널로 동작하는 것들을 어느정도 보장해줌
+** Background Mode가 지원됨
+
+===== NSURLSession
+* shared => 싱글톤, 간단한 비동기 요청
+* default => 기본 설정 세션. 커스텀 설정 가능. 설정을 바꿀 수 있음. 델리게이트를 넣을 수 있음
+* ephemeral session
+* background
+
+===== Task를 골러야 함
+* data => get. json, xml
+* upload
+* download => 다운로드 한 파일을 저장까지 해줌. 파일을 받을 때 많이 씀
+* stream => 
+* 완료될 때까지 Task 객체가 사라지면 안됨. 돌아올 방법이 없음. 응답을 받을때까지 살아 있어야 함
+
+===== Response 
+* didReceiveResponse => 응답이 오면 불러짐
+* didReceiveData => body
+* willCacheResponse 
+* didCompleteWithError => error 확인
+* 조작이 필요하다면 델리게이트를 지정하고 메서드를 구현함. 이벤트가 올 때 어떻게 처리할 것인가?
+
+===== 동기 네트워크 처리
+* 동기가 처리로 어떻게 할 것인가? (= 받아올 때까지 기다렸다가 처리해야 하는 경우)
+
+[source, swift]
+----
+// sync로 동작하는 네트워크 API
+let data = try Data(contentsOf: URL(string: "http://apple.com"))
+
+// async로 동작함
+DispatchQueue.global().async {
+    let data = try? Data(contentsOf: URL(string: "http://apple.com"))
+}
+
+// URLSession을 쓰는 경우
+* 델리게이트를 사용하는 경우 
+* 세션 유지해야 하는 경우
+----
