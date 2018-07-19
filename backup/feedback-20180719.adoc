@@ -126,3 +126,15 @@ DispatchQueue.global().async {
 * 델리게이트를 사용하는 경우 
 * 세션 유지해야 하는 경우
 ----
+
+===== StreamTask
+* Custom TCP Protocol을 만들 수 있음
+
+===== Network.framework
+* 소켓은 6만개 이상 만들 수 없음
+* 실제로 그것보다 적음
+** maxfiles
+* 커널 옵션 => `sysctl`
+
+===== Alamofire
+* 더욱 잘게 쪼개져 있음
