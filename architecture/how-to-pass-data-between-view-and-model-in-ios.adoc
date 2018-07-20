@@ -112,6 +112,28 @@ extension ViewController: DataModelDelegate {
 
 [source, swift]
 ----
+class ViewController: UIViewController {
+  private var dataModel: DataModel?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate(_:)), name: Notification.Name(rawValue: "dataModelDidUpdateNotification"), object: nil)
+    
+    self.dataModel = DataModel.shared
+  }
+  
+  @objc private func getDataUpdate(_ notification: Notification) {
+    if let model = notification.object as? DataModel {
+      print(model.data)
+    }
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+}
+
 // Data Model
 class DataModel {
   static let shared = DataModel()
@@ -127,39 +149,10 @@ class DataModel {
     self.data = "Data Test:)"
   }
 }
-
-// View Controller
-class ViewController: UIViewController {
-  private var dataModel: DataModel!
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    self.dataModel = DataModel.shared
-    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate(_:)), name: Notification.Name(rawValue: "dataModelDidUpdateNotification"), object: nil)
-  }
-  
-  @objc private func getDataUpdate(_ notification: Notification) {
-    if let model = notification.object as? DataModel {
-      print(model.data!)
-    }
-  }
-  
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-}
 ----
 
-===== ReactiveCocoa
-* Cold Signals
-** `SignalProducer<T, E>`
-* Hot Signals
-** `Signal<T, E>`
+===== RxCocoa, RxSwift
 
-===== RxSwift
-* Hot and Cold Signals
-** `Observable<T>`
 
 ===== 참고
 * https://brunch.co.kr/@tilltue/18[RxSwift, Hot and Cold Observable]
