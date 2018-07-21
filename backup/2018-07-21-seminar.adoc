@@ -1,0 +1,161 @@
+= let us: Go 2018!
+
+=== XCode에서 디버깅하기
+
+===== Breakpoint
+* General Breakpoint
+
+===== LLDB
+* http://lldb.llvm.org[The LLDB Debugger]
+* 변수선언
+** e let S$a = 2
+** p/x 16 => 10진수 
+** p/o 16 => 8진수
+** p/t 16 => 2진수
+* Closure
+** `fr v $0`
+* expr
+** e self.view.backgroundColor = .red 
+** 이용하면 컴파일 없이 배경화면을 바꿀 수 있음
+
+image:./debugging-1.png[45%, 45%]
+image:./debugging-2.png[45%, 45%]
+
+===== Symbolicate
+* 버전에 해당하는 dSYMS 파일을 받아서 크래시를 확인할 수 있음
+* Archive에서 두 번째 탭에서 확인할 수 있음
+* https://possiblemobile.com/2015/03/symbolicating-your-ios-crash-reports/[Symbolicating your iOS crash reports]
+
+===== 기타
+* #DEBUG
+** other swift flag
+** Relase 버전에서 이 코드를 사용하고 싶지 않지만 Dev에만 필요함 
+
+[source, swift]
+----
+#if DEBUG
+
+#endif
+----
+
+=== 코드 응집도 높이기
+
+===== 단순하게 이야기하려고 함 :)
+* Disk Defragment = Code Defragment
+
+===== 장점
+* 읽기가 편해짐
+* 흐름 파악하기 좋음
+* 코드 이해하기 좋음
+* 쉽게 찾을 수 있음
+* 유지보수가 쉬움
+
+===== 목표
+* *분산되어 있는 코드를 관련 있는 코드끼리 모아두는 것이 목표임*
+
+===== Cases
+* Data, Logic, UI
+* Data Setter
+** 값을 바뀌는 부분을 한 군데다가 둠
+* Overrides 
+** 구현해야 할 위치가 정해져 있음. Navigation 관련된 코드가 파편화 되어 있음
+** BaseViewController를 만들고 BaseViewController 안에 관련 클로저를 호출하도록 만듦
+** 라이프 사이클 관리하기 힘들지 않냐? 코드 응집도를 이야기 함
+* Selector 
+** keyboardEventWrapper를 만듦
+* Delegate
+** Wrapper를 만듦
+* *Wrapper를 만들어서 관련된 코드를 모으고 Wrapper 함수를 호출함*
+
+===== Advanced Cases
+* Data, Logic, UI
+** 단위별로 응집도를 올림
+* DataSetter
+** RxSwift, RxCocoa를 이용함
+** *관련된 코드를 한 곳으로 모으는 것도 있지만, 불필요한 코드를 제거하는 것도 중요함*
+* Overrides
+** RxViewController를 사용함
+* Selector, Delegate
+** Rx를 사용하면 간단해짐
+
+===== Proxy
+* Subject를 통해서 Subject 이벤트를 연결해주는 방식을 취함
+* BaseViewController를 만들고 BaseViewController 안에 관련 클로저를 호출하도록 만듦
+
+===== Summary
+* View
+* ViewController 
+* Context => Business Logic, View Model
+* Model
+
+=== RxSwift Operator 적재적소 사용하기
+
+===== FlatMap
+* API 콜할 때, API 관련 Observable 리턴할 때 
+* 연속으로 클릭할 때 이벤트가 섞임
+* FlatMapFirst  
+** 먼저 생성된 옵저버블이 끝나기 전까지 들어오는 이벤트를 무시함
+** 스크롤를 통해 처음 내용을 불러올 때
+** API가 끝나기 전까지 다른 API를 부르지 않음
+* FlatMapLatest => 이벤트가 들어오면 앞에 생성된 옵저버블을 무시함
+** 카톡에서 서버랑 유저의 정합성이 맞아야 하는 API는 아님. 빠르게 누르는 것이 중요함. 결론은 API 호출을 빠르게 하는 것이 중요함
+
+===== Side Effect
+* 댓글 작성
+
+[source, swift]
+----
+// Side Effect가 발생할 수 있음
+sendButton.rx.tap.flatmap { [weak self] in
+    // 클로저 외부를 직접 전급
+    send(message: self?.textField.text)
+}
+
+// withLatestFrom: Side Effect 해소
+sendButton.rx.tap
+    // 인자로 넣음
+    .withLatestFrom(textField.rx.text)
+    .flatMap { message in 
+        // 텍스트 매개변수로 받아옴
+        send(message: message)
+    }
+----
+
+* Side Effect가 있으면 안되는 곳
+** map
+** flatMap
+** 다른 형태로 바꾸는 것이기 때문에 Side Effect가 발생하면 안됨
+* Side Effect가 있어도 괜찮은 곳
+** do
+** subcribe => subscribe이기 때문에 `self` 접근이 가능함
+
+===== window
+* 이벤트 합치기 용도
+* 앞부분에서 subscibe, 뒷부분에서 completed. 그래서 시작과 끝부분을 이용할 수 있음
+* window 단위로 끊어짐. window를 작은 Observable를 생각하면 됨
+
+===== scan
+* 이전 이벤트와 현재 들어온 이벤트를 가지고 현재 발행할 새 이벤트를 만듦
+* answer => 이전 값
+* element => 현재 값
+* window로 비밀번호 자리수로 확인 할 수 있음. `scan + window 조합`
+
+===== Switch
+* 여러 옵저버블을 하나의 옵저버블로 만듦. 내부 옵저버블을 새 옵저버블로 갈아치움
+* subscribe 한 상태에서 아이디가 바뀐다면?
+
+[source, swift]
+----
+// 이전 상황
+EmotionKeyboardService.instance.rx.emotions(id: 100)
+    .subscribe()
+    .disposed(by: disposeBag)
+
+// 아이디가 바뀐다면 ?
+
+disposeBag = DisposeBag()
+
+EmotionKeyboardService.instance.rx.emotions(id: 101)
+    .subscribe()
+    .disposed(by: disposeBag)
+----
