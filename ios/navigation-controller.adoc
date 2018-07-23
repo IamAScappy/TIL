@@ -1,0 +1,28 @@
+= Navigation Controller
+
+===== Navigation Controller
+* Container View Controller은 Navigation Stack 사용하여 다른 View Controller 관리함
+* Content View Controller
+
+===== Navigation Stack
+* `LIFO`
+* 마지막으로 Push된 View가 처음으로 Pop됨
+* RootViewController는 삭제되지 않음
+
+===== Navigation Bar
+* Navigation Bar Title
+* Navigation Item
+* Navigation Item들이 쌓여있는 구조 => Navigation Item Stack 
+* Navigation Bar 자체는 Navigation Controller가 관리하는 하나의 객체
+* Navigation Bar Title을 통해 현재 위치나 Root View Controller를 알 수 있음
+
+===== 참고
+* https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/navigation/[HIG - Navigation]
+* https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html[View Controller Catalog for iOS]
+* https://developer.apple.com/documentation/uikit/uinavigationbar[UINavigationBar]
+* https://developer.apple.com/documentation/uikit/uinavigationcontroller[UINavigationController]
+* https://developer.apple.com/documentation/uikit/uinavigationitem[UINavigationItem]
+* https://developer.apple.com/documentation/uikit/uibarbuttonitem[UIBarButtonItem]
+* https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem[UIBarButtonItem.SystemItem]
+* https://developer.apple.com/documentation/uikit/uibaritem[UIBarItem]
+* https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/system-icons/[System Icons]
