@@ -136,6 +136,14 @@ UILocalizedIndexedCollation.currentCollation().sectionTitles
 // Index Title을 통해 Section 찾기
 UILocalizedIndexedCollation.currentCollation().sectionForSectionIndexTitleAtIndex(index)
 ----
+
+===== TableView의 재사용
+* 사용할 수 있는 메모리가 작아서 데이터의 양만큼 View를 생성할 수 없기 때문에 View를 재사용함으로써 메모리를 절약할 수 있음
+* 재사용의 원리
+** TableView에서 Cell을 표시하기 위해 Cell 인스턴스를 요청함
+** DataSource는 Reuse Queue에서 재사용을 위해 대기하고 있다가 Cell이 있다면 새로운 데이터를 설정하고 없다면 새로운 Cell을 만듦
+** DataSource가 Cell이 반환되면 화면에 표시함
+** 스크롤하게 되면 Cell들이 화면에서 사라지면서 Reuse Queue에 들어감
  
 ===== 참고
 * https://videos.raywenderlich.com/courses/22-table-views-in-ios/lessons/1[Table Views in iOS]
