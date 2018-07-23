@@ -14,6 +14,12 @@
 
 === 시스템 설정
 
+===== 호스트명 바꾸기
+* `Sharing > Edit` 이름 변경
+
+===== 사용자명 바꾸기 
+* `Users & Groups` 사용자명 및 프로필 사진 변경
+
 ===== 미션 컨트롤 창 순서 고정
 * `Mission Control > Automatically rearrange Spaces based on most recent use` => 체크 안함
 
@@ -29,23 +35,34 @@
 ===== 드래그는 세손가락
 * `Accessibility > Mouse & Trackpad > Trackpad options...` => Enable dragging - three finger drag
 
+===== 스크린 세이버 변경
+* https://github.com/JohnCoates/Aerial[Aerial]
+
 === 파인더 설정
 
 ===== 파인더 기본 폴더 설정
 * `Accessibility > Mouse & Trackpad > Trackpad options...` => Enable dragging - three finger drag
 
 ===== 파일 확장자 보여주기
-* `Advanced > Show all filename extensions` => 체크함
+* `Finder Preferences > Advanced > Show all filename extensions` => 체크함
 
 ===== Cdto 설정
 * https://github.com/jbtule/cdto[cdto]
 * ⌘ + ⌥ 같이 누르고 아이콘을 끌면 파인더 설정할 수 있음
 
-=== 다운로드 폴더 설정
+===== 다운로드 폴더 설정
 * Downloads 폴더로 이동하고 `⌘ + J (View > Show View Options)` 를 선택함
 
 ===== 날짜 그룹 + 이름
 * Arrange By => Date added, Sort By => Name
+
+===== Side Bar 설정
+
+image:../images/sidebar-setting.png[]
+
+===== Finder 첫 폴더 설정하기
+
+image:../images/first-finder-view.png[]
 
 === 필수 프로그램
 
@@ -59,11 +76,8 @@ clang: error: no input files
 ----
 
 ===== Homebrew
+* https://docs.brew.sh/Installation[Homebrew Installation]
 
-[source, bash]
-----
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-----
 
 ===== Git
 
@@ -172,7 +186,7 @@ $ source ~/.zshrc
 ----
 
 ===== vim 플러그인
-* curl -sLf https://spacevim.org/install.sh | shell
+* curl -sLf https://spacevim.org/install.sh | bash
 * 설치가 완료되면 vi를 실행함. 최초 실행 시 mode 설정을 물어보고 `1을 누름`
 
 ===== vim 테마
@@ -239,65 +253,6 @@ $ source ~/.zshrc
 * 어느 정도 히스토리가 쌓이면 명령어를 입력해봄
 * 디렉토리를 이동할 때 `z github, tab` 과 같이 일부 검색어를 입력하고 tab을 눌러서 이동함
 
-===== tmux
-* tmux는 터미널 멀티플렉서 _Terminal MUltipleXer_ 라고 함
-* 하나의 화면에서 창을 여러 개 만들 수 있고 가로 분할, 세로 분할 할 수 있음
-* 사용법은 공부해야 함. https://github.com/gpakosz/.tmux[tmux]
-
-[source, bash]
-----
-$ brew install tmux
-
-# ~/.zshrc 플러그인 추가
-plugins=(
-  ...
-  ...
-  tmux
-)
-
-$ source ~/.zshrc
-
-# 태마
-$ cd ~/
-$ git clone https://github.com/gpakosz/.tmux.git
-$ ln -s -f .tmux/.tmux.conf
-$ cp .tmux/.tmux.conf.local .
-
-# tmux는 놀랍게도 마우스를 지원함
-# 윈도우 탭을 누르면 바로바로 이동하고 분할 창pane도 마우스를 누르는 창으로 포커스 이동
-$ vi .tmux/.tmux.conf.local
-
-# 아래 설정을 주석 해제함
-# increase history size
-set -g history-limit 10000
-
-# start with mouse mode enabled
-set -g mouse on
-
-# force Vi mode
-# really you should export VISUAL or EDITOR environment variable, see manual
-set -g status-keys vi
-set -g mode-keys vi
-----
-
-===== tmuxinator
-* 1번 윈도우는 webpack을 실행하고 2번 윈도우는 rails server를 실행하고 3번 윈도우는 log를 실행하게 설정할 수 있음
-* 사용법 익혀야 함. https://github.com/tmuxinator/tmuxinator[tmuxinator]
-
-[source, bash]
-----
-$ brew install ruby
-$ gem install tmuxinator
-
-# ~/.zshrc 플러그인, 별칭 추가
-plugins=(
-  ...
-  ...
-  tmuxinator
-)
-alias mux="tmuxinator"
-----
-
 === 그 외 깔아야 할 어플리케이션
 
 ===== 폰트 기본설정은 D2Coding
@@ -320,24 +275,8 @@ $ brew install jetbrains-toolbox
 ----
 
 ===== Visual Studio Code
-* VSCode Icon 플러그인 설치
-* Markdown 플러그인 설치
-* Asciidoc 플러그인 설치
+* https://github.com/yuaming/wiki/blob/master/vscode/settings.adoc[VSCode 설정]
 
-[source, bash]
-----
-# AsciiDoctor가 깔려있어야 함
-$ brew install asciidoctor 
-
-$ git clone https://github.com/joaompinto/asciidoctor-vscode
-$ cd asciidoctor-vscode
-$ npm install
-$ sudo npm install -g vsce typescript
-$ vsce package
-$ code --install-extension *.vsix
-
-# 다 설치 후 재실행함
-----
 
 === 참고
 * https://subicura.com/2017/11/22/mac-os-development-environment-setup.html[본격 macOS에 개발 환경 구축하기]
