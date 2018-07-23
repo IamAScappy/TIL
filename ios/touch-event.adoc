@@ -68,6 +68,20 @@ image:./image/touch-event-handler.png[]
 | Long press(Also known as "touch and hold") | UILongPressGestureRecognizer
 |===
 
+===== 주요 메서드, 프로퍼티
+
+[source, swift]
+----
+func location(in: UIView?) -> CGPoint
+func addTarget(Any, action: Selector)
+func removeTarget(Any?, action: Selector?)
+func require(toFail: UIGestureRecognizer)
+
+// true => 제스처 인식기가 해당 제스처의 터치는 뷰로 전달되지 않음
+// false => 뷰의 모든 터치를 전달받게 됨
+var cancelsTouchInView 
+----
+
 ===== 구현 예제
 
 [source, swift]
@@ -109,3 +123,5 @@ image:./image/responder-chain-2.png[]
 === 참고 
 * https://developer.apple.com/documentation/uikit/touches_presses_and_gestures/understanding_event_handling_responders_and_the_responder_chain[Understanding Event Handling, Responders, and the Responder Chain]
 * https://medium.com/@audrl1010/event-handling-guide-for-ios-68a1e62c15ff[Event Handling Guide for iOS 번역]
+* https://developer.apple.com/documentation/uikit/uigesturerecognizer[UIGestureRecognizer]
+* https://developer.apple.com/design/human-interface-guidelines/ios/user-interaction/gestures/[Gestures]

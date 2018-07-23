@@ -65,6 +65,7 @@ image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/photoframe-t
 * strong을 쓰는 경우는 `outlet` 자체가 참조하고 있는 객체가 *소유 관계* 일 때
 
 ===== IBAction에서 여러가지 이벤트 설정할 수 있음
+* UIControl을 상속받은 다양한 UI요소가 존재하며 그런 컨트롤 객체에 발생한 다양한 이벤트 종류를 특정 액션 메서드에 연결할 수 있음
 
 image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/multiple-event.png[40%, 40%]
 
