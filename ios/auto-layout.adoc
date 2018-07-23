@@ -132,9 +132,9 @@ UIView.AutoresizingOptions.flexibleBottomMargin
 
 ===== Constraint Priorities
 * Content Hugging
-** 고유 사이즈의 최대 크기를 제한함
+** 콘텐츠 사이즈 기준으로 View보다 커지지 않도록 최대 크기를 제한함
 * Compression Resistance
-** 최소 크기에 제한을 둠
+** 콘텐츠 사이즈 기준으로 View가 작아지지 않게 최소 크기에 제한을 둠
 * `오토 레이아웃으로 iOS 앱 쉽게 개발하기 링크 참고`
 
 image:./image/horizontal-hugging.png[30%, 30%]
@@ -194,7 +194,7 @@ image:./image/auto-layout-2.png[45%, 45%]
 ** 왼쪽에서 오른쪽이나 오른쪽에서 왼쪽으로 언어를 쓰는 나라에 맞게 화면이 왼쪽에서 오른쪽, 오른쪽에서 왼쪽으로 바뀜
 * Layout Guide
 ** 화면에 보이지 않지만 Layout을 쉽게 사용할 수 있는 간격
-** iOS 11에서 Safe Area Layout Guide 라는 용어로 바뀜
+** iOS 11에서 Safe Area Layout Guide 라는 용어로 바뀜. 기존 Top, Bottom Layout Guide 대체하며 하위 버전에서도 호환하여 작동함
 * Margin
 ** View 가장 자리와 Subview 사이 공간 
 * `오토 레이아웃이란? 링크 참고`
@@ -210,8 +210,13 @@ image:./image/auto-layout-2.png[45%, 45%]
 ** Leading, Trailing, Top, Bottom은 Frame 기준으로 정렬함
 ** BaseLine은 내용을 기준으로 정렬함
 
+* Center X, Center Y
+** 수평 중심, 수직 중심
+* Horizontal, Vertical
+** 수평, 수직
+
 ===== Dragging Constraints
-* _Editor에서 Control + 드래그_ 
+* _View와 View 사이에서 Control + 드래그_ 
 ** 드래그 방향, 각도에 따라 추가할 수 있는 제약이 달라짐
 ** View의 현재 Frame을 기준으로 제약이 추가됨
 * _Editor에서 Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
