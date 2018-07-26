@@ -87,6 +87,7 @@
 * link:oop/slap.adoc[SLAP]
 * link:oop/is-setter-absolutely-necessary.adoc[Setter는 꼭 필요한가?]
 * link:oop/how-to-practice-object-design-with-swift.adoc[Swift로 객체 설계 연습하기]
+* link:oop/oop-study-1.adoc[객체, 캡슐화, 다형성, 추상화]
 * link:oop/srp-isp.adoc[단일 책임 원칙, 인터페이스 분리 원칙]
 * link:oop/di.adoc[의존성주입]
 
