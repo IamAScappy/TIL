@@ -322,7 +322,7 @@ public AuthResult authenticate(String id, String pw) {
 
     // 데이터를 가져오고 자기가 판단함. 멤버가 가지고 있는 기능으로 바꿈
     if (member.getVerificationEmailStatus() != 2) {
-        return AuthResult.NO_EMAIL.VERIFIED;
+        return AuthResult.NO_EMAIL_VERIFIED;
     }
 
     if (passwordEncoder.isPasswordValid(member.getPassword(), pw, member.getId())) {
@@ -341,7 +341,7 @@ public AuthResult authenticate(String id, String pw) {
 
     // 데이터를 가져오고 자기가 판단함. 멤버가 가지고 있는 기능으로 바꿈
     if (member.isEmailVerified()) {
-        return AuthResult.NO_EMAIL.VERIFIED;
+        return AuthResult.NO_EMAIL_VERIFIED;
     }
 
     if (passwordEncoder.isPasswordValid(member.getPassword(), pw, member.getId())) {
@@ -598,9 +598,7 @@ r.charge();
 
 [source, java]
 ----
-// Before
-// - 콘크리트 클래스를 직접 사용하면
-
+// Before: 콘크리트 클래스를 직접 사용하면?
 // #1
 private SmsSender smsSender;
 
@@ -643,9 +641,7 @@ public void cancel(String ono) {
 }
 
 
-// After
-// - 공통점을 도출하면
- 
+// After: 공통점을 도출하면?
 // #1: 도출한 추상 타입 사용
 public void cancel(String ono) {
     // 주문 취소 처리
@@ -662,8 +658,7 @@ private Notifier getNotifier(...) {
     }
 }
 
-// #2: 사용할 대상 접근도 추상화
-// - 주문 취소 로직은 유지하고 통지 방식을 바꾸는 것이 좋음
+// #2: 사용할 대상 접근도 추상화. 주문 취소 로직은 유지하고 통지 방식을 바꾸는 것이 좋음
 public void cancel(String ono) {
     // 주문 취소 처리
 
@@ -693,7 +688,7 @@ public class DefaultNotifierFactory implements NotifierFactory {
 ===== 추상화는 언제하냐?
 * 추상화는 의존 대상이 변경하는 시점에서 해야 함
 * 추상화 -> 추상 타입 증가 -> 복잡도 증가
-** 클라이언트가 요구하지 않았음에도 '이런 기능이 생길 것이다.' 개발자가 추측한 상태로 추상화를 시도하면 안됨
+** 클라이언트가 요구하지 않았음에도 '이런 기능이 생길 것이다!' 개발자가 임의대로 추측한 상태로 추상화하면 안됨
 ** 잘못된 추상화는 가능성, 복잡도만 증가함
 ** *실제 변경, 확장이 발생하는 경우 추상화해야 함*
 
@@ -730,7 +725,7 @@ public class FileInfo {
     // Get 메서드
 }
 
-public CloudFileManager {
+public class CloudFileManager {
     // 목록 조회
     public List<FileInfo> getFileInfos(CloudId cloudId) {
         if (cloudId == CloudId.DROPBOX) {
@@ -831,7 +826,7 @@ public FileInfo copy(FileInfo fileInfo, CloudId to) {
 *** 실수하기 쉽고 이로 인한 불필요한 디버깅 시간 증가
 
 ===== 추상화하면 ?
-* DropBox, BOx, SCLOUD, NCLOUD, DCLOUD -> CloudFileSystem
+* DropBox, Box, SCloud, NCloud, DCloud -> CloudFileSystem
 
 image:./image/cloud-system-1.png[]
 
@@ -855,7 +850,7 @@ public class DropBoxFileSystem implements CloudFileSystem {
     }
 }
 
-public DropBoxClientFile implements CloudFile {
+public class DropBoxClientFile implements CloudFile {
     private DropBoxClient dbClient;
     private DbFile dbFile;
 
@@ -895,7 +890,7 @@ public DropBoxClientFile implements CloudFile {
     // ...
 }
 
-public CloudFileManager {
+public class CloudFileManager {
     // ...
 
     public List<CloudFile> getFileInfos(CloudId cloudId) {
@@ -916,19 +911,34 @@ public CloudFileManager {
 
 [souroce, java]
 ----
-public void copy(CloudFile file, CloudId target) {
-    CloudFileSystem fileSystem = CloudFileSystemFactory.getFileSystem(target);
-    fileSystem.copyFrom(file);
+public class CloudFileManager {
+    // ...
+    public void copy(CloudFile file, CloudId target) {
+        CloudFileSystem fileSystem = CloudFileSystemFactory.getFileSystem(target);
+        fileSystem.copyFrom(file);
+    }
 }
 
 // DropBoxFileSystem
 // - Copy 기능은 각자 클라우드 시스템에 맞게 구현할 수 있음
-public void copyFrom(CloudFile file) {
+public class DropBoxFileSystem implements CloudFileSystem {
+    // ...
+    
+    public void copyFrom(CloudFile file) {
+        // ...
+    }
+    
     // ...
 }
 
 // NCloudFileSystem
-public void copyFrom(CloudFile file) {
+public class NCloudFileSystem implements CloudFileSystem {
+    // ...
+    
+    public void copyFrom(CloudFile file) {
+        // ...
+    }
+    
     // ...
 }
 ----
@@ -942,6 +952,7 @@ image:./image/cloud-system-2.png[]
 
 ===== 이것이 바로 OCP
 * CloudFileManager가 바뀌지 않고 CloudFileManager가 사용하는 대상(CloudFileSystem)을 바꿀 수 있는 유연함을 얻음
+* *CloudFileManager에 대한 수정은 닫혀있고 CloudFileManager가 사용하는 대상(CloudFileSystem)에 대한 확장은 열려 있음*
 
-=== 출처
+=== 참고
 * 객체 지향 프로그래밍 입문: 최범균님 강의
