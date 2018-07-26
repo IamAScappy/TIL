@@ -909,7 +909,7 @@ public class CloudFileManager {
 * BOX 지원 추가하더라라도 CloudFileManager가 변하지 않음
 * 파일 복사 기능 추가
 
-[souroce, java]
+[source, java]
 ----
 public class CloudFileManager {
     // ...
