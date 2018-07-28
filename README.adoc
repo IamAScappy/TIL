@@ -64,7 +64,7 @@
 * link:ios/view-view-controller.adoc[The Role of View Controllers]
 * link:ios/tips.adoc[Tips]
 * link:ios/touch-event.adoc[Touch Event]
-* link:ios/tableview-controller.adoc[UITableView, UITableViewController]
+* link:ios/table-view.adoc[TableView]
 * link:ios/view-controller.adoc[UIViewController]
 * link:ios/ui-classes.adoc[UI 클래스 계층도]
 * link:ios/view-controller-container.adoc[View Controller Container]
