@@ -1,0 +1,66 @@
+= 기능과 책임 분리
+
+===== 기능 분해
+* 하나의 기능을 하위 기능으로 분해할 수 있음
+* _하나의 기능에서 쪼개진 기능들을 누가 책임질 것인가? 쪼개진 기능을 분리하고 알맞은 객체에게 분배하는 것_ 이 객체 지향 기본 원리 
+
+===== 큰 클래스, 큰 메서드
+* 클래스나 메서드가 커지면 절차 지향의 문제가 발생함
+** 큰 클래스 => 많은 필드를 많은 메서드가 공유함
+** 큰 메서드 => 많은 변수를 많은 코드가 공유함
+** 결국 필드나 변수는 데이터이기 때문에 수정하기 어려워진 코드가 되어버림
+
+===== 책임 분배, 분리 방법
+* 패턴 적용
+** 역할 분리
+** 간단한 웹 => Controller, Service, DAO
+** 복잡한 도메인 => Entity, Value, Repository, Domain Service
+** AOP
+** 디자인 패턴
+* 계산 기능 분리
+* 외부 연동 분리
+** 네트워크, 메세징, 파일 등 연동 처리 로직 분리
+* 조건별 분기는 추상화 할 수 있음
+** 연속적인 if-else는 공통점을 이용해서 추상화 할 수 있음
+
+[source, java]
+----
+// Before
+String fileUrl = "";
+
+if (fileId.startsWith("local:")) {
+    fileUrl = "/files/" + fileId.substring(6);
+} else {
+    fileUrl = "http://fileserver/files/" + fileId.substring(3);
+}
+
+
+// After
+FileInfo fileInfo = FileInfo.getFileInfo(fileUrl);
+String fileUrl = fileInfo.getUrl();
+
+public interface FileInfo {
+    String getUrl();
+
+    static FileInfo getFile(...) { ... }
+}
+
+public class SSFileInfo implements FileInfo {
+    private String fileId;
+
+    public String getUrl() {
+        return "http://fileserver/files/" + fileId.substring(3);
+    }
+}
+----
+
+===== 역할을 분리할 때 주의 해야할 점
+* 의도가 잘 드러나는 이름 사용해야 함
+** HTTP로 추천 데이터로 읽어오는 기능을 분리함
+** _RecommandService_ 가 HttpDataService보다 좋은 이름
+
+===== 역할 분리할 때 장점
+* 역할 분리가 잘되면 테스트가 용이함
+
+===== 참고
+* 객체 지향 프로그래밍 입문: 최범균님
