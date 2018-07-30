@@ -50,7 +50,7 @@
 * link:ios/high-performance-auto-layout.adoc[High Performance Auto Layout]
 * link:ios/ib-outlet-action.adoc[IBOutlet, IBAction]
 * link:ios/ios.adoc[iOS]
-* link:ios/model-view-controller.adoc[MVC]
+* link:ios/model-view-controller.adoc[MVC Pattern]
 * link:ios/navigation-controller.adoc[Navigation Controller]
 * link:ios/network-programming.adoc[Network Programming]
 * link:ios/nsnotificationcenter.adoc[NotificationCenter]
@@ -66,13 +66,13 @@
 * link:ios/view-controller.adoc[UIViewController]
 * link:ios/ui-classes.adoc[UI 클래스 계층도]
 * link:ios/view-controller-container.adoc[View Controller Container]
+* link:ios/adding-sub-vc-as-container-vc.adoc[View Controller를 Container View Controller 추가하기]
 * link:ios/view-life-cycle.adoc[View Life Cycle]
 * link:ios/view-programming-guide-for-ios.adoc[View Programming Guide for iOS: 번역중]
 * link:ios/shallow-deep-copy.adoc[깊은 복사와 얕은 복사]
 * link:ios/view-segue.adoc[다양한 화면 전환]
 * link:ios/archives-serialization.adoc[아키이빙과 직렬화]
 * link:ios/adding-images-in-project.adoc[프로젝트에 이미지 추가하기]
-* link:ios/adding-sub-vc-as-container-vc.adoc[하위 View Controller를 Container View Controller 추가하기]
 
 ===== MacOS
 * link:mac/how-to-delete-ds-stores.adoc[.DS_Store 일괄 삭제]

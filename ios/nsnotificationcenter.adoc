@@ -1,6 +1,6 @@
-= NSNotificationCenter
+= NotificationCenter
 
-=== NSNotificationCenter
+=== NotificationCenter
 
 ===== 구성
 
