@@ -91,7 +91,8 @@
 * link:oop/function-responsibility.adoc[기능과 책임 분리]
 * link:oop/srp-isp.adoc[단일 책임 원칙, 인터페이스 분리 원칙]
 * link:oop/composition-over-inheritance.adoc[상속보다 조립]
-* link:oop/di.adoc[의존성주입]
+* link:oop/di.adoc[의존성 주입]
+* link:oop/dip.adoc[의존 역전 원칙]
 
 ===== Regular Expression
 * link:regex/automata.adoc[오토마타]
