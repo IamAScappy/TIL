@@ -1,31 +1,111 @@
 = 의존성 주입(DI)
 
-===== 문제
-* 의존성 주입 개념이 명확하게 정리되어 있지 않았음
+=== 개념
 
-===== 해결
-* 의존성이 있다는 것은 해당 객체의 속성이나 기능을 사용한다는 것과 같음
-* 관계 깨는 방법
-** 값을 복사하거나 객체를 이용해서 타입에 의존하는 매개변수나 생성자로 넘김
-** 더 좋은 방법은 함수나 객체가 값에 의존하는 것보다 추상화한 인터페이스를 만들어 메서드를 의존하는 것이 나음
-** DTO나 인터페이스를 외부에서 내부로 매개변수 또는 생성자를 이용하여 넘김
-* 의존성 주입 
-** 객체를 내부에서 생성하는 것이 아니라 외부에서 주입함
-** 함수, 객체, 프레임워크 단계 등 여러 단계에서 의존성 주입을 생각해봄
+===== 의존
+* 객체를 의존한다는 것은 해당 객체의 속성이나 기능을 사용한다는 것과 같음. 예를 들어 객체 생성, 메서드 호출, 데이터 사용
+* 의존은 변경이 전파될 가능성을 의미함
+
+===== 순환 의존
+* 순환 의존 => 변경 연쇄 전파 가능성
+* 클래스, 패키지, 모듈 등 모든 수준에서 순환 의존이 없도록 해야 함
+
+===== 의존하는 대상이 많다면?
+* 의존하는 대상이 많으면 내가 바뀔 가능성이 높음. 즉, 내가 의존하는 대상이 적어야 바뀔 가능성이 낮음
+
+===== 의존 대상이 많은 상황
+* 한 클래스에서 많은 기능을 제공하는 경우
+
+[source, java]
+----
+// Before
+public class UserService {
+    public void regist(...) {
+        // ...
+    }
+
+    public void changePw(...) {
+        // ...
+    }
+
+    public void blockUser(...) {
+        // ...
+    }
+}
+
+
+// After: 기능 별로 분리 고려
+public class UserRegistService {
+    public void regist(...) {
+        // ...
+    }
+}
+
+public class ChangePwService {
+    public void changePw(...) {
+        // ...
+    }
+}
+
+public class UserBlockService {
+    public void blockUser(...) {
+        // ...
+    }
+}
+----
+
+* 묶어보기 => 몇 가지 의존 대상을 단일 기능으로 생각해봄
+* 값을 복사하거나 객체를 이용해서 타입에 의존하는 매개변수나 생성자로 넘김
+* 더 좋은 방법은 함수나 객체가 값에 의존하는 것보다 추상화한 인터페이스를 만들어 메서드를 의존하는 것이 나음
+* DTO나 인터페이스를 외부에서 내부로 매개변수 또는 생성자를 이용하여 넘김
+
+===== 의존 대상 객체를 직접 생성하지 않는 방법
+* 생성 클래스가 바뀌면 의존하는 코드도 바뀜
+* 의존 대상 객체를 직접 생성하지 않는 방법
+** Factory Pattern, Builder Pattern
+** DI
+** Service Locator
+
+===== DI
+* 외부에서 의존 객체를 주입(= 객체를 내부에서 생성하는 것이 아니라 외부에서 주입함)
+* 함수, 객체, 프레임워크 단계 등 여러 단계에서 의존성 주입을 생각해봄
 * 해당 설명은 값에 대한 추상화
 * 함수형 프로그래밍로 더 큰 의미를 생각하면 함수 단위도 추상화 할 수 있음
 * `ViewController 에서 DI`
 ** ViewController를 테스트하려면 외부에서 의존성 주입을 하는 구조가 좋음
 ** 싱글톤 객체는 프로토콜 타입으로 선언되어 있어 해당 프로토콜을 채택한 객체는 모두 테스트 해봐야 함
-** `IB를 사용하는 경우엔 ViewController에 제네릭 프로토콜을 사용하면 안됨`
 
-===== Tips
-* DTO getter 이름은 주로 명사형을 많이 씀
-* 이름 지을 때 애플 문서 많이 참고하자!
+[source, java]
+----
+public class SchduleService {
+    private UserRepository repository;
+    private Calculator cal;
+
+    public SchduleService(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    public void setCalculator(Calculator cal) {
+        this.cal = cal;
+    }
+}
+
+
+UserRepository userRepo = new DbUserRepository();
+Calculator cal = new Calculator();
+
+SchduleService schSvc = new SchduleService(userRepo);
+schSvc.setCalculator(cal);
+----
+
+===== Assembler
+* 조립기가 객체 생성, 의존 주입 처리. 스프링 프레임워크가 조립기에 해당함
+
+===== 코드
 
 [source, swift]
 ----
-// before
+// Before
 struct HugeLadderGame {
     struct LadderPlayer {
         var name = ""
@@ -85,7 +165,7 @@ struct HugeLadderGame {
 var game = HugeLadderGame()
 game.run()
 
-// after
+// After
 protocol LadderRunnable {
     func ladderHeight() -> Int
     func playerNames() -> [String]
@@ -229,5 +309,5 @@ SmallLadderGame.run(runner:GameInfoMock())
 ----
 
 ===== 참고
-* https://gist.github.com/godrm/f835c2f682a70be68dfe50af535c882e[JK Gist]
-* https://github.com/undervineg/swift-vendingmachineapp/blob/undervineg/md/dependency_injection.md[Min: 의존성 주입 설명]
+* 객체 지향 프로그래밍 입문: 최범균님
+* 코드스쿼드 강의
