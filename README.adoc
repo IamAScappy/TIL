@@ -49,6 +49,7 @@
 * link:ios/high-performance-auto-layout.adoc[High Performance Auto Layout]
 * link:ios/ib-outlet-action.adoc[IBOutlet, IBAction]
 * link:ios/ios.adoc[iOS]
+* link:ios/kvc-kvo-swift.adoc[KVC, KVO]
 * link:ios/model-view-controller.adoc[MVC Pattern]
 * link:ios/navigation-controller.adoc[Navigation Controller]
 * link:ios/network-programming.adoc[Network Programming]

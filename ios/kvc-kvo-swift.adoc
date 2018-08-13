@@ -1,0 +1,55 @@
+= KVC, KVO
+
+=== KVC
+
+===== 설명
+* 어플리케이션이 정보를 의미하는 문자열(또는 키)를 사용하여 간접적으로 객체의 속성값을 접근하는 매커니즘
+
+===== 특징
+* 키가 되는 문자열은 런타임시 결정됨
+* 소스 코드가 간결해지면서 유지보수도 쉬워짐
+* 클래스간 의존성이 낮아짐
+
+=== KVO
+
+===== 설명
+* 모델 객체의 어떤 값이 변경되었을 경우 이를 UI에 반영하기 위해서 컨트롤러는 모델 객체에 Observing을 도입하여 델리게이트에 특정 메시지를 보내 처리할 수 있도록 하는 것
+
+===== Swift 4에서 KVO
+
+[source, swift]
+----
+// Swift 3.2 이전
+// - viewDidLoad
+itemTableView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
+
+// - deinit
+itemTableView.removeObserver(self, forKeyPath: "contentSize")
+
+
+override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if let observedObject = object as? UITableView,
+        observedObject == itemTableView {
+        heightAnchor.constant = itemTableView.contentSize.height
+        heightAnchor.isActive = true
+    }
+}
+
+
+// Swift 4
+@IBOutlet @objc dynamic weak var itemTableView: UITableView!
+
+// - viewDidLoad
+let observer = itemTableView.observe(\UITableView.contentSize, options: .new) { (tableView, change) in
+        guard let newValue = change.newValue else { return }
+        print(self.heightAnchor.constant)
+        self.heightAnchor.constant = tableView.contentSize.height + newValue.height
+        self.heightAnchor.isActive = true
+    }
+
+observer.didChangeValue(forKey: "contentSize")
+----
+
+===== 참고
+* http://minsone.github.io/mac/ios/ioskey-value-coding-key-value-observing[Key Value Coding, Key Value Observing]
+* http://seorenn.blogspot.com/2017/07/swift-4-kvo.html[Swift 4 에서 KVO ​사용해보기]
