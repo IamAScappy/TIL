@@ -7,7 +7,7 @@
 {
   "window.zoomLevel": -1,
   "editor.fontFamily": "D2Coding",
-  "editor.fontSize": 14,
+  "editor.fontSize": 15,
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
   "files.autoSave": "off",
@@ -17,7 +17,7 @@
   "flow.runOnAllFiles": true,
   "flow.useNPMPackagedFlow": true,
   "javascript.format.enable": false,
-  "javascript.validate.enable": false,
+  "javascript.validate.enable": true,
   "prettier.eslintIntegration": true,
   "workbench.iconTheme": "vscode-icons",
   "git.autofetch": true,
@@ -25,7 +25,7 @@
     "suppressShowKeyBindingsNotice": true
   },
   "gitlens.historyExplorer.enabled": true,
-  "workbench.colorTheme": "Atom One Dark"
+  "workbench.colorTheme": "Atom Dark Syntax"
 }
 ----
 
@@ -33,11 +33,13 @@
 * AsciiDoc
 * ESLint
 * Flow Language Support
+* Git Lens
 * Markdown All in One
 * Prettier formatter for Visual Studio Code
+* Ruby
 * TODO Highlight 
 * vscode-icons
-* Git Lens
+
 
 ===== .eslintrc 
 * Option + Shift + F => Formmating
