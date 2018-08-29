@@ -1,0 +1,46 @@
+= TIps
+
+===== 면접
+* http://www.toptal.com/swift/interview-questions[Swift 면접 질문]
+
+===== String 문자열 자체 Width, Height 구하기
+
+[source, swift]
+----
+extension NSAttributedString {
+    func height(withConstrainedWidth width: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+
+        return ceil(boundingBox.height)
+    }
+
+    func width(withConstrainedHeight height: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+
+        return ceil(boundingBox.width)
+    }
+}
+
+
+// Label
+let proNameLbl = UILabel(frame: CGRect(x: 0, y: 20, width: 300, height: height))
+proNameLbl.text = "This is your text"
+proNameLbl.font = UIFont.systemFont(ofSize: 17)
+proNameLbl.numberOfLines = 0
+proNameLbl.lineBreakMode = .byWordWrapping
+infoView.addSubview(proNameLbl)
+
+// Function to calculate height for label based on text
+func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat {
+    let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+    label.numberOfLines = 0
+    label.lineBreakMode = NSLineBreakMode.byWordWrapping
+    label.font = font
+    label.text = text
+
+    label.sizeToFit()
+    return label.frame.height
+}
+----

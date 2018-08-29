@@ -71,3 +71,12 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
 }
 ----
+
+===== 업스케일링, 다운 스케일링
+* 업스케일링: 고화질 -> 저화질
+* 다운 스케일링: 저화질 -> 고화질
+* 이미지 축소나 확대로 인한 계산은 오래된 기기에 부담을 줄 수 있음. 그래서 앱 슬라이싱 개념이 나옴
+
+===== iOS Fonts
+* http://www.sirochro.com/note/objc-ios7-font-sample/[iOS Fonts]
+
