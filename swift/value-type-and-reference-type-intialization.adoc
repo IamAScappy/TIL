@@ -1,5 +1,7 @@
 = 값 타입과 참조 타입의 초기화
 
+=== Swift Programming Guide 설명
+
 ===== Intialization
 * 클래스, 열거형, 구조체 인스턴스를 사용하기 위한 준비 과정
 * 해당 인스턴스의 각각 저장된 속성의 초기값을 설정하는 것과 그 외의 다른 설정 또는 새 인스턴스 사용하기 전에 필요한 초기화를 함
@@ -158,19 +160,22 @@ image:./image/two-phase-initialization-2.png[]
 
 ----
 
-===== 추가 정리
-* 생성자 상속과 재정의
-** C 언어 시절, 객체 인스턴스를 생성하면 쓰레기 값이 들어있었음
-** OOP 시절로 넘어오면서 초기값이 없으면 생성자에게 값을 셋팅해줌
-** 초기값 중에서 Primitive Type이 아닌 경우 객체 안의 객체를 만들었을 때(= 소유권을 가진 형태), 이럴 때 소멸자가 해제하자!
-** Java, C++, Objective-C(deallow) => 생성자, 소멸자는 쌍으로 만들어야 했음
-* 2단계 초기화
-** SubClass의 프로러티 값을 초기화하고 
-** SuperClass 생성자를 호출하고 SuperClass의 프로퍼티 값을 초기화함
-** 그리고 self가 완전함
-* 상속 초기화
-** 상속받은 SubClass에서 보통 생성자에서 super를 먼저 호출하는 경우가 많지만 내가 만든 SuperClass, SubClass도 존재함. SuperClass의 메서드에 로직이 몰려 있는 경우 SubClass에서 super를 나중에 호출해야 함
-** Stack 구조보다 다형성으로 인한 문제때문에 호출 구조가 뒤로 가야하는 경우가 있음
+=== 추가 설명
+
+===== 생성자 상속과 재정의
+* C 언어 시절, 객체 인스턴스를 생성하면 쓰레기 값이 들어있었음
+* OOP 시절로 넘어오면서 초기값이 없으면 생성자에게 값을 셋팅해줌
+* 초기값 중에서 Primitive Type이 아닌 경우 객체 안의 객체를 만들었을 때(= 소유권을 가진 형태), 이럴 때 소멸자가 해제하자!
+* Java, C++, Objective-C(deallow) => 생성자, 소멸자는 쌍으로 만들어야 했음
+
+===== 2단계 초기화
+* SubClass의 프로러티 값을 초기화하고 
+* SuperClass 생성자를 호출하고 SuperClass의 프로퍼티 값을 초기화함
+* 그리고 self가 완전함
+
+===== 상속 초기화
+* 상속받은 SubClass에서 보통 생성자에서 super를 먼저 호출하는 경우가 많지만 내가 만든 SuperClass, SubClass도 존재함. SuperClass의 메서드에 로직이 몰려 있는 경우 SubClass에서 super를 나중에 호출해야 함
+* Stack 구조보다 다형성으로 인한 문제때문에 호출 구조가 뒤로 가야하는 경우가 있음
 
 === 참고
 * https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/[Swift Language Guide]

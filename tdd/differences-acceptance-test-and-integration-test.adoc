@@ -1,6 +1,5 @@
 = 인수테스트, 통합테스트 차이점
 
-===== 설명
 * https://github.com/yuaming/wiki/blob/master/tdd/test.adoc[V패턴]
 * 통합테스트  
 ** 모듈 테스트 등 개발팀 내부에서 진행하는 테스트

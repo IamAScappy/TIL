@@ -31,6 +31,58 @@ image:./image/auto-layout-15.png[]
 * Trait Collection
 * Universal Storyboard
 
+=== Constraints
+
+===== Auto Layout Formular
+* `item1.attr = multiplier * item2.attr + constant`
+* Document Outline에서 Root View의 Constraints를 통해 공식과 비교하여 파악하면 보다 빠르게 이해할 수 있음
+
+image:./image/auto-layout-7.png[45%, 45%]
+image:./image/auto-layout-8.png[45%, 45%]
+
+* `view.top = 1 x superview.top + 20`
+* `textField.leading = 1 x label.trailing + 8`
+* `view.height = 0.5 x superview.height + 0`
+* `button.height = 1 x NSLayoutAttribute.notAnAttribute (0) + 50`
+
+image:./image/auto-layout-formular-1.png[45%, 45%]
+image:./image/auto-layout-formular-2.png[45%, 45%]
+image:./image/auto-layout-formular-3.png[45%, 45%]
+image:./image/auto-layout-formular-4.png[45%, 45%]
+
+===== Constraints 추가 원리
+* 다른 View와 연관성이 없는 Width, Height, Aspect Ratio는 선택한 View에 제약이 추가됨
+* 다른 View와 연관된 제약은 연관된 제약이 관련되어 있는 인접한 상위 View에 추가됨
+* 예제
+** A View 넓이 제약 추가하면 A View에 제약이 추가됨
+** C, D View 사이에 Equal Width를 추가하면 두 개 View와 인전합 상위 View인 A에 제약이 추가됨
+** D, E View 사이에 Equal Width를 추가하면 두 개 View와 인접한 상위 View인 Root View에 제약이 추가됨
+* 제약 추가할 때 개요로 나타남. `제약 이름을 보고 종류를 파악하는 연습해보기:)`
+
+image:./image/auto-layout-1.png[45%, 45%]
+image:./image/auto-layout-2.png[45%, 45%]
+
+===== 용어
+* Width, Height
+* Leading, Top, Trailing, Bottom, Left, Right
+** Leading, Trailing
+** 왼쪽에서 오른쪽이나 오른쪽에서 왼쪽으로 언어를 쓰는 나라에 맞게 화면이 왼쪽에서 오른쪽, 오른쪽에서 왼쪽으로 바뀜
+* Layout Guide
+** 화면에 보이지 않지만 Layout을 쉽게 사용할 수 있는 간격
+** iOS 11에서 Safe Area Layout Guide 라는 용어로 바뀜. 기존 Top, Bottom Layout Guide 대체하며 하위 버전에서도 호환하여 작동함
+* Margin
+** View 가장 자리와 Subview 사이 공간 
+* Aspect Ratio
+** 기준이 되는 너비나 높이가 있어야 함
+* BaseLines
+** Leading, Trailing, Top, Bottom은 Frame 기준으로 정렬함
+** BaseLine은 내용을 기준으로 정렬함
+* Center X, Center Y
+** 수평 중심, 수직 중심
+* Horizontal, Vertical
+** 수평, 수직
+* `오토 레이아웃이란? 링크 참고`
+
 === Auto Layout Interface Builder
 
 ===== Prototyping Constraints
@@ -56,6 +108,11 @@ image:./image/auto-layout-15.png[]
 ** View의 현재 Frame을 기준으로 제약이 추가됨
 * _Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
 * _Document Outline에서 Control + 드래그_
+
+===== Constraints 편집하기
+image:./image/editing-constraints-1.png[45%, 45%]
+image:./image/editing-constraints-2.png[45%, 45%]
+image:./image/constraints-equals.png[45%, 45%]
 
 ===== Auto Layout Preview
 * 시뮬레이터를 통해 매번 확인하는 것이 힘듦
@@ -156,76 +213,6 @@ image:./image/distribution-1.png[45%, 45%]
 image:./image/distribution-2.png[45%, 45%]
 image:./image/distribution-3.png[45%, 45%]
 image:./image/distribution-4.png[45%, 45%]
-
-=== Constraints
-
-===== Auto Layout Formular
-* `item1.attr = multiplier * item2.attr + constant`
-* Document Outline에서 Root View의 Constraints를 통해 공식과 비교하여 파악하면 보다 빠르게 이해할 수 있음
-
-image:./image/auto-layout-7.png[45%, 45%]
-image:./image/auto-layout-8.png[45%, 45%]
-
-* `view.top = 1 x superview.top + 20`
-* `textField.leading = 1 x label.trailing + 8`
-* `view.height = 0.5 x superview.height + 0`
-* `button.height = 1 x NSLayoutAttribute.notAnAttribute (0) + 50`
-
-image:./image/auto-layout-formular-1.png[45%, 45%]
-image:./image/auto-layout-formular-2.png[45%, 45%]
-image:./image/auto-layout-formular-3.png[45%, 45%]
-image:./image/auto-layout-formular-4.png[45%, 45%]
-
-===== Constraints 추가 원리
-* 다른 View와 연관성이 없는 Width, Height, Aspect Ratio는 선택한 View에 제약이 추가됨
-* 다른 View와 연관된 제약은 연관된 제약이 관련되어 있는 인접한 상위 View에 추가됨
-* 예제
-** A View 넓이 제약 추가하면 A View에 제약이 추가됨
-** C, D View 사이에 Equal Width를 추가하면 두 개 View와 인전합 상위 View인 A에 제약이 추가됨
-** D, E View 사이에 Equal Width를 추가하면 두 개 View와 인접한 상위 View인 Root View에 제약이 추가됨
-* 제약 추가할 때 개요로 나타남. `제약 이름을 보고 종류를 파악하는 연습해보기:)`
-
-image:./image/auto-layout-1.png[45%, 45%]
-image:./image/auto-layout-2.png[45%, 45%]
-
-===== 용어
-* Leading, Top, Trailing, Bottom, Left, Right
-** Leading, Trailing
-** 왼쪽에서 오른쪽이나 오른쪽에서 왼쪽으로 언어를 쓰는 나라에 맞게 화면이 왼쪽에서 오른쪽, 오른쪽에서 왼쪽으로 바뀜
-* Layout Guide
-** 화면에 보이지 않지만 Layout을 쉽게 사용할 수 있는 간격
-** iOS 11에서 Safe Area Layout Guide 라는 용어로 바뀜. 기존 Top, Bottom Layout Guide 대체하며 하위 버전에서도 호환하여 작동함
-* Margin
-** View 가장 자리와 Subview 사이 공간 
-* `오토 레이아웃이란? 링크 참고`
-
-===== Add New Constraints, Add New Alignment Constraints Buttons
-* Add New Constraints 버튼을 누르면 기준이 되는 View로 인접한 View가 설정되어 있음. 기준이 되는 View를 바꿀 수 있음
-* Width, Height
-
-* Aspect Ratio
-** 기준이 되는 너비나 높이가 있어야 함
-
-* BaseLines
-** Leading, Trailing, Top, Bottom은 Frame 기준으로 정렬함
-** BaseLine은 내용을 기준으로 정렬함
-
-* Center X, Center Y
-** 수평 중심, 수직 중심
-* Horizontal, Vertical
-** 수평, 수직
-
-===== Dragging Constraints
-* _View와 View 사이에서 Control + 드래그_ 
-** 드래그 방향, 각도에 따라 추가할 수 있는 제약이 달라짐
-** View의 현재 Frame을 기준으로 제약이 추가됨
-* _Editor에서 Control + 드래그_ 한 후, _Shift_ 버튼을 누르면 여러 개 제약을 추가할 수 있음
-* _Document Outline에서 Control + 드래그_
-
-===== Editing Constraints
-image:./image/editing-constraints-1.png[45%, 45%]
-image:./image/editing-constraints-2.png[45%, 45%]
-image:./image/constraints-equals.png[45%, 45%]
 
 === 참고
 * https://cocoacasts.com/what-are-prototyping-constraints[What are prototyping constraints?]
