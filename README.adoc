@@ -98,6 +98,7 @@
 * link:swift/string-formatter.adoc[String Formatter]
 * link:swift/swift.adoc[Swift]
 * link:swift/swift3-swift4-substring.adoc[Swift3, Swift4 문자열 자르기]
+* link:swift/swift-currying.adoc[Swift Currying]
 * link:swift/swift-development-environment.adoc[Swift 프로젝트 개발 환경]
 * link:swift/generics-in-swift-4.2.adoc[Swift 4.2에서 Generics]
 * link:swift/tips.adoc[Tips]
