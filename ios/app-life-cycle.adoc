@@ -1,7 +1,5 @@
 = App Life Cycle
 
-=== 흐름도
-
 ===== 3가지 실행모드, 5가지 상태
 
 image:./image/excution-status.png[]
@@ -29,8 +27,6 @@ image:./image/foreground-to-background.png[]
 ===== Termination
 
 image:./image/termination.png[]
-
-=== 설명
 
 ===== 참고
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]
