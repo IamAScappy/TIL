@@ -5,7 +5,7 @@
 ===== 정의
 * 인터페이스를 구성하는 기본 단위
 
-image:./image/gui-components.png[]
+image:./images/gui-components.png[]
 
 === 화면
 
@@ -24,9 +24,9 @@ image:./image/gui-components.png[]
 * 초기 데이터가 없는 상태
 * 사용자가 빈 화면을 프로그램 오류로 인식하지 않도록 도와줌
 
-image:./image/splash-screen.png[30%, 30%]
-image:./image/coach-marks.png[30%, 30%]
-image:./image/empty-data.png[30%, 30%]
+image:./images/splash-screen.png[30%, 30%]
+image:./images/coach-marks.png[30%, 30%]
+image:./images/empty-data.png[30%, 30%]
 
 ===== Walkthroughs
 * 초기 세팅이 필요한 경우, 상세한 도움말을 단계별로 제공해주는 페이지 뷰
@@ -37,8 +37,8 @@ image:./image/empty-data.png[30%, 30%]
 * 평상시에는 보이지 않다가 당기거나 아이콘을 탭하면 슬라이딩 되면서 나오는 메뉴
 * 주로 최상위 메뉴를 표시하거나 앱의 부가적인 기능을 모아보는데 사용함
 
-image:./image/walk-throughts.png[30%, 30%]
-image:./image/slide-menu.png[30%, 30%]
+image:./images/walk-throughts.png[30%, 30%]
+image:./images/slide-menu.png[30%, 30%]
 
 === Bar
 
@@ -57,9 +57,9 @@ image:./image/slide-menu.png[30%, 30%]
 ** App Bar 바로 아래 위치함
 ** 같은 상위 개념의 화면을 진입하는 기능 제공
 
-image:./image/status-bar.png[30%, 30%]
-image:./image/app-bar.png[30%, 30%]
-image:./image/tab-bar.png[30%, 30%]
+image:./images/status-bar.png[30%, 30%]
+image:./images/app-bar.png[30%, 30%]
+image:./images/tab-bar.png[30%, 30%]
 
 === List
 
@@ -75,16 +75,16 @@ image:./image/tab-bar.png[30%, 30%]
 ===== Index Scroll
 * 리스트의 빠른 탐색을 도움
 
-image:./image/list-view.png[30%, 30%]
-image:./image/list-index.png[30%, 30%]
-image:./image/list-scroll.png[30%, 30%]
+image:./images/list-view.png[30%, 30%]
+image:./images/list-index.png[30%, 30%]
+image:./images/list-scroll.png[30%, 30%]
 
 === Gird
 
 ===== Grid View
 * 썸네일로 구성된 화면 또는 컨텐츠의 정렬이 바둑판으로 구성된 화면
 
-image:./image/grid-view.png[30%, 30%]
+image:./images/grid-view.png[30%, 30%]
 
 === Dialog, Popup
 
@@ -99,9 +99,9 @@ image:./image/grid-view.png[30%, 30%]
 * 사용자의 위크플로우를 결정하는 기능
 * Alert, Toast를 제외한 나머지 화면 
 
-image:./image/alert.png[30%, 30%]
-image:./image/toast.png[30%, 30%]
-image:./image/popup.png[30%, 30%]
+image:./images/alert.png[30%, 30%]
+image:./images/toast.png[30%, 30%]
+image:./images/popup.png[30%, 30%]
 
 === Picker
 
@@ -121,8 +121,8 @@ image:./image/popup.png[30%, 30%]
 * 작업이 얼마나 진행되었는지 표시해주는 기능
 * 사용자가 컨트롤 할 수 없음
 
-image:./image/slider.png[30%, 30%]
-image:./image/progress-bar.png[30%, 30%]
+image:./images/slider.png[30%, 30%]
+image:./images/progress-bar.png[30%, 30%]
 
 === ETC.
 
@@ -141,9 +141,9 @@ image:./image/progress-bar.png[30%, 30%]
 ===== Switch
 * On, Off를 설정할 때 쓰이는 버튼
 
-image:./image/drop-down-list.png[30%, 30%]
-image:./image/radio-button.png[30%, 30%]
-image:./image/checkbox.png[30%, 30%]
+image:./images/drop-down-list.png[30%, 30%]
+image:./images/radio-button.png[30%, 30%]
+image:./images/checkbox.png[30%, 30%]
 
-image:./image/toggle-button.png[30%, 30%]
-image:./image/switch.png[30%, 30%]
+image:./images/toggle-button.png[30%, 30%]
+image:./images/switch.png[30%, 30%]

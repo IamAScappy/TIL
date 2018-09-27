@@ -3,7 +3,7 @@
 === Interface Builder Constants
 
 ===== IB- 
-* Interface Builderx
+* Interface Builder
 * UX 요소와 코드를 연결하는 것
 
 === IBOutlet
@@ -14,7 +14,6 @@
 
 ===== 연결 방법
 * 레이블을 선택하고 `Control + 드래그` 해서 ViewController 코드에 `IBOutlet으로 연결함`
-* `Add an outlet connection to send a message to a UI object 링크 참고`
 
 === IBAction
 
@@ -38,15 +37,16 @@
 | touchDragExit | 터치 영역이 컨트롤의 일정 영역 바깥쪽으로 나갔을 때 발생하는 이벤트 | UIControlEvents.touchDragExit
 | touchUpInside | 컨트롤 영역 안쪽에서 터치 후 뗐을때 발생하는 이벤트 | UIControlEvents.touchUpInside
 | touchUpOutside| 컨트롤 영역 안쪽에서 터치 후 컨트롤 밖에서 뗐을때 이벤트| UIControlEvents.touchUpOutside
-| touchCancel| 터치를 취소하는 이벤트 (touchUp 이벤트가 발생되지 않음)| UIControlEvents.touchCancel
-| valueChanged| 터치를 드래그 및 다른 방법으로 조작하여 값이 변경되었을때 발생하는 이벤트| UIControlEvents.valueChanged
-| primaryActionTriggered| 버튼이 눌릴때 발생하는 이벤트 (iOS보다는 tvOS에서 사용)| UIControlEvents.primaryActionTriggered  
-| editingDidBegin| UITextField에서 편집이 시작될 때 호출되는 이벤트| UIControlEvents.editingDidBegin
-| editingChanged| UITextField에서 값이 바뀔 때마다 호출되는 이벤트| UIControlEvents.editingChanged 
-| editingDidEnd| UITextField에서 외부객체와의 상호작용으로 인해 편집이 종료되었을 때 발생하는 이벤트| UIControlEvents.editingDidEnd  
-| editingDidEndOnExit| UITextField의 편집상태에서 키보드의 return 키를 터치했을 때 발생하는 이벤트| UIControlEvents.editingDidEndOnExit  
-| allTouchEvents| 모든 터치 이벤트| UIControlEvents.allTouchEvents|  | allEditingEvents| UITextField에서 편집작업의 이벤트| UIControlEvents.allEditingEvents
-| applicationReserved| 각각의 애플리케이션에서 프로그래머가 임의로 지정할 수 있는 이벤트 값의 범위| UIControlEvents.applicationReserved
+| touchCancel | 터치를 취소하는 이벤트 (touchUp 이벤트가 발생되지 않음)| UIControlEvents.touchCancel
+| valueChanged | 터치를 드래그 및 다른 방법으로 조작하여 값이 변경되었을때 발생하는 이벤트| UIControlEvents.valueChanged
+| primaryActionTriggered | 버튼이 눌릴때 발생하는 이벤트 (iOS보다는 tvOS에서 사용)| UIControlEvents.primaryActionTriggered  
+| editingDidBegin | UITextField에서 편집이 시작될 때 호출되는 이벤트| UIControlEvents.editingDidBegin
+| editingChanged | UITextField에서 값이 바뀔 때마다 호출되는 이벤트| UIControlEvents.editingChanged 
+| editingDidEnd | UITextField에서 외부객체와의 상호작용으로 인해 편집이 종료되었을 때 발생하는 이벤트| UIControlEvents.editingDidEnd  
+| editingDidEndOnExit | UITextField의 편집상태에서 키보드의 return 키를 터치했을 때 발생하는 이벤트| UIControlEvents.editingDidEndOnExit  
+| allTouchEvents | 모든 터치 이벤트 | UIControlEvents.allTouchEvents|  
+| allEditingEvents | UITextField에서 편집작업의 이벤트 | UIControlEvents.allEditingEvents
+| applicationReserved | 각각의 애플리케이션에서 프로그래머가 임의로 지정할 수 있는 이벤트 값의 범위| UIControlEvents.applicationReserved
 | systemReserved| 프레임워크 내에서 사용하는 예약된 이벤트 값의 범위| UIControlEvents.systemReserved
 | allEvents| 시스템 이벤트를 포함한 모든 이벤트| UIControlEvents.allEvents
 |===
@@ -65,17 +65,15 @@ image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/photoframe-t
 * strong을 쓰는 경우는 `outlet` 자체가 참조하고 있는 객체가 *소유 관계* 일 때
 
 ===== IBAction에서 여러가지 이벤트 설정할 수 있음
-* UIControl을 상속받은 다양한 UI요소가 존재하며 그런 컨트롤 객체에 발생한 다양한 이벤트 종류를 특정 액션 메서드에 연결할 수 있음
+* UIControl을 상속받은 다양한 UI요소가 존재하며 그런 컨트롤 객체에서 발생한 다양한 이벤트 종류를 특정 액션 메서드에 연결할 수 있음
 
 image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/multiple-event.png[40%, 40%]
 
 === 참고
 * https://developer.apple.com/documentation/appkit/constants/interface_builder_constants/iboutlet[IBOutlet]
 * https://developer.apple.com/documentation/appkit/constants/interface_builder_constants?language=objc[Interface Builder Constants]
-* https://soooprmx.com/archives/4486[뷰 컨트롤러 아웃렛과 액션]
 * https://stackoverflow.com/questions/9344378/how-to-get-event-from-ibaction-method[How to get event from IBAction method]
 * https://developer.apple.com/documentation/uikit/uicontrolevents[UIControlEvents]
 * https://developer.apple.com/documentation/uikit/uicontrol[UIControl]
 * https://developer.apple.com/documentation/uikit/uievent[UIEvent]
-* https://help.apple.com/xcode/mac/current/#/devc06f7ee11[Add an outlet connection to send a message to a UI object]
 * https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Target-Action/Target-Action.html[Target-Action]

@@ -8,7 +8,7 @@
 * 디버거
 * XCode와 관련된 것은 특히 디버깅은 항상 시간이 날때마다 의식적으로 연습해야 함
 
-image:./image/xcode-1.png[]
+image:./images/xcode-1.png[]
 
 ===== 영역
 . 네비게이터 영역
@@ -36,7 +36,7 @@ image:./image/xcode-1.png[]
 ** 인터페이스 객체
 ** 미디어
 
-image:./image/xcode-2.png[]
+image:./images/xcode-2.png[]
 
 === XCode Concept
 
@@ -51,7 +51,7 @@ image:./image/xcode-2.png[]
 * SW Products를 위한 모든 파일, 리소스, 정보 포함(= 모든 소스 파일)
 * Sources, Groups, Project-level Build Config, Targets, Excutable Environments
 
-image:./image/project-target.png[]
+image:./images/project-target.png[]
 
 ===== Workspace
 * Projects 그룹, 관련된 문서들
@@ -76,9 +76,9 @@ image:./image/project-target.png[]
 * 여러 개 프로젝트가 있을 수 있음
 
 ===== 워크스페이스 안에 프로젝트 A, B가 있고 정해놓은 Scheme에 따라 Target 범위가 설정됨
-image:./image/workspace.png[]
+image:./images/workspace.png[]
 
-image:./image/scheme.png[]
+image:./images/scheme.png[]
 
 === Debugging Tip => Breakpoint Action, Behaviors 
 
@@ -88,7 +88,7 @@ image:./image/scheme.png[]
 * Options(선택사항)
 * *Log Message. print 찍을 필요 없음. 디버깅 도구를 활용하자. print 함수를 소스에서 넣지 말자!*
 
-image:./image/breakpoint-1.png[]
+image:./images/breakpoint-1.png[]
 
 ===== Exception Breakpoint
 * 프로젝트 전체 범위
@@ -96,7 +96,7 @@ image:./image/breakpoint-1.png[]
 * C++, Objective-C 형태
 * *예외처리 동작 설정 가능*
 
-image:./image/breakpoint-2.png[]
+image:./images/breakpoint-2.png[]
 
 ===== Symbolic Breakpoint
 * 소스 코드의 심벌 이름에 설정 
@@ -104,12 +104,12 @@ image:./image/breakpoint-2.png[]
 * 지정 모듈(라이브러리) 지정
 * Apple이나 다른 모듈에서 만든 소스를 확인할 수 없어서 디버깅을 걸지 못할 때 동작이 원하는 부분에 멈추게 하기 위해서 쓰는 부분임
  
-image:./image/breakpoint-3.png[]
+image:./images/breakpoint-3.png[]
 
 ===== Behaviors
 * 빌드, 테스트 등 동작 뒤에 커스텀 명령어를 만들 수 있고 다른 동작을 실행시킬 수 있도록 설정할 수 있음
 
-image:./image/behaviors.png[]
+image:./images/behaviors.png[]
 
 === Debugging Tips
 
@@ -125,7 +125,7 @@ image:./image/behaviors.png[]
 ===== Edit Scheme ... -> Run -> Diagnostics
 * 단축키 => `Command + Shift + ,`
 
-image:./image/diagnostics.png[]
+image:./images/diagnostics.png[]
 
 ===== Runtime Sanitization
 * Address Sanitizer
@@ -149,7 +149,7 @@ image:./image/diagnostics.png[]
 * 개인적으로 `po` 보다 `expr` 를 자주 씀:)
 * Mac, XCode에서 전체적으로 쓸 수 있는 디버거 도구
 
-image:./image/lldb-framework.png[]
+image:./images/lldb-framework.png[]
 
 ===== Quicklook
 

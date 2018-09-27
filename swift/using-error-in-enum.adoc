@@ -1,6 +1,6 @@
 = Enum에서 Error 사용하기
 
-===== 잘못된 예제
+===== Q.
 
 [source, swift]
 ----
@@ -11,7 +11,7 @@ enum Error: String, Error {
 }
 ----
 
-===== 답변
+===== A.
 * rawValue로 Error를 호출하는 것이 아니라
 * 명확한 이름으로 
 * 추가적인 세부 정보는 이름만으로 충분함

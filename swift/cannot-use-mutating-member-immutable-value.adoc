@@ -1,6 +1,6 @@
 = Cannot use mutating member on immutable value: function call returns immutable value
 
-===== 문제 
+===== Q. 
 
 [source, swift]
 ----
@@ -11,7 +11,8 @@ let jsonData = try JSONScanner().makeValues(value).map({ (s: String) -> JSONData
 })
 ----
 
-===== 해결
+===== A.
+* Mutable Data, Immutable Data를 분리하도록 컴파일에서 에러 발생시킴
 
 [source, swift]
 ----
@@ -21,6 +22,6 @@ let jsonData = try jsonScanner.makeValues(value).map({ (s: String) -> JSONData i
 })
 ----
 
-===== 정리
-* Mutable Data, Immutable Data를 분리하도록 컴파일에서 에러 발생시킴
+
+
 

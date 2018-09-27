@@ -39,7 +39,7 @@ func testJoinButton_push() {
 * Multiplier의 비율은 정수로 계산하는 것이 좋음
 * Priority가 1000은 필수 제약 조건, 1000보다 작으면 점선으로 표시되며 선택적 제약 조건
 
-image:./image/auto-layout-14.png[45%, 45%]
+image:./images/auto-layout-14.png[45%, 45%]
 
 [source, swift]
 ----

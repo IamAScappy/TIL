@@ -30,8 +30,8 @@
 * 추가적인 포인트 컬러 
 * 장식적인 효과
 
-image::./image/icon-example-1.png[]
+image::./images/icon-example-1.png[]
 
 ===== 연습
 
-image:./image/weather-icons.png[]
+image:./images/weather-icons.png[]

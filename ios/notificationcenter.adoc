@@ -1,34 +1,55 @@
 = NotificationCenter
 
-=== NotificationCenter
-
 ===== 구성
 
-image:./image/nsnotification.png[]
+image:./images/nsnotification.png[]
 
-image:./image/notification-2.png[]
+image:./images/notification-2.png[]
 
-image:./image/notification-3.png[]
+image:./images/notification-3.png[]
 
-=== Adding and Removing Notification Observers
-
-===== addObserver
+===== 구현
 
 [source, swift]
 ----
-func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?)
-func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol
-----
+class ViewController: UIViewController {
+    // ...
 
-===== removeObserver
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-[source, swift]
-----
-func removeObserver(_ observer: Any)
-func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)
-----
+        setup()
+        // ...
+    }
+    
+    fileprivate func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView(notification:)), name: Notification.Name.storeList, object: nil)
+    }
 
-=== 추가 설명
+    // ...
+
+    @objc fileprivate func refreshTableView(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+        let list = userInfo[Constants.list] as? [StoreItems] else { return }
+
+        self.storeDataManager = StoreDataManager(list: list)    
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+class StoreDataManager {
+    private var list: [StoreItems] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .storeList, object: nil, userInfo: [Constants.list: list])
+        }
+    }
+
+    // ...
+}
+----
 
 ===== @objc?
 * Swift API에서 Objective-C가 필요할 때가 있음. @objc를 사용하면 클래스, 프로퍼티, 메서드, 열거형을 Objective-C 코드로 사용할 수 있음

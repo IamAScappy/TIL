@@ -29,7 +29,7 @@
 * 프로세서가 이해하기 편하지만 사람이 작성하기 불편함
 * 프로세서가 이해하고 처리할 수 있는 2진수로 표현된 명령
 
-image:./image/compile.png[]
+image:./images/compile.png[]
 
 ===== 시뮬레이터와 에뮬레이터 차이
 * 시뮬레이터 => Host 아키텍처로 돌아감
@@ -132,7 +132,7 @@ sum:
 
 ===== Java Compile
 
-image:./image/java-compile.png[]
+image:./images/java-compile.png[]
 
 === Running a program
 
@@ -156,7 +156,7 @@ image:./image/java-compile.png[]
 ** 포인터 변수 => CPU가 사용하는 비트
 ** Heap => 인스턴스의 크기
 
-image:./image/stack-variable-heap-object.png[]
+image:./images/stack-variable-heap-object.png[]
 
 === CPU
 * Memory => 명령어 한줄씩 복사함

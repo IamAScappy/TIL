@@ -13,7 +13,7 @@
 * 저수준 모듈
 ** 고수준 모듈의 기능을 구현하기 위해 필요한 하위 기능을 실제 구현
 
-image:./image/dip-1.png[]
+image:./images/dip-1.png[]
 
 * 고수준이 저수준에 직접 의존하면?
 ** 저수준 모듈 변경하면 고수준 모듈에 영향을 줌
@@ -72,7 +72,7 @@ struct SentryCollector: ExceptionCollector {
 }
 ----
 
-image:./image/dip-2.png[]
+image:./images/dip-2.png[]
 
 ===== 부지런히 추상화 노력이 필요함
 * 처음부터 바로 좋은 설계가 나오지 않음
@@ -80,7 +80,7 @@ image:./image/dip-2.png[]
 
 ===== 연습
 
-image:./image/dip-3.png[]
+image:./images/dip-3.png[]
 
 [source, swift]
 ----

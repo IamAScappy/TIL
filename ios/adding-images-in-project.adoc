@@ -1,17 +1,35 @@
 = 프로젝트에 이미지 추가하기
 
-===== 에셋 카탈로그
+=== 에셋 카탈로그
+
+===== 개념
 * 프로젝트 생성 시, _Asstes.xcassets_ 폴더가 자동으로 생성됨
 * 어플리케이션에서 사용될 다양한 에셋을 관리함
 
-===== 에셋 카탈로그 구성
+===== 구성
 * Groups
 * Assets => 한 가지 타입의 관련된 속성과 파일들의 집합
 * Asset Name => 에셋에 접근하기 위해 개발자가 정의한 문자열
 * Asset Files => 선택한 에셋의 데이터 파일 또는 리소스
 * Attributes
 
-===== 에셋 카탈로그 타입
+===== 타입
+* XCode 9에서부터 Color도 추가됨
+
+[source, swift]
+----
+extension UIColor {
+    @objc class var myBlack: UIColor {
+        if #available(iOS 11.0, *) {
+            return UIColor(named: "Black")!
+        } else {
+            return UIColor(hexString: "303239")!
+        }
+    }
+    
+    // ...
+}
+----
 
 |===
 | 타입 | 확장자 | 설명
@@ -25,12 +43,44 @@
 ===== 이미지 추가하기
 * 하단 메뉴에서 + 선택 -> New Image Set -> 삽입하려는 이미지를 에셋 파일에 드래그하여 옮김
 
-===== App Thinning, Slicing
-* `App thinning -Asset slicing — How to set images specific to device? 링크 참고`
-* `App Thinning - WWDC2015 링크 참고`
+=== App Thinning
 
-===== 참고
+===== 개념
+* 앱스토어와 운영체제에서 iOS와 watchOS 애플리케이션을 사용자의 기기에 맞거나 꼭 필요한 내용만 골라 전달하는 방식
+* `App Thinning -Asset slicing — How to set images specific to device? 링크 참고`
+* `App Thinning - WWDC2015 링크 참고`
+* `What is app thinning? 링크 참고`
+
+===== 기법
+* Slicing
+** 각 기기에 맞춰 여러 가지 다른 번들을 제공하는 방식
+** 개발자는 기존에 하던 방식대로 iTunes Connect에 풀버전의 번들을 업로드하면 되고, 앱스토어가 애플리케이션이 지원하는 기기에 따라 여러 형태의 번들을 생성함
+** 이미지 리소스는 해상도에 따라 분리되고, GPU 리소스는 기기에서 지원하는지에 따라 번들에 나뉨
+** 슬라이스된 iOS 애플리케이션은 최신 버전의 아이튠스와 iOS 9.0 버전 이상의 기기만 지원함
+
+* 비트코드
+** 컴파일된 프로그램의 중간 형태, 아이튠스 커넥트에 업로드한 애플리케이션이 비트코드라면 앱스토어에서 링크되고 컴파일됨
+** iOS 프로젝트에 기본으로 비트코드가 설정되어 있지만, 선택사항임. iOS 애플리케이션을 비트코인으로 제공하려면 번들에 속한 프레임워크와 애플리케이션 모두 비트코인을 지원해야 하며 watchOS는 비트코드가 선택사항이 아닌 필수임
+
+* On-Demand Resources
+** 이미지 또는 사운드와 같은 리소스를 키워드로 태그해 놓고 태그를 통해 요청하는 방식
+** 앱스토어는 요청에 따라 리소스를 애플 서버에서 관리하거나 다운로드함
+** 에를 들어 게임은 레벨이 올라갈 때마다 새로운 리소스를 요청하는데, 앱 내에서 구매하는 아이템은 구매했을 때만 리소스가 다운로드하면 됨
+** 앱스토어는 온디맨드 리소스를 슬라이싱에서 설명한 것처럼 기기별로 나누어 제공하며, 온디맨드 리소스는 백그라운드에서 사용자 모르게 동작함
+** `On-Demand Resources Guide 링크 참고`
+
+|===
+| 구분 | iOS | watchOS
+| 슬라이싱 | O | X
+| 비트코드 | O | O
+| 온디멘드 리소스 | O | X
+|===
+
+=== 참고
 * https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/AssetTypes.html[Asset Catalog Format Reference]
 * https://help.apple.com/xcode/mac/current/#/dev10510b1f7[Xcode Help]
 * https://developer.apple.com/videos/play/wwdc2015/404/[App Thinning - WWDC2015]
 * https://medium.com/@anilmanukonda/app-thinning-asset-slicing-how-to-set-images-specific-to-device-dcdb887254e3[App thinning -Asset slicing — How to set images specific to device?]
+* https://medium.com/bobo-shone/how-to-use-named-color-in-xcode-9-d7149d270a16[How to use Named Color in Xcode 9]
+* https://help.apple.com/xcode/mac/current/#/devbbdc5ce4f[What is app thinning?]
+* https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html[On-Demand Resources Guide]

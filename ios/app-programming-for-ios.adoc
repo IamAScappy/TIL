@@ -7,7 +7,7 @@
 . Expected App Behaviors => 앱 구동 및 배포에 필요한 리소스, 개인정보 보호, 앱 현지화 가이드 라인에 대한 설명
 . The App Life Cycle => 앱 기본 작동 구조 및 생명 주기에 대한 설명
 . Backgorund Excution => Background 실행과 권한 요청, Background 이동할 때 지켜야 할 지침에 대한 설명
-. Stragegies for Handling App Stage Transitions => 앱 실행 상태 변화에 따른 역할과 메서드 설명
+. Strategies for Handling App State Transitions => 앱 실행 상태 변화에 따른 역할과 메서드 설명
 . Strategies for Handling App Features => 여러 iOS 버전 대응하기, 앱 상태 보존, 복원하기
 . Inter-App Communication => AirDrop 등 앱 간 통신 방법, 데이터 송/수신 방법에 대한 설명
 . Performance Tips => 앱 성능 향상에 대한 설명
@@ -124,7 +124,7 @@
 * MVC 패턴은 앱의 데이터와 비즈니스 로직을 시각적인 표현으로부터 분리함
 * MVC 패턴은 화면 크기가 다른 여러 장치에서 실행할 수 있는 앱을 만들 수 있도록 중요한 역할을 함
 
-image:./image/key-objects-in-ios-app.png[]
+image:./images/key-objects-in-ios-app.png[]
 
 ===== The Role of Objects in an iOS App
 * `UIApplication` 객체
@@ -163,7 +163,7 @@ image:./image/key-objects-in-ios-app.png[]
 * 이를 사용해 이벤트 처리하고 UI를 업데이트함
 * Main Run Loop는 앱의 Main Thread에서 실행되고 _사용자 이벤트가 입력되면 차례대로 처리함_
 
-image:./image/main-run-loop.png[]
+image:./images/main-run-loop.png[]
 
 * iOS에서 다양한 이벤트를 제공함
 * 대부분 이벤트는 앱의 Main Run Loop를 통해 전달되지만, 일부 이벤트는 그렇지 않음
@@ -198,7 +198,7 @@ image:./image/main-run-loop.png[]
 ** _Background_ => 앱이 Background에서 실행되고 있는 상태. `Background Execution 참고`
 ** _Suspended_ => Background에 있는 앱이 더 실행하지 않고 정지한 상태
 
-image:./image/state-change-in-ios-app.png[]
+image:./images/state-change-in-ios-app.png[]
 
 * 대부분 상태 전환은 App Delegate의 메서드를 호출함. 상태 변화에 대해 대응할 수 있음
 ** `application:willFinishLaunchingWithOptions` => 앱에서 처음으로 코드를 실행함
@@ -223,7 +223,7 @@ image:./image/state-change-in-ios-app.png[]
 ** 오래 걸리는 작업은 Background Thread에서 수행해야 함. 네트워크 접근, 파일 접근, 대용량 데이터를 처리할 때 GCD를 이용하여 비동기로 수행해야 함
 ** Main Thread에서 사용자 인터페이스 설정과 관련한 작업만 해야 함. 이외에 작업은 비동기적으로 실행해야 하며 처리가 완료되는 즉시 사용자에게 보여줘야 함
 
-=== Background Execution
+=== Backgorund Excution
 * 사용자가 앱을 사용하지 않으면 시스템은 앱을 Background 상태로 전환함
 * 일반적으로 Background 상태는 Suspend(정지) 상태로 이어짐
 * 앱을 정지시키는 일은 배터리 수명을 증가하는 일이며 다른 앱이 Foreground에서 실행될 수 있는 리소스를 제공함
@@ -396,13 +396,13 @@ image:./image/state-change-in-ios-app.png[]
 * 기본 main 함수는 XCode 프로젝트와 UIKit 프레임워크를 제어함. UIKit 프레임워크는 앱을 초기화하고 실행 준비함
 * 아래 이미지는 App Delegate의 메서드를 포함하고 Foreground로 시작할 때 발생하는 이벤트 순서를 보여줌
 
-image:./image/launching-app-into-foreground.png[]
+image:./images/launching-app-into-foreground.png[]
 
 * Background에서 앱이 시작할 때(특정 유형의 Background 이벤트를 처리하기 위해) 두 번째 이미지처럼 약간 달라짐
 * 큰 차이점은 앱이 Active 상태 대신 이벤트를 처리하기 위해 Background 상태로 들어가고 그 이후 정지될 수 있음
 * Background로 실행하면 UI 파일은 로드하지만 화면에 표시하지 않음
 
-image:./image/launching-app-into-background.png[]
+image:./images/launching-app-into-background.png[]
 
 * Foreground나 Backgorund로 시작되는 여부는 _UIApplication의 applicationState_ 프로퍼티로 확인함
 ** Foreground에서 시작하면 이 프로퍼티가 _UIApplicationStateInactive의 값_ 을 가지고 있음
@@ -454,7 +454,7 @@ image:./image/launching-app-into-background.png[]
 * 이 시점에서 앱은 Active 상태로 돌아가거나 Background 상태로 이동함
 * 아래 이미지는 알림 기반의 중단 상황이 발생하면 이벤트 흐름을 보여줌
 
-image:./image/handling-alert-based-interruptions.png[]
+image:./images/handling-alert-based-interruptions.png[]
 
 ==== What to Do When Your App Enters the Foreground
 * Foreground로 돌아올 때 Background 상태로 이동하면서 중지한 작업을 다시 시작할 수 있음
@@ -462,7 +462,7 @@ image:./image/handling-alert-based-interruptions.png[]
 * _applicationDidBecomeActive_ 메서드는 앱 런칭때와 같은 작업의 수행을 계속해야 함
 * _UIApplicationWillEnterForegroundNotification_ 알림은 앱이 Foreground로 다시 들어올 때 추적할 수 있음. 앱의 객체는 기본 알림 센터를 사용해 알림을 등록할 수 있음
 
-image:./image/app-enter-foreground.png[]
+image:./images/app-enter-foreground.png[]
 
 ===== Be Prepared to Process Queued Notifications
 * 정지 상태의 앱은 Foreground나 Background로 돌아갈 때 Queue에 있는 알림을 처리할 준비가 되어있어야 함
@@ -548,7 +548,7 @@ image:./image/app-enter-foreground.png[]
 ** 디스크에서 다시 로드할 수 있는 대용량 미디어나 데이터 파일
 ** 앱에 당장 필요하지 않으며 다시 쉽게 만들 수 있는 모든 객체
 
-image:./image/app_bg_life_cycle.png[]
+image:./images/app-bg-life-cycle.png[]
 
 
 === 참고

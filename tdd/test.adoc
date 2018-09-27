@@ -47,7 +47,7 @@
 * 현재 하나로 바라보던 공학분야에서 여러 공학분야로 나눠지고 있음
 * System Test 이 후, 인수 테스트도 존재함
 
-image:./image/sw-dev-process.png[]
+image:./images/sw-dev-process.png[]
 
 === 단계별 산출물
 
@@ -75,7 +75,7 @@ image:./image/sw-dev-process.png[]
 
 ===== V패턴
 
-image::./image/v-pattern.png[]
+image::./images/v-pattern.png[]
 
 ===== 디버깅 비용
 * Waterfall로 진행하게 되면 요구사항이 잘못된 것이

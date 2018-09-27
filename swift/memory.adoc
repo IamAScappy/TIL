@@ -81,7 +81,7 @@ print(myMilk.amount)
 * 참조할 때 해당 메모리 주소에 화살표가 생긴다고 생각하면 됨
 * Stack이 위에서 아래로 쌓이고 Heap이 아래에서 위로 쌓임. 더 쌓일 수 없을 때 오버플로가 발생함
 
-image::./image/os-process-memory-model.png[]
+image::./images/os-process-memory-model.png[]
 
 ===== 추가 정리
 * NSPen 메모리 주소는 Heap에 저장되어 있으며 myPen의 변수는 Stack에 NSPen의 메모리 주소 값을 저장함
@@ -211,7 +211,7 @@ robot1 = nil
 robot2 = nil
 ----
     
-image::./image/strong.png[]
+image::./images/strong.png[]
 
 ===== 약한 참조
 * 순환 참조 문제 때문에 `weak` 생김
@@ -258,8 +258,8 @@ robot2 = nil
 ** 첫 번째, 이미지는 Root View와 Child View가 소유하는 관계
 ** 두 번째, 이미지는 Table View와 Cell의 관계
 
-image:./image/weak.png[45%, 45%]
-image:./image/root-view-buttons-relationship.png[45%, 45%]
+image:./images/weak.png[45%, 45%]
+image:./images/root-view-buttons-relationship.png[45%, 45%]
 
 ===== unowned 미소유 참조
 * `unowned` 을 사용하면 참조 카운트를 반영하지 않음. weak 키워드와 다르게 nil처리도 해주지 않음
@@ -303,7 +303,7 @@ john = nil
 * 클로저도 하나의 객체로 생각해야 함
 * 객체 안의 클로저가 self 값 캡처로 사용될 때 weak 또는 unowned 키워드를 사용함
 
-image::./image/closure-strong-reference.png[]
+image::./images/closure-strong-reference.png[]
 
 [source, swift]
 ----

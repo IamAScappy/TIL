@@ -32,7 +32,7 @@
 * Sketch
 * Xcode Interface Builder
 
-image::./image/from-prototype-to-storyboard.png[]
+image::./images/from-prototype-to-storyboard.png[]
 
 === Visualization
 

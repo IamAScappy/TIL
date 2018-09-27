@@ -15,4 +15,4 @@
 * 자신의 *솔루션* 
 * 캐주얼 및 아마추어 사진가를 위한 사용하기 쉬운 사진 편집, 정리, 공유 앱
 
-image::./image/photo-app.png[]
+image::./images/photo-app.png[]

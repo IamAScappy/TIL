@@ -92,7 +92,7 @@
 
 ===== Akka Life Cycle
 
-image::./image/akka-life-cycle.png[]
+image::./images/akka-life-cycle.png[]
 
 ===== AkkaHttp
 * 웹에서 비동기 처리하기 편함
@@ -108,7 +108,7 @@ image::./image/akka-life-cycle.png[]
 * Future 안에서 Actor가 변경 가능한 상태를 참조하는 것은 피해야 함
 * Actor는 반드시 Ask 함수의 반환 값으로 Future를 사용해야 되며, Future 결과를 pipe 패턴을 이용하여 Send 할 수 있음
 
-image::./image/actor-future.png[]
+image::./images/actor-future.png[]
 
 ===== Java Future와 비교
 * Java Future는 polling이 필요하며 블로킹은 get메서드를 사용해야 함

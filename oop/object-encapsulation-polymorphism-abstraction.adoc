@@ -828,7 +828,7 @@ public FileInfo copy(FileInfo fileInfo, CloudId to) {
 ===== 추상화하면 ?
 * DropBox, Box, SCloud, NCloud, DCloud -> CloudFileSystem
 
-image:./image/cloud-system-1.png[]
+image:./images/cloud-system-1.png[]
 
 [source, java]
 ----
@@ -948,7 +948,7 @@ public class NCloudFileSystem implements CloudFileSystem {
 * CloudFileManager가 바뀌지 않고 CloudFileManager가 사용하는 대상(CloudFileSystem)을 바꿀 수 있는 유연함을 얻음
 * 관련 코드가 한 곳에 모이는 장점을 얻을 수 있음
 
-image:./image/cloud-system-2.png[]
+image:./images/cloud-system-2.png[]
 
 ===== 이것이 바로 OCP
 * *CloudFileManager에 대한 수정은 닫혀있고 CloudFileManager가 사용하는 대상(CloudFileSystem)에 대한 확장은 열려 있음*

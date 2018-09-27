@@ -2,13 +2,13 @@
 
 === View Controller Container
 
-===== 정의
+===== 개념
 
-image:./image/view-controller-container.png[] 
+image:./images/view-controller-container.png[] 
 
-image:./image/view-controller-container-2.png[] 
+image:./images/view-controller-container-2.png[] 
 
-===== 정리
+===== 설명
 * 서로 다른 View에서 View만 추가하지 말고
 * SuperView, SubView의 View Controller가 다른 경우 View Controller도 관계를 만들어야 함 => Parent View Controller와 Child View Controller 관계로 만들어야 함
 ** Tab bar Controller, Navigation Controller
@@ -42,7 +42,7 @@ image:./image/view-controller-container-2.png[]
 ===== Subview 추가
 * 하위 View Controller에서 상위 View를 추가하면 안됨
 
-image:./image/addSubview.png[]
+image:./images/adding-subview.png[]
 
 ===== VC 계층과 View 계층 추가할 때
 * 부모 컨트롤러에서 _addChildViewController_ 호출
@@ -55,6 +55,67 @@ image:./image/addSubview.png[]
 * 자식 View에 대한 제약 제거
 * 자식 컨트롤러 Root View를 컨테이너에서 제거함
 * 자식 컨트롤러에서 _removeFromParentViwController_ 호출
+
+===== 구현
+
+[source, swift]
+----
+// BaseViewController
+class BaseViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  func addChildViewController(child: UIViewController) {
+    self.addChildViewController(child)
+    self.view.addSubview(child.view)
+    child.didMove(toParentViewController: self)
+  }
+  
+  func removeChildViewController(child: UIViewController) {
+    child.willMove(toParentViewController: nil)
+    child.view.removeFromSuperview()
+    child.removeFromParentViewController()
+  }
+}
+
+// TableauPilesViewController: BaseViewController를 상속받음
+// 하위 View Controller를 추가하고 삭제하는 부분은 setUpTablePilesView(), setUpTablePilesView() 참고
+class TableauPilesViewController: BaseViewController {
+  var tableauPilesViewModel: TableauPilesViewModel! {
+    didSet {
+      initialize()
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+}
+
+private extension TableauPilesViewController {
+  func initialize() {
+    removeAllViewControllers()
+    setUpTablePilesView()
+  }
+  
+  func removeAllViewControllers() {
+    childViewControllers.forEach { self.removeChildViewController(child: $0) }
+  }
+  
+  func setUpTablePilesView() {
+    var tablePileViewController = TableauPileViewController()
+    tableauPilesViewModel.setUp() { (cardViewModel, pileIndex, cardIndex) in
+      tablePileViewController.addView(pileIndex: pileIndex, cardIndex: cardIndex, with: cardViewModel)
+      self.addChildViewController(child: tablePileViewController)
+      
+      if pileIndex == cardIndex {
+        tablePileViewController = TableauPileViewController()
+      }
+    }
+  }
+}
+----
 
 ===== 자식 컨트롤러 사이 전환
 

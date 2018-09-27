@@ -25,7 +25,7 @@
 ** 서양인은 구체적인 속성이 하나라도 분류하려는 개체마다 똑같은 것이 있다면 같은 것으로 분류함
 * 속성 => 다른 사람들과 공통적으로 생각할 수 있도록 공통적인 특징을 뽑음 
 
-image:./image/ebs-object.png[]
+image:./images/ebs-object.png[]
 
 * 언어를 생각하는 방식
 ** 동양인은 일반적으로 동사로 세상을 봄
@@ -72,7 +72,7 @@ self --------> anyObject
 ** 객체가 무엇을 처리할지 알지 않아도 됨. 컴파일 단계에서 확인함
 ** 하지만, 그렇지 않은 언어도 있음
 
-image::./image/class-instance.png[클래스, 인스턴스]
+image::./images/class-instance.png[클래스, 인스턴스]
 
 === 구조체, 클래스
 
@@ -205,7 +205,7 @@ let chocoMilk1 = ChocoMilk()
 
 ===== 클래스 다형성
 
-image::./image/class-polymorphism.png[클래스 다형성]
+image::./images/class-polymorphism.png[클래스 다형성]
 
 [source, swift]
 ----
@@ -245,7 +245,7 @@ for x in animalArray {
 
 ===== 구조체는 다형성을 어떻게 사용할까?
 
-image::./image/struct-polymorphism.png[구조체 다형성]
+image::./images/struct-polymorphism.png[구조체 다형성]
 
 [source, swift]
 ----

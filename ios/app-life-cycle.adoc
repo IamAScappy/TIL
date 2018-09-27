@@ -2,31 +2,31 @@
 
 ===== 3가지 실행모드, 5가지 상태
 
-image:./image/excution-status.png[]
+image:./images/excution-status.png[]
 
 ===== Launching an app into the foreground 
 
-image:./image/launching-app-into-foreground.png[]
+image:./images/launching-app-into-foreground.png[]
 
 ===== Launching an app into the background
 
-image:./image/launching-app-into-background.png[]
+image:./images/launching-app-into-background.png[]
 
-===== App interruptions
+===== App Interruptions
 
-image:./image/handling-alert-based-interruptions.png[]
+image:./images/handling-alert-based-interruptions.png[]
 
-===== Background to foreground
+===== Background to Foreground
 
-image:./image/background-to-foreground.png[]
+image:./images/background-to-foreground.png[]
 
-===== Foreground to background
+===== Foreground to Background
 
-image:./image/foreground-to-background.png[]
+image:./images/foreground-to-background.png[]
 
 ===== Termination
 
-image:./image/termination.png[]
+image:./images/termination.png[]
 
 ===== 참고
 * https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming for iOS]

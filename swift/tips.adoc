@@ -1,4 +1,4 @@
-= TIps
+= Tips
 
 ===== 면접
 * http://www.toptal.com/swift/interview-questions[Swift 면접 질문]

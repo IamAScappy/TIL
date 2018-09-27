@@ -32,7 +32,7 @@
 * 가치
 ** 역할 모델을 제대로 설계할 사람이 없다면 기능을 최소한, 단순하게 짜야됨
 
-image::./image/persuasion.png[설득의 기준]
+image::./images/persuasion.png[설득의 기준]
 
 ===== 철학
 * 원리 => 원칙 => 가치로도 설득되지 않을 때, 철학까지 나오게 됨
@@ -121,7 +121,7 @@ image::./image/persuasion.png[설득의 기준]
 * 결합도 2단계 => 공통 결합
 ** 결합도 2단계인 공통 결합과 5단계 스탬프 결합의 단점을 커버하면서 개발하는 것이 좋음
 
-image::./image/client-interface.png[범주론]
+image::./images/client-interface.png[범주론]
 
 * 결합도 6단계 => 데이터 결합 
 ** 데이터 결합은 함수형 프로그래밍

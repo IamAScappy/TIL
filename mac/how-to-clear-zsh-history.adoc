@@ -1,10 +1,10 @@
 = ZSH Command 내역 지우기
 
-===== 문제
+===== Q.
 * iTerm History 정리하고 싶음
 * shell에서 쓰던 history -c가 작동하지 않음
 
-===== 해결
+===== A.
 * 생각해보니 shell가 아니라 zsh으로 설정하여 사용하고 있었음
 * 아래 명령어로 History가 깨끗해진 것을 확인할 수 있음
 

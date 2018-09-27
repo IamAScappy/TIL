@@ -11,9 +11,9 @@
 ===== 해상도 기본 단위
 * Pixel
 
-image:./image/ios-image-1.png[]
+image:./images/ios-image-1.png[]
 
-image:./image/ios-image-2.png[]
+image:./images/ios-image-2.png[]
 
 ===== 축적계수
 * 1배수, 2배수, 3배수

@@ -19,4 +19,4 @@
 
 ===== 연습
 
-image:./image/gui-design.png[]
+image:./images/gui-design.png[]

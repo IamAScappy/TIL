@@ -13,7 +13,7 @@
 * Primitive Obsession
 ** 예를 들어 전화번호를 확인할 경우, String으로 처리하는 부분을 클래스 타입으로 정의함
 
-image:./image/tdd-overview-1.jpg[]
+image:./images/tdd-overview-1.jpg[]
 
 ===== Backward Byicycle
 * 뇌 회로가 빨리 형성이 되어야 함. 일반적으로 한달 정도 걸림
@@ -78,9 +78,9 @@ image:./image/tdd-overview-1.jpg[]
 * 테스트 케이스는 얼마나 만들어야 할까?
 ** 경험을 해봐야 앎
 
-image:./image/tdd-overview-3.jpg[45%, 45%]
-image:./image/tdd-overview-4.jpg[45%, 45%]
-image:./image/tdd-overview-5.jpg[45%, 45%]
+image:./images/tdd-overview-3.jpg[45%, 45%]
+image:./images/tdd-overview-4.jpg[45%, 45%]
+image:./images/tdd-overview-5.jpg[45%, 45%]
 
 ===== 단위 테스트
 * Arrange(Given) => 데이터 준비
@@ -91,7 +91,7 @@ image:./image/tdd-overview-5.jpg[45%, 45%]
 
 ===== 단위 테스트와 TDD 차이점
 
-image:./image/tdd-overview-2.jpg[45%, 45%]
+image:./images/tdd-overview-2.jpg[45%, 45%]
 
 ===== 테스트 재정의하기
 * 시스템이 요구사항 대로 동작하는지를 테스트하는 것은 테스팅인가?
@@ -114,7 +114,7 @@ image:./image/tdd-overview-2.jpg[45%, 45%]
 * 코드 품질을 향상시키는 것을 생각할 때 코드 품질을 어떻게 나쁘게 하는 것인지 생각하는 것이 더 쉬움
 
 
-image:./image/tdd-overview-6.jpg[45%, 45%]
+image:./images/tdd-overview-6.jpg[45%, 45%]
 
 ===== ATDD
 * `ATDD 링크 참고`
@@ -123,12 +123,12 @@ image:./image/tdd-overview-6.jpg[45%, 45%]
 * Outside-inside approch
 * Inside-outside approch
 
-===== Tip
+===== Tips
 * IntelliJ
 ** Color Scheme > General > Line Coverage > Foreground 같은 색깔로 Background 설정하고 Foreground 선택 해제
 * 새로운 기능이 추가되면 함수, 새로운 타입이 추가된다면 계층 구조가 좋음
 
-image:./image/tdd-overview-7.jpg[45%, 45%]
+image:./images/tdd-overview-7.jpg[45%, 45%]
 
 * http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=671339[패턴을 활용한 리팩터링]
 * http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=27490110[테스트 주도 개발로 배우는 객체 지향 설계와 실천]

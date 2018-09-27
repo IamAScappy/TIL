@@ -1,7 +1,5 @@
 = Navigation Controller
 
-=== 개념
-
 ===== Navigation Controller
 * Container View Controller은 Navigation Stack 사용하여 다른 View Controller 관리함
 * Content View Controller
@@ -18,9 +16,9 @@
 * Navigation Bar 자체는 Navigation Controller가 관리하는 하나의 객체
 * Navigation Bar Title을 통해 현재 위치나 Root View Controller를 알 수 있음
 
-=== 구현
+===== 구현
 
-=== 참고
+===== 참고
 * https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/navigation/[HIG - Navigation]
 * https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html[View Controller Catalog for iOS]
 * https://developer.apple.com/documentation/uikit/uinavigationbar[UINavigationBar]

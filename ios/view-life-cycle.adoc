@@ -1,8 +1,0 @@
-= View Life Cycle
-
-image:./image/view-life-cycle.png[]
-
-image:./image/view-life-cycle-2.jpg[]
-
-===== 참고
-* https://rdkw.wordpress.com/2013/02/24/ios-uiviewcontroller-lifecycle/[iOS UIViewController Lifecycle]

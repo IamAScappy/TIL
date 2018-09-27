@@ -8,7 +8,6 @@
 * 3번째부터 위 과정을 반복함
 * 해당 주제를 공부하는 기간 내내 1개월, 1년 갖고 다니면서 개선함
 
-
 ===== 출처
 * https://www.youtube.com/watch?v=FrNqSLPaZLc[Learn Faster with The Feynman Technique - YouTube]
 * http://antilibrary.org/1442[파인만 테크닉 The Feynman Technique 으로 학습하기]

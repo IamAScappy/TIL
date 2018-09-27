@@ -1,27 +1,6 @@
-= Model-View-Controller
+= iOS MVC
 
-=== iOS를 위한 MVC
-
-image:./image/mvc-1.png[]
-
-===== Target-Action
-* _버튼이 눌리면 (타겟의) 이 메서드를 호출해 줘_
-* `func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControlEvents)`
-
-===== Notification
-* Observer Pattern
-
-image:./image/nsnotification.png[]
-
-
-===== Delegation
-* 사용자가 Return 키를 누르면 _UITextField가 UITextFieldDelegate에게 끝내도 되는건지 질문하고 UITextFieldDelegate가 답변을 줌_
-* 여러 클래스가 Delegation을 가지고 있음 
-** _will, did, should_
-
-image:./image/delegation.png[]
-
-=== MVC 역할
+== 역할
 
 ===== Model
 * 데이터
@@ -42,7 +21,7 @@ image:./image/delegation.png[]
 * 특이한 작업 => 객체 간의 연결을 잇거나 기타 설정 작업을 수행
 * 소유한 객체의 생명 주기 관리
 
-===== MVC 구현할 때 Tips
+=== MVC 구현할 때 Tips
 
 ===== Model 클래스 구현할 때, 다음 내용 고려해야 함
 * 인스턴스 변수
@@ -68,9 +47,4 @@ image:./image/delegation.png[]
 ** 모델끼리 직접적인 양방향 데이터 전송을 하면 안됨
 ** Controller를 건너뛰면 안됨
 
-image:./image/mvc-2.png[]
-
-=== 참고
-* https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html[Cocoa Core Competencies - MVC]
-* https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html[Concepts in Objective-C Programming]
-* https://www.edwith.org/boostcourse-ios/lecture/16877/[부스트코스: Model-View-Controller]
+image:./images/mvc-2.png[]

@@ -2,7 +2,7 @@
 
 ===== 필기
 
-image:./image/sync-async-block-non-block.jpg[]
+image:./images/sync-async-block-non-block.jpg[]
 
 ===== 예제
 * ReadLine 함수는 Sync 함수

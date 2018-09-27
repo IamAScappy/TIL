@@ -82,7 +82,7 @@ extension Collection {
 ** Collection 중간의 요소를 다른 것으로 교체할 수 있는 기능을 제공함
 * 무작정 도입하기 보다 세부적이고 특수한 기능이 필요할 때 프로토콜 상속을 구현하는 것이 좋음
 
-image:./image/collection-protocol-hierarchy.png[]
+image:./images/collection-protocol-hierarchy.png[]
 
 ===== Conditional Conformance
 * `Conditional Conformance in the Standard Library, Swift 4.2 변경사항 링크 참고`
@@ -154,8 +154,8 @@ extension CountableRange: Collection, BidirectionalCollection, RandomAccessColle
 typealias CountableRange<Bound: Strideable> = Range<Bound> where Bound.Stride: SignedInteger
 ----
 
-image:./image/slice-swift-4.2.png[45%, 45%]
-image:./image/range-swift-4.2.png[45%, 45%]
+image:./images/slice-swift-4.2.png[45%, 45%]
+image:./images/range-swift-4.2.png[45%, 45%]
 
 ===== Tips
 * Write an extension, have it conform to one protocol, so you know what that extension is for, you know its meaning

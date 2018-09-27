@@ -26,14 +26,14 @@
 * 상태 전이 함수
 ** 화살표
 
-image::./image/finite-automata-graph.png[]
+image::./images/finite-automata-graph.png[]
 
 ===== 문자열 인식
 * "top" 확인
 ** "t" 이면 "o"로 상태 전이, 아니라면 Nothing
 ** "to" 이면 "p"로 상태 전이, 아니라면 Nothing
 
-image::./image/top-state.png[]
+image::./images/top-state.png[]
 
 ===== 유한한 집합 예시
 * 알파벳
@@ -61,7 +61,7 @@ image::./image/top-state.png[]
 * 죄종상태
 ** 이중 동그라미
 
-image::./image/dfa-graph.png[]
+image::./images/dfa-graph.png[]
 
 ===== DFA 전이표
 * 그림으로 관리하기 힘들어지면서 표로 만듬
@@ -89,12 +89,12 @@ image::./image/dfa-graph.png[]
 * NFA
 ** 그래프 단순
 
-image::./image/nfa-web-ebay.png[]
+image::./images/nfa-web-ebay.png[]
 
 * DFA 
 ** 그래프 복잡
 
-image::./image/dfa-web-ebay.png[]
+image::./images/dfa-web-ebay.png[]
 
 ===== 한글 조합 오토마타
 * DFA

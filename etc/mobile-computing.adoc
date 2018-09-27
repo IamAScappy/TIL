@@ -10,7 +10,7 @@
 * 인터넷이 연결하고 있는 시대
 ** 점점 Connectivity가 늘어나고 있음
 
-image:./image/mobile-computing.png[]
+image:./images/mobile-computing.png[]
 
 ===== 앨런 케이
 * `앨런 케이 링크 참고`

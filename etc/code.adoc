@@ -43,7 +43,7 @@
 * 이진수 형식으로 계산함
 * 예를 들어 알파벳, 한글 같은 아날로그 문자도 이진수 숫자로 바꿔서 계산함 => ASCII 코드, 유니코드
 
-image:./image/data.png[]
+image:./images/data.png[]
 
 ===== 비디오 카드와 모니터
 * 320 x 200 해상도
@@ -52,4 +52,4 @@ image:./image/data.png[]
 * 1000자 표현 가능
 * TV나 컴퓨터 화면 출력도 정해진 코드를 사용함
 
-image:./image/video-card.png[]
+image:./images/video-card.png[]

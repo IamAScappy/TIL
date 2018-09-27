@@ -5,7 +5,7 @@
 [source, swift]
 ----
 var number = 5      // 값
-var string = "JK"
+var string = "HJ"
 
 type(of: number)    // Int.Type (MetaType => 상위의 타입, 타입의 타입)
 type(of: string)    // String.Type

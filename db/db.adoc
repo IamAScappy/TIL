@@ -17,7 +17,7 @@
 
 > The database management system (DBMS), is a computer software program that is designed as the means of **managing all databases that are currently installed on a system hard drive or network**.
 
-image:./image/dbms-os-database.png[]
+image:./images/dbms-os-database.png[]
 
 === Data, Information, Knowledge?
 
@@ -39,7 +39,7 @@ image:./image/dbms-os-database.png[]
 
 > Knowledge is a combination of information, experience and insight that may benefit the individual or the organisation.
 
-image:./image/data-information-knowledge.png[]
+image:./images/data-information-knowledge.png[]
 
 === RDBMS
 

@@ -277,7 +277,6 @@ $ brew install jetbrains-toolbox
 ===== Visual Studio Code
 * https://github.com/yuaming/wiki/blob/master/vscode/settings.adoc[VSCode 설정]
 
-
 === 참고
 * https://subicura.com/2017/11/22/mac-os-development-environment-setup.html[본격 macOS에 개발 환경 구축하기]
 * 위 내용을 많이 참고하였으며 이 외 개인적으로 사용하는 프로그램, 플러그인 추가함
