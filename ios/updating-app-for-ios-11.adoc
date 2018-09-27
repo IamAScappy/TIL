@@ -1,0 +1,52 @@
+= Updating Your App for iOS 11
+
+===== UIBarItem
+* `UIBarItem.title`
+* `UIBarItem.image`
+* `UIBarItem.landscapeImagePhone`
+* `UIBarItem.largeContentSizeImage => 저시력자용 큰 이미지`
+*  이미지 파일이 아니더라도 PDF 파일도 사용할 수 있음
+** Image Set에서 Resizing > Preserve Vector Data 활성화
+
+===== 큰 타이틀바 만들기
+* `navigationBar.prefersLargeTitles = true`
+
+===== 검색바
+* `navigationItem.searchController`
+* `navigationItem.hidesSearchBarWhenScrolling`
+
+===== directionalLayoutMargins
+* iOS 11에서는 directionalLayoutMargins가 새로 생겼으며, layoutMargins 대신 사용하길 권장
+* layoutMargins는 left, right 속성을 가지지만
+* directionalLayoutMargins은 leading, tralling 속성을 가짐. systemMinimumLayoutMargins 기준으로 동작함
+* `Directional => Leading, Trailing를 의미함`
+* directionalLayoutMargins, layoutMargins는 View 속성
+* systemMinimumLayoutMargins는 ViewController 속성
+
+===== Safe Area 
+* Safe Area => 다른 디자인 요소가 현재 뷰를 침범하지 않는 영역
+* `UIViewController.addtionalSafeAreaInsets` 을 통해 바 영역 부분을 커스텀할 수 있음. 이 메서드가 호출되면 `UIView.safeAreaInsetsDidChange(), UIViewController.viewSafeAreaInsetsDidChange()` 변경 여부를 알 수 있음
+
+===== Table View
+* UITableViewCell, UITableViewHeaderFooterView의 contentView 는 항상 Safe Area 안에 있음. 반드시 contentView를 사용해야 함
+* TableView의 Header, Footer, Table Section의 Header, Footer 모두 다 UITableViewHeaderFooterView를 사용해야 함
+
+[source, swift]
+----
+// iOS 11 미만
+tableView.separatorInset = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
+
+// iOS 11 이상
+tableView.separatorInsetReference = .fromAutomaticInsets
+
+public enum UITableViewSeparatorInsetReference: Int {
+    // The value set to the separatorInset property is interpreted as an offset from the edges of the cell.
+    case fromCellEdges
+
+    // The value set to the separatorInset property is interpreted as an offset from the automatic separator insets.
+    case fromAutomaticInsets
+}
+----
+
+===== 참고
+* https://developer.apple.com/videos/play/wwdc2017/204/[Updating Your App for iOS 11]

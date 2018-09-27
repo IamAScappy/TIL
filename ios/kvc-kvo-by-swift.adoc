@@ -3,12 +3,76 @@
 === KVC
 
 ===== 개념
-* 어플리케이션이 정보를 의미하는 문자열(또는 키)를 사용하여 간접적으로 객체의 속성값을 접근하는 매커니즘
+* 객체의 값을 직접 가져오거나 수정하지 않고, Key 또는 Key Path 를 이용해서 간접적으로 데이터를 가져오거나 수정하는 방법
+* Core Data 나 바인딩, 스크립팅 등을 지원하기 위한 필수 기술 중 하나
 
 ===== 특징
 * 키가 되는 문자열은 런타임시 결정됨
 * 소스 코드가 간결해지면서 유지보수도 쉬워짐
 * 클래스간 의존성이 낮아짐
+
+[source, swift]
+----
+// Swift 3
+@objcMembers class Kid: NSObject {
+    dynamic var nickname: String = ""
+    dynamic var age: Double = 0.0
+    dynamic var bestFriend: Kid? = nil
+    dynamic var friends: [Kid] = []
+}
+
+let ben = Kid(nickname: "Benji", age: 5.5)
+
+let kidsNameKeyPath = #keyPath(Kid.nickname)
+
+let name = ben.valueForKeyPath(kidsNameKeyPath)
+ben.setValue("Ben", forKeyPath: kidsNameKeyPath)
+
+
+// Swift 4
+// - class 가 NSObject의 Subclass 일 필요도 없고 @objc 와 dynamic 키워드도 필요없음
+class Kid {
+    var nickname: String = ""
+    var age: Double = 0.0
+    var bestFriend: Kid? = nil
+    var friends: [Kid] = []
+}
+
+let ben = Kid(nickname: "Benji", age: 5.5)
+let name = ben[keyPath: \Kid.nickname]
+
+// KeyPath<Root, Value>
+// - Kid: Root(Base Type)
+// - String: Value(Property Type)
+// - 타입 캐스팅이 필요하지 않음
+let keypathNickname: KeyPath<Kid, String> = \Kid.nicname
+ben[keyPath: \Kid.nickname] = "Ben"
+
+
+// KeyPath 더하기: appending
+struct BirthdayParty {
+    let celebrant: Kid
+    var theme: String
+    var attending: [Kid]
+}
+
+let bensParty = BirthdayParty(celebrant: ben, theme: "Construction", attending: [])
+let birthdayKid = bensParty[keyPath: \BirthdayParty.celebrant]
+
+bensParty[KeyPath: \BirthdayParty.theme] = "Pirate"
+
+\BirthdayParty.celebrant.appending(\Kid.age)
+
+\BirthdayParty.celebrant => KeyPath<BirthdayParty, Kid>
+\Kid.age                 => KeyPath<Kid, Double>
+
+
+\BirthdayParty.celebrant.age => KeyPath<BirthdayParty, Double>
+----
+
+===== 키워드
+* PartialKeyPath => Root Type이 같은 여러 개의 KeyPath를 하나의 타입으로 표현
+* Mutating KeyPath => WritableKeyPath, ReferenceWritableKeyPath
 
 === KVO
 
@@ -51,5 +115,4 @@ observer.didChangeValue(forKey: "contentSize")
 ----
 
 ===== 참고
-* http://minsone.github.io/mac/ios/ioskey-value-coding-key-value-observing[Key Value Coding, Key Value Observing]
-* http://seorenn.blogspot.com/2017/07/swift-4-kvo.html[Swift 4 에서 KVO ​사용해보기]
+* https://developer.apple.com/videos/play/wwdc2017/212/[What's New in Foundation]
