@@ -213,9 +213,9 @@ image:./images/distribution-2.png[45%, 45%]
 image:./images/distribution-3.png[45%, 45%]
 image:./images/distribution-4.png[45%, 45%]
 
-=== prepareForResue(), layoutSubviews() 에서 Auto Layout 코드로 작성할 경우, 어느 시점에서 작성하는 것이 좋은가?
+=== Tips
 
-===== Q.
+===== Q1.
 * prepareForResue(), layoutSubviews() 에서 Auto Layout을 코드로 작성할 경우, 스크롤 할 때마다 호출이 되는 것이 문제가 됨. 즉 Auto Layout 코드로 작성할 경우, 어느 시점에서 작성하는 것이 좋은가?
 
 [source, swift]
@@ -261,7 +261,7 @@ override func layoutSubviews() {
 } 
 ----
 
-===== A.
+===== A1.
 
 [source, swift]
 ----
@@ -295,6 +295,42 @@ func initializeLayout() {
     updateConstraintsOfPricesStackView(isActive: true)
     updateConstraintsOfBadgesStackView(isActive: true) 
 ----
+
+===== A2.
+* Content Hugging, Compression Resistance 안 쓴다는 생각을 버려라!
+* translatesAutoresizingMaskIntoConstraints 아니면 Auto Layout
+* Visual Format Language 사용함
+* 제약을 적용 하기 위해서 두 객체의 x, y 좌표를 알아야 함
+* 노락색 Indicator가 보인다면 Update Frames 메뉴를 선택함
+* Copyright 같은 문구는 UILabel의 _AutoShrink_ 과 Add New Constraints의 _Constraint to margin 체크 박스, Bottom Margin의 Use Standard Value_ 를 이용하여 어느 기기에도 대응할 수 있음
+* 고정된 너비와 높이 값은 피해야 함
+* Subview들의 제약 조건을 개발자가 직접 관리하는 것보다 StackView를 이용할 수 있다면 이용하는 것이 좋음
+* Multiplier의 비율은 정수로 계산하는 것이 좋음
+* Priority가 1000은 필수 제약 조건, 1000보다 작으면 점선으로 표시되며 선택적 제약 조건
+
+image:./images/auto-layout-14.png[45%, 45%]
+
+[source, swift]
+----
+/* 
+    * 'NSInternalInconsistencyException', reason: 'Mutating a priority from required to not on an installed constraint (or vice-versa) is not supported.  You passed priority 1000 and the existing priority was 800.'
+*/
+
+// 아래 코드로 UI Crash가 발생함
+@IBAction func togglePriority(_ sender: Any) {
+    width1.priority = width1.priority.rawValue < 1000 ? UILayoutPriority(rawValue: 1000) : UILayoutPriority(rawValue: 800)
+    width2.priority = width2.priority.rawValue < 1000 ? UILayoutPriority(rawValue: 1000) : UILayoutPriority(rawValue: 800)
+}
+
+// Priority는 구조체로 되어있기 때문에 아래와 같이 적용해야 함
+// 첫 번째 길이 Size Inspector에서 Priority를 999으로 변경함
+// 첫 번째 길이 Size Inspector에서 Priority를 800으로 변경함
+
+@IBAction func togglePriority(_ sender: Any) {
+    width1.priority = width1.priority.rawValue < 999 ? UILayoutPriority(rawValue: 999) : UILayoutPriority(rawValue: 800)
+    width2.priority = width2.priority.rawValue < 999 ? UILayoutPriority(rawValue: 999) : UILayoutPriority(rawValue: 800)
+}
+---- 
 
 === 참고
 * https://cocoacasts.com/what-are-prototyping-constraints[What are prototyping constraints?]

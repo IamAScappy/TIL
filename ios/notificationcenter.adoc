@@ -2,7 +2,7 @@
 
 ===== 구성
 
-image:./images/nsnotification.png[]
+image:./images/notification-1.png[]
 
 image:./images/notification-2.png[]
 
@@ -59,7 +59,7 @@ class StoreDataManager {
 * _deinit_ 
 * `iOS8: Where To Remove Observer for NSNotification in Swift 링크 참고`
 
-=== 참고
+===== 참고
 * https://developer.apple.com/documentation/foundation/notification[Notification]
 * https://developer.apple.com/documentation/foundation/notificationcenter[NotificationCenter]
 * https://developer.apple.com/documentation/foundation/notificationqueue[NotificationQueue]

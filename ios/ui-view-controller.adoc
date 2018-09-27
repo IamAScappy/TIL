@@ -33,9 +33,41 @@ image:./images/controller.png[]
 * _viewDidDisappear_
 
 ===== 회전 관련
-* _shouldAutorotate_
-* _supportedInterfaceOrientations_
-* _preferredInterfaceOrientationForPresentation_
+
+[source, swift]
+----
+// #1 Target > General > Deployment Info > Device Orientation
+
+// #2 
+// AppDelegate
+func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    return [.portrait, .landscape]
+}
+
+// #3
+// ViewController
+override var shouldAutorotate: Bool {
+    return true
+}
+
+override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return [.portrait, .landscape]
+}
+
+// #4
+// Navigation Controller
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    if UIDevice.current.orientation == .landscapeRight {
+        let value = UIDeviceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+    }
+
+    let value = UIDeviceOrientation.landscapeRight.rawValue
+    UIDevice.current.setValue(value, forKey: "orientation")
+}
+----
 
 === View Controller 관련 용어
 
@@ -50,9 +82,17 @@ image:./images/mvc-1.png[]
 image:./images/clock-app.png[]
 
 ===== Storyboard
-* _storyboardWithName_ => 번들에서 특정 스토리보드 파일 불러오기
-* _instantiateInitialViewController_ => 스토리보드 객체에서 시작 지점의 뷰 컨트롤러 만들기
-* _instantiateViewControllerWithIdentifier_ => 스토리보드 객체에서 특정 이름의 뷰 컨트롤러 객체 만들기
+
+[source, swift]
+----
+// 스토리보드 객체에서 시작 지점의 뷰 컨트롤러 만들기
+let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as UIViewController
+
+// 스토리보드 객체에서 특정 이름의 뷰 컨트롤러 객체 만들기
+// .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+
+self.presentViewController(viewController, animated: false, completion: nil)
+----
 
 image:./images/storyboard.png[]
 

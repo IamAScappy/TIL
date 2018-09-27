@@ -18,6 +18,38 @@
 
 ===== 구현
 
+[source, swift]
+----
+// AppDelegate
+self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+var navigationController = UINavigationController()
+var mainView = ViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
+navigationController.viewControllers = [mainView]
+self.window!.rootViewController = navigationController
+self.window?.makeKeyAndVisible()
+
+// With Tabbar Controller
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
+    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    
+    var navigationController = UINavigationController()
+    var first = FirstViewController(nibName: nil, bundle: nil)
+    navigationController.viewControllers = [first]
+    
+    var second = SecondViewController(nibName: nil, bundle: nil)
+    var navigationController2 = UINavigationController()
+    navigationController2.viewControllers = [second]
+    
+    var tabs = UITabBarController()
+    tabs.viewControllers = [navigationController, navigationController2]
+    
+    self.window!.rootViewController = tabs;
+    self.window?.makeKeyAndVisible();
+    
+    return true
+}
+----
+
 ===== 참고
 * https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/navigation/[HIG - Navigation]
 * https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html[View Controller Catalog for iOS]

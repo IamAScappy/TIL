@@ -1,4 +1,4 @@
-= IBOutlet, IBAction
+= IBOutlet, IBOutletCollection, IBAction
 
 === Interface Builder Constants
 
@@ -11,6 +11,14 @@
 ===== 목적
 * XIB나 스토리보드의 객체 속성과 코드를 연결함
 * 뷰나 컨트롤과 이들을 관징하는 뷰 컨트롤러 사이에 만들어짐
+
+===== 연결 방법
+* 레이블을 선택하고 `Control + 드래그` 해서 ViewController 코드에 `IBOutlet으로 연결함`
+
+=== IBOutletCollection
+
+===== 목적
+* IBOutlet 묶어서 중복을 제거할 수 있음
 
 ===== 연결 방법
 * 레이블을 선택하고 `Control + 드래그` 해서 ViewController 코드에 `IBOutlet으로 연결함`
@@ -51,7 +59,7 @@
 | allEvents| 시스템 이벤트를 포함한 모든 이벤트| UIControlEvents.allEvents
 |===
 
-=== IBOutlet, IBAction 연결구조
+=== IB- 연결구조
 
 ===== 관계
 * ViewController가 제어하려는 객체는 ViewController가 프로퍼티 등으로 지정하여 알고 있어야 함. Interface Builder 객체를 ViewController와 연결하기 위해서 해당 객체를 IBOutlet으로 연결함
