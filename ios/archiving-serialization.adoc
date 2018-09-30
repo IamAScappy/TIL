@@ -37,7 +37,7 @@
 * Root Objects => 객체 그래프 시작점
 * Conditional Objects => 객체 그래프에서 반드시 아카이브하지 않아도 되는 참조 객체. 소유권이 명확해서 다시 인코딩할 필요가 없는 객체
 
-image:./image/object-graph.png[]
+image:./images/object-graph.png[]
 
 ===== NSCoding
 
@@ -131,7 +131,7 @@ func retrieveProducts() -> [Product]? {
 
 === Persistence 
 
-image:./image/persistence.png[]
+image:./images/persistence.png[]
 
 === 참고
 * Cocoa Internals
