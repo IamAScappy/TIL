@@ -1,0 +1,51 @@
+= Gesture Recognizer
+
+===== 종류
+
+|===
+| Gesture | UIKit Class
+| Tapping(Any numbers of taps) | UITapGestureRecognizer
+| Pinching in and out(For zomming a view) | UIPinchGestureRecognizer
+| Panning or dragging | UIPanGestureRecognizer
+| Swiping(In any direction) | UISwipeGestureRecognizer
+| Rotating(Fingers moving in opposite directions) | UIRotationGestureRecognizer
+| Long press(Also known as "touch and hold") | UILongPressGestureRecognizer
+|===
+
+===== 주요 메서드, 프로퍼티
+
+[source, swift]
+----
+func location(in: UIView?) -> CGPoint
+func addTarget(Any, action: Selector)
+func removeTarget(Any?, action: Selector?)
+func require(toFail: UIGestureRecognizer)
+
+// true => 제스처 인식기가 해당 제스처의 터치는 뷰로 전달되지 않음
+// false => 뷰의 모든 터치를 전달받게 됨
+var cancelsTouchInView 
+----
+
+===== 구현
+
+[source, swift]
+----
+override func viewDidLoad() {
+    super.viewDidLoad()
+
+    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.responseToTapGesture))
+    tapRecognizer.numberOfTapsRequired = 1
+    tapRecognizer.numberOfTouchesRequired = 3
+    self.view.addGestureRecognizer(tapRecognizer)
+}
+
+func responseToTapGesture(rec : UITapGestureRecognizer) {
+    if (rec.state == .ended) {
+        self.view.backgroundColor
+    }
+}
+----
+
+===== 참고
+* https://developer.apple.com/documentation/uikit/uigesturerecognizer[UIGestureRecognizer]
+* https://developer.apple.com/design/human-interface-guidelines/ios/user-interaction/gestures/[Gestures]

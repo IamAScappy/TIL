@@ -121,6 +121,8 @@ self.transition(from: recipe, to: note, duration: 3, options: .transitionFlipFro
 
 image:./images/presented-view-controller.png[]
 
+image:./images/presenting-presented.png[]
+
 === Built-in UIKit View Controller
 
 ===== 종류
