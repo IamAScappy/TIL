@@ -20,33 +20,37 @@
 
 [source, swift]
 ----
-// AppDelegate
-self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-var navigationController = UINavigationController()
-var mainView = ViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
-navigationController.viewControllers = [mainView]
-self.window!.rootViewController = navigationController
-self.window?.makeKeyAndVisible()
+// Navigation Controller
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
+  self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+  var navigationController = UINavigationController()
+  var mainView = ViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
+  navigationController.viewControllers = [mainView]
+  self.window!.rootViewController = navigationController
+  self.window?.makeKeyAndVisible()
+  return true
+}
+
 
 // With Tabbar Controller
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    
-    var navigationController = UINavigationController()
-    var first = FirstViewController(nibName: nil, bundle: nil)
-    navigationController.viewControllers = [first]
-    
-    var second = SecondViewController(nibName: nil, bundle: nil)
-    var navigationController2 = UINavigationController()
-    navigationController2.viewControllers = [second]
-    
-    var tabs = UITabBarController()
-    tabs.viewControllers = [navigationController, navigationController2]
-    
-    self.window!.rootViewController = tabs;
-    self.window?.makeKeyAndVisible();
-    
-    return true
+  self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+  
+  var navigationController = UINavigationController()
+  var first = FirstViewController(nibName: nil, bundle: nil)
+  navigationController.viewControllers = [first]
+  
+  var second = SecondViewController(nibName: nil, bundle: nil)
+  var navigationController2 = UINavigationController()
+  navigationController2.viewControllers = [second]
+  
+  var tabs = UITabBarController()
+  tabs.viewControllers = [navigationController, navigationController2]
+  
+  self.window!.rootViewController = tabs;
+  self.window?.makeKeyAndVisible();
+  
+  return true
 }
 ----
 

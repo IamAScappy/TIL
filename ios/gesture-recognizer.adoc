@@ -12,20 +12,6 @@
 | Long press(Also known as "touch and hold") | UILongPressGestureRecognizer
 |===
 
-===== 주요 메서드, 프로퍼티
-
-[source, swift]
-----
-func location(in: UIView?) -> CGPoint
-func addTarget(Any, action: Selector)
-func removeTarget(Any?, action: Selector?)
-func require(toFail: UIGestureRecognizer)
-
-// true => 제스처 인식기가 해당 제스처의 터치는 뷰로 전달되지 않음
-// false => 뷰의 모든 터치를 전달받게 됨
-var cancelsTouchInView 
-----
-
 ===== 구현
 
 [source, swift]

@@ -10,33 +10,33 @@ image:./images/mvc-1.png[]
 [source, swift]
 ----
 class CustomButton: UIButton {
-    convenience init() {
-        self.init(frame: CGRectZero)
-    }
+  convenience init() {
+    self.init(frame: .zero)
+  }
   
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setup()
-    }
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    self.setup()
+  }
   
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setup()
-    }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.setup()
+  }
   
-    deinit {
-        self.removeTarget(self, action:Selector("customButtonDidTap:"), forControlEvents: .TouchUpInside)
-    }
+  deinit {
+      self.removeTarget(self, action: Selector(("customButtonDidTap:")), for: .touchUpInside)
+  }
 }
 
-extension SSPButton {
-    func setup() {
-        self.addTarget(self, action: Selector("customButtonDidTap:"), forControlEvents: .TouchUpInside)
-    }
+extension CustomButton {
+  func setup() {
+    self.addTarget(self, action: Selector(("customButtonDidTap:")), for: .touchUpInside)
+  }
   
-    @IBAction func customButtonDidTap(btn: CustomButton) {
-        print("Click :)")
-    }
+  @IBAction func customButtonDidTap(btn: CustomButton) {
+    print("Click :)")
+  }
 }
 ----
 

@@ -15,19 +15,19 @@ image:./images/responder-chain-2.png[]
 [source, swift]
 ----
 protocol CanFindTopView {
-    func handleCertainView(from view: UIView, execute: (GameView) -> Void)
+  func handleCertainView(from view: UIView, execute: (CustomView) -> Void)
 }
 
 extension CanFindTopView {
-    func handleCertainView(from view: UIView, execute: (TopView) -> Void) {
-        var nextResponder = view.next
-        while nextResponder != nil {
-            if let view = nextResponder as? TopView {
-                execute(view)
-            }
-            nextResponder = nextResponder?.next
-        }
+  func handleCertainView(from view: UIView, execute: (CustomView) -> Void) {
+    var nextResponder = view.next
+    while nextResponder != nil {
+      if let view = nextResponder as? CustomView {
+        execute(view)
+      }
+      nextResponder = nextResponder?.next
     }
+  }
 }
 ----
 
