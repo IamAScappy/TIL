@@ -7,7 +7,7 @@
 ** `Pixel과 Point 차이 링크 참고` 
 * iPhone 5가 나오면서 파편화가 심해짐 
 ** `Auto Layout 도입` 
-** 기존 Frame-based Layout에서 다른 View 관계를 이용하여 View의 위치와 크기를 자동하는 조정하는 Layout 시스템
+** 기존 Frame-based Layout에서 다른 View 관계를 이용하여 View의 위치와 크기를 자동으로 조정하는 Layout 시스템
 * *기기별 해상도를 외울 필요 없음. Auto Layout 개념을 익혀서 View 구성하는 것이 중요함*
 
 ===== 기기별 화면 사이즈
@@ -17,7 +17,7 @@ image:./images/auto-layout-15.png[]
 === Layout 변화
 
 ===== Frame-based Layout
-* 상위 View 좌표 시스템에서 특정 View 좌표를 나타냄. 개발자가 일일히 계산해야함
+* 상위 View 좌표 시스템에서 특정 View 좌표를 나타냄. 개발자가 일일이 계산해야 함
 * 상위 View의 Frame 변화에 따라 하위 View의 Frame이 변경되는 시스템을 지정함 => `Auto Resizing Mask`
 
 ===== Auto Layout
@@ -35,7 +35,7 @@ image:./images/auto-layout-15.png[]
 
 ===== Auto Layout Formular
 * `item1.attr = multiplier * item2.attr + constant`
-* Document Outline에서 Root View의 Constraints를 통해 공식과 비교하여 파악하면 보다 빠르게 이해할 수 있음
+* Document Outline에서 Root View의 Constraints를 통해 공식과 비교하여 파악하면 더욱 빠르게 이해할 수 있음
 
 image:./images/auto-layout-7.png[45%, 45%]
 image:./images/auto-layout-8.png[45%, 45%]
@@ -52,7 +52,7 @@ image:./images/auto-layout-formular-4.png[45%, 45%]
 
 ===== Constraints 추가 원리
 * 다른 View와 연관성이 없는 Width, Height, Aspect Ratio는 선택한 View에 제약이 추가됨
-* 다른 View와 연관된 제약은 연관된 제약이 관련되어 있는 인접한 상위 View에 추가됨
+* 다른 View와 연관된 제약은 연관된 제약이 관련된 인접한 상위 View에 추가됨
 * 예제
 ** A View 넓이 제약 추가하면 A View에 제약이 추가됨
 ** C, D View 사이에 Equal Width를 추가하면 두 개 View와 인전합 상위 View인 A에 제약이 추가됨
@@ -71,7 +71,7 @@ image:./images/auto-layout-2.png[45%, 45%]
 ** 화면에 보이지 않지만 Layout을 쉽게 사용할 수 있는 간격
 ** iOS 11에서 Safe Area Layout Guide 라는 용어로 바뀜. 기존 Top, Bottom Layout Guide 대체하며 하위 버전에서도 호환하여 작동함
 * Margin
-** View 가장 자리와 Subview 사이 공간 
+** View 가장자리와 Subview 사이 공간 
 * Aspect Ratio
 ** 기준이 되는 너비나 높이가 있어야 함
 * BaseLines
@@ -94,7 +94,7 @@ image:./images/auto-layout-2.png[45%, 45%]
 ===== Constraints 추가하기
 * _Canvas Menu 이용하기_
 ** Update Frames
-*** Designed Frame과 Runtime Frame이 다를 때 활성화 됨
+*** Designed Frame과 Runtime Frame이 다를 때 활성화됨
 ** Embed In Stack
 *** 새로운 StackView 추가
 *** 균등하게 화면 분할할 때 사용함
@@ -297,11 +297,11 @@ func initializeLayout() {
 ----
 
 ===== A2.
-* Content Hugging, Compression Resistance 안 쓴다는 생각을 버려라!
+* Content Hugging, Compression Resistance 안 쓴다는 생각을 관둬야 함
 * translatesAutoresizingMaskIntoConstraints 아니면 Auto Layout
 * Visual Format Language 사용함
-* 제약을 적용 하기 위해서 두 객체의 x, y 좌표를 알아야 함
-* 노락색 Indicator가 보인다면 Update Frames 메뉴를 선택함
+* 제약을 적용하기 위해서 두 객체의 x, y 좌표를 알아야 함
+* 노란색 Indicator가 보인다면 Update Frames 메뉴를 선택함
 * Copyright 같은 문구는 UILabel의 _AutoShrink_ 과 Add New Constraints의 _Constraint to margin 체크 박스, Bottom Margin의 Use Standard Value_ 를 이용하여 어느 기기에도 대응할 수 있음
 * 고정된 너비와 높이 값은 피해야 함
 * Subview들의 제약 조건을 개발자가 직접 관리하는 것보다 StackView를 이용할 수 있다면 이용하는 것이 좋음

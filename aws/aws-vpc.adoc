@@ -9,12 +9,12 @@
 * VPC를 더 작은 범위로 Subnet으로 나눌 수 있음
 
 ===== EC2 Classic
-* VPC가 생기기 전 사용하던 단일 네트워크 망
+* VPC가 생기기 전 사용하던 단일 네트워크망
 * VPC에 비해 성능, 보안상으로 좋지 않아 Migration 권장
 
 ===== Default VPC
 * 사용자가 Root 계정을 생성하면 자동으로 각 Region 하나씩 VPC가 생김
-* EC2 경우 VPC를 지정하지 않을 경우 기본 VPC에서 인스턴스가 시작됨
+* EC2 경우 VPC를 지정하지 않을 때 기본 VPC에서 인스턴스가 시작됨
 * 사용자가 생성할 수 없음
 
 ===== VPC 특징
@@ -41,15 +41,15 @@
 * Subnet과 함께 클래스 기반 주소의 한계를 극복하고 IP 분류 및 그루핑을 위해 개발
 ** xxx.xxx.xxx.xxx/n xxx: IPv4
 ** 56.3.26.84/32 - IP 1개 0.0.0.0/0 - Any Address 10.1.0.0/16 - 65536 10.1.1.0/24 - 256 10.1.16.0/20 - 2048
-* 상위 N비트 => 네트워크 인식
-* 하위 N비트 => 호스트 인식
-* 상위 N비트는 고정, 하위 N비트 가변적
+* 상위 N 비트 => 네트워크 인식
+* 하위 N 비트 => 호스트 인식
+* 상위 N 비트는 고정, 하위 N 비트 가변적
 * 하위 비트의 값은 0을 가져야 함
 
 ===== AWS CIDR 규칙
 * VPC => 16 - 28 bit Prefix
 * Subnet => VPC의 부분 집합으로 지정 가능
-* Subnet 사용가능 IP => 전체 범위 - 5
+* Subnet 사용 가능 IP => 전체 범위 - 5
 * AWS에서 앞 4, 마지막 1 주소를 사용함
 
 === Subnet
@@ -101,7 +101,7 @@
 
 ===== 특징
 * VPN 전용 서브넷
-* 인터넷 망과 완벽 분리됨
+* 인터넷망과 완벽 분리됨
 * 민감한 정보 저장용으로 사용함
 * 인터넷망과의 통신은 VPN을 이용해서 연결
 
@@ -116,7 +116,7 @@
 * 연결 테스트
 
 ===== VPC Peering 주의사항
-* A - Peering - B, B - Peering - C 라도 A - C 서로간 통신 불가
+* A - Peering - B, B - Peering - C 라도 A - C 서로 간 통신 불가
 
 === AWS VPN
 
@@ -148,15 +148,15 @@
 === VPC 운영
 
 ===== Tips
-* 서비스 별로 따로 운영함
-* 테스트 환결별로 따로 운영함
+* 서비스별로 따로 운영함
+* 테스트 환경별로 따로 운영함
 * 기능별 VPC를 나누면 어떨까요?
 ** 웹서버 VPC, DB VPC ..
 
 === VPC 실습
 
 ===== AWS 계정 로그인하기
-. 사용자 계정 정보를 이용해서 AWS관리 콘솔에 로그인함
+. 사용자 계정 정보를 이용해서 AWS 관리 콘솔에 로그인함
 . 개인별로 안내받은 리전을 선택함
 
 ===== VPC 생성
@@ -186,11 +186,11 @@
 . Yes, Create 클릭함
 
 ===== Private Subnet 생성하기
-. 4와 같은 방법으로 추가적으로 Subnet을 하나 더 생성함 
+. 4와 같은 방법으로 추가로 Subnet을 하나 더 생성함 
 . 대화상자에서는 아래와 같이 입력함
 ** Name Tag: 아이디private1 
 ** VPC: 생성한 VPC 선택함
-** Availability Zone: 두번째 AZ 선택함
+** Availability Zone: 두 번째 AZ 선택함
 ** CIDR Block: 10.100.20.0/24
 
 ===== Public Routing Table 설정하기
@@ -201,7 +201,7 @@
 . 대화상자에서 다음과 같이 입력 후 Create 클릭함
 ** Name Tag: 아이디PubRt
 ** VPC: 생성한 VPC 선택
-. 생성한 라우팅 테이블 선택후 아래 쪽 탭에서 Routes 선택함
+. 생성한 라우팅 테이블 선택 후 아래쪽 탭에서 Routes 선택함
 . Edit - Add another route 클릭함
 . 아래와 같이 입력함
 ** Destination: 0.0.0.0/0
@@ -214,7 +214,7 @@
 . Save 클릭함
 
 ===== Private Routing Table 생성 및 Private Subnet과 연결하기
-. 앞 단계와 같은 방식으로 아이디PriRT라우팅 테이블을 생성함. 단 6.5 ~ 7 단계는 생략하고 추가적인 Route 규칙은 생성하지 않음
+. 앞 단계와 같은 방식으로 아이디PriRT라우팅 테이블을 생성함. 단 6.5 ~ 7단계는 생략하고 추가적인 Route 규칙은 생성하지 않음
 . 생성한 PriRT 테이블과 Private Subnet을 7번 과정과 같이 서로 연결함
 
 ===== NAT Instance 생성하기 
@@ -250,16 +250,16 @@ EOF
 . 새로운 보안 그룹 생성
 ** Security group name: 아이디-nat-sg
 ** Description: NAT sg
-. Add Rule클릭, 아래와 같이 입력 후 Review and Launch 클릭함
+. Add Rule 클릭, 아래와 같이 입력 후 Review and Launch 클릭함
 ** Type: All Traffic
 ** Source: Custom, 10.100.20.0/24 입력함 (Private CIDR)
 . Launch 클릭 후 Key Pair 대화 상자에서 Create a new key pair 선택함. Key Pair Name에는 아이디 입력 후 Download Key Pair 클릭 pem 파일을 다운받음
-. Launch Instances - View Instances 를 각각 클릭함
+. Launch Instances - View Instances를 각각 클릭함
 . 잠시 후 생성된 NAT Instance의 Instance ID i-0b0..를 메모장 등에 기록해 놓음
 
 ===== NAT Instance 접속하기
 . EC2 인스턴스의 Description 항목에서 IPv4 Public IP 정보를 메모장 등에 기록함
-. 다운받은 pem 파일이 있는 폴더로 이동한 후 아래 명령을 통해 접속을 할 수 있음
+. 다운받은 pem 파일이 있는 폴더로 이동한 후 아래 명령을 통해 접속할 수 있음
 
 [source, bash]
 ----
@@ -278,7 +278,7 @@ PING ietf.org (4.31.198.44) 56(84) bytes of data.
 64 bytes from mail.ietf.org (4.31.198.44): icmp_seq=2 ttl=45 time=111 ms
 ----
 
-* User data 가 정상적으로 입력되었는지도 확인해봄
+* User data가 정상적으로 입력되었는지도 확인해봄
 
 [source, bash]
 ----
@@ -312,13 +312,13 @@ EOF
 *** Key: Name 
 *** Value: 아이디PRI
 ** Security Group은 새로 생성함. Name: 아이디-pri-sg 룰 추가
-** Key Pair: 기존에 생성했던 NAT와 동일한 Key Pair를 선택할 것 
+** Key Pair: 기존에 생성했던 NAT와 같은 Key Pair를 선택할 것 
 ** 특히 Key Pair Choose an existing key pair를 선택하고 NAT와 동일한 Key Pair를 선택함에 주의 
 ** 체크박스에 체크도 해야 인스턴스를 생성할 수 있음
 . 생성된 Private Instance의 Private IP를 메모장에 기록해 놓음. Subnet 규칙대로 10.100.20.xxx의 주소를 가지는 것을 확인할 수 있음
 
 ===== Private Instance에 접속하기
-* Private Instance의 경우 Public IP가 따로 없고, Private Subnet도 인터넷과 연결되어 있지 않으므로 직접 접속이 불가능함. NAT를 통해 Private Subnet에 접속해봄
+* Private Instance는 Public IP가 따로 없고, Private Subnet도 인터넷과 연결되어 있지 않으므로 직접 접속이 불가능함. NAT를 통해 Private Subnet에 접속해봄
 * 맥 터미널에서 아래의 명령을 입력함
 
 [source, bash]
@@ -345,7 +345,7 @@ PING ietf.org (4.31.198.44) 56(84) bytes of data.
 ----
 
 * Service - EC2 선택, Running Instances 클릭함
-* NAT Instance를 선택하고 Actions - Networking - Change Source/Dest. Check 선택, Disable 을 선택함
+* NAT Instance를 선택하고 Actions - Networking - Change Source/Dest. Check 선택, Disable을 선택함
 * 다시 ping 명령을 입력 정상적으로 동작하는지 확인함
 
 [source, bash]

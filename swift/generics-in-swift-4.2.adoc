@@ -80,7 +80,7 @@ extension Collection {
 ** 요소들의 값을 설정할 수 있는 기능을 제공함
 * RangeReplaceableCollection
 ** Collection 중간의 요소를 다른 것으로 교체할 수 있는 기능을 제공함
-* 무작정 도입하기 보다 세부적이고 특수한 기능이 필요할 때 프로토콜 상속을 구현하는 것이 좋음
+* 무작정 도입하기보다 세부적이고 특수한 기능이 필요할 때 프로토콜 상속을 구현하는 것이 좋음
 
 image:./images/collection-protocol-hierarchy.png[]
 

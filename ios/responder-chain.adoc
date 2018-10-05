@@ -2,9 +2,9 @@
 
 ===== 설명
 * UIResponder 상속받는 하위 클래스는 체인 형태를 만들 수 있음
-* 이벤트가 처리할 때 특정 View 객체가 처리하지 않도록 해야됨
-* Responder Chain을 통해 이벤트 지정한 순서대로 이동함 => View Controller가 받을 수 있음. View에 따라서 좌표 값이 다를 수 있음
-* View Controller에서 처리하지 않으면 Window => Application으로 날라감(App Delegate)
+* 이벤트가 처리할 때 특정 View 객체가 처리하지 않도록 해야 됨
+* Responder Chain을 통해 이벤트 지정한 순서대로 이동함 => View Controller가 받을 수 있음. View에 따라서 좌표값이 다를 수 있음
+* View Controller에서 처리하지 않으면 Window => Application으로 날아감(App Delegate)
 
 image:./images/responder-chain.png[]
 

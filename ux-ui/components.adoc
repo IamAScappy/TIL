@@ -13,12 +13,12 @@ image:./images/gui-components.png[]
 * 프로그램을 로드하는 동안 표시되는 이미지
 * 서비스 로고, 서비스 소개 등으로 구성됨
 * 로딩 중 정보 제공
-* 애니메이션을 넣어 사용자가 대기하는 체감시간을 줄여주는 경우도 있음
-* *사용성에 대한 제한을 받지 않음. GUI Identity를 강하게 나타날 수 있음*
+* 애니메이션을 넣어 사용자가 대기하는 체감시간을 줄여주는 일도 있음
+* *사용성에 대한 제한을 받지 않음. GUI Identity를 강하게 나타낼 수 있음*
 
 ===== Coach Marks
 * 서비스를 처음 사용하는 사람들을 위한 도움말. 가이드 화면
-* 초기 진입 n회까지 보여지도록 제공, 다시 보기 않기 버튼 제공함
+* 초기 진입 n 회까지 보이도록 제공, 다시 보지 않기 버튼 제공함
 
 ===== Empty Data
 * 초기 데이터가 없는 상태
@@ -29,8 +29,8 @@ image:./images/coach-marks.png[30%, 30%]
 image:./images/empty-data.png[30%, 30%]
 
 ===== Walkthroughs
-* 초기 세팅이 필요한 경우, 상세한 도움말을 단계별로 제공해주는 페이지 뷰
-* Coach Marks 와 비슷해보이지만 차이점이 있음
+* 초기 세팅이 필요한 경우, 상세한 도움말을 단계별로 제공해주는 페이지뷰
+* Coach Marks 와 비슷해 보이지만 차이점이 있음
 * GUI Identity(=서비스)를 강하게 어필할 수 있는 페이지
 
 ===== Drawer, Slide Menu
@@ -65,11 +65,11 @@ image:./images/tab-bar.png[30%, 30%]
 
 ===== List View, List
 * 리스트로 구성된 화면
-* Line에 따라 Single Line List, Two Line List 등 이라 함
-* 썸네일이 있는 경우 Thumbnail List 라고 함
+* Line에 따라 Single Line List, Two Line List 등이라 함
+* 썸네일이 있는 경우 Thumbnail List이라고 함
 
 ===== List Index
-* 같은 속성끼리 그룹핑된 리스트의 경우 그 그룹의 인덱스를 제공함
+* 같은 속성끼리 그룹화 된 리스트는 그 그룹의 인덱스를 제공함
 * 사용자의 인지를 도움
 
 ===== Index Scroll
@@ -112,8 +112,8 @@ image:./images/popup.png[30%, 30%]
 === Slider, Progress Bar
 
 ===== Slider 
-* Slider Thumb 가 반드시 있어야 함
-* Slider Thumb 를 좌우, 상하 움직여 범위 조절함
+* Slider Thumb가 반드시 있어야 함
+* Slider Thumb를 좌우, 상하 움직여 범위 조절함
 * 사용자가 컨트롤 할 수 있음
 
 ===== Progress Bar
@@ -130,10 +130,10 @@ image:./images/progress-bar.png[30%, 30%]
 * 디폴트 값이 항상 있어야 함
 
 ===== Radio Button
-* 선택 항목들 중 1개만 선택할 수 있음
+* 선택 항목 중 1개만 선택할 수 있음
 
 ===== Check Box
-* 선택 항목들 중 여러 개를 선택할 수 있는 경우 사용함
+* 선택 항목 중 여러 개를 선택할 수 있는 경우 사용함
 
 ===== Toggle Button
 * 활성화, 비성활를 설정할 때 사용하는 버튼

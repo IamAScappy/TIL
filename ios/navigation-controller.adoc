@@ -1,12 +1,12 @@
 = Navigation Controller
 
 ===== Navigation Controller
-* Container View Controller은 Navigation Stack 사용하여 다른 View Controller 관리함
+* Container View Controller는 Navigation Stack 사용하여 다른 View Controller 관리함
 * Content View Controller
 
 ===== Navigation Stack
 * `LIFO`
-* 마지막으로 Push된 View가 처음으로 Pop됨
+* 마지막으로 Push된 View가 처음으로 Pop 됨
 * RootViewController는 삭제되지 않음
 
 ===== Navigation Bar

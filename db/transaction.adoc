@@ -1,6 +1,6 @@
 = 트랜잭션(Transaction)
 
-=== 트랙잭션
+=== 트랜잭션
 
 ===== Jim Gray
 * 세계 최초 관계형 데이터베이스 System-R 개발함
@@ -27,23 +27,23 @@ In the Oracle Database product, this type of table is known as an index-organize
 For example, `SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` prevents any other transaction from inserting, updating, or deleting rows where the value of t.c1 is 10.
 Record locks always lock index records, even if a table is defined with no indexes. For such cases, InnoDB creates a hidden clustered index and uses this index for record locking. 
 
-* DB는 논리적인 구조와 물리적인 구조로 나뉘어져 있음. 개발자가 물리적인 구조를 알지 못하고 논리적인 구조를 사용할 수 있지만 트랙잭션을 잘 이해하기 위해서 물리적인 구조를 알면 좋음 
+* DB는 논리적인 구조와 물리적인 구조로 나누어져 있음. 개발자가 물리적인 구조를 알지 못하고 논리적인 구조를 사용할 수 있지만 트랜잭션을 잘 이해하기 위해서 물리적인 구조를 알면 좋음 
 
-=== 트랙잭션 성질
+=== 트랜잭션 성질
 
 ===== A(Atomicity)
 * 원자성
-* 트랙잭션과 관련된 작업이 모두 수행되었는지, 아니면 모두 실행되지 않았는지 보장함
+* 트랜잭션과 관련된 작업이 모두 수행되었는지, 아니면 모두 실행되지 않았는지 보장함
 * All Or Nothing 
 
 ===== C(Consistency)
 * 일관성
-* 트랙잭션 실행을 성공적으로 완료하면 언제나 일관성 있는 데이터베이스 상태로 유지하는 것을 의미함
+* 트랜잭션 실행을 성공적으로 완료하면 언제나 일관성 있는 데이터베이스 상태로 유지하는 것을 의미함
 * 주로 분산 DB에서 이야기가 나옴
 
 ===== I(Isolation)
 * 고립성
-* 트랙잭션을 수행할 때 다른 트랙잭션의 연산이 끼어들지 못하도록 보장하는 것을 의미함
+* 트랜잭션을 수행할 때 다른 트랜잭션의 연산이 끼어들지 못하도록 보장하는 것을 의미함
 * 성능 관련 이슈로 4가지 레벨을 선택함
 ** READ-UNCOMMITTED
 ** READ-COMMITTED
@@ -52,8 +52,8 @@ Record locks always lock index records, even if a table is defined with no index
 
 ===== D(Durability)
 * 지속성
-* 성공적으로 수행한 트랙잭션은 어떤 상황이라도 반영되어야 함
-* 즉, 시스템에 문제가 발생하더라도 성공적으로 수행한 트랙잭션은 유지되어야 함
+* 성공적으로 수행한 트랜잭션은 어떤 상황이라도 반영되어야 함
+* 즉, 시스템에 문제가 발생하더라도 성공적으로 수행한 트랜잭션은 유지되어야 함
 
 === CAP 이론
 
@@ -64,10 +64,10 @@ Record locks always lock index records, even if a table is defined with no index
 * 일관성 => 모든 노드가 같은 시간에 같은 데이터를 보여줘야 함
 
 ===== A(Availability)
-* 가용성 => 요청이 성공, 실패 상관없이 무조건 성공적으로 리턴되어야 함
+* 가용성 => 요청이 성공, 실패 상관없이 무조건 성공적으로 반환되어야 함
 
-===== P(Partition Tolerence)
-* 분리 내구성 => 노드 간에 통신 문제가 생겨서 메세지를 주고받지 못하더라도 동작해야 함
+===== P(Partition Tolerance)
+* 분리 내구성 => 노드 간에 통신 문제가 생겨서 메시지를 주고받지 못하더라도 동작해야 함
 
 === NoSQL 성질
 
@@ -87,15 +87,15 @@ Record locks always lock index records, even if a table is defined with no index
 === 직렬 스케줄(Serial Schedule), 직렬 가능 스케줄(Serializable Schedule)
 
 ===== 가장 쉽게 ACID를 지원하는 방법은?
-* 한 번에 하나씩 트랙잭션을 실행함
+* 한 번에 하나씩 트랜잭션을 실행함
 
 ===== 직렬 스케줄(Serial Schedule)
 * 세 개의 트랜잭션 A, B, C가 있을 때 한 번에 하나씩 실행했을 때 실행 가능한 결과들의 집합
 
 ===== 직렬 가능 스케줄(Serializable Schedule)
-* 실제 데이터베이스의 트랜잭션 결과가 Serial Schedule의 부분집합이면 Serializable Schedule이라고 함(= 누가 먼저 일어난 일인지 알 수 없지만 그중에서 하나 나오면 좋은 상태임)
+* 실제 데이터베이스의 트랜잭션 결과가 Serial Schedule의 부분집합이면 Serializable Schedule이라고 함(= 누가 먼저 일어난 일인지 알 수 없지만, 그중에서 하나 나오면 좋은 상태임)
 
-=== Lock 없이 트랙잭션을 동시에 실행한다면?
+=== Lock 없이 트랜잭션을 동시에 실행한다면?
 
 ===== The Lost Update Problem
 * 두 개의 트랜잭션이 동시에 한 아이템의 데이터를 변경했을 때 발생하는 문제점

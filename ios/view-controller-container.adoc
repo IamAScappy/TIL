@@ -16,13 +16,13 @@ image:./images/view-controller-container-2.png[]
 * View 중심이 아니라 View Controller 단위로 생각해라:)
 ** 하나의 View에 무조건 View Controller가 있어야 하나?
 ** View 입장에서 View Controller가 꼭 있어야 하는 것은 아니지만
-** VIew Controller 입장에서 View가 꼭 하나 있어야 함
+** View Controller 입장에서 View가 꼭 하나 있어야 함
 * _Editor -> Embed in -> .._ 을 통해서 View Controller Container를 만들 수 있음
 * View Controller가 전환할 때마다 애니메이션 효과를 줄 수 있음
 * View => 이벤트 전달
 * Application이 시작할 때 Window가 깔리고 그 위로 View가 생김
 * 하나의 Window 위에 여러 개 View가 있을 수 있음
-* UIApplication, UiWindow가 실행되지만 Application에서 이벤트를 받고 Target으로 이동하거나
+* UIApplication, UiWindow가 실행되지만, Application에서 이벤트를 받고 Target으로 이동하거나
 * Target에 지정되어 있지 않으면 Responder Chain에 의해 이벤트 처리할 곳을 찾아가거나 First Responder를 설정할 수 있음
 
 === Controller 계층 관련 API 

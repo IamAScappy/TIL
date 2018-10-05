@@ -3,7 +3,7 @@
 === Data, Database, DBMS?
 
 ===== Data
-* 컴퓨터에 적합한 형태를 가진 모든 것 
+* 컴퓨터에 적합한 형태를 보인 모든 것 
 
 > Data is anything in a **form suitable for use with a computer** .
 
@@ -13,7 +13,7 @@
 > **A database is a collection of information** that is organized so that it can easily be accessed, managed, and updated. In one view, databases can be classified according to types of content.
 
 ===== DBMS
-* 모든 데이터베이스들을 관리하는 시스템
+* 모든 데이터베이스를 관리하는 시스템
 
 > The database management system (DBMS), is a computer software program that is designed as the means of **managing all databases that are currently installed on a system hard drive or network**.
 
@@ -34,8 +34,8 @@ image:./images/dbms-os-database.png[]
 > Information is data that has been interpreted so that it has meaning for the user. 
 
 ===== Knowledge
-* 개인이나 조직에게 도움이 되는 경험, 통찰력, 정보
-*  "When crude oil prices go up by $10 per barrel, it's likely that petrol prices will rise by 2p per litre" is knowledge.
+* 개인이나 조직에 도움이 되는 경험, 통찰력, 정보
+* "When crude oil prices go up by $10 per barrel, it's likely that petrol prices will rise by 2p per litre" is knowledge.
 
 > Knowledge is a combination of information, experience and insight that may benefit the individual or the organisation.
 
@@ -104,7 +104,7 @@ image:./images/data-information-knowledge.png[]
 * Cloud DB
 ** AWS DyanmoDB
 ** KV Store + Document Store
-** 설치가 필요없음
+** 설치가 필요 없음
 ** 고성능, 고가용성, 내구도
 ** 저렴하지 않은 비용
 * 네트워크 모델, 계층 모델

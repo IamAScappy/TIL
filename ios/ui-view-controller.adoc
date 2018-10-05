@@ -18,7 +18,7 @@ image:./images/controller.png[]
 
 ===== 정의
 * UIViewController 서브 클래스
-* View 게층에 맞춰 관련있는 View Controller 다루기
+* View 계층에 맞춰 관련 있는 View Controller 다루기
 * 필요한 API 메서드 오버라이드 하기
 * 자신만의 비즈니스 로직 추가
 * 앱 동작 흐름에 맞추기

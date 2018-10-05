@@ -72,7 +72,7 @@ EOF
 
 $ cat /etc/mysql/mysql.conf.d/utf8.cnf
 
-# ctrl + d 로 root 로그아웃, 일반 사용자로 돌아옴
+# ctrl + d로 root 로그아웃, 일반 사용자로 돌아옴
 $ sudo systemctl restart mysql
 $ mysql -u root -p
 mysql> status
@@ -82,7 +82,7 @@ mysql> status
 
 [source, bash]
 ----
-# 주의 => root 사용자는 외부 접속을 허용하면 안됨
+# 주의 => root 사용자는 외부 접속을 허용하면 안 됨
 $ sudo -i
 $ cd /etc/mysql
 $ grep -r 'bind'
@@ -94,7 +94,7 @@ $ sudo systemctl restart mysql
 $ exit
 ----
 
-===== 재부팅할 때 자동실행
+===== 재부팅 할 때 자동실행
 
 [source, bash]
 ----
@@ -103,7 +103,7 @@ $ mysql -u root -p
 $ sudo update-rc.d mysql defaults
 
 # 자동 실행 취소 명령 
-# sudo update-rc.d mysql remove  
+# sudo update-rc.d mysql remove 
 $ sudo reboot
 $ mysql -u root -p
 ----
@@ -134,7 +134,7 @@ FLUSH PRIVILEGES;
 
 ===== CRUD
 * Create
-* Retreival
+* Retrieval
 * Update
 * Delete
 
@@ -153,18 +153,18 @@ USE my_db_name;
 -- CREATE
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    NAME VARCHAR(64),
-    START_DATE DATETIME
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  NAME VARCHAR(64),
+  START_DATE DATETIME
 );
 
 
 -- INSERT
-INSERT INTO USER VALUES (NULL, 'honux', '2017-07-01');
+INSERT INTO USER VALUES (NULL, '강현정', '2018-08-01');
 
-INSERT INTO USER (NAME) VALUES ('JK'),('JJ'),('SM');
+INSERT INTO USER (NAME) VALUES ('KK'),('JJ'),('SM');
 
-INSERT INTO USER (NAME, START_DATE) VALUES ('정호영',NOW());
+INSERT INTO USER (NAME, START_DATE) VALUES ('강현정', NOW());
 
 
 -- SELECT
@@ -172,29 +172,29 @@ SELECT * FROM USER;
 
 SELECT NAME FROM USER;
 
-SELECT NAME, START_DATE FROM USER WHERE NAME = 'honux';
+SELECT NAME, START_DATE FROM USER WHERE NAME = '강현정';
 
-SELECT NAME, START_DATE FROM USER WHERE START_DATE > '1970-1-1';
-
-SELECT NAME, START_DATE 
-    FROM USER 
-    WHERE START_DATE > '1970-1-1' AND NAME = 'honux';
+SELECT NAME, START_DATE FROM USER WHERE START_DATE > '2018-08-01';
 
 SELECT NAME, START_DATE 
-    FROM USER 
-    WHERE START_DATE > '1970-1-1' AND NAME LIKE 'h%';
+FROM USER 
+WHERE START_DATE > '2018-08-01' AND NAME = '강현정';
 
 SELECT NAME, START_DATE 
-    FROM USER 
-    WHERE START_DATE IS NULL;
+FROM USER 
+WHERE START_DATE > '2018-08-01' AND NAME LIKE '강%';
+
+SELECT NAME, START_DATE 
+FROM USER 
+WHERE START_DATE IS NULL;
 
 
 -- UPDATE
-SELECT * FROM USER WHERE name='JK';
+SELECT * FROM USER WHERE name='강현정';
 
 UPDATE USER 
-     SET NAME = '김정'
-     WHERE name='JK';
+SET NAME = 'yuaming'
+WHERE name='강현정';
 
 UPDATE USER SET START_DATE=NOW();
 
@@ -202,7 +202,7 @@ SELECT * FROM USER;
 
 
 -- DELETE
-DELETE FROM USER WHERE NAME = '김정';
+DELETE FROM USER WHERE NAME = 'yuaming';
 ----
 
 ===== JOIN
@@ -217,40 +217,7 @@ DELETE FROM USER WHERE NAME = '김정';
 
 [source, sql]
 ----
--- 외래키 => BOARD 테이블에서는 USER 테이블 레코드의 참조가 발생, 이 때 사용하는 USER의 UID 값
-DROP TABLE IF EXISTS USER;
-CREATE TABLE USER (
-    ID VARCHAR(32),
-    NAME VARCHAR(32) NOT NULL,
-    PRIMARY KEY(ID)
-    );
-
-INSERT INTO USER VALUES
-('apple', 'honux'),('banana','crong'),('carrot','pobi');
-
-DROP TABLE IF EXISTS BOARD;
-CREATE TABLE BOARD(
-    ID INT NOT NULL AUTO_INCREMENT,
-    DATE DATE,
-    UID VARCHAR(32),
-    TITLE VARCHAR(64) NOT NULL,
-    PRIMARY KEY(ID),
-    FOREIGN KEY(UID) REFERENCES USER(ID)
-        ON DELETE CASCADE ON UPDATE CASCADE);
-
-INSERT INTO BOARD (DATE, UID, TITLE) VALUES
-    ('2015-1-1','apple', 'hello'),
-    ('2015-1-2','banana', 'hi'),
-    ('2015-1-3','apple', 'good'),
-    ('2015-1-4','banana', 'zizi'),
-    ('2015-1-3',NULL, 'I am hacker');
-
-DESC USER;
-DESC BOARD;
-
-SELECT * FROM USER;
-SELECT * FROM BOARD;
-
+-- 외래키 => BOARD 테이블에서는 USER 테이블 레코드의 참조가 발생, 이때 
 
 -- CROSS JOIN => 카테시안 프로덕트이라고 하며 가능한 모든 쌍을 나타냄
 SELECT * FROM USER CROSS JOIN BOARD;
@@ -258,7 +225,7 @@ SELECT * FROM USER CROSS JOIN BOARD;
 
 -- INNER JOIN
 SELECT * FROM USER U CROSS JOIN BOARD B
-    WHERE U.ID = B.UID;
+WHERE U.ID = B.UID;
 
 SELECT * FROM USER U INNER JOIN BOARD B ON U.ID = B.UID;
 
@@ -297,7 +264,7 @@ SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
 * 객체와 객체 사이의 관계를 표현함
 
 ===== Relational 모델
-* ER모델은 물리적 저장에 적합한 모델이 아니므로 이를 저장하기 적합한 관계형 모델로 변환함
+* ER 모델은 물리적 저장에 적합한 모델이 아니므로 이를 저장하기 적합한 관계형 모델로 변환함
 
 ===== Entity와 Relationship의 물리적 표현
 * 모두 테이블을 통해 저장됨
@@ -306,11 +273,11 @@ SELECT * FROM USER U RIGHT JOIN BOARD B ON U.ID = B.UID;
 
 ===== 관계의 종류
 * One to One
-** One to One 관계는 일반적으로 다른 객체에 포함시킴
+** One to One 관계는 일반적으로 다른 객체에 포함함
 * One to Many
 ** 일반적으로 자주 발생하는 관계
 * Many to Many
-** Many to Many 를 표현하기 위해서는 추가적인 테이블 생성 필요
+** Many to Many를 표현하기 위해서는 추가적인 테이블 생성 필요
 ** 사용자 to 아이템
 
 ===== 물리적 조인의 종류
@@ -358,6 +325,7 @@ for each row in t1 matching range {
           if row satisfies join conditions, send to client
         }
       }
+      
       empty join buffer
     }
   }
@@ -382,7 +350,7 @@ if buffer is not empty {
 * 테이블의 크기가 커질수록 좋은 성능을 보일 수 있음
 * 인덱스가 없고, 정렬도 되어 있지 않으면
 * 두 테이블의 차이가 클수록 좋은 성능을 보임
-* 통계 정보가 잘못되었을 경우 성능 저하 가능성이 있음
+* 통계 정보가 잘못되었을 때 성능 저하 가능성이 있음
 * CPU를 많이 소모할 가능성이 있음
 * Hash Join
 ** 파티셔닝(또는 빌드) 단계
@@ -393,18 +361,3 @@ if buffer is not empty {
 * Hash Join 종류
 ** 인메모리 해시 조인
 ** 그레이스 해시 조인
-
-===== MySQL Join 성능
-* 조인 순서가 성능에 큰 영향을 미침
-* Inner Join은 조인 순서가 결과에 영향을 미치지 않으므로 옵티마이저에 의해 최적의 순서 선택함
-* Outer Join은 반드시 Outer Table을 먼저 읽어야 하므로 조인 순서가 쿼리에 의해 정해짐
-* MySQL에서는 Cross Join도 일반 Join과 완전히 같음. 다만 나오는 결과의 숫자에 따라 성능이 저하될 수 있음
-
-===== MySQL Join 성능 개선
-* explain을 이용해서 Full scan이 나오지 않도록 조정해야 함
-* 프로파일링도 열심히
-
-=== 참고
-* https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html[8.2.1.6 Nested-Loop Join Algorithms]
-* http://www.jidum.com/jidums/view.do?jidumId=167[Nested, Sort, Hash Join]
-* https://ko.wikipedia.org/wiki/데이터베이스_정규화[데이터베이스 정규화]

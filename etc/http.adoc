@@ -15,7 +15,7 @@
 
 ===== Proxy
 * Reverse Proxy
-* 서버와 클라이언트 사이에서 중계기 역할을ㄴㄹ을 겨 하며 대리로 통신을 수행하는 기능
+* 서버와 클라이언트 사이에서 중계기 역할을 하며 대리로 통신을 수행하는 기능
 
 ===== HTTP
 * 간단
@@ -23,7 +23,7 @@
 * 상태가 없음(= Stateless)
 ** 클라이언트와 서버 사이에서 Connection이 있음. 클라이언트가 서버를 끊을 때까지 연결이 유지됨 => 상태가 있음
 ** HTTP는 한번 보내고 연결을 끊음
-** 서버 부하가 크지 않지만 오버헤드가 발생함
+** 서버 부하가 크지 않지만, 오버헤드가 발생함
 ** HTTP/1 => HTTP/1.1
 ** HTTP/2
 ** `HTTP/1.1와 HTTP/2 차이점` => HTTP/1.1의 Connection Keep-Alive, Pipelining(= 동시성 프로그래밍에서 사용하는 구조 중 하나)의 개선
@@ -31,4 +31,4 @@
 
 ===== 참고
 * https://www.slideshare.net/eungjun/http2-40582114[HTTP/2 더 빠른 웹을 위해]
-* http://www.popit.kr/나만-모르고-있던-http2/[나만 모르고 있던 – HTTP/2]
+* http://www.popit.kr/나만-모르고-있던-http2/[나만 모르고 있던 ? HTTP/2]

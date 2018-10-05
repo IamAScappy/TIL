@@ -38,21 +38,21 @@
 |===
 | 종류 | 설명 | 코드
 | touchDown | 컨트롤을 터치했을 때 발생하는 이벤트 | UIControlEvents.touchDown
-| touchDownRepeat | 컨트롤을 연속 터치 할 때 발생하는 이벤트 | UIControlEvents.touchDownRepeat
+| touchDownRepeat | 컨트롤을 연속 터치할 때 발생하는 이벤트 | UIControlEvents.touchDownRepeat
 | touchDragInside | 컨트롤 범위 내에서 터치한 영역을 드래그 할 때 발생하는 이벤트 | UIControlEvents.touchDragInside
 | touchDragOutside | 터치 영역이 컨트롤의 바깥쪽에서 드래그 할 때 발생하는 이벤트 | UIControlEvents.touchDragOutside
 | touchDragEnter | 터치 영역이 컨트롤의 일정 영역 바깥쪽으로 나갔다가 다시 들어왔을 때 발생하는 이벤트 | UIControlEvents.touchDragEnter 
 | touchDragExit | 터치 영역이 컨트롤의 일정 영역 바깥쪽으로 나갔을 때 발생하는 이벤트 | UIControlEvents.touchDragExit
-| touchUpInside | 컨트롤 영역 안쪽에서 터치 후 뗐을때 발생하는 이벤트 | UIControlEvents.touchUpInside
+| touchUpInside | 컨트롤 영역 안쪽에서 터치 후 뗐을 때 발생하는 이벤트 | UIControlEvents.touchUpInside
 | touchUpOutside| 컨트롤 영역 안쪽에서 터치 후 컨트롤 밖에서 뗐을때 이벤트| UIControlEvents.touchUpOutside
-| touchCancel | 터치를 취소하는 이벤트 (touchUp 이벤트가 발생되지 않음)| UIControlEvents.touchCancel
-| valueChanged | 터치를 드래그 및 다른 방법으로 조작하여 값이 변경되었을때 발생하는 이벤트| UIControlEvents.valueChanged
-| primaryActionTriggered | 버튼이 눌릴때 발생하는 이벤트 (iOS보다는 tvOS에서 사용)| UIControlEvents.primaryActionTriggered  
+| touchCancel | 터치를 취소하는 이벤트 (touchUp 이벤트가 발생하지 않음)| UIControlEvents.touchCancel
+| valueChanged | 터치를 드래그 및 다른 방법으로 조작하여 값이 변경되었을 때 발생하는 이벤트| UIControlEvents.valueChanged
+| primaryActionTriggered | 버튼이 눌릴 때 발생하는 이벤트 (iOS보다는 tvOS에서 사용)| UIControlEvents.primaryActionTriggered 
 | editingDidBegin | UITextField에서 편집이 시작될 때 호출되는 이벤트| UIControlEvents.editingDidBegin
 | editingChanged | UITextField에서 값이 바뀔 때마다 호출되는 이벤트| UIControlEvents.editingChanged 
-| editingDidEnd | UITextField에서 외부객체와의 상호작용으로 인해 편집이 종료되었을 때 발생하는 이벤트| UIControlEvents.editingDidEnd  
-| editingDidEndOnExit | UITextField의 편집상태에서 키보드의 return 키를 터치했을 때 발생하는 이벤트| UIControlEvents.editingDidEndOnExit  
-| allTouchEvents | 모든 터치 이벤트 | UIControlEvents.allTouchEvents|  
+| editingDidEnd | UITextField에서 외부객체와의 상호작용 때문에 편집이 종료되었을 때 발생하는 이벤트| UIControlEvents.editingDidEnd 
+| editingDidEndOnExit | UITextField의 편집상태에서 키보드의 return 키를 터치했을 때 발생하는 이벤트| UIControlEvents.editingDidEndOnExit 
+| allTouchEvents | 모든 터치 이벤트 | UIControlEvents.allTouchEvents| 
 | allEditingEvents | UITextField에서 편집작업의 이벤트 | UIControlEvents.allEditingEvents
 | applicationReserved | 각각의 애플리케이션에서 프로그래머가 임의로 지정할 수 있는 이벤트 값의 범위| UIControlEvents.applicationReserved
 | systemReserved| 프레임워크 내에서 사용하는 예약된 이벤트 값의 범위| UIControlEvents.systemReserved
@@ -63,16 +63,16 @@
 
 ===== 관계
 * ViewController가 제어하려는 객체는 ViewController가 프로퍼티 등으로 지정하여 알고 있어야 함. Interface Builder 객체를 ViewController와 연결하기 위해서 해당 객체를 IBOutlet으로 연결함
-* UI 요소는 ViewController에게 액션 메시지를 전달함. 사용자 동작에 대해 액션을 수행할 수 있음. 이 때 IBAction으로 연결함
+* UI 요소는 ViewController에게 액션 메시지를 전달함. 사용자 동작에 대해 액션을 수행할 수 있음. 이때 IBAction으로 연결함
 * `Target-Action 링크 참고`
 
 image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/photoframe-target-action.png[]
 
-===== strong, weak 둘 중 무엇을 써야하는가?
+===== strong, weak 둘 중 무엇을 써야 하는가?
 * `항상 weak를 쓰되, 특별한 경우에만 strong을 씀`
 * strong을 쓰는 경우는 `outlet` 자체가 참조하고 있는 객체가 *소유 관계* 일 때
 
-===== IBAction에서 여러가지 이벤트 설정할 수 있음
+===== IBAction에서 여러 가지 이벤트 설정할 수 있음
 * UIControl을 상속받은 다양한 UI요소가 존재하며 그런 컨트롤 객체에서 발생한 다양한 이벤트 종류를 특정 액션 메서드에 연결할 수 있음
 
 image:https://github.com/yuaming/swift-photoframe/raw/yuaming/image/multiple-event.png[40%, 40%]
