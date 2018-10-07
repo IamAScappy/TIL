@@ -47,6 +47,7 @@ extension UIColor {
 
 ===== 개념
 * 앱스토어와 운영체제에서 iOS와 watchOS 애플리케이션을 사용자의 기기에 맞거나 꼭 필요한 내용만 골라 전달하는 방식
+* Slicing, Bitcode, ODRs 조합
 * `App Thinning - Asset slicing???How to set images specific to device? 링크 참고`
 * `App Thinning - WWDC2015 링크 참고`
 * `What is app thinning? 링크 참고`
@@ -58,11 +59,15 @@ extension UIColor {
 ** 이미지 리소스는 해상도에 따라 분리되고, GPU 리소스는 기기에서 지원하는지에 따라 번들에 나뉨
 ** 슬라이스 된 iOS 애플리케이션은 최신 버전의 아이튠스와 iOS 9.0 버전 이상의 기기만 지원함
 
-* 비트코드
-** 컴파일된 프로그램의 중간 형태, 아이튠스 커넥트에 올린 애플리케이션이 비트코드라면 앱스토어에서 링크되고 컴파일됨
-** iOS 프로젝트에 기본으로 비트코드가 설정되어 있지만, 선택사항임. iOS 애플리케이션을 비트코드으로 제공하려면 번들에 속한 프레임워크와 애플리케이션 모두 비트코드을 지원해야 하며 watchOS는 비트코드가 선택사항이 아닌 필수임
+* Bitcode
+** 컴파일된 프로그램의 중간 형태, iTunes Connect에 올린 애플리케이션이 Bitcode라면 앱스토어에서 링크되고 컴파일됨
+** Bitcode를 포함하면 앱 스토어에서 새로운 버전 제출없이 바이너리를 다시 최적화할 수 있음
+** iTunes Connect로 올릴 때 LLVM Bitcode 유형으로 나타냄
+** iOS 프로젝트에 기본으로 Bitcode가 설정되어 있지만, 선택사항임. iOS 애플리케이션을 Bitcode로 제공하려면 번들에 속한 프레임워크와 애플리케이션 모두 Bitcode를 지원해야 하며 watchOS는 Bitcode가 선택사항이 아닌 필수임
 
-* On-Demand Resources
+image:./images/bitcode.png[]
+
+* On-Demand Resources(ODRs)
 ** 이미지 또는 사운드와 같은 리소스를 키워드로 태그해 놓고 태그를 통해 요청하는 방식
 ** 앱스토어는 요청에 따라 리소스를 애플 서버에서 관리하거나 내려받음
 ** 예를 들어 게임은 레벨이 올라갈 때마다 새로운 리소스를 요청하는데, 앱 내에서 구매하는 아이템은 구매했을 때만 리소스가 다운로드하면 됨
