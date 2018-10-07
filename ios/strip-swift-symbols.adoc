@@ -1,0 +1,8 @@
+= Strip Swift Symbols
+
+* Build와 연관된 제품의 Link를 strip하는 설정을 만들어 모든 Swift Symbol 제거함. 그래서 Swift Framework의 크기를 줄임(Default: 활성화)
+
+> The new Strip Swift Symbols (STRIP_SWIFT_SYMBOLS) build setting is enabled by default. It adjusts the level of symbol stripping so that when the linked product of the build is stripped, all Swift symbols are removed. This significantly reduces the size of Swift frameworks. If the lack of Swift symbols causes problems, such as when using dladdr(), this setting can be disabled. To view the exported symbols from file that has been stripped, use xcrun dyldinfo -export instead of nm. (31306055)
+
+image:./images/strip-swift-symbols[]
+
