@@ -1,0 +1,9 @@
+= Provisioning 설정이 꼬였을 때 해결 방법
+
+===== Q.
+* Provisioning Profile 꼬였을 때 수동으로 업데이트 하는 방법 ?
+
+===== A.
+* Go to `~/Library/MobileDevice/Provisioning\ Profiles/` and delete all the provisioning profiles from there
+* Go to XCode > Preferences > Accounts and select the Apple Id
+* Click Download Manual Profiles to update your provisioning profiles
