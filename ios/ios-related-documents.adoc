@@ -1,0 +1,70 @@
+= iOS related guidelines
+
+===== 1
+
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html[The Objective-C Programming Guide]
+* https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MemoryManagement.html[Cocoa Core Competencies - Memory management]
+* https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html[App Programming Guide for iOS]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/Introduction/Introduction.html[Cocoa Fundamentals Guide]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html[Resource Programming Guide]
+* https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html[View Controller Programming Guide for iOS]
+* https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/introduction/introduction.html[View Programming Guide for iOS]
+* https://developer.apple.com/library/archive/documentation/General/Conceptual/Devpedia-CocoaApp/EventHandlingiPhone.html#//apple_ref/doc/uid/TP40009071-CH13-SW1[Event(iOS)]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html[Key-Value Coding Programming Guide]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html[Key-Value Observing Programming Guide]
+* https://developer.apple.com/library/archive/featuredarticles/XcodeConcepts/Concept-Projects.html[Xcode Concepts]
+* Event Handling for iOS
+
+===== 2
+
+* https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/TableView_iPhone/AboutTableViewsiPhone/AboutTableViewsiPhone.html[Table View Programming Guide for iOS]
+* Scroll View Programming Guide
+* https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html[Information Property List Key Reference]
+* https://developer.apple.com/library/archive/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html[Drawing and Printing Guide for iOS] 
+* Core Graphics Framework Reference
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html[Core Animation Programming Guide ]
+* https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreAnimation_Cookbook/Introduction/Introduction.html[Core Animation Cookbook]
+* https://developer.apple.com/documentation/foundation/nsinvocation[NSInvocation]
+* https://developer.apple.com/library/archive/documentation/PreferenceSettings/Conceptual/SettingsApplicationSchemaReference/Introduction/Introduction.html[Settings Application Schema Reference]
+* https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html[Concurrency Programming Guide]
+* https://developer.apple.com/xcode/interface-builder/[Interface Builder]
+* Instruments User Guide, Shark User Guide
+* https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Introduction.html[Secure Coding Guide]
+* https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html[Internationalization and Localization Guide]
+* Core Data Programming Guide[Core Data] 
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html[Error Handling Programming Guide]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Exceptions/Exceptions.html[Exception Programming Topics]
+* https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPropertyLists/CFPropertyLists.html[Property List Programming Topics for Core Foundation]
+* https://developer.apple.com/documentation/foundation/userdefaults[UserDefaults]
+
+===== 3
+* https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html[iOS Device Compatibility Reference]
+* https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html[Location Awareness Programming Guide]
+* https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html[Text Programming Guide for iOS]
+* Camera Programming Topics for iOS
+* Keychain Services Programming Guide
+* https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/EventKitProgGuide/Introduction/Introduction.html[Calendar and Reminders Programming Guide]
+* https://developer.apple.com/library/archive/documentation/ContactData/Conceptual/AddressBookProgrammingGuideforiPhone/Introduction.html[Address Book Programming Guide for iOS]
+* https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html[OpenGL ES Programming Guide for iOS]
+* https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html[Quartz 2D Programming Guide]
+* https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html[Core Audio Overview]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UndoArchitecture/UndoArchitecture.html[Undo Architecture]
+* https://developer.apple.com/library/archive/documentation/Performance/Conceptual/FileSystem/FileSystem.html[File-System Performance Guidelines]
+
+===== 4
+* https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/[iOS Human Interface Guidelines]
+* https://developer.apple.com/design/human-interface-guidelines/[Human Interface Guidelines]
+* GoF의 디자인 패턴
+* https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html[Bundle Programming Guide]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html[Coding Guidelines for Cocoa]
+
+===== 5
+* https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/SystemMessaging_TopicsForIOS/Introduction/Introduction.html[System Messaging Programming Topics for iOS]
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html[Stream Programming Guide]
+* https://developer.apple.com/documentation/foundation/url_loading_system[URL Loading System] 
+* https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html[Apple URL Scheme References]
+* https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html[AVFoundation Programming Guide]
+
+===== 6
+* https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html[Archives and Serializations Programming Guide]
+* https://developer.apple.com/documentation/foundation/timer[Timer]
